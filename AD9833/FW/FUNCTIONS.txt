@@ -1,0 +1,3 @@
+step freq				BTN
+amp SPI_POTENZIOMETER	BTN
+FREQ change\set			ENCODER with BTN 

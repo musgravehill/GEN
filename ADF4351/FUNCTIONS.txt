@@ -1,0 +1,5 @@
+lock true\false			show on display
+step freq				BTN
+lowNoise or low spur	BTN
+power db				BTN
+FREQ change\set			ENCODER with BTN 
