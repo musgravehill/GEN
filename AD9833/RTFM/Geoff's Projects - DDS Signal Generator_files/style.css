@@ -1,0 +1,230 @@
+body  {
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: darkblue;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	background-color: #888888;
+}
+.twoColFixLtHdr #container {
+	width: 900px; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #000000;
+	text-align: left;
+	background-attachment: scroll;
+	background-color: #F5F5F5;
+	background-repeat: no-repeat;
+	background-position: center 0px;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	background-image: url(Images/ShadedBanner%20copy.png);
+} 
+.twoColFixLtHdr #header {
+	padding: 0px 0px 0px 0px;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+	background-color: #000;
+	text-decoration: none;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+} 
+.twoColFixLtHdr #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 10px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+}
+.twoColFixLtHdr #sidebar1 {
+	float: left; /* since this element is floated, a width must be given */
+	width: 163px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 15px;
+	padding-left: 10px;
+	background-color: #E8E8E8;
+	list-style-position: inside;
+	list-style-type: circle;
+}
+.twoColFixLtHdr #footer {
+	padding: 0 10px 0 20px;
+	border-top-width: medium;
+	border-top-style: solid;
+	border-top-color: #EBECEC;
+} 
+.twoColFixLtHdr #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	text-align: center;
+}
+.twoColFixLtHdr #mainContent {
+	margin: 0 0 0 180px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	font-family: Arial, Helvetica, sans-serif;
+	color: darkblue;
+	font-size: 13px;
+	letter-spacing: 0em;
+	line-height: 120%;
+	border-left-width: medium;
+	border-left-style: solid;
+	border-left-color: #EBECEC;
+	vertical-align: text-top;
+} 
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+.PageHeading {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: rgb(0, 79, 118);
+	margin-top: 35px;
+}
+.SectionHeader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-weight: normal;
+}
+.SubSectionHeader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	font-weight: bold;
+}
+
+
+.BodyText {
+	margin-top: 0px;
+	margin-bottom: 5px;
+	text-align: justify;
+	font-size: 13px;
+}
+.BodyTextCentered {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+.BodyTextIndented {
+	margin-left: 15px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+
+}
+.BodyTextBullet {
+	list-style-type: square;
+	list-style-position: outside;
+	text-indent: 0px;
+	margin-top: -7px;
+	margin-bottom: 10px;
+}
+.BodyTextNumbered {
+	list-style-type: decimal;
+	list-style-position: outside;
+	text-indent: 0;
+	margin-top: -7px;
+	margin-bottom: 10px;
+	text-align: justify;
+}
+
+.SourceCodeText {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12px;
+	text-indent: 20px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color: #006;
+}
+.Image-Icon {
+	margin-top: 0px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	float: left;
+	border: 1px solid #000;
+}
+.SideBarLicense {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: center;
+	vertical-align: bottom;
+}
+.Image-Left {
+	margin-top: 15px;
+	margin-right: 20px;
+	margin-bottom: 15px;
+	margin-left: 0px;
+	float: left;
+}
+.Image-Left-Border {
+	margin-top: 15px;
+	margin-right: 20px;
+	margin-bottom: 15px;
+	margin-left: 0px;
+	float: left;
+	border: 1px solid #000;
+}
+.Image-Right {
+	margin-top: 15px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	float: right;
+}
+.Image-Right-Border {
+	margin-top: 15px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	float: right;
+	border: 1px solid #000;
+	color: #666;
+}
+.Image-Center {
+	margin-top: 15px;
+	margin-right: auto;
+	margin-bottom: 15px;
+	margin-left: auto;
+	float: none;
+	text-align: center;
+	display: block;
+}
+.Image-Center-Border {
+	margin-top: 15px;
+	margin-right: auto;
+	margin-bottom: 15px;
+	margin-left: auto;
+	float: none;
+	text-align: center;
+	display: block;
+	border: 1px solid #000;
+}
+.BodyTextBulletIcon {
+	list-style-type: square;
+	list-style-position: outside;
+	margin-top: -7px;
+	margin-bottom: 10px;
+	margin-left: 280px;
+}
+.BodyTextBulletIcon2 {
+	margin-top: -7px;
+	margin-bottom: 10px;
+	margin-left: 310px;
+}

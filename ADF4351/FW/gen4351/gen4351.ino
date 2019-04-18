@@ -18,8 +18,9 @@ void setup()
 
   lcd.setCursor(0, 1);
   lcd.print("NOT_LOCK");
-  lcd.print(" STEP 100kHz");
-  lcd.print(" LOW_NOISE");
+  lcd.print(" STEP_100kHz");
+  lcd.setCursor(0, 2);
+  lcd.print("LOW_NOISE  5dBm");
 
 }
 
