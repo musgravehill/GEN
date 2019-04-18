@@ -1,0 +1,31 @@
+﻿
+$(document).ready(function () {
+    bindAllPickers();
+});
+
+function bindAllPickers() {
+    $('div.picker').unbind("click", divpicker_click);
+    $('div.picker').bind("click", divpicker_click);
+    $('a.picker').unbind("click", apicker_click);
+    $('a.picker').bind("click", apicker_click);
+};
+
+
+function divpicker_click(e) {
+    e.stopPropagation();
+    var pickParent = $(this).parent().parent();
+    $(pickParent).children('div.expand').toggle();
+    $(pickParent).children('div.collapse').toggle();
+
+    var line = $(this).attr('line');
+
+    var parentCode = $(this).parents('div.code');
+    $(parentCode).find('.linenumbers span[line=' + line + ']').toggle();
+};
+function apicker_click(e) {
+    e.stopPropagation();
+    var pickParent = $(this).parent().parent().parent();
+    $(pickParent).children('div.expand').toggle();
+    $(pickParent).children('div.collapse').toggle();
+};
+

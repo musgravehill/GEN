@@ -1,0 +1,76 @@
+﻿//===========================================================================
+// Функциональность форм.
+//===========================================================================
+
+var strLoadingData = '<div style="text-align:center; height:50px; padding-top:25px;"><img src="../../Content/indicator.gif" /> загрузка данных...</div>';
+var strLoadingForm = '<div style="text-align:center; height:50px; padding-top:25px;"><img src="../../Content/indicator.gif" /> загрузка формы...</div>';
+
+
+function expandProduct(elem, reload) {
+    //e.stopPropagation();
+    var h3 = $(elem).parent()
+    var sourcediv = $(elem).parent().find("~div.children");
+
+    var productID = parseInt($(elem).attr("productid"));
+
+    if ($(h3).hasClass("collapse")) {
+        $(h3).removeClass("collapse");
+        $(h3).addClass("expand");
+
+        loadChildren(productID);
+
+        //$(sourcediv).load('/products/getproductchildren/' + productID, function () {
+        //    initBlocks();
+        //    // anything
+        //    //alert('Load was performed.');
+        //    $("img.lazy").lazyload({
+        //        effect: "fadeIn"
+        //    });
+        //    $("img.lazy").removeClass("lazy");
+        //});
+
+    }
+    else if ($(h3).hasClass("expand")) {
+        if (reload) {
+            loadChildren(productID);
+        }
+        else {
+            $(h3).removeClass("expand");
+            $(h3).addClass("collapse");
+            $(sourcediv).empty();
+        }
+
+    }
+
+};
+
+function bindAllProducts() {
+    if (isAdmin) {
+    bindDragImage('td.product', true);
+    }
+};
+
+
+function loadChildren(productID) {
+    //e.stopPropagation();
+    var sourcediv = $("a[productid=" + productID + "]").parent().find("~div"); // Последующие
+    $(sourcediv).empty();
+    $(sourcediv).html("<div class='display:inline-block; text-align:left;'><img src='../../Content/indicator.gif' /> загрузка данных...</div>");
+
+    $(sourcediv).load('/products/getproductchildren/' + productID, function () {
+        initLazy();
+        bindAllProducts();
+    });
+};
+
+function initLazy() {
+    initBlocks();
+    $("img.lazy").lazyload({
+        effect: "fadeIn"
+    });
+    $("img.lazy").removeClass("lazy");
+
+}
+
+
+

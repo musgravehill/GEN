@@ -1,0 +1,117 @@
+﻿
+textarea, input[type="text"] {
+    font-size: 8.5pt;
+    /*font-family: Tahoma, "MS Sans-Serif", "Segoe UI", "Times New Roman", "Trebuchet MS", Verdana, Helvetica, Sans-Serif;*/
+    background-color:White;
+    padding-bottom:1px;
+    height:20px;
+    border:1px solid #e3e9ef;
+    border-top:1px solid #abadb3; border-left:1px solid #abadb3;
+    border-radius:2px;
+    }
+
+.selectedbox[enabled="false"] textarea, .selectedbox[enabled="false"] input {background-color: #f0f0f0; border:1px solid #afafaf; border-radius:2px;}
+
+a.selectbutton {width:14px; height:18px; 
+                border:1px solid #e3e9ef;
+                border-bottom:1px solid #abadb3; border-right:1px solid #abadb3;
+                display:inline-block; border-right-width:0; border-left-width:0; margin-top:1px; cursor:auto;}
+
+a[button="select"].selectbutton {background:url(buttonicons/minicheck.gif) center center no-repeat}
+a[button="clear"].selectbutton {background:url(buttonicons/miniclose.gif) center center no-repeat}
+                
+a.selectbutton.firstbutton {border-radius:2px 0 0 2px; border-left-width:1px; border-right:1px solid #e3e9ef;}
+a.selectbutton.lastbutton {border-radius:0 2px 2px 0; border-right-width:1px;}
+a.selectbutton.firstbutton.lastbutton {border-radius:2px; border-width:1px; border-right:1px solid #abadb3;}
+
+.selectedbox[enabled="false"] a.selectbutton div { background-color: #fffbf0; height:16px; filter: alpha(opacity=50); opacity:0.5}
+
+a.selectbutton:hover {background-color:#e6e6e6;}
+.selectedbox[enabled="false"] a.selectbutton:hover {background-color:#fffbf0;}
+
+
+
+.field-validation-error {color:Red}
+
+
+
+
+
+.text-box, .multi-line {
+    margin:2px 0px;
+    width:100%;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    background-color:White;
+}
+
+
+
+table.selectedbox {width:100%; display:inline-table; /*border:1px solid black;*/}
+table.selectedbox td {white-space:nowrap; vertical-align:center; padding:1px 0px; /*border:1px solid blue;*/}
+
+table.selectedbox label, table.selectedbox input {margin:0px; padding:0px; /*border:1px solid red*/}
+table.selectedbox input {padding: 0px 2px;}
+
+table.selectedbox td label {padding: 0px 4px 0px 0px;}
+table.selectedbox td.right label {padding: 0px 4px 0px 16px;}
+table.selectedbox td.center label {padding: 0px 4px;}
+
+table.selectedbox td.right  {text-align:right}
+table.selectedbox td.center {text-align:center}
+
+
+
+
+.selectedbox input.check-box {margin-right:6px;}
+
+
+form td {
+vertical-align:top;
+}
+
+
+h3.productGroup div.treeview {width:18px; height:18px; background-position:center; background-repeat:no-repeat; margin-right:.5em; display:inline-block;}
+
+h3.collapse div.exists  { background-image: url('treeview/expand_plus.gif');}
+h3.expand div.exists    { background-image: url('treeview/expand_minus.gif');}
+div.leaf  { background-image: url('treeview/expand_leaf.gif');}
+
+
+
+a img.treeview {border:none;}
+
+
+h3.productGroup div.buttons {
+    visibility:hidden;
+    }
+h3.productGroup:hover div.buttons {
+    visibility:visible;
+    }
+
+h3.productGroup div.buttons a.refresh {
+    visibility:hidden;
+    }
+h3.productGroup.expand:hover div.buttons a.refresh {
+    visibility:visible;
+    }
+
+h3.productGroup div.buttons a {
+    margin:0 0.1em;
+    }
+
+
+div.imgForProduct { display:inline-block; width:200px; height:200px;}
+
+td.product div.productid {position:absolute; bottom:0; right:0; font-style:italic; font-size:.8em; padding-right:.5em; color:rgb(220,220,220)}
+
+
+.pointereventsnone {
+    pointer-events: none;  
+}
+
+
+/*td.product h4, td.product img, td.product p, td.product div {
+    pointer-events: none;  
+    }*/

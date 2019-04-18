@@ -1,0 +1,87 @@
+﻿
+var minBlockWidth = 240;
+
+$(document).ready(function () {
+    initBlocks(true);
+    window.onresize = initBlocks;
+})
+
+var _count = -1; // дефолтное кол-во колонок, генерируемое на сервере
+//var ptables; //= $("");
+
+function initBlocks(manual){
+    var ptables = $("table.products");
+
+    var lastemptycolumn = true; // Дополнять ли таблицу пустым столбцом
+
+    for (var i = 0; i < $(ptables).length; i++) {
+        var actualTbl = $(ptables)[i];
+        if ($(actualTbl).attr("emptycolumn") != null) {
+            lastemptycolumn = $(actualTbl).attr("emptycolumn") == 'true';
+        }
+
+        resizeTable($(ptables)[i], manual, lastemptycolumn);
+    }
+}
+
+function getColumnsCount(table) {
+    var parent = $(table).parent();
+    var minWidth = document.documentElement.scrollWidth > $(parent).width() ? $(parent).width() : document.documentElement.scrollWidth
+
+    var parentWidth = minWidth > $(table).width() ? minWidth : $(table).width();
+    var minwidth = minBlockWidth;
+
+    if ($(table).attr("minwidth") != undefined) {
+        minwidth = parseInt( $(table).attr("minwidth"));
+    }
+
+    var c = Math.floor(parentWidth / (minwidth));
+    return c > 0 ? c : 1;
+}
+
+function resizeTable(table, manual, lastemptycolumn) {
+    var _count = parseInt($(table).attr("colscount"));
+    var colsCount = getColumnsCount($(table));          // кол-во столбцов в таблице
+    if (_count == colsCount && !manual) { return; }     //ничего не делать, если кол-во колонок то же, что и ранее
+
+    var blocks = $(table).find("td.product");
+    var rows = $(blocks).length / colsCount;
+    var blockWidth = 100 / colsCount; // ширина каждой ячейки в процентах
+
+    $(table).find("tr").remove();
+
+    var actualRow;
+    var rowscount = 0;
+    var actualBlock = 0;
+    for (var i = 0; i < $(blocks).length; i++) {
+        if (actualBlock == 0) {
+            $(table).find("tbody").append("<tr></tr>");
+            actualRow = $(table).find("tr:last");
+            rowscount++;
+        }
+        var block = $(blocks)[i];
+        $(block).width(blockWidth + "%");
+        actualRow.append($(blocks)[i]);
+
+        actualBlock++;
+        if (actualBlock >= colsCount) { actualBlock = 0;}
+    }
+
+    if (lastemptycolumn && (actualBlock < colsCount && blocks.length < colsCount)) { // Ячеек меньше чем нужно - восполняем
+        var block = "<td></td>";
+        actualRow.append($(block));
+        block = $(actualRow).find("td:last");
+        $(block).width(blockWidth * (colsCount - actualBlock) + "%");
+    }
+
+    if (rowscount > 1) {
+        var block = "<td></td>";
+        actualRow.append($(block));
+        block = $(actualRow).find("td:last");
+        $(block).attr("colspan",colsCount - actualBlock);
+    }
+
+
+    $(table).attr("colscount", colsCount);
+}
+

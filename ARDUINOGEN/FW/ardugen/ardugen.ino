@@ -162,10 +162,7 @@ static inline void signalOUT(const uint8_t *signal) {
 
 void setup() {
   lcd.init();
-  lcd.backlight();
-  lcd.setCursor(0, 0);
-  lcd.print("SINE ");
-  lcd.print(100);
+  lcd.backlight();  
 
   for (int n = 0; n < sizeof(musor_mass); n++ ) {
     PORTD = musor_mass[n];

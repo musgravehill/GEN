@@ -1,5 +1,5 @@
 /*
-
+PINOUT!!!! d2 - for ENCODER_A!! 
 */
 
 
@@ -78,13 +78,18 @@ boolean ADF4351_isNeedSetNewConfig = false;
 
 
 //========================================== INTERFACE ==========================================================
-#define ENCODER_button 7
-#define ENCODER_A 9
-#define ENCODER_B 8
-boolean ENCODER_A_state;
-boolean ENCODER_B_state;
-boolean ENCODER_A_state_prev = false;
+#define ENCODER_pin_A 2 //Пин прерывания
+#define ENCODER_pin_B 7 //Любой другой пин 
 
+volatile int ENCODER_count = 0;       // Счетчик оборотов. Периодически проверять ENCODER_count и делать действтия,потом ENCODER_count=0 и снова ждем вращения
+// в прерываниях делать дела нельзя - слишком долго
+volatile int ENCODER_state = 0;       // Переменная хранящая статус вращения
+
+volatile int ENCODER_pin_A_val = 0;   // Переменные хранящие состояние пина, для экономии времени
+volatile int ENCODER_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
+
+
+#define ENCODER_button 8
 #define BTN_step A3
 #define BTN_lownoisespur A2
 #define BTN_out_power A1

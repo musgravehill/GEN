@@ -2,7 +2,7 @@
 void BUTTON_init() {
   pinMode(BTN_step, INPUT_PULLUP);
   pinMode(BTN_lownoisespur, INPUT_PULLUP);
-  pinMode(BTN_out_power, INPUT_PULLUP);   
+  pinMode(BTN_out_power, INPUT_PULLUP);
   pinMode(LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
 }
 
@@ -33,7 +33,6 @@ void BUTTON_check() {
   //BTN ENCODER
   button_state = digitalRead(ENCODER_button);
   if (!button_state) {
-    uint32_t  currMillis = millis();
     ADF4351_setConfig();
   }
 
@@ -41,22 +40,33 @@ void BUTTON_check() {
 
 
 void ENCODER_init() {
-  pinMode(ENCODER_button, INPUT_PULLUP);
-  pinMode(ENCODER_A, INPUT_PULLUP);
-  pinMode(ENCODER_B, INPUT_PULLUP);
+  pinMode(ENCODER_pin_A, INPUT);
+  pinMode(ENCODER_pin_B, INPUT);
+  attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2
+
+  pinMode(ENCODER_button, INPUT);
 }
 
-void ENCODER_check() {
-  ENCODER_A_state = digitalRead(ENCODER_A);
-  if ((!ENCODER_A_state) && (ENCODER_A_state_prev))  {
-    ENCODER_B_state = digitalRead(ENCODER_B);
-    if (ENCODER_B_state) {
-      ADF4351_freq_inc();
-    }
-    else {
-      ADF4351_freq_dec();
+void ENCODER_interrupt() {
+  ENCODER_pin_A_val = digitalRead(ENCODER_pin_A);            // Получаем состояние пинов A и B
+  ENCODER_pin_B_val = digitalRead(ENCODER_pin_B);
+
+  cli();    // Запрещаем обработку прерываний, чтобы не отвлекаться
+  if (!ENCODER_pin_A_val &&  ENCODER_pin_B_val) ENCODER_state = 1;  // Если при спаде линии А на линии B лог. единица, то вращение в одну сторону
+  if (!ENCODER_pin_A_val && !ENCODER_pin_B_val) ENCODER_state = -1; // Если при спаде линии А на линии B лог. ноль, то вращение в другую сторону
+  if (ENCODER_pin_A_val && ENCODER_state != 0) {
+    if (ENCODER_state == 1 && !ENCODER_pin_B_val || ENCODER_state == -1 && ENCODER_pin_B_val) { // Если на линии А снова единица, значит шаг был
+      ENCODER_count += ENCODER_state;
+      ENCODER_state = 0;
     }
   }
-  ENCODER_A_state_prev = ENCODER_A_state;
+  sei(); // Разрешаем обработку прерываний
 }
+
+
+//ADF4351_freq_inc();
+
+//ADF4351_freq_dec();
+
+
 

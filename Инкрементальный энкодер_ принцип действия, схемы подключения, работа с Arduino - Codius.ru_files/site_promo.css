@@ -1,0 +1,74 @@
+﻿
+
+#popup_promo {
+    display:none;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*display: none;*/
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999999995;
+    -webkit-animation: fade .6s;
+    -moz-animation: fade .6s;
+    animation: fade .6s;
+    overflow: auto;
+}
+
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    margin-top: -310px;
+    z-index: 999999999;
+    text-align: center;
+    width: 100%;
+}
+
+#img_promo {
+    background: url('../../Content/promoimages/promo_popup.jpg');
+    width: 880px;
+    height: 620px;
+    display: inline-block;
+    border: 5px solid white;
+    cursor: pointer;
+}
+
+#play_promo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -99px;
+    margin-left: -140px;
+    background-image: url('../../Content/promoimages/yt_button_black.png');
+    width: 280px;
+    height: 198px;
+    opacity: .4;
+}
+
+
+#img_promo:hover #play_promo {
+    background-image: url('../../Content/promoimages/yt_button_red.png');
+    opacity: 1;
+}
+
+#close_popup, #close_popup:hover {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 31px;
+    height: 31px;
+}
+
+#close_popup {
+    background-image: url('../../Content/promoimages/close.png');
+}
+
+    #close_popup:hover {
+        background-image: url('../../Content/promoimages/close_over.png');
+    }

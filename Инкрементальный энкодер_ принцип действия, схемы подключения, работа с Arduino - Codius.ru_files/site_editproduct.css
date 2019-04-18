@@ -1,0 +1,46 @@
+﻿div.uiform {
+    /*border:1px solid rgb(128, 128, 128);*/
+    display:inline-block;
+}
+
+div.uiform div.uiform-header {
+    padding: .5em 1em;
+    font-weight:bold;
+    background-color: rgb(240, 240, 240);
+    border-bottom: 1px solid rgb(200,200,200);
+}
+
+div.uiform div.uiform-data {
+    
+    /*padding: .5em 1em 1em;*/
+    
+    }
+div.uiform div.uiform-buttons {
+    padding: .5em 1em;
+    text-align:right;
+    border-top: 1px solid rgb(200,200,200);
+}
+
+
+div.uiform div.uiform-data td.label {
+    text-align:right;
+}
+
+
+fieldset {
+padding:0;
+margin:0;
+border:0;
+}
+
+
+
+div#editProductForm {
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:0%;
+background-color: rgb(230,255,255)
+
+}

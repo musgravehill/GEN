@@ -15,7 +15,7 @@ void TIMEMACHINE_loop() {
 }
 
 void TIMEMACHINE_5ms() {
-  ENCODER_check();
+   
 }
 
 void TIMEMACHINE_311ms() {
