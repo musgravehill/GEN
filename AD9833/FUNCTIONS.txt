@@ -1,3 +1,4 @@
 step freq				BTN
 amp SPI_POTENZIOMETER	BTN
+SINE\SQW\TRI			BTN
 FREQ change\set			ENCODER with BTN 

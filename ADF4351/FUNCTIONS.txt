@@ -1,4 +1,4 @@
-lock true\false			show on display
+lock true\false			show LED
 step freq				BTN
 lowNoise or low spur	BTN
 power db				BTN
