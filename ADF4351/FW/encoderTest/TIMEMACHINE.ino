@@ -8,7 +8,7 @@ void TIMEMACHINE_loop() {
     TIMEMACHINE_311ms();
     TIMEMACHINE_prev_311ms = TIMEMACHINE_currMillis;
   }
-  if ((TIMEMACHINE_currMillis - TIMEMACHINE_prev_2222ms) > 2222L) {
+  if ((TIMEMACHINE_currMillis - TIMEMACHINE_prev_2222ms) > 500L) {
     TIMEMACHINE_2222ms();
     TIMEMACHINE_prev_2222ms = TIMEMACHINE_currMillis;
   }
