@@ -1,7 +1,7 @@
 
 void ADF4351_init() {
-  pinMode (ADF4351_ss_pin, OUTPUT);
-  digitalWrite(ADF4351_ss_pin, LOW);
+  pinMode (ADF4351_LE_pin, OUTPUT);
+  digitalWrite(ADF4351_LE_pin, LOW);
   SPI.setDataMode(SPI_MODE0);
   SPI.setBitOrder(MSBFIRST);
   SPI.begin();
@@ -88,7 +88,7 @@ void ADF4351_writeToRegister(int idx)
 }
 int ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
   // write over SPI to ADF4351
-  digitalWrite(ADF4351_ss_pin, LOW);
+  digitalWrite(ADF4351_LE_pin, LOW);
   delayMicroseconds(10);
   SPI.transfer(a1);
   SPI.transfer(a2);
@@ -97,9 +97,9 @@ int ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
   ADF4351_ss_toggle();
 }
 int ADF4351_ss_toggle() {
-  digitalWrite(ADF4351_ss_pin, HIGH);
+  digitalWrite(ADF4351_LE_pin, HIGH);
   delayMicroseconds(5);
-  digitalWrite(ADF4351_ss_pin, LOW);
+  digitalWrite(ADF4351_LE_pin, LOW);
 }
 
 void ADF4351_prepareConfig() {

@@ -31,10 +31,10 @@ i2c LCD 5V, а система 3.3В. Поэтому нужен преобраз�
    MOSI 11 ----> DATA
    MISO 12 ---- null, but d12 is SPI
    SCK 13 -----> CLK
-   d10 no connect, but SPI
-   d3----------> LE
-   d5----------> LD = lock detect
-                 CE---3V3
+   d10 no connect, but SPI SS. CE connected to 3.3V, so SPI always enabled. I use custom LE pin for custom SPI interface
+   d3----------> LE  LOAD_ENABLE 1=upload registers 0=work
+   d5----------> LD = lock detect, 1=ok 0=cannot_generate
+                 CE---3V3 SET CHIP_ENABLE ON
 
 
 
@@ -55,7 +55,7 @@ i2c LCD 5V, а система 3.3В. Поэтому нужен преобраз�
 
 //============================================================= ADF4351 =========================================
 #include <SPI.h>
-#define ADF4351_ss_pin 3 //SPI-SS enable ADF4351
+#define ADF4351_LE_pin 3  
 #define LD_pin 5
 uint32_t ADF4351_referenceFreq = 2500000L; //*10 Hz reference frequency = quartz 25 MHz
 uint32_t ADF4351_frequency = 43300000L; //*10 Hz = 433 MHz
