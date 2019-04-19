@@ -1,5 +1,7 @@
 /*
-PINOUT!!!! d2 - for ENCODER_A!! 
+PINOUT!!!! d2 - for ENCODER_A!!
+
+ add 74HC14  
 */
 
 
