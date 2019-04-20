@@ -13,14 +13,13 @@ void setup()
   lcd.backlight();
   lcd.setCursor(0, 0);
   lcd.print((float)4444.004, 3);
-  lcd.print(" MHz");
+  lcd.print(" kHz");
+  lcd.print(" LN");
 
 
-  lcd.setCursor(0, 1);
-  lcd.print("NOT_LOCK");
-  lcd.print(" STEP_100kHz");
-  lcd.setCursor(0, 2);
-  lcd.print("LOW_NOISE  5dBm");
+  lcd.setCursor(0, 1);  
+  lcd.print("6.25 kHz");  
+  lcd.print(" -4dBm");
 
 }
 
