@@ -7,9 +7,6 @@
   Экран отрисовывать каждые 10сек и по событиям, рисовать экран каждые 300мс нет смысла.
   i2c LCD 5V, а система 3.3В. Поэтому нужен преобразователь уровней и 2 питания: 5В и 3.3В.
 
-
-
-
 */
 
 
@@ -71,8 +68,7 @@ uint32_t ADF4351_stepsVariants[7] = {
   10000000 //*10Hz 100 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
 };
 uint8_t ADF4351_stepsVariantsNumCurrent = 4;
-String OLED_stepsVariants_val[7] = {"6.25", "10", "12.5", "100", "1", "10", "100"};
-String OLED_stepsVariants_kmhz[7] = {"kHz", "kHz", "kHz", "kHz", "MHz", "MHz", "MHz"};
+String OLED_stepsVariants_val[7] = {"6.25kHz", "10kHz", "12.5kHz", "100kHz", "1MHz", "10MHz", "100MHz"};
 
 uint8_t ADF4351_lowNoiseOrSpurVariants[2] = {B0, B11};
 uint8_t ADF4351_lowNoiseOrSpur_current = 0; //at lowSpur cannot lock sometimes
@@ -95,10 +91,10 @@ volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хран
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
 #define ENCODER_button 4
-#define BTN_step 5
-#define BTN_lownoisespur 6
-#define BTN_out_power 7
-#define BTN_future 8
+#define BTN_lownoisespur 5
+#define BTN_out_power 6
+#define BTN_future0 7
+#define BTN_future1 8
 #define LED_lock_detect 9
 
 //=====================================1602 LCD i2c==============================================================
@@ -114,7 +110,7 @@ uint32_t TIMEMACHINE_prev_2000ms = 0L;
 
 //=======================================SYS=======================================================================
 volatile boolean SYS_isNeedProcessConfig = false;
-volatile boolean SYS_isNeedRender= false;
+volatile boolean SYS_isNeedRender = false;
 
 void setup() {
   ADF4351_init();

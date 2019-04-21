@@ -1,42 +1,32 @@
 
-void BUTTON_init() {
-
-  pinMode(BTN_step, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+void BUTTON_init() { 
   pinMode(BTN_lownoisespur, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
-  pinMode(BTN_out_power, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
-  pinMode(BTN_future, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(BTN_out_power, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors  
   pinMode(LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
   pinMode(LED_lock_detect, OUTPUT);
 }
 
 void BUTTON_check() {
   boolean button_state;
-  //BTN STEP
-  button_state = digitalRead(BTN_step);
-  if (!button_state) {
-    ADF4351_step_next();
-  }
+
+  
+
   //BTN LOW noise\spur mode
   button_state = digitalRead(BTN_lownoisespur);
   if (!button_state) {
     ADF4351_lowNoiseSpurMode_next();
   }
 
-  /*
-    //BTN output rf power
-    button_state = digitalRead(BTN_out_power);
-    if (!button_state) {
-    //if ((currMillis - INTERFACE_action_prev_ms) > 503L) {
-    //INTERFACE_action_prev_ms = currMillis;
+  //BTN output rf power
+  button_state = digitalRead(BTN_out_power);
+  if (!button_state) {
     ADF4351_out_power_next();
-    //}
-    }*/
-
+  }
 
   //BTN ENCODER
   button_state = digitalRead(ENCODER_button);
   if (!button_state) {
-    
+    ADF4351_step_next();
   }
 }
 

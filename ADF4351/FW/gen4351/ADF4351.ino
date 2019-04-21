@@ -9,16 +9,14 @@ void ADF4351_init() {
   ADF4351_setConfig();
 }
 
- 
 
-/*
-  void ADF4351_out_power_next() {
+void ADF4351_out_power_next() {
   ADF4351_outputPower_current += 1;
   if (ADF4351_outputPower_current > 3) {  //cycle, return to 0-pos
     ADF4351_outputPower_current = 0;
   }
   SYS_isNeedProcessConfig = true;
-  }*/
+}
 
 void ADF4351_lowNoiseSpurMode_next() {
   ADF4351_lowNoiseOrSpur_current += 1;
@@ -49,7 +47,6 @@ void ADF4351_freq_dec() {
 
 
 void ADF4351_setConfig() {
-  SYS_isNeedProcessConfig = false;
   ADF4351_freqStepCurrent = ADF4351_stepsVariants[ADF4351_stepsVariantsNumCurrent]; //it is in ADF4351_prepareConfig()
   ADF4351_prepareConfig();
   ADF4351_writeToRegister(5);
