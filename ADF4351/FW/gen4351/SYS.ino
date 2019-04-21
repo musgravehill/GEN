@@ -4,7 +4,7 @@ void SYS_events_check() {
 
   //at the end
   if (SYS_isNeedProcessConfig) {
-    SYS_isNeedRender = true;
+    MONITOR_render();
   }
   SYS_isNeedProcessConfig = false;
 }

@@ -21,8 +21,7 @@ void TIMEMACHINE_5ms() {
 }
 
 void TIMEMACHINE_311ms() {
-  BUTTON_check();
-  MONITOR_render_force();
+  BUTTON_check();  
 }
 
 void TIMEMACHINE_2000ms() {

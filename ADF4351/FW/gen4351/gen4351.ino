@@ -110,7 +110,6 @@ uint32_t TIMEMACHINE_prev_2000ms = 0L;
 
 //=======================================SYS=======================================================================
 volatile boolean SYS_isNeedProcessConfig = false;
-volatile boolean SYS_isNeedRender = false;
 
 void setup() {
   ADF4351_init();
