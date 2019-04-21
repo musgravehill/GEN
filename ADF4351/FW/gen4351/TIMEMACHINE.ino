@@ -1,17 +1,17 @@
 void TIMEMACHINE_loop() {
   uint32_t  TIMEMACHINE_currMillis = millis();
-  if ((TIMEMACHINE_currMillis - TIMEMACHINE_prev_5ms) > 5L) {
+  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_5ms) {
     TIMEMACHINE_5ms();
-    TIMEMACHINE_prev_5ms = TIMEMACHINE_currMillis;
+    TIMEMACHINE_next_5ms = TIMEMACHINE_currMillis + 5L;
   }
-  if ((TIMEMACHINE_currMillis - TIMEMACHINE_prev_311ms) > 311L) {
+  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_311ms) {
     TIMEMACHINE_311ms();
-    TIMEMACHINE_prev_311ms = TIMEMACHINE_currMillis;
+    TIMEMACHINE_next_311ms = TIMEMACHINE_currMillis + 311L;
   }
 
-  if ((TIMEMACHINE_currMillis - TIMEMACHINE_prev_2000ms) > 2000L) {
+  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_2000ms) {
     TIMEMACHINE_2000ms();
-    TIMEMACHINE_prev_2000ms = TIMEMACHINE_currMillis;
+    TIMEMACHINE_next_2000ms = TIMEMACHINE_currMillis + 2000L;
   }
 
 }
@@ -21,13 +21,10 @@ void TIMEMACHINE_5ms() {
 }
 
 void TIMEMACHINE_311ms() {
-  BUTTON_check();  
+  BUTTON_check();
+  Serial.println(ADF4351_frequency);
 }
 
 void TIMEMACHINE_2000ms() {
-  //MONITOR_render();
 }
-
-
-
 

@@ -3,7 +3,7 @@
   PINOUT!!!! d2 - for ENCODER_A!!
 
 
-  ENCODER_interrupt_count меняется в прерывании. ENCODER_interrupt_count проверять в СтаетМашин каждые 300мс и менять частоту, ENCODER_interrupt_count=0 устанавливать.
+  ENCODER_interrupt_delta меняется в прерывании. ENCODER_interrupt_delta проверять в СтаетМашин каждые 300мс и менять частоту, ENCODER_interrupt_delta=0 устанавливать.
   Экран отрисовывать каждые 10сек и по событиям, рисовать экран каждые 300мс нет смысла.
   i2c LCD 5V, а система 3.3В. Поэтому нужен преобразователь уровней и 2 питания: 5В и 3.3В.
 
@@ -67,7 +67,7 @@ uint32_t ADF4351_stepsVariants[7] = {
   1000000, //*10Hz 10 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
   10000000 //*10Hz 100 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
 };
-uint8_t ADF4351_stepsVariantsNumCurrent = 4;
+uint8_t ADF4351_stepsVariantsNumCurrent = 0;
 String OLED_stepsVariants_val[7] = {"6.25kHz", "10kHz", "12.5kHz", "100kHz", "1MHz", "10MHz", "100MHz"};
 
 uint8_t ADF4351_lowNoiseOrSpurVariants[2] = {B0, B11};
@@ -84,9 +84,9 @@ uint32_t ADF4351_registers[6]; //ADF4351 Registers, see datasheet
 #define ENCODER_pin_A 2 //Пин прерывания
 #define ENCODER_pin_B 3 //Любой другой пин 
 
-volatile int ENCODER_interrupt_count = 0;       // Счетчик оборотов. Периодически проверять ENCODER_interrupt_count и делать действтия,потом ENCODER_interrupt_count=0 и снова ждем вращения
+volatile int ENCODER_interrupt_delta = 0;       // Счетчик оборотов. Периодически проверять ENCODER_interrupt_delta и делать действтия,потом ENCODER_interrupt_delta=0 и снова ждем вращения
 // в прерываниях делать дела нельзя - слишком долго
-volatile int ENCODER_state = 0;       // Переменная хранящая статус вращения
+volatile int ENCODER_interrupt_state = 0;       // Переменная хранящая статус вращения
 volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
@@ -104,18 +104,19 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 
 //================================== TIMEMACHINE =================================================================
-uint32_t TIMEMACHINE_prev_5ms = 0L;
-uint32_t TIMEMACHINE_prev_311ms = 0L;
-uint32_t TIMEMACHINE_prev_2000ms = 0L;
+uint32_t TIMEMACHINE_next_5ms = 0L;
+uint32_t TIMEMACHINE_next_311ms = 0L;
+uint32_t TIMEMACHINE_next_2000ms = 0L;
 
 //=======================================SYS=======================================================================
-volatile boolean SYS_isNeedProcessConfig = false;
+volatile boolean SYS_isNeedProcessConfig = true;
 
 void setup() {
   ADF4351_init();
   MONITOR_init();
   ENCODER_init();
   BUTTON_init();
+  Serial.begin(9600);
 }
 
 void loop() {
