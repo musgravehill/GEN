@@ -42,7 +42,7 @@ void MONITOR_render() {
     lcd.print(' ');
   }
   lcd.print(frq_Hz);
-  lcd.print(" Hz");
+  lcd.print("  Hz");
 
   lcd.setCursor(0, 1);
   lcd.print(OLED_stepsVariants_val[ADF4351_stepsVariantsNumCurrent]);
