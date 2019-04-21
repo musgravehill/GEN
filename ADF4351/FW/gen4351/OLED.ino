@@ -21,7 +21,7 @@ void OLED_display() {
  
 
   myOLED.print(ADF4351_lowNoiseOrSpur_verb[ADF4351_lowNoiseOrSpur_current], 0, 56);
-  if (ADF4351_isNeedSetNewConfig) {
+  if (SYS_isNeedProcessConfig) {
     if (OLED_blynk_state) {
       myOLED.print("SET", 110, 41);
       OLED_blynk_state = false;

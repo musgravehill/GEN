@@ -84,9 +84,6 @@ String ADF4351_outputPower_verb[4] = {"-4dBm", "-1dBm", "2dBm", "5dBm"};
 
 uint32_t ADF4351_registers[6]; //ADF4351 Registers, see datasheet
 
-boolean ADF4351_isNeedSetNewConfig = false;
-
-
 //========================================== INTERFACE ==========================================================
 #define ENCODER_pin_A 2 //Пин прерывания
 #define ENCODER_pin_B 3 //Любой другой пин 
@@ -114,6 +111,10 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 uint32_t TIMEMACHINE_prev_5ms = 0L;
 uint32_t TIMEMACHINE_prev_311ms = 0L;
 uint32_t TIMEMACHINE_prev_2000ms = 0L;
+
+//=======================================SYS=======================================================================
+volatile boolean SYS_isNeedProcessConfig = false;
+volatile boolean SYS_isNeedRender= false;
 
 void setup() {
   ADF4351_init();

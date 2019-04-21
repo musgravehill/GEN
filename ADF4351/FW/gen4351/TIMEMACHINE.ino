@@ -8,22 +8,27 @@ void TIMEMACHINE_loop() {
     TIMEMACHINE_311ms();
     TIMEMACHINE_prev_311ms = TIMEMACHINE_currMillis;
   }
+
   if ((TIMEMACHINE_currMillis - TIMEMACHINE_prev_2000ms) > 2000L) {
     TIMEMACHINE_2000ms();
     TIMEMACHINE_prev_2000ms = TIMEMACHINE_currMillis;
   }
+
 }
 
 void TIMEMACHINE_5ms() {
-  MONITOR_render(false);
+  SYS_events_check();
 }
 
 void TIMEMACHINE_311ms() {
   BUTTON_check();
+  MONITOR_render_force();
 }
 
 void TIMEMACHINE_2000ms() {
-  MONITOR_render(true);
+  //MONITOR_render();
 }
+
+
 
 

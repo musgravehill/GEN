@@ -36,7 +36,7 @@ void BUTTON_check() {
   //BTN ENCODER
   button_state = digitalRead(ENCODER_button);
   if (!button_state) {
-    ADF4351_setConfig();
+    
   }
 }
 
@@ -60,6 +60,7 @@ void ENCODER_interrupt() {
     if (ENCODER_state == 1 && !ENCODER_interrupt_pin_B_val || ENCODER_state == -1 && ENCODER_interrupt_pin_B_val) { // Если на линии А снова единица, значит шаг был
       ENCODER_interrupt_count += ENCODER_state;
       ENCODER_state = 0;
+      SYS_isNeedProcessConfig = true;
     }
   }
   sei(); // Разрешаем обработку прерываний
