@@ -1,9 +1,12 @@
 
 void BUTTON_init() {
-  pinMode(BTN_step, INPUT_PULLUP);
-  pinMode(BTN_lownoisespur, INPUT_PULLUP);
-  pinMode(BTN_out_power, INPUT_PULLUP);
+
+  pinMode(BTN_step, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(BTN_lownoisespur, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(BTN_out_power, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(BTN_future, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
   pinMode(LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
+  pinMode(LED_lock_detect, OUTPUT);
 }
 
 void BUTTON_check() {
@@ -35,28 +38,27 @@ void BUTTON_check() {
   if (!button_state) {
     ADF4351_setConfig();
   }
-
 }
 
 
 void ENCODER_init() {
-  pinMode(ENCODER_pin_A, INPUT);
-  pinMode(ENCODER_pin_B, INPUT);
+  pinMode(ENCODER_pin_A, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(ENCODER_pin_B, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
   attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2
 
-  pinMode(ENCODER_button, INPUT);
+  pinMode(ENCODER_button, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
 }
 
 void ENCODER_interrupt() {
-  ENCODER_pin_A_val = digitalRead(ENCODER_pin_A);            // Получаем состояние пинов A и B
-  ENCODER_pin_B_val = digitalRead(ENCODER_pin_B);
+  ENCODER_interrupt_pin_A_val = digitalRead(ENCODER_pin_A);            // Получаем состояние пинов A и B
+  ENCODER_interrupt_pin_B_val = digitalRead(ENCODER_pin_B);
 
   cli();    // Запрещаем обработку прерываний, чтобы не отвлекаться
-  if (!ENCODER_pin_A_val &&  ENCODER_pin_B_val) ENCODER_state = 1;  // Если при спаде линии А на линии B лог. единица, то вращение в одну сторону
-  if (!ENCODER_pin_A_val && !ENCODER_pin_B_val) ENCODER_state = -1; // Если при спаде линии А на линии B лог. ноль, то вращение в другую сторону
-  if (ENCODER_pin_A_val && ENCODER_state != 0) {
-    if (ENCODER_state == 1 && !ENCODER_pin_B_val || ENCODER_state == -1 && ENCODER_pin_B_val) { // Если на линии А снова единица, значит шаг был
-      ENCODER_count += ENCODER_state;
+  if (!ENCODER_interrupt_pin_A_val &&  ENCODER_interrupt_pin_B_val) ENCODER_state = 1;  // Если при спаде линии А на линии B лог. единица, то вращение в одну сторону
+  if (!ENCODER_interrupt_pin_A_val && !ENCODER_interrupt_pin_B_val) ENCODER_state = -1; // Если при спаде линии А на линии B лог. ноль, то вращение в другую сторону
+  if (ENCODER_interrupt_pin_A_val && ENCODER_state != 0) {
+    if (ENCODER_state == 1 && !ENCODER_interrupt_pin_B_val || ENCODER_state == -1 && ENCODER_interrupt_pin_B_val) { // Если на линии А снова единица, значит шаг был
+      ENCODER_interrupt_count += ENCODER_state;
       ENCODER_state = 0;
     }
   }

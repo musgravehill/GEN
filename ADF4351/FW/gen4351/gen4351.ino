@@ -1,14 +1,15 @@
 /*
-PINOUT!!!! d2 - for ENCODER_A!!
+   ////--------------remove  pullup if user hardware resistors
+  PINOUT!!!! d2 - for ENCODER_A!!
 
 
-ENCODER_count меняется в прерывании. ENCODER_count проверять в СтаетМашин каждые 300мс и менять частоту, ENCODER_count=0 устанавливать. 
-Экран отрисовывать каждые 10сек и по событиям, рисовать экран каждые 300мс нет смысла.
-i2c LCD 5V, а система 3.3В. Поэтому нужен преобразователь уровней и 2 питания: 5В и 3.3В.
+  ENCODER_interrupt_count меняется в прерывании. ENCODER_interrupt_count проверять в СтаетМашин каждые 300мс и менять частоту, ENCODER_interrupt_count=0 устанавливать.
+  Экран отрисовывать каждые 10сек и по событиям, рисовать экран каждые 300мс нет смысла.
+  i2c LCD 5V, а система 3.3В. Поэтому нужен преобразователь уровней и 2 питания: 5В и 3.3В.
 
 
 
- 
+
 */
 
 
@@ -55,8 +56,8 @@ i2c LCD 5V, а система 3.3В. Поэтому нужен преобраз�
 
 //============================================================= ADF4351 =========================================
 #include <SPI.h>
-#define ADF4351_LE_pin 3  
-#define LD_pin 5
+#define ADF4351_LE_pin A3
+#define LD_pin A2
 uint32_t ADF4351_referenceFreq = 2500000L; //*10 Hz reference frequency = quartz 25 MHz
 uint32_t ADF4351_frequency = 43300000L; //*10 Hz = 433 MHz
 uint32_t ADF4351_freqStepCurrent = 0L;
@@ -75,11 +76,11 @@ String OLED_stepsVariants_kmhz[7] = {"kHz", "kHz", "kHz", "kHz", "MHz", "MHz", "
 
 uint8_t ADF4351_lowNoiseOrSpurVariants[2] = {B0, B11};
 uint8_t ADF4351_lowNoiseOrSpur_current = 0; //at lowSpur cannot lock sometimes
-String ADF4351_lowNoiseOrSpur_verb[2] = {"LOW-NOISE-MODE", "LOW-SPUR-MODE"};
+String ADF4351_lowNoiseOrSpur_verb[2] = {"LN", "LS"};
 
-//uint8_t ADF4351_outputPowerVariants[4] = {B0, B01, B10, B11};
-//uint8_t ADF4351_outputPower_current = 0; //5dBm doesnot work, only -4 ... 2
-//String ADF4351_outputPower_verb[4] = {"-4", "-1", "2", "5"};
+uint8_t ADF4351_outputPowerVariants[4] = {B0, B01, B10, B11};
+uint8_t ADF4351_outputPower_current = 0; //5dBm doesnot work, only -4 ... 2
+String ADF4351_outputPower_verb[4] = {"-4dBm", "-1dBm", "2dBm", "5dBm"};
 
 uint32_t ADF4351_registers[6]; //ADF4351 Registers, see datasheet
 
@@ -88,20 +89,20 @@ boolean ADF4351_isNeedSetNewConfig = false;
 
 //========================================== INTERFACE ==========================================================
 #define ENCODER_pin_A 2 //Пин прерывания
-#define ENCODER_pin_B 7 //Любой другой пин 
+#define ENCODER_pin_B 3 //Любой другой пин 
 
-volatile int ENCODER_count = 0;       // Счетчик оборотов. Периодически проверять ENCODER_count и делать действтия,потом ENCODER_count=0 и снова ждем вращения
+volatile int ENCODER_interrupt_count = 0;       // Счетчик оборотов. Периодически проверять ENCODER_interrupt_count и делать действтия,потом ENCODER_interrupt_count=0 и снова ждем вращения
 // в прерываниях делать дела нельзя - слишком долго
 volatile int ENCODER_state = 0;       // Переменная хранящая статус вращения
+volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хранящие состояние пина, для экономии времени
+volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
-volatile int ENCODER_pin_A_val = 0;   // Переменные хранящие состояние пина, для экономии времени
-volatile int ENCODER_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
-
-
-#define ENCODER_button 8
-#define BTN_step A3
-#define BTN_lownoisespur A2
-#define BTN_out_power A1
+#define ENCODER_button 4
+#define BTN_step 5
+#define BTN_lownoisespur 6
+#define BTN_out_power 7
+#define BTN_future 8
+#define LED_lock_detect 9
 
 //=====================================1602 LCD i2c==============================================================
 #include <Wire.h>
@@ -112,7 +113,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 //================================== TIMEMACHINE =================================================================
 uint32_t TIMEMACHINE_prev_5ms = 0L;
 uint32_t TIMEMACHINE_prev_311ms = 0L;
-uint32_t TIMEMACHINE_prev_101ms = 0L;
+uint32_t TIMEMACHINE_prev_2000ms = 0L;
 
 void setup() {
   ADF4351_init();
