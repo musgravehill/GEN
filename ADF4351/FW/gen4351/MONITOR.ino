@@ -25,29 +25,29 @@ void MONITOR_render() {
   }
   lcd.print(frq_MHz);
   lcd.print(".");
-  
+
   if (frq_kHz < 100) {
-    lcd.print(' ');
+    lcd.print(0);
   }
   if (frq_kHz < 10) {
-    lcd.print(' ');
+    lcd.print(0);
   }
   lcd.print(frq_kHz);
   lcd.print(".");
-   
+
   if (frq_Hz < 100) {
-    lcd.print(' ');
+    lcd.print(0);
   }
   if (frq_Hz < 10) {
-    lcd.print(' ');
+    lcd.print(0);
   }
   lcd.print(frq_Hz);
   lcd.print("  Hz");
 
   lcd.setCursor(0, 1);
   lcd.print(OLED_stepsVariants_val[ADF4351_stepsVariantsNumCurrent]);
-  lcd.print(' ');
+  lcd.setCursor(8, 1);
   lcd.print(ADF4351_lowNoiseOrSpur_verb[ADF4351_lowNoiseOrSpur_current]);
-  lcd.print(' ');
+  lcd.setCursor(11, 1);
   lcd.print(ADF4351_outputPower_verb[ADF4351_outputPower_current]);
 }

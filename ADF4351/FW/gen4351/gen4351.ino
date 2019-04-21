@@ -67,7 +67,7 @@ uint32_t ADF4351_stepsVariants[7] = {
   1000000, //*10Hz 10 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
   10000000 //*10Hz 100 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
 };
-uint8_t ADF4351_stepsVariantsNumCurrent = 0;
+uint8_t ADF4351_stepsVariantsNumCurrent = 4;
 String OLED_stepsVariants_val[7] = {"6.25kHz", "10kHz", "12.5kHz", "100kHz", "1MHz", "10MHz", "100MHz"};
 
 uint8_t ADF4351_lowNoiseOrSpurVariants[2] = {B0, B11};
