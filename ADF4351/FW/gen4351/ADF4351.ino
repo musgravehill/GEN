@@ -34,16 +34,8 @@ void ADF4351_step_next() {
   ADF4351_freqStepCurrent = ADF4351_stepsVariants[ADF4351_stepsVariantsNumCurrent]; //it is in ADF4351_prepareConfig()
   SYS_isNeedProcessConfig = true;
 }
-
-void ADF4351_freq_inc() {
-  ADF4351_frequency += ADF4351_freqStepCurrent;
-  SYS_isNeedProcessConfig = true;
-}
-
-void ADF4351_freq_dec() {
-  ADF4351_frequency -= ADF4351_freqStepCurrent;
-  SYS_isNeedProcessConfig = true;
-}
+ 
+ 
 
 
 void ADF4351_setConfig() {

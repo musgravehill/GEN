@@ -1,7 +1,7 @@
 
-void BUTTON_init() { 
+void BUTTON_init() {
   pinMode(BTN_lownoisespur, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
-  pinMode(BTN_out_power, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors  
+  pinMode(BTN_out_power, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
   pinMode(LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
   pinMode(LED_lock_detect, OUTPUT);
 }
@@ -9,7 +9,7 @@ void BUTTON_init() {
 void BUTTON_check() {
   boolean button_state;
 
-  
+
 
   //BTN LOW noise\spur mode
   button_state = digitalRead(BTN_lownoisespur);
@@ -49,10 +49,10 @@ void ENCODER_interrupt() {
   if (ENCODER_interrupt_pin_A_val && ENCODER_interrupt_state != 0) {
     if (ENCODER_interrupt_state == 1 && !ENCODER_interrupt_pin_B_val || ENCODER_interrupt_state == -1 && ENCODER_interrupt_pin_B_val) { // Если на линии А снова единица, значит шаг был
       ENCODER_interrupt_delta += ENCODER_interrupt_state;
-      ENCODER_interrupt_state = 0;      
+      ENCODER_interrupt_state = 0;
+      SYS_isNeedProcessConfig = true;
     }
   }
-  SYS_isNeedProcessConfig = true;
   sei(); // Разрешаем обработку прерываний
 }
 

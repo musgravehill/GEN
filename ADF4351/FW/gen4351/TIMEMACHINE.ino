@@ -22,6 +22,7 @@ void TIMEMACHINE_5ms() {
 
 void TIMEMACHINE_311ms() {
   BUTTON_check();
+  Serial.print("real ");
   Serial.println(ADF4351_frequency);
 }
 
