@@ -1,4 +1,6 @@
 /*
+ LED LOCKDETECT do
+ 
    ////--------------remove  pullup if user hardware resistors
   PINOUT!!!! d2 - for ENCODER_A!!
 

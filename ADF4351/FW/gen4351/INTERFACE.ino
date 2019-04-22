@@ -1,7 +1,7 @@
 
 void BUTTON_init() {
-  pinMode(BTN_lownoisespur, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
-  pinMode(BTN_out_power, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(BTN_lownoisespur, INPUT);////--------------remove  pullup if user hardware resistors
+  pinMode(BTN_out_power, INPUT);////--------------remove  pullup if user hardware resistors
   pinMode(LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
   pinMode(LED_lock_detect, OUTPUT);
 }
@@ -32,11 +32,11 @@ void BUTTON_check() {
 
 
 void ENCODER_init() {
-  pinMode(ENCODER_pin_A, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
-  pinMode(ENCODER_pin_B, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(ENCODER_pin_A, INPUT);////--------------remove  pullup if user hardware resistors
+  pinMode(ENCODER_pin_B, INPUT);////--------------remove  pullup if user hardware resistors
   attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2
 
-  pinMode(ENCODER_button, INPUT_PULLUP);////--------------remove  pullup if user hardware resistors
+  pinMode(ENCODER_button, INPUT);////--------------remove  pullup if user hardware resistors
 }
 
 void ENCODER_interrupt() {
