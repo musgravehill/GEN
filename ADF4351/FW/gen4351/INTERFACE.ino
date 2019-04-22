@@ -2,14 +2,19 @@
 void BUTTON_init() {
   pinMode(BTN_lownoisespur, INPUT);////--------------remove  pullup if user hardware resistors
   pinMode(BTN_out_power, INPUT);////--------------remove  pullup if user hardware resistors
-  pinMode(LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
+  pinMode(ADF4351_LD_pin, INPUT); //lock detect - if ADF4351 generate freq or not
   pinMode(LED_lock_detect, OUTPUT);
 }
 
 void BUTTON_check() {
+
+  if (digitalRead(ADF4351_LD_pin)) {
+    digitalWrite(LED_lock_detect, 1);
+  } else {
+    digitalWrite(LED_lock_detect, 0);
+  }
+
   boolean button_state;
-
-
 
   //BTN LOW noise\spur mode
   button_state = digitalRead(BTN_lownoisespur);

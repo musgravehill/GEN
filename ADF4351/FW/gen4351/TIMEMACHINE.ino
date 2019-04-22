@@ -8,10 +8,7 @@ void TIMEMACHINE_loop() {
     TIMEMACHINE_311ms();
     TIMEMACHINE_next_311ms = TIMEMACHINE_currMillis + 311L;
   }
-  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_2000ms) {
-    TIMEMACHINE_2000ms();
-    TIMEMACHINE_next_2000ms = TIMEMACHINE_currMillis + 2000L;
-  }
+ 
 }
 
 void TIMEMACHINE_5ms() {
@@ -20,9 +17,8 @@ void TIMEMACHINE_5ms() {
 
 void TIMEMACHINE_311ms() {
   BUTTON_check();
-  Serial.println(ADF4351_frequency);
+ // Serial.println(ADF4351_frequency);
 }
 
-void TIMEMACHINE_2000ms() {
-}
+
 

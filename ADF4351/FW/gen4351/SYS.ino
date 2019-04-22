@@ -18,5 +18,6 @@ void SYS_events_check() {
     //at the end
     MONITOR_render();
     SYS_isNeedProcessConfig = false;
+    delay(10);
   }
 }

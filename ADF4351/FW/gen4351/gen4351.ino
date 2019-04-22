@@ -56,7 +56,7 @@
 //============================================================= ADF4351 =========================================
 #include <SPI.h>
 #define ADF4351_LE_pin A3
-#define LD_pin A2
+#define ADF4351_LD_pin A2
 uint32_t ADF4351_referenceFreq = 2500000L; //*10 Hz reference frequency = quartz 25 MHz
 uint32_t ADF4351_frequency = 43300000L; //*10 Hz = 433 MHz
 uint32_t ADF4351_freqStepCurrent = 0L;
@@ -108,7 +108,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 //================================== TIMEMACHINE =================================================================
 uint32_t TIMEMACHINE_next_5ms = 0L;
 uint32_t TIMEMACHINE_next_311ms = 0L;
-uint32_t TIMEMACHINE_next_2000ms = 0L;
+//uint32_t TIMEMACHINE_next_2000ms = 0L;
 
 //=======================================SYS=======================================================================
 volatile boolean SYS_isNeedProcessConfig = true;
@@ -118,7 +118,7 @@ void setup() {
   MONITOR_init();
   ENCODER_init();
   BUTTON_init();
-  Serial.begin(9600);
+ // Serial.begin(9600);
 }
 
 void loop() {
