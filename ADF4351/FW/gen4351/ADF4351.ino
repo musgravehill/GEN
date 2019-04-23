@@ -34,8 +34,8 @@ void ADF4351_step_next() {
   ADF4351_freqStepCurrent = ADF4351_stepsVariants[ADF4351_stepsVariantsNumCurrent]; //it is in ADF4351_prepareConfig()
   SYS_isNeedProcessConfig = true;
 }
- 
- 
+
+
 
 
 void ADF4351_setConfig() {
@@ -137,7 +137,7 @@ void ADF4351_prepareConfig() {
 
   // PLL-Reg-R4         =  32bit
   // Registerselect        3bit
-  uint8_t D_out_PWR = B0;  // ADF4351_outputPowerVariants[ADF4351_outputPower_current] ;    // 2bit
+  uint8_t D_out_PWR =   ADF4351_outputPowerVariants[ADF4351_outputPower_current] ; // B0;   // 2bit
   uint8_t D_RF_ena = 1;     // 1bit
   uint8_t D_auxOutPwr = 0;  // 2bit
   uint8_t D_auxOutEna = 0;  // 1bit

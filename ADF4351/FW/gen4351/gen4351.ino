@@ -93,10 +93,10 @@ volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хран
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
 #define ENCODER_button 4
-#define BTN_lownoisespur 5
-#define BTN_out_power 6
-#define BTN_future0 7
-#define BTN_future1 8
+#define BTN_future0 5
+#define BTN_future1 6
+#define BTN_lownoisespur 7
+#define BTN_out_power 8
 #define LED_lock_detect 9
 
 //=====================================1602 LCD i2c==============================================================
@@ -106,7 +106,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 
 //================================== TIMEMACHINE =================================================================
-uint32_t TIMEMACHINE_next_5ms = 0L;
+uint32_t TIMEMACHINE_next_87ms = 0L;
 uint32_t TIMEMACHINE_next_311ms = 0L;
 //uint32_t TIMEMACHINE_next_2000ms = 0L;
 
