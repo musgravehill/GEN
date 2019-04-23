@@ -1,8 +1,8 @@
 void TIMEMACHINE_loop() {
   uint32_t  TIMEMACHINE_currMillis = millis();
-  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_87ms) {
-    TIMEMACHINE_87ms();
-    TIMEMACHINE_next_87ms = TIMEMACHINE_currMillis + 87L;
+  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_101ms) {
+    TIMEMACHINE_101ms();
+    TIMEMACHINE_next_101ms = TIMEMACHINE_currMillis + 101L;
   }
   if (TIMEMACHINE_currMillis > TIMEMACHINE_next_311ms) {
     TIMEMACHINE_311ms();
@@ -11,7 +11,7 @@ void TIMEMACHINE_loop() {
 
 }
 
-void TIMEMACHINE_87ms() {
+void TIMEMACHINE_101ms() {
   SYS_events_check();
 }
 

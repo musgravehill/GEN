@@ -106,7 +106,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 
 //================================== TIMEMACHINE =================================================================
-uint32_t TIMEMACHINE_next_87ms = 0L;
+uint32_t TIMEMACHINE_next_101ms = 0L;
 uint32_t TIMEMACHINE_next_311ms = 0L;
 //uint32_t TIMEMACHINE_next_2000ms = 0L;
 

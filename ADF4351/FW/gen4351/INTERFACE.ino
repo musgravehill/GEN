@@ -53,7 +53,7 @@ void ENCODER_interrupt() {
   if (!ENCODER_interrupt_pin_A_val && !ENCODER_interrupt_pin_B_val) ENCODER_interrupt_state = -1; // Если при спаде линии А на линии B лог. ноль, то вращение в другую сторону
   if (ENCODER_interrupt_pin_A_val && ENCODER_interrupt_state != 0) {
     if (ENCODER_interrupt_state == 1 && !ENCODER_interrupt_pin_B_val || ENCODER_interrupt_state == -1 && ENCODER_interrupt_pin_B_val) { // Если на линии А снова единица, значит шаг был
-      ENCODER_interrupt_delta += ENCODER_interrupt_state;
+      ENCODER_interrupt_delta -= ENCODER_interrupt_state;
       ENCODER_interrupt_state = 0;
       SYS_isNeedProcessConfig = true;
     }
