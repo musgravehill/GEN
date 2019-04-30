@@ -1,7 +1,7 @@
 
 void AD9833_init() {
   pinMode(AD9833_DIGIPOT_CS, OUTPUT);
-  AD9833_DIGIPOT_set();
+  //AD9833_DIGIPOT_set();
 
   AD9833_gen.Begin();
   delay(5);
@@ -63,12 +63,13 @@ void AD9833_freq_incdec() {
 
 void AD9833_digipot_incdec() {
   AD9833_DIGIPOT_val += ENCODER_interrupt_delta;
-  if (AD9833_DIGIPOT_val < 0) {
-    AD9833_DIGIPOT_val = 0;
-  }
-  if (AD9833_DIGIPOT_val >= 256) {
+  if (AD9833_DIGIPOT_val > 255) {
     AD9833_DIGIPOT_val = 255;
   }
+  else if (AD9833_DIGIPOT_val < 0) {
+    AD9833_DIGIPOT_val = 0;
+  }
+
   ENCODER_interrupt_delta = 0;
 }
 
@@ -84,7 +85,7 @@ void AD9833_setConfig() {
   AD9833_gen.ApplySignal(SINE_WAVE, REG0, 1000);
   AD9833_gen.EnableOutput(true);   // Turn ON the output - it defaults to OFF
 
-  AD9833_DIGIPOT_set();
+  //AD9833_DIGIPOT_set();
 
 }
 

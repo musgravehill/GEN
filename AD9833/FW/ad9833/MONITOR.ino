@@ -4,19 +4,16 @@ void MONITOR_init() {
 }
 
 
-
 void MONITOR_render() {
-  uint32_t frq_MHz = AD9833_frequency / 100000;
-  uint32_t frq_kHz = (AD9833_frequency % 100000) / 100;
-  uint32_t frq_Hz = (AD9833_frequency % 100) * 10;
+  uint32_t frq_MHz = AD9833_frequency / 1000000;
+  uint32_t frq_kHz = (AD9833_frequency % 1000000) / 1000;
+  uint32_t frq_Hz = AD9833_frequency % 1000;
 
 
   lcd.clear();
   lcd.setCursor(0, 0);
 
-  if (frq_MHz < 1000) {
-    lcd.print(' ');
-  }
+  
   if (frq_MHz < 100) {
     lcd.print(' ');
   }
@@ -45,9 +42,10 @@ void MONITOR_render() {
   lcd.print("  Hz");
 
   lcd.setCursor(0, 1);
-  lcd.print(OLED_stepsVariants_val[AD9833_step_currPos]);
-  lcd.setCursor(8, 1);
-  lcd.print(AD9833_wavetype_verbs[AD9833_lowNoiseOrSpur_current]);
+  lcd.print(AD9833_step_verbs[AD9833_step_currPos]);
+  lcd.setCursor(6, 1);
+  lcd.print(AD9833_wavetype_verbs[AD9833_wavetype_currPos]);
   lcd.setCursor(11, 1);
-  lcd.print(AD9833_outputPower_verb[AD9833_outputPower_current]);
+  lcd.print("a");
+  lcd.print(AD9833_DIGIPOT_val);
 }
