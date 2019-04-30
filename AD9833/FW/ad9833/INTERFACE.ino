@@ -15,6 +15,7 @@ void BUTTON_check() {
     } else {
       AD9833_encoder_state_menus = AD9833_encoder_state_menus_digipot;
     }
+    SYS_isNeedProcessConfig = true;
   }
 
   button_state = digitalRead(BTN_wavetype);

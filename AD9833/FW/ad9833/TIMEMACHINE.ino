@@ -16,7 +16,8 @@ void TIMEMACHINE_101ms() {
 }
 
 void TIMEMACHINE_311ms() {
-  BUTTON_check(); 
+  lcd_menu_blink();
+  BUTTON_check();
 }
 
 

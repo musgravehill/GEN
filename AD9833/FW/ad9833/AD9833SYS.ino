@@ -1,17 +1,22 @@
 
 void AD9833_init() {
   pinMode(AD9833_DIGIPOT_CS, OUTPUT);
-  //AD9833_DIGIPOT_set();
+  digitalWrite(AD9833_DIGIPOT_CS, HIGH);
+  
+  SPI.begin();
+  delay(50);  
+  AD9833_DIGIPOT_set();
 
   AD9833_gen.Begin();
   delay(5);
 }
 
 void AD9833_DIGIPOT_set() {
+  byte AD9833_DIGIPOT_val_b = AD9833_DIGIPOT_val;
   delay(5);
   digitalWrite(AD9833_DIGIPOT_CS, LOW); //begin SPI transfer
   SPI.transfer(B00010001); //device addr
-  SPI.transfer(AD9833_DIGIPOT_val); //set val 0..255
+  SPI.transfer(AD9833_DIGIPOT_val_b); //set val 0..255
   digitalWrite(AD9833_DIGIPOT_CS, HIGH); //end SPI transfer
   delay(5);
 }
@@ -46,17 +51,12 @@ void AD9833_interface_process() {
 }
 
 void AD9833_freq_incdec() {
-  int32_t dF = ENCODER_interrupt_delta * AD9833_step_vals[AD9833_step_currPos];;
-  if (dF < 0 && abs(dF) >= AD9833_frequency) {
-    AD9833_frequency = 1UL;
-  } else {
-    AD9833_frequency += dF;
+  AD9833_frequency += ENCODER_interrupt_delta * AD9833_step_vals[AD9833_step_currPos];
+  if (AD9833_frequency > 12500000L) {
+    AD9833_frequency = 12500000L;
   }
-  if (AD9833_frequency > 12500000UL) {
-    AD9833_frequency = 12500000UL;
-  }
-  else if (AD9833_frequency < 1UL) {
-    AD9833_frequency = 1UL;
+  else if (AD9833_frequency < 0L) {
+    AD9833_frequency = 0L;
   }
   ENCODER_interrupt_delta = 0;
 }
@@ -82,8 +82,8 @@ void AD9833_setConfig() {
   //   Phase - 0 to 360 degress (this is only useful if it is 'relative' to some other signal
   //           such as the phase difference between REG0 and REG1).
   // In ApplySignal, if Phase is not given, it defaults to 0.
-  AD9833_gen.ApplySignal(SINE_WAVE, REG0, 1000);
-  AD9833_gen.EnableOutput(true);   // Turn ON the output - it defaults to OFF
+  // AD9833_gen.ApplySignal(SINE_WAVE, REG0, 1000);
+  // AD9833_gen.EnableOutput(true);   // Turn ON the output - it defaults to OFF
 
   //AD9833_DIGIPOT_set();
 

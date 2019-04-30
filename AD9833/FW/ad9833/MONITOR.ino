@@ -13,7 +13,7 @@ void MONITOR_render() {
   lcd.clear();
   lcd.setCursor(0, 0);
 
-  
+
   if (frq_MHz < 100) {
     lcd.print(' ');
   }
@@ -45,7 +45,21 @@ void MONITOR_render() {
   lcd.print(AD9833_step_verbs[AD9833_step_currPos]);
   lcd.setCursor(6, 1);
   lcd.print(AD9833_wavetype_verbs[AD9833_wavetype_currPos]);
-  lcd.setCursor(11, 1);
+  lcd.setCursor(12, 1);
   lcd.print("a");
   lcd.print(AD9833_DIGIPOT_val);
+}
+
+
+void lcd_menu_blink() {
+  if (AD9833_encoder_state_menus_digipot == AD9833_encoder_state_menus) {
+    lcd.setCursor(12, 1);
+    if (lcd_blink_tmp) {
+      lcd.print(" ");
+      lcd_blink_tmp = false;
+    } else {
+      lcd.print("a");
+      lcd_blink_tmp = true;
+    }
+  }
 }

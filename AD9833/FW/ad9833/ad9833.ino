@@ -24,9 +24,9 @@
 AD9833 AD9833_gen(AD9833_FSYNC, 25000000UL);  //referenceFrequency oscillator
 #define AD9833_DIGIPOT_CS A6          // MCP41010 chip select - digital potentiometer, then opAmp 
 
-int32_t AD9833_DIGIPOT_val = 0;
+int32_t AD9833_DIGIPOT_val = 255;
 
-uint32_t AD9833_frequency = 1000UL; //1kHz
+int32_t AD9833_frequency = 1000L; //1kHz
 
 uint32_t AD9833_step_vals[6] = {
   1UL,
@@ -68,6 +68,7 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+bool lcd_blink_tmp = true;
 
 
 //================================== TIMEMACHINE =================================================================
