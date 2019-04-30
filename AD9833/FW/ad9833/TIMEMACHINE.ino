@@ -16,8 +16,7 @@ void TIMEMACHINE_101ms() {
 }
 
 void TIMEMACHINE_311ms() {
-  BUTTON_check();
-  // Serial.println(AD9833_frequency);
+  BUTTON_check(); 
 }
 
 

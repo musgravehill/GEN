@@ -1,34 +1,27 @@
 
 void BUTTON_init() {
-  pinMode(BTN_lownoisespur, INPUT);////--------------remove  pullup if user hardware resistors
-  pinMode(BTN_out_power, INPUT);////--------------remove  pullup if user hardware resistors
-  pinMode(AD9833_LD_pin, INPUT); //lock detect - if AD9833 generate freq or not
-  pinMode(LED_lock_detect, OUTPUT);
+  pinMode(BTN_wavetype, INPUT);
+  pinMode(BTN_digipot, INPUT);
+  pinMode(ENCODER_button, INPUT);
 }
 
 void BUTTON_check() {
-
-  if (digitalRead(AD9833_LD_pin)) {
-    digitalWrite(LED_lock_detect, 1);
-  } else {
-    digitalWrite(LED_lock_detect, 0);
-  }
-
   boolean button_state;
 
-  //BTN LOW noise\spur mode
-  button_state = digitalRead(BTN_lownoisespur);
+  button_state = digitalRead(BTN_digipot);
   if (!button_state) {
-    AD9833_lowNoiseSpurMode_next();
+    if (AD9833_encoder_state_menus ==  AD9833_encoder_state_menus_digipot) {
+      AD9833_encoder_state_menus = AD9833_encoder_state_menus_freq;
+    } else {
+      AD9833_encoder_state_menus = AD9833_encoder_state_menus_digipot;
+    }
   }
 
-  //BTN output rf power
-  button_state = digitalRead(BTN_out_power);
+  button_state = digitalRead(BTN_wavetype);
   if (!button_state) {
-    AD9833_out_power_next();
+    AD9833_wavetype_next();
   }
 
-  //BTN ENCODER
   button_state = digitalRead(ENCODER_button);
   if (!button_state) {
     AD9833_step_next();
@@ -62,9 +55,7 @@ void ENCODER_interrupt() {
 }
 
 
-//AD9833_freq_inc();
 
-//AD9833_freq_dec();
 
 
 

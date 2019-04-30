@@ -45,9 +45,9 @@ void MONITOR_render() {
   lcd.print("  Hz");
 
   lcd.setCursor(0, 1);
-  lcd.print(OLED_stepsVariants_val[AD9833_stepsVariantsNumCurrent]);
+  lcd.print(OLED_stepsVariants_val[AD9833_step_currPos]);
   lcd.setCursor(8, 1);
-  lcd.print(AD9833_lowNoiseOrSpur_verb[AD9833_lowNoiseOrSpur_current]);
+  lcd.print(AD9833_wavetype_verbs[AD9833_lowNoiseOrSpur_current]);
   lcd.setCursor(11, 1);
   lcd.print(AD9833_outputPower_verb[AD9833_outputPower_current]);
 }
