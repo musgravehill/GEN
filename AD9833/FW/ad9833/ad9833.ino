@@ -25,7 +25,7 @@
 #define AD9833_CLK   13
 #define AD9833_FSYNC 10
 AD9833 AD9833_gen(AD9833_FSYNC, 25000000UL);  //referenceFrequency oscillator
-#define AD9833_DIGIPOT_CS A6          // MCP41010 chip select - digital potentiometer, then opAmp 
+#define AD9833_DIGIPOT_CS A0          // MCP41010 chip select - digital potentiometer, then opAmp 
 
 int32_t AD9833_DIGIPOT_val = 255;
 
