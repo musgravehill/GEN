@@ -42,7 +42,7 @@ uint32_t AD9833_step_vals[6] = {
 uint8_t AD9833_step_currPos = 2;
 String AD9833_step_verbs[6] = {"1Hz", "100Hz", "1k", "10k", "100k", "1M"};
 
-uint8_t AD9833_wavetype_vals[4] = {SINE_WAVE, TRIANGLE_WAVE, SQUARE_WAVE, HALF_SQUARE_WAVE};
+WaveformType  AD9833_wavetype_vals[4] = {SINE_WAVE, TRIANGLE_WAVE, SQUARE_WAVE, HALF_SQUARE_WAVE};
 uint8_t AD9833_wavetype_currPos = 0;
 String AD9833_wavetype_verbs[4] = {"SINE", "TRI", "SQR", "HSQR"};
 

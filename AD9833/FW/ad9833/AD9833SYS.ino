@@ -2,13 +2,14 @@
 void AD9833_init() {
   pinMode(AD9833_DIGIPOT_CS, OUTPUT);
   digitalWrite(AD9833_DIGIPOT_CS, HIGH);
-  
+
   SPI.begin();
-  delay(50);  
+  delay(50);
   AD9833_DIGIPOT_set();
 
   AD9833_gen.Begin();
   delay(5);
+  AD9833_gen.EnableOutput(true);   // Turn ON the output - it defaults to OFF
 }
 
 void AD9833_DIGIPOT_set() {
@@ -82,10 +83,8 @@ void AD9833_setConfig() {
   //   Phase - 0 to 360 degress (this is only useful if it is 'relative' to some other signal
   //           such as the phase difference between REG0 and REG1).
   // In ApplySignal, if Phase is not given, it defaults to 0.
-  // AD9833_gen.ApplySignal(SINE_WAVE, REG0, 1000);
-  // AD9833_gen.EnableOutput(true);   // Turn ON the output - it defaults to OFF
-
-  //AD9833_DIGIPOT_set();
+  AD9833_gen.ApplySignal(AD9833_wavetype_vals[AD9833_wavetype_currPos], REG0, AD9833_frequency);
+  AD9833_DIGIPOT_set();
 
 }
 
