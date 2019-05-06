@@ -1,3 +1,6 @@
+//AD9833 use SPI.setDataMode(SPI_MODE2);
+//MCP41010 use the same??????
+
 /*
    MOSI 11 ----> DAT
    MISO 12 ----
