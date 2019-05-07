@@ -1,0 +1,440 @@
+window.u_vastplayer = {
+	myJQ : typeof(u_global_data)=='object' && u_global_data.jq1102 ? u_global_data.jq1102 : jQuery
+};                                                                                               
+
+
+function vastPlayer(_url, _tag, _dummy, _success, _ended, _vpparams) {
+try{
+
+	if(!_url || _url == '') {
+		_dummy('err_urlempty');
+		return;
+	}
+	u_vastplayer.myJQ.ajax({
+		url: _url,
+		complete: function(data) {
+			if(data.responseXML){
+				showVastPlayer(data.responseXML, {}, _tag, _dummy, _success, 0, _ended, _vpparams);
+			}else{
+				if(!data.responseText) {
+					_dummy('err_xml_'+u_vastplayer.myJQ.fn.jquery);
+					return;
+				} else showVastPlayer(data.responseText, {}, _tag, _dummy, _success, 0, _ended, _vpparams);
+			}
+		},
+		dataType: 'xml',
+		xhrFields: {
+			withCredentials: true
+		}
+	});
+}catch(e){_dummy('err_except');};
+}
+
+function showVastPlayer(vast, conf, _tag, _dummy, _success, _level, _ended, _vpparams) {
+	conf = conf || {};
+	try {
+		if(typeof(vast) == "string") vast = u_vastplayer.myJQ.parseXML(vast);
+	}catch(e){
+		_dummy('err_html2xml');
+		return;
+	}
+	top.vast = vast;
+
+	u_vastplayer[_tag]={};
+	u_vastplayer[_tag].ClickTracking=[];
+
+	var container1 = u_vastplayer.myJQ(vast).find('Linear');
+	var container2 = container1.first();
+	container2.find('ClickTracking').each(function(i,el){
+		var elval=u_vastplayer.myJQ(el).text().trim();
+		u_vastplayer[_tag].ClickTracking.push(elval);
+	});
+
+	if(u_vastplayer.myJQ(vast).find('VASTAdTagURI').length>0) {
+		if(!_level) _level = 0;
+		if(_level > 5) {
+			//слишком много вастов в васте - имитирую трафикбек
+			showVastPlayer('', {
+				'errorTrack' : conf.errorTrack,
+				'impressionTrack' : conf.impressionTrack,
+				'clickTrack' : conf.clickTrack
+			}, _tag, _dummy, _success, _level+1, _ended, _vpparams);
+			return;
+		}
+		var url = u_vastplayer.myJQ(vast).find('VASTAdTagURI').first().text().trim();
+		var errorTrack = u_vastplayer.myJQ(vast).find('Error').first().text().trim();
+		var impressionTrack = u_vastplayer.myJQ(vast).find('Impression').first().text().trim();
+		var clickTrack = u_vastplayer.myJQ(vast).find('ClickTracking').first().text().trim();
+		u_vastplayer.myJQ.ajax({
+			url: url,
+			complete: function(data) {
+				if(data.responseXML){
+					showVastPlayer(data.responseXML, {
+						'errorTrack' : errorTrack,
+						'impressionTrack' : impressionTrack,
+						'clickTrack' : clickTrack
+					}, _tag, _dummy, _success, _level+1, _ended, _vpparams);
+				}else{
+					showVastPlayer(data.responseText, {
+						'errorTrack' : errorTrack,
+						'impressionTrack' : impressionTrack,
+						'clickTrack' : clickTrack
+					}, _tag, _dummy, _success, _level+1, _ended, _vpparams);
+				}
+			},
+			dataType: 'xml',
+			xhrFields: {
+				withCredentials: true
+			}
+		});
+	} else {
+		var safariorchrome = (navigator.userAgent.indexOf('Safari') != -1 || navigator.userAgent.indexOf('Chrome') != -1 ? true : false);
+		var param_width = _vpparams.player_width ? _vpparams.player_width : 720;
+		var param_height = _vpparams.player_height ? _vpparams.player_height : 480;
+		u_vastplayer.myJQ('#'+_tag).html('<div id="ucoz_vastim"><a target="_blank" id="ucz_video_link"><video'+(_vpparams && _vpparams.soundon && (!safariorchrome) ? '' : ' muted')+(safariorchrome && navigator.userAgent.indexOf('Mobile') != -1 ? ' playsinline autoplay' : '')+' id="ucz_video" class="video-js" preload="auto" width="'+param_width+'" height="'+param_height+'" style="background:black;"></video></a></div>');
+		var imps = u_vastplayer.myJQ(vast).find('Impression').each(function(sel, el) {
+			new Image().src = u_vastplayer.myJQ(el).text().trim();
+		});
+		var lins = u_vastplayer.myJQ(vast).find('Linear');
+		if (lins.length > 0 && lins.find('MediaFile').length > 0) {
+			if(conf && conf.impressionTrack) {
+				new Image().src = conf.impressionTrack;
+				console.log('conf.impressionTrack');
+			}
+
+			var lin = lins.first();
+			var link = lin.find('ClickThrough').text().trim();
+			u_vastplayer.myJQ('#ucz_video_link')[0].href = link;
+			u_vastplayer[_tag].ClickThrough=link;
+			u_vastplayer.myJQ('#ucz_video_link').on('click', function() {
+				u_vastplayer[_tag].ClickTracking.forEach(function(element) {
+					new Image().src = element;
+				});
+			});
+			if(window.u_accountclicks != null && typeof(window.u_accountclicks) == 'object' && typeof(window.u_accountclicks.code) === 'function')
+				window.u_accountclicks.code(u_vastplayer[_tag]);
+
+			lin.find('MediaFile').each(function(i,mediafile){
+				var mediafile = u_vastplayer.myJQ(mediafile);
+				var mediafile_url = mediafile.text().trim();
+				var mediafile_type = mediafile.attr('type');
+				var isvpaid = mediafile.attr('apiFramework');
+				if(isvpaid && isvpaid=='VPAID') u_vastplayer[_tag].is_vpaid=1;
+				if(u_vastplayer[_tag].is_vpaid && mediafile_type == "application/javascript") {
+					var vastvideo=document.getElementById("ucz_video");
+					vastvideo.parentNode.removeChild(vastvideo);
+					var adparams=lin.find('AdParameters');
+					if(adparams) adparams=adparams.text().trim();
+					else adparams='';
+					u_vastplayer[_tag].vpaid_data={
+						script:mediafile_url,
+						scriptiframe:'vpaidframe'+_tag,
+						params:adparams,
+						fail:_dummy,
+						success:_success,
+						finish:_ended,
+						gparams:_vpparams
+					};
+					u_vastplayer.myJQ('#'+_tag).html('<div><video id="'+_tag+'v" preload="auto" style="background:black;"></video></div><div id="'+_tag+'a" style="width:'+param_width+'px; height:'+param_height+'px;"></div><iframe id="'+u_vastplayer[_tag].vpaid_data.scriptiframe+'" src="/.s/src/vpaid_proxy.html#'+mediafile_url+'" style="border: 0px; opacity: 1; margin: 0px; padding: 0px;" width="'+param_width+'" height="'+param_height+'" scrolling="no" onload="PlayVPaidJS({event:'+"'create'"+',element:'+"'"+_tag+"'"+'})"></iframe>');
+					return;
+				} else if (!u_vastplayer[_tag].is_vpaid) {
+					var source = document.createElement('source');
+					source.type = mediafile_type;
+					source.src = mediafile_url;
+					document.getElementById("ucz_video").appendChild(source);
+				}
+			});
+
+			if (u_vastplayer[_tag].is_vpaid==1) return;
+			var video = document.getElementById("ucz_video");
+			window.Trackings = [];
+			lin.find('Tracking').each(function(i,e){
+				var etype = u_vastplayer.myJQ(e).attr('event');
+				Trackings.push({'type':etype,'link':u_vastplayer.myJQ(e).text().trim()});
+			});
+			video.addEventListener('timeupdate', function(e){
+				for(var key=0;key<Trackings.length;key++) {
+					if(Trackings[key]) {
+						if(Trackings[key].type == 'start'){
+							new Image().src = Trackings[key].link;
+							Trackings[key] = null;
+						} else if(Trackings[key].type == 'firstQuartile'){
+							if( video.currentTime/video.duration > 0.25 ) {
+								new Image().src = Trackings[key].link;
+								Trackings[key] = null;
+							}
+						} else if(Trackings[key].type == 'midpoint'){
+							if( video.currentTime/video.duration > 0.5 ) {
+								new Image().src = Trackings[key].link;
+								Trackings[key] = null;
+							}
+						} else if(Trackings[key].type == 'thirdQuartile'){
+							if( video.currentTime/video.duration > 0.75 ) {
+								new Image().src = Trackings[key].link;
+								Trackings[key] = null;
+							}
+						}
+					}
+				}
+			});
+			video.addEventListener('ended', function(){
+				for(var key=0;key<Trackings.length;key++) {
+					if(Trackings[key]) {
+						if(Trackings[key].type == 'complete' || Trackings[key].type == 'engagedView'){
+							if( video.currentTime/video.duration > 0.9 ) {
+								new Image().src = Trackings[key].link;
+								Trackings[key] = null;
+							}
+						}
+					}
+				}
+				if(typeof(_ended)=='function'){
+					_ended();
+				}
+			});
+			try{
+//				video.load();
+				video.play();
+			}catch(e){};
+			if(typeof(_success)=='function'){
+				_success();
+			}
+		} else {
+			var nonlins = u_vastplayer.myJQ(vast).find('Error').each(function(sel, el) {
+				new Image().src = u_vastplayer.myJQ(el).text().trim();
+			});
+			if(conf && conf.errorTrack) {
+				new Image().src = conf.errorTrack;
+				console.log('conf.errorTrack');
+			}
+			_dummy('err_linormedia');
+		}
+	}
+}
+
+function PlayVPaidJS(mode,param1){
+	console.log('Event: '+mode.event);
+	if(mode.event=='create'){
+		var VPAIDCreative = document.getElementById(u_vastplayer[mode.element].vpaid_data.scriptiframe);
+		if(VPAIDCreative == null || typeof(VPAIDCreative) != 'object'){
+			console.log('getVPAIDAd not a frame');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		VPAIDCreative=VPAIDCreative.contentWindow['getVPAIDAd'];
+		if (VPAIDCreative && typeof VPAIDCreative == 'function') { 
+			VPAIDCreative = VPAIDCreative(); 
+		}else{
+			console.log('getVPAIDAd not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		if(!VPAIDCreative.handshakeVersion || typeof(VPAIDCreative.handshakeVersion) != "function"){
+			console.log('handshakeVersion not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		if(!VPAIDCreative.initAd || typeof(VPAIDCreative.initAd) != "function"){
+			console.log('initAd not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		if(!VPAIDCreative.startAd || typeof(VPAIDCreative.startAd) != "function"){
+			console.log('startAd not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		if(!VPAIDCreative.stopAd || typeof(VPAIDCreative.stopAd) != "function"){
+			console.log('stopAd not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		if(!VPAIDCreative.skipAd || typeof(VPAIDCreative.skipAd) != "function"){
+			console.log('skipAd not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		if(!VPAIDCreative.subscribe || typeof(VPAIDCreative.subscribe) != "function" ||
+			!VPAIDCreative.unsubscribe || typeof(VPAIDCreative.unsubscribe) != "function"){
+			console.log('*subscribe not a function');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		u_vastplayer[mode.element].vpaid_data.creative=VPAIDCreative;
+		var status=VPAIDCreative.handshakeVersion("2.0");
+		console.log('handshakeVersion: '+status);
+		var CreativeData={};
+		var environmentVars={};
+		CreativeData.AdParameters = u_vastplayer[mode.element].vpaid_data.params;
+		var slot = document.getElementById(mode.element+'a');
+		if(slot == null || typeof(slot) != 'object'){
+			console.log('div not exists: '+mode.element+'a');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		environmentVars.slot = slot;
+		slot = document.getElementById(mode.element+'v');
+		if(slot == null || typeof(slot) != 'object'){
+			console.log('div not exists: '+mode.element+'v');
+			if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+			return;
+		}
+		environmentVars.videoSlot = slot;
+		environmentVars.videoSlotCanAutoPlay = true;
+		PlayVPaidJS({event:'subscribeall',element:mode.element});
+		u_vastplayer[mode.element].vpaid_data.timerid=setTimeout(function(){
+			console.log('initAd timeout');
+			u_vastplayer[mode.element].vpaid_data.timerid=null;
+			PlayVPaidJS({event:'AdError',element:mode.element});
+		},30000);
+console.log('call initAd');
+		setTimeout(function(){
+			VPAIDCreative.initAd(
+				u_vastplayer[mode.element].vpaid_data.gparams.player_width || 640,
+				u_vastplayer[mode.element].vpaid_data.gparams.player_height || 400,
+				'normal',
+				500,
+				CreativeData,
+				environmentVars
+			)},
+		100);
+	}else if(mode.event=='AdLoaded'){
+		if (u_vastplayer[mode.element].vpaid_data.timerid){
+			clearTimeout(u_vastplayer[mode.element].vpaid_data.timerid);
+			u_vastplayer[mode.element].vpaid_data.timerid=null;
+		}
+		u_vastplayer[mode.element].vpaid_data.timerid=setTimeout(function(){
+			console.log('startAd timeout');
+			u_vastplayer[mode.element].vpaid_data.timerid=null;
+			PlayVPaidJS({event:'AdError',element:mode.element});
+		},30000);
+console.log('call startAd');
+		setTimeout(function(){u_vastplayer[mode.element].vpaid_data.creative.startAd()},100);
+	}else if(mode.event=='AdStarted'){
+		if (u_vastplayer[mode.element].vpaid_data.timerid){
+			clearTimeout(u_vastplayer[mode.element].vpaid_data.timerid);
+			u_vastplayer[mode.element].vpaid_data.timerid=null;
+		}
+		if(typeof(u_vastplayer[mode.element].vpaid_data.success)=='function') u_vastplayer[mode.element].vpaid_data.success();
+	}else if(mode.event=='AdSkippableStateChange'){
+		console.log('SkippableState: '+u_vastplayer[mode.element].vpaid_data.creative.adSkippableState);
+	}else if(mode.event=='AdSizeChange'){
+		console.log('Width: '+u_vastplayer[mode.element].vpaid_data.creative.adWidth+', Height: '+u_vastplayer[mode.element].vpaid_data.creative.adHeight);
+	}else if(mode.event=='AdLinearChange'){
+		console.log('Linear state: '+u_vastplayer[mode.element].vpaid_data.creative.adLinear);
+	}else if(mode.event=='AdDurationChange'){
+		console.log('Duration: '+u_vastplayer[mode.element].vpaid_data.creative.adDuration+', RemainingTime: '+u_vastplayer[mode.element].vpaid_data.creative.adRemainingTime);
+	}else if(mode.event=='AdExpandedChange'){
+		console.log('Expanded state: '+u_vastplayer[mode.element].vpaid_data.creative.adExpanded);
+	}else if(mode.event=='AdRemainingTimeChange'){
+		console.log('RemainingTime: '+u_vastplayer[mode.element].vpaid_data.creative.adRemainingTime);
+	}else if(mode.event=='AdVolumeChange'){
+		console.log('Volume: '+u_vastplayer[mode.element].vpaid_data.creative.adVolume);
+	}else if(mode.event=='AdImpression'){
+		console.log('User-visible phase of the ad has begun');
+	}else if(mode.event=='AdVideoStart'){
+		console.log('Percent complete: 0');
+	}else if(mode.event=='AdVideoFirstQuartile'){
+		console.log('Percent complete: 25');
+	}else if(mode.event=='AdVideoMidpoint'){
+		console.log('Percent complete: 50');
+	}else if(mode.event=='AdVideoThirdQuartile'){
+		console.log('Percent complete: 75');
+	}else if(mode.event=='AdVideoComplete'){
+		console.log('Percent complete: 100');
+	}else if(mode.event=='AdInteraction'){
+		console.log('User tracking: '+param1);
+	}else if(mode.event=='AdUserAcceptInvitation'){
+		console.log('User action');
+	}else if(mode.event=='AdUserMinimize'){
+		console.log('User action');
+	}else if(mode.event=='AdUserClose'){
+		console.log('User action');
+	}else if(mode.event=='AdPaused'){
+		console.log('Ad paused');
+	}else if(mode.event=='AdPlaying'){
+		console.log('User resumed');
+	}else if(mode.event=='AdLog'){
+		console.log('Log: '+param1);
+	}else if(mode.event=='AdClickThru'){                                                                                     7
+		u_vastplayer[mode.element].ClickTracking.forEach(function(element) {
+			console.log('vpaid call ClickTracking url: '+element);
+			new Image().src = element;
+		});
+		console.log('param1:'+JSON.stringify(param1));
+		if(typeof(param1)=='object' && typeof(param1.data)=='object' && param1.data.url) window.open(param1.data.url,'_blank');
+		else if(u_vastplayer[mode.element].ClickThrough) window.open(u_vastplayer[mode.element].ClickThrough,'_blank');
+	}else if(mode.event=='AdSkipped' || mode.event=='AdStopped'){
+		PlayVPaidJS({event:'unsubscribeall',element:mode.element});
+		u_vastplayer.myJQ('#'+mode.element).html('');
+		u_vastplayer[mode.element].vpaid_data.creative=null;
+		if(typeof(u_vastplayer[mode.element].vpaid_data.finish)=='function') u_vastplayer[mode.element].vpaid_data.finish();
+	}else if(mode.event=='AdError'){
+		if (u_vastplayer[mode.element].vpaid_data.timerid){
+			clearTimeout(u_vastplayer[mode.element].vpaid_data.timerid);
+			u_vastplayer[mode.element].vpaid_data.timerid=null;
+		}
+		PlayVPaidJS({event:'unsubscribeall',element:mode.element});
+		u_vastplayer.myJQ('#'+mode.element).html('');
+		u_vastplayer[mode.element].vpaid_data.creative=null;
+		if(typeof(u_vastplayer[mode.element].vpaid_data.fail)=='function') u_vastplayer[mode.element].vpaid_data.fail();
+	}else if(mode.event=='subscribeall'){
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdLoaded',element:mode.element})},'AdLoaded');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdStarted',element:mode.element})},'AdStarted');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdStopped',element:mode.element})},'AdStopped');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdSkipped',element:mode.element})},'AdSkipped');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdSkippableStateChange',element:mode.element})},'AdSkippableStateChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdSizeChange',element:mode.element})},'AdSizeChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdLinearChange',element:mode.element})},'AdLinearChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdDurationChange',element:mode.element})},'AdDurationChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdExpandedChange',element:mode.element})},'AdExpandedChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdRemainingTimeChange',element:mode.element})},'AdRemainingTimeChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdVolumeChange',element:mode.element})},'AdVolumeChange');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdImpression',element:mode.element})},'AdImpression');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdVideoStart',element:mode.element})},'AdVideoStart');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdVideoFirstQuartile',element:mode.element})},'AdVideoFirstQuartile');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdVideoMidpoint',element:mode.element})},'AdVideoMidpoint');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdVideoThirdQuartile',element:mode.element})},'AdVideoThirdQuartile');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdVideoComplete',element:mode.element})},'AdVideoComplete');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdClickThru',element:mode.element})},'AdClickThru');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(tracking){PlayVPaidJS({event:'AdInteraction',element:mode.element},tracking)},'AdInteraction');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdUserAcceptInvitation',element:mode.element})},'AdUserAcceptInvitation');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdUserMinimize',element:mode.element})},'AdUserMinimize');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdUserClose',element:mode.element})},'AdUserClose');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdPaused',element:mode.element})},'AdPaused');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(){PlayVPaidJS({event:'AdPlaying',element:mode.element})},'AdPlaying');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(message){PlayVPaidJS({event:'AdLog',element:mode.element},message)},'AdLog');
+		u_vastplayer[mode.element].vpaid_data.creative.subscribe(function(error){PlayVPaidJS({event:'AdError',element:mode.element},error)},'AdError');
+		console.log('all subscribed');
+	}else if(mode.event=='unsubscribeall'){
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdLoaded',element:mode.element})},'AdLoaded');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdStarted',element:mode.element})},'AdStarted');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdStopped',element:mode.element})},'AdStopped');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdSkipped',element:mode.element})},'AdSkipped');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdSkippableStateChange',element:mode.element})},'AdSkippableStateChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdSizeChange',element:mode.element})},'AdSizeChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdLinearChange',element:mode.element})},'AdLinearChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdDurationChange',element:mode.element})},'AdDurationChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdExpandedChange',element:mode.element})},'AdExpandedChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdRemainingTimeChange',element:mode.element})},'AdRemainingTimeChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdVolumeChange',element:mode.element})},'AdVolumeChange');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdImpression',element:mode.element})},'AdImpression');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdVideoStart',element:mode.element})},'AdVideoStart');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdVideoFirstQuartile',element:mode.element})},'AdVideoFirstQuartile');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdVideoMidpoint',element:mode.element})},'AdVideoMidpoint');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdVideoThirdQuartile',element:mode.element})},'AdVideoThirdQuartile');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdVideoComplete',element:mode.element})},'AdVideoComplete');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdClickThru',element:mode.element})},'AdClickThru');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(tracking){PlayVPaidJS({event:'AdInteraction',element:mode.element},tracking)},'AdInteraction');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdUserAcceptInvitation',element:mode.element})},'AdUserAcceptInvitation');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdUserMinimize',element:mode.element})},'AdUserMinimize');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdUserClose',element:mode.element})},'AdUserClose');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdPaused',element:mode.element})},'AdPaused');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(){PlayVPaidJS({event:'AdPlaying',element:mode.element})},'AdPlaying');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(message){PlayVPaidJS({event:'AdLog',element:mode.element},message)},'AdLog');
+		u_vastplayer[mode.element].vpaid_data.creative.unsubscribe(function(error){PlayVPaidJS({event:'AdError',element:mode.element},error)},'AdError');
+		console.log('all unsubscribed');
+	}
+
+	return;
+}

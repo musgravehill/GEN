@@ -1,0 +1,308 @@
+var collaps_state = true;
+function setOpacity(id, value)
+{
+   var testObj = document.getElementById(id);
+ 
+   testObj.style.opacity = value/10;
+   testObj.style.filter = 'alpha(opacity=' + value*10 + ')';
+}
+function EstimationChoose(chc)
+{
+  for (i1 = 0; i1 < 5; i1++)
+  {   
+    if (i1 <= chc)
+    {
+      setOpacity('est_star_' + i1, 10);
+    }
+    else
+    {
+      setOpacity('est_star_' + i1, 2);
+    }
+  }
+}
+function collapse_tag(Obj, _container)
+{
+ Obj1=document.getElementById(Obj);
+ Obj2=document.getElementById(_container);
+ if(collaps_state==true)
+ {
+ collaps_state=false; 
+ count = 20;
+ interval1 = setInterval(function km() {
+ if (count <= 100)
+ {
+  Obj1.style.height=count;
+  var rect = 'rect(auto, auto, '+ count +'px, auto )';   
+  Obj2.style.clip = rect;
+  count+=10;
+ }
+else 
+ {
+  clearInterval(interval1);
+ };
+ }, 10);
+ }
+ else if(collaps_state==false)
+ {
+ collaps_state=true;
+ count = 100;
+ interval2 = setInterval(function kr() {
+ if (count >= 20)
+ {
+  Obj1.style.height=count;
+  var rect = 'rect(auto, auto, '+ count +'px, auto )';   
+  Obj2.style.clip = rect;
+  count-=10;
+ }
+else 
+ {
+  clearInterval(interval2);
+ };
+ }, 10); 
+ }
+}
+//nds
+
+function createRequestObject() 
+	{
+		try { return new XMLHttpRequest() }
+		catch(e) 
+		{
+			try { return new ActiveXObject('Msxml2.XMLHTTP') }
+			catch(e) 
+			{
+				try { return new ActiveXObject('Microsoft.XMLHTTP') }
+				catch(e) { return null; }
+			}
+		}
+	}
+	
+	function loadjson(url, callback) {
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+          //  alert(http.responseText);
+			callback(JSON.parse(http.responseText)); // вызываем колбек
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+  function set_input(id,value)
+  {var obj = document.getElementById(id);
+  obj.value = value;}
+  function get_input(id)
+  {//alert(id);
+  return document.getElementById(id).value;}
+  
+function change_topic_color()
+{var tid=/t=(\d+)/.exec(document.location.search)[1];
+var url='sale.php?mode=color&topic='+tid+'&color='+get_input('topic_color');
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+          //  alert(http.responseText);
+			alert(http.responseText); 
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+var sellerid=0;
+function showrateform(id)
+{
+sellerid=id;
+var url='sale.php?mode=getform&id='+id;
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+          //  alert(http.responseText);
+			document.getElementById('smover').innerHTML=http.responseText;
+			show('smout','table-cell');
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+function showsratehistory(id)
+{
+var url='sale.php?mode=history&id='+id;
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+          //  alert(http.responseText);
+			document.getElementById('smover').innerHTML=http.responseText;
+			show('smout','table-cell');
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+function rateon(id)
+{
+var url='sale.php?mode=on&id='+id;
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+          //  alert(http.responseText);
+			//document.getElementById('smover').innerHTML=http.responseText;
+			//show('smover','block');
+			window.location.reload();
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+
+
+function ratedel(id)
+{
+var url='sale.php?mode=del&id='+id;
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+          //  alert(http.responseText);
+			//document.getElementById('smover').innerHTML=http.responseText;
+			//show('smover','block');
+			window.location.reload();
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+
+function sendrate(){
+var radios = document.getElementsByName('rate');
+var rate=3;
+for (var i = 0, length = radios.length; i < length; i++) {
+    if (radios[i].checked) {
+        // do whatever you want with the checked radio
+       rate=radios[i].value;
+
+        // only one radio can be logically checked, don't check the rest
+        break;
+    }
+}
+var comm=document.getElementById('ratecomm').value
+if (comm==""){alert('Прокомментируйте свою оценку');return;}
+var url='sale.php?mode=rate&id='+sellerid+'&rate='+rate+'&c='+comm;
+var http = createRequestObject();
+		if( http ) 
+		{
+			http.open('get',url);
+			http.onreadystatechange = function () 
+			{
+				if(http.readyState === 4 && http.status === 200) {
+            alert(http.responseText);
+			//document.getElementById('smover').innerHTML=http.responseText;
+			hide('smout');
+				}
+			}
+			http.send(null);    
+		}
+		else 
+		{
+			//document.location = link;
+		}
+}
+
+function show(id,disp)
+{
+var obj = "";
+// Проверить совместимость браузера
+if(document.getElementById)
+obj = document.getElementById(id).style;
+else if(document.all)
+obj = document.all[id];
+else if(document.layers)
+obj = document.layers[id];
+else
+return 1;
+// Пошла магия
+obj.display = disp;
+}
+
+function hide(id)
+{
+var obj = "";
+// Проверить совместимость браузера
+if(document.getElementById)
+obj = document.getElementById(id).style;
+else if(document.all)
+obj = document.all[id];
+else if(document.layers)
+obj = document.layers[id];
+else
+return 1;
+// Пошла магия
+obj.display = "none";}
+
+function form_clik(vote,vt,id){
+            
+        var httpObject;
+              httpObject = createRequestObject();
+   // document.getElementById("work_form").innerHTML = "Ваш голос принят, спасибо";     
+  //  document.getElementById("work_form").style.display = 'none';
+     if (httpObject != null) {
+      httpObject.open("GET", "/cms/art_vote.php?id="+id+"&vote="+vote+"&type="+vt, false);
+      httpObject.send(null);
+    //  httpObject.onreadystatechange = setOutput;
+   }
+if (vt=='w'){   
+   document.getElementById("work_res").innerHTML =httpObject.responseText;}
+if (vt=='l'){   
+   document.getElementById("like_res").innerHTML =httpObject.responseText;}
+   setTimeout(function() {location.reload();}, 2000);
+}
+
+var b = document.documentElement;
+              b.setAttribute('data-useragent',  navigator.userAgent);
+              b.setAttribute('data-platform', navigator.platform );
