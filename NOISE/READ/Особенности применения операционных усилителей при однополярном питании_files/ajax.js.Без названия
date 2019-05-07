@@ -1,0 +1,174 @@
+function GetFormData(formObj) {
+	data = new Array(); 
+
+	tf = formObj;
+	
+	for (var i=0; i < tf.length; ++i) {
+		var tagName = tf[i].tagName.toLowerCase(); 
+		var name = tf[i].getAttribute('name');
+		var value = '';
+		
+		if (tagName == 'input') {
+			switch (tf[i].getAttribute('type')) {
+				case null:
+				case '':
+				case 'text':
+				case 'hidden':
+				case 'password':
+					value = tf[i].value;
+					break;
+				case 'checkbox': 
+				case 'radio':
+					if (tf[i].checked) {
+						value = tf[i].getAttribute('value'); 
+						if (!value) value = 'on';
+					} else {
+						continue;
+					}
+					break;
+				default:
+					continue;
+					break;					
+			}
+		} else if (tagName == 'textarea') {
+			value = tf[i].value;
+		} else if (tagName == 'select') {
+			if (tf[i].multiple) { 
+				opt = tf[i].options;
+				for (var j=0; j < opt.length; ++j) {
+					if (opt[j].selected) {
+						o = new Object(); 
+						o.name = name; 
+						o.value = opt[j].value;
+						data.push(o);
+					}				
+				}
+			
+				continue; // Мы уже занесли все позиции в массив
+			} else {
+				value = tf[i].value;
+			}
+		}
+		
+		o = new Object(); 
+		o.name = name; 
+		o.value = value;
+		data.push(o); 
+	}
+	
+
+	return data;
+}
+
+
+function UrlEncode(str) {
+	if( typeof encodeURIComponent != 'undefined' &&	typeof encodeURIComponent !=  undefined ) {
+		code = encodeURIComponent(str);
+	 	code = code.replace( /%20/g , "+" );
+		 return code;
+	} else {
+	 	return str;
+	}
+
+}
+
+function HttpRequest(url, requestType, data) {
+	reqStr = '';
+	for (i=0; i < data.length; ++i) {			
+		t = data[i];
+		if (reqStr != '') reqStr += '&';
+		reqStr += UrlEncode(t.name) + '=' + UrlEncode(t.value);
+	}
+	
+	if (typeof window.ActiveXObject != 'undefined') {
+		try {
+		 	oReq = new window.ActiveXObject("Microsoft.XMLHTTP");
+		} catch(e) {
+			alert('no Microsoft.XMLHTTP');
+		 	return false;
+		}
+	} else if (typeof window.XMLHttpRequest != 'undefined') {
+		try {
+		 	oReq = new XMLHttpRequest();
+		} catch(e) {
+			alert('no XMLHttpRequest');
+			return false;
+		}
+	}
+	
+	if (!oReq) {
+		alert('Browser does\'nt support XMLHTTP');
+		return false;
+	}
+
+	if (requestType.toLowerCase() == 'get') {	 		
+ 		if (url.indexOf('?') == -1) {
+ 			url += '?' + reqStr;
+ 		} else {
+ 			url += '&' + reqStr;
+ 		}
+ 
+		oReq.open("GET", url, false);
+		oReq.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded; charset=UTF-8");
+		oReq.send('');
+ 	} else if( requestType.toLowerCase() == "post" ) {
+		oReq.open("POST", url, false);
+		oReq.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded; charset=UTF-8");
+		oReq.send(reqStr);
+	}
+	
+	if (oReq.status != 200) {
+	   alert(oReq.statusText);
+	   return false;
+	}
+
+	return oReq.responseText;
+}
+
+function ServiceFormRequest(func, formObjOrName, myCallBack) {
+	if (formObjOrName.tagName.toLowerCase() == 'form') {
+		tf = formObjOrName;
+	} else {
+		// Если это не обьект формы, то предполагаем, что это имя формы
+		tf = document.forms[formObjOrName];
+	}
+	
+	if (!tf) { alert("Unable to locate form");	return false; } 
+	
+	requestType = tf.getAttribute('method');
+	data = GetFormData(tf);
+	
+	o = new Object();
+	o.name = 'f';
+	o.value = func;
+	data.push(o);
+	
+	
+	res = HttpRequest('/php/service.php', requestType, data);
+
+		if (myCallBack) {
+		result = myCallBack(res, tf);
+
+	} else {
+		result = res;
+	}
+}
+
+function ServiceRequest(func, data, myCallBack) {
+	o = new Object();
+	o.name = 'f';
+	o.value = func;
+	data.push(o);
+	
+	
+	res = HttpRequest('/php/service.php', 'get', data);
+	
+	if (myCallBack) {
+		result = myCallBack(res);
+	} else {
+		result = res;
+	}
+	
+	
+	return result;
+}

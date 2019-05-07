@@ -1,0 +1,21 @@
+function doRate(a,b,c,d)
+{
+zz=document.getElementById('rateit');
+zz.id.value=c;
+zz.mark.value=b;
+return ServiceFormRequest(a,zz,d);
+}
+
+function rated(result,frm)
+{
+if (result=='fail')
+{
+	alert ('Произошла ошибка при передачи данных на сервер. Попробуйте снова. Приносим свои извинения за доставленные неудобства');
+} else
+{
+	alert ('Благодарим за участие!');
+	document.location.reload();
+
+}
+
+}

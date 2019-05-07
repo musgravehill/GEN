@@ -1,0 +1,277 @@
+
+	function Calendar(url, times, target, month, year) {
+
+		this.url = url;
+		this.times = times.split(',').sort();
+		this.target = target;
+		var nowDate = new Date();
+		var curMonth = nowDate.getMonth() + 1;
+		var curYear = nowDate.getFullYear();
+		if ((year != 0) && (month != 0)) {
+			curMonth = month;
+			curYear = year;
+		} 
+		this.curDate = new Date(curYear, curMonth - 1, 1);
+		this.Draw();		
+	}	
+	
+	Calendar.prototype.CreateMonthsSelect = function () {
+		var oSel = document.createElement('SELECT');
+				var text = '';
+				text += '<option ';
+		text += 'value = "1"';
+		if (1 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Январь' + '</option>';
+						text += '<option ';
+		text += 'value = "2"';
+		if (2 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Февраль' + '</option>';
+						text += '<option ';
+		text += 'value = "3"';
+		if (3 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Март' + '</option>';
+						text += '<option ';
+		text += 'value = "4"';
+		if (4 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Апрель' + '</option>';
+						text += '<option ';
+		text += 'value = "5"';
+		if (5 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Май' + '</option>';
+						text += '<option ';
+		text += 'value = "6"';
+		if (6 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Июнь' + '</option>';
+						text += '<option ';
+		text += 'value = "7"';
+		if (7 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Июль' + '</option>';
+						text += '<option ';
+		text += 'value = "8"';
+		if (8 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Август' + '</option>';
+						text += '<option ';
+		text += 'value = "9"';
+		if (9 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Сентябрь' + '</option>';
+						text += '<option ';
+		text += 'value = "10"';
+		if (10 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Октябрь' + '</option>';
+						text += '<option ';
+		text += 'value = "11"';
+		if (11 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Ноябрь' + '</option>';
+						text += '<option ';
+		text += 'value = "12"';
+		if (12 == (this.curDate.getMonth() + 1)) {
+			text += ' selected';
+		}
+		text += '>' + 'Декабрь' + '</option>';
+								
+		return text;
+	}
+	
+	
+	Calendar.prototype.CreateYearsSelect = function () {
+		var years = this.GetAllYears();
+		
+		var text = '';
+		for (i = 0; i < years.length; i++) {
+			text += '<option value="' + years[i] + '"';
+			if (years[i] == this.curDate.getFullYear()) {
+				text += ' selected';
+			}
+			text += '>';
+			text += years[i] + '</option>'
+		}
+		return text;
+	}
+	Calendar.prototype.GetAllYears = function() {
+		var res = new Array();
+		res.push(this.curDate.getFullYear());
+		for (i = 0;  i < this.times.length; i++) {
+			var t = new Date();
+			t.setTime(this.times[i]*1000);
+			ty = t.getFullYear();
+			var f = true;
+			for (j = 0; j < res.length; j++) {
+				if (res[j] == ty) {
+					f = false;
+				}
+			}
+			if (f) {
+				res.push(ty);
+			}
+		}
+		
+		return res.sort();
+	}
+	
+	Calendar.prototype.selectOption = function(oSel, value) {
+		oSel.value = value;
+		return;
+		for (i = 0; i < oSel.options.length; i++) {
+			oSel.options[i].selected = oSel.options[i].value == value;
+		}
+				
+	}
+	
+	
+	Calendar.prototype.Draw = function() {	
+		var Text = '<h1>Архив</h1><table width="100%" border="0" cellspacing="0" cellpadding="0" class="calendar">';		
+		
+		Text += '<tr><th width="14%">ПН</th><th width="14%">ВТ</th><th width="14%">СР</th><th width="14%">ЧТ</th><th width="14%">ПТ</th><th width="14%">СБ</th><th width="14%">ВС</th></tr>';
+
+		
+		
+			
+
+		var days = this.GetLastDay(this.curDate);
+		var startWeekDay = (this.curDate.getDay() +6) % 7;			
+		
+		var tDate = new Date(this.curDate.getFullYear(), this.curDate.getMonth(), 1);
+		for (i = 1 - startWeekDay; i <= days; i+=7) {			
+			Text += '<tr>' + this.CreateRow(i, days, tDate).innerHTML + '</tr>';
+					
+			if ((i + 7) <= days) {
+				Text += '';
+			} else {
+				Text += '';
+			}
+		}
+		
+		Text += '<tr>';
+
+
+		Text += '<td colspan="7" class="select">';
+		Text += '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>';
+		Text += '<td width="70%">';
+		Text += '<select onchange="onChangeMonth(this);">' + this.CreateMonthsSelect() + '</select></td>';
+		Text += '</td>';
+		Text += '<td width="30%">';
+		Text += '<select onchange="onChangeYear(this);">'+this.CreateYearsSelect() + '</select>';
+		//Text += '<td><button onclick="document.location=\'' + this.GetSmallUrl() + '\'">Go</button></td>';
+		Text += '</tr></table>';
+		Text += '</td>';
+		
+		Text += "</table>";
+		
+		this.target.innerHTML = Text;
+	}
+	
+		
+	Calendar.prototype.CreateRow = function(startDay, lastDate, td) {
+		oTr = document.createElement('TR');
+
+		//otd = document.createElement('TD');
+		//otd.innerHTML = '&nbsp;';
+		//oTr.appendChild(otd); 
+		ntd = new Date();
+		for(j = 1; j <= 7; j++) {
+			var cur = startDay + j - 1;
+			otd1 = document.createElement('TD');
+			otd1.align = 'center';
+			if ((cur < 1) || (cur > lastDate)) {
+				otd1.innerHTML = '&nbsp;';
+			} else {
+				td.setDate(cur);
+				if (this.HasEvent(td)) {
+					otd1.innerHTML = '<a href="'+this.GetUrl(td)+'" >'+cur+'</a>';
+				} else {
+					otd1.innerHTML = cur;
+				}
+			}
+			if ((this.curDate.getMonth() == ntd.getMonth()) && (this.curDate.getYear() == ntd.getYear()) && (cur == ntd.getDate())) {
+				otd1.className = "current";
+			}
+			oTr.appendChild(otd1);
+		}
+		
+		//oTr.appendChild(otd.cloneNode(false));		
+		return oTr;
+	}
+	
+	Calendar.prototype.GetUrl = function(td) {
+		return this.url + '&day=' + td.getDate() + '&month=' + (td.getMonth() + 1) + '&year=' + td.getFullYear();
+	}
+	
+	Calendar.prototype.GetSmallUrl = function() {
+		return this.url + '&month=' + (this.curDate.getMonth() + 1) + '&year=' + this.curDate.getFullYear();
+	}
+	
+	Calendar.prototype.HasEvent = function(dd) {
+		var tom = new Date(dd.getFullYear(), dd.getMonth(), dd.getDate() + 1);
+		for (var z = 0; z < this.times.length; z++) {
+			c = this.times[z] - 60*60*6;			 
+			if (((dd.getTime() / 1000) <= c) && (c < (tom.getTime() / 1000))) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+		
+	Calendar.prototype.GetLastDay = function(d) {
+		var lastDate = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+		lastDate.setDate(0);
+		return lastDate.getDate();
+	}
+	
+
+
+	Calendar.prototype.getMS = function() {
+		sels = this.target.getElementsByTagName('SELECT')
+		return sels[1];
+	}
+	Calendar.prototype.getYR = function() {
+		sels = this.target.getElementsByTagName('SELECT')
+		return sels[0];
+	}
+	
+	Calendar.prototype.ChangeMonth = function(month) {
+		this.curDate.setMonth(month - 1);
+		this.CreateMonthsSelect();
+		this.Draw();
+	}
+	
+	Calendar.prototype.ChangeYear = function(year) {
+		this.curDate.setFullYear(year);
+		this.CreateYearsSelect();
+		this.Draw();
+	}	
+	
+	function onChangeMonth(obj) {
+		oCal.ChangeMonth(obj.value);
+	}
+	
+	function onChangeYear(obj) {
+		oCal.ChangeYear(obj.value);
+	}
+	
+	
+	function showCalendar(url, times, target, month, year) {
+		oCal = new Calendar(url, times, target, month, year);
+	}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://s0.2mdn.net/9010436/1556548741643/17ADI405_210x350_RU/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="ad.size" content="width=210,height=350">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<script src="./Enabler.js.Без названия" type="application/javascript"></script>
+		<link href="./ad.css" rel="stylesheet">
+	<script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script></head>
+	<body>
+		<div id="main" class="clickable" onclick="adBasicExit()">
+			<div id="frame">
+
+				<img id="animation_bg" src="./animation_bg.jpg" style="transform: matrix(0.99999, 0.00017, -0.00017, 0.99999, -400, 0); opacity: 1;">
+
+				<div id="slide">
+					<div id="slide_bg" style="height: 190px; width: 298px;"></div>
+					<div id="slide_logo" style="left: 12px; top: 15px; transform: matrix(0.75, 0, 0, 0.75, 0, 0);">
+						<img id="slide_logo_type" src="./adilogo_type_160x600.png">
+						<img id="slide_logo_tagline" src="./adilogo_tagline_160x600.png" style="opacity: 0;">
+					</div>
+					<img id="text_1" src="./text_1.png" style="opacity: 0;">
+					<img id="text_2" src="./text_2.png" style="opacity: 0;">
+					<img id="text_3" src="./text_3.png" style="opacity: 0;">
+					<img id="text_4" src="./text_4.png" style="opacity: 1;">
+				</div>
+			</div>
+		</div>
+
+		<script src="./TweenMax.min.js.Без названия" type="application/javascript"></script>
+		<script type="text/javascript">
+			// Store main clicktag variable.
+			var clickTag="http://www.analog.com";
+
+			// Store plays for loop.
+			var plays = 0;
+			var maxPlays = 3;
+
+			// Keep current timeline.
+			var currentTL;
+			// Store main timeline.
+			var mainTL;
+
+			window.onload = function() {
+				if (Enabler.isInitialized()) {
+					init();
+				} else {
+					Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+				}
+			};
+
+			function init() {
+				if (Enabler.isPageLoaded()) {
+					politeInit();
+				} else {
+					Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+				}
+			};
+
+			function politeInit() {
+				initCollapsedAnim();
+			}
+
+			function adBasicExit() {
+				Enabler.exitOverride('Background Exit', clickTag);
+			}
+
+			function initCollapsedAnim() {
+				mainTL = new TimelineMax();
+				animationTL = new TimelineMax({onComplete:loopCollapsedAnim});
+				currentTL = mainTL;
+
+				mainTL
+				.to(slide_logo_tagline, 0.5, {opacity: 0, delay: 0.5})
+				.to(slide_logo, 0.5, {top: '15px', left: '12px', scale: 0.75}, '-=0.5')
+				.to(slide_bg, 0.5, {width: '298px', height: '56px'}, '-=0.5')
+
+				.to(slide_bg, 0.25, {ease: Power2.easeIn, width: '298px', height: '110px', delay: 0.125})
+				.to(text_1, 0.125, {opacity: 1})
+				.to(text_1, 0.125, {opacity: 1, delay: 1})
+
+				//.to(slide_bg, 0.25, {width: '198px', height: '56px'})
+
+				.to(slide_bg, 0.25, {ease: Power2.easeIn, width: '298px', height: '170px', delay: 0.125})
+				.to(text_2, 0.125, {opacity: 1})
+				.to(text_2, 0, {opacity: 0, delay: 3})
+				.to(text_1, 0, {opacity: 0})
+				.to(slide_bg, 0.25, {width: '298px', height: '56px'})
+
+				.to(slide_bg, 0.25, {ease: Power2.easeIn, width: '298px', height: '220px', delay: 0.125})
+				.to(text_3, 0.125, {opacity: 1})
+				.to(text_3, 0.125, {opacity: 0, delay: 5})
+				.to(slide_bg, 0.25, {width: '298px', height: '56px'})
+
+				.to(slide_bg, 0.25, {ease: Power2.easeIn, width: '298px', height: '190px', delay: 0.125})
+				.to(text_4, 0.125, {opacity: 1})
+				//.to(text_4, 0.125, {opacity: 0, delay: 3})
+				
+				.pause();
+
+				animationTL
+				.set(animation_bg, {x: '0', y: '0', scale: '1', rotationZ: 0.01})//smoothes translation.
+
+				.to(animation_bg, 0.25, {opacity: 1})
+				.to(animation_bg, 16.5, {ease: Power1.easeInOut, x: '-400', y: '0', scale: '1'})
+
+				startCollapsedAnim();
+			}
+
+			function startCollapsedAnim() {
+				plays++;
+				mainTL.play(0);
+				animationTL.play(0);
+			}
+
+			function loopCollapsedAnim() {
+				if(plays < maxPlays) {
+					setTimeout(resetCollapsedAnim, 16);
+				}
+			}
+
+			function resetCollapsedAnim() {
+				// The loop end.
+				var t2 = new TimelineMax({onComplete:startCollapsedAnim});
+				currentTL = t2;
+
+				t2
+				.to(text_4, 0.25, {opacity: 0, delay: 1})
+				.to(slide_bg, 0.5, {ease: Power2.easeIn, width: '300px', height: '350px'}, '-=0.25')
+				.to(slide_logo, 0.5, {top: '157px', left: '42px', scale: 1}, '-=0.25')
+				.to(slide_logo_tagline, 0.5, {opacity: 1}, '-=0.25')
+				.to(animation_bg, 0.25, {opacity: 0})
+			}
+		</script>
+	
+</body></html>

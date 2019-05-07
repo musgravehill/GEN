@@ -1,0 +1,87 @@
+.novi {
+ display:none;
+}
+.rating {
+list-style:none;
+background-image: none;
+		color: #757575;
+		font-family: Tahoma, helvetica, sans-serif;
+		font-size: 11px;
+		width: 85px;
+		height: 16px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+
+	}
+	.unit-rating{
+		font-family: Tahoma, helvetica, sans-serif;
+		font-size: 11px;
+		list-style:none;
+		width: 85px;
+		height: 16px;
+		position: relative;
+		background: url('/images/r1.gif') top left repeat-x;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	}
+
+	.unit-rating li{
+		font-family: Tahoma, helvetica, sans-serif;
+		font-size: 11px;
+	background-image: none;
+	list-style:none;
+	    text-indent: -90000px;
+		float: left;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	}
+	.unit-rating li a{
+		font-family: Tahoma, helvetica, sans-serif;
+		font-size: 11px;
+	background-image: none;
+	list-style:none;
+		display:block;
+		width:17px;
+		height: 16px;
+		text-decoration: none;
+		text-indent: -9000px;
+		z-index: 17;
+		position: absolute;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	}
+	.unit-rating li a:hover{
+		font-family: Tahoma, helvetica, sans-serif;
+		font-size: 11px;
+	list-style:none;
+		background: url('/images/r1.gif') left center;
+		z-index: 2;
+		left: 0px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	}
+	.unit-rating a.r1-unit{left: 0px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r1-unit:hover{width:17px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r2-unit{left:17px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r2-unit:hover{width: 34px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r3-unit{left: 34px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r3-unit:hover{width: 51px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r4-unit{left: 51px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r4-unit:hover{width: 68px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r5-unit{left: 68px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating a.r5-unit:hover{width: 85px;padding: 0 0 0 0; margin: 0 0 0 0;font-family: Tahoma, helvetica, sans-serif; font-size: 11px;}
+	.unit-rating li.current-rating{
+	list-style:none;
+		font-family: Tahoma, helvetica, sans-serif;
+		font-size: 11px;
+		background: url('/images/r1.gif') left bottom;
+		position: absolute;
+		height: 16px;
+		display: block;
+		text-indent: -9000px;
+		z-index: 1;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+
+}
+
