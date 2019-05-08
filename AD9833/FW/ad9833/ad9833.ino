@@ -6,12 +6,12 @@
    MISO 12 ----
    SCK 13 -----> CLK
    d10 ------  FSY AD9833
-   d9 ------- CS  MCP41010
+   A0 ------- CS  MCP41010
 
-  CS SPI Chip select to MCP41010
+  CS SPI Chip select to MCP41010         A0
   DAT SPI MOSI to AD9833 and MCP41010    d11
   CLK SPI Clock to AD9833 and MCP41010   d13
-  FSY SPI Chip select for AD9833         d10
+  FSY SPI Chip select for AD9833         d10 
   GND 0V
   VCC 3V ~ 5V
 
