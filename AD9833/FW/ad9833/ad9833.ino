@@ -70,7 +70,7 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 //=====================================1602 LCD i2c==============================================================
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C lcd(0x3F, 16, 2); //0x3F  0x27
 bool lcd_blink_tmp = true;
 
 
@@ -93,5 +93,3 @@ void setup() {
 void loop() {
   TIMEMACHINE_loop();
 }
-
-
