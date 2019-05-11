@@ -1,6 +1,6 @@
 /*
- LED LOCKDETECT do
- 
+  LED LOCKDETECT do
+
    ////--------------remove  pullup if user hardware resistors
   PINOUT!!!! d2 - for ENCODER_A!!
 
@@ -60,17 +60,16 @@
 uint32_t ADF4351_referenceFreq = 2500000L; //*10 Hz reference frequency = quartz 25 MHz
 uint32_t ADF4351_frequency = 43300000L; //*10 Hz = 433 MHz
 uint32_t ADF4351_freqStepCurrent = 0L;
-uint32_t ADF4351_stepsVariants[7] = {
+uint32_t ADF4351_stepsVariants[6] = {
   625, //*10Hz 6,25 khz, 5khz does not work in Int-N mode (MOD> 4095) at 25Mhz Ref.
   1000, //*10Hz 10 khz
-  1250, //*10Hz 12.5 khz
   10000, //*10Hz 100 khz
   100000, //*10Hz 1 Mhz
   1000000, //*10Hz 10 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
   10000000 //*10Hz 100 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
 };
-uint8_t ADF4351_stepsVariantsNumCurrent = 4;
-String OLED_stepsVariants_val[7] = {"6.25kHz", "10kHz", "12.5kHz", "100kHz", "1MHz", "10MHz", "100MHz"};
+uint8_t ADF4351_stepsVariantsNumCurrent = 3;
+String OLED_stepsVariants_val[6] = {"6.25kHz", "10kHz", "100kHz", "1MHz", "10MHz", "100MHz"};
 
 uint8_t ADF4351_lowNoiseOrSpurVariants[2] = {B0, B11};
 uint8_t ADF4351_lowNoiseOrSpur_current = 0; //at lowSpur cannot lock sometimes
@@ -118,11 +117,9 @@ void setup() {
   MONITOR_init();
   ENCODER_init();
   BUTTON_init();
- // Serial.begin(9600);
+  // Serial.begin(9600);
 }
 
 void loop() {
   TIMEMACHINE_loop();
 }
-
-
