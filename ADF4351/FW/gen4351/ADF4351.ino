@@ -58,8 +58,6 @@ void ADF4351_step_next() {
 
   }
 
-
-
   SYS_isNeedProcessConfig = true;
 }
 
@@ -103,7 +101,7 @@ void ADF4351_writeToRegister(int idx)
     buf[i] = (byte)(ADF4351_registers[idx] >> (i * 8));
   ADF4351_writeData(buf[3], buf[2], buf[1], buf[0]);
 }
-int ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
+void ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
   // write over SPI to ADF4351
   digitalWrite(ADF4351_LE_pin, LOW);
   delayMicroseconds(10);
@@ -113,7 +111,7 @@ int ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
   SPI.transfer(a4);
   ADF4351_ss_toggle();
 }
-int ADF4351_ss_toggle() {
+void ADF4351_ss_toggle() {
   digitalWrite(ADF4351_LE_pin, HIGH);
   delayMicroseconds(5);
   digitalWrite(ADF4351_LE_pin, LOW);
