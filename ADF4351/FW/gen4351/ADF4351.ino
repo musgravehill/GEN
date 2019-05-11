@@ -32,6 +32,34 @@ void ADF4351_step_next() {
     ADF4351_stepsVariantsNumCurrent = 0;
   }
   ADF4351_freqStepCurrent = ADF4351_stepsVariants[ADF4351_stepsVariantsNumCurrent]; //it is in ADF4351_prepareConfig()
+
+  //round Freq to NEAR step, because ADF4351 can NOT set frquency like: 433 006 250 Hz if step is 1MHz (STEP > low digits in FREQ)
+  switch (ADF4351_stepsVariantsNumCurrent) {
+    case 0: //625, //*10Hz 6,25 khz, 5khz does not work in Int-N mode (MOD> 4095) at 25Mhz Ref.
+      break;
+    case 1: //1000, //*10Hz 10 khz
+      ADF4351_frequency = 1000 * ADF4351_frequency / 1000; //*10 =  some Hz
+      break;
+    case 2: //1250, //*10Hz 12.5 khz
+      ADF4351_frequency = 10000 * ADF4351_frequency / 10000; //*10 =  some Hz
+      break;
+    case 3: //10000, //*10Hz 100 khz
+      ADF4351_frequency = 10000 * ADF4351_frequency / 10000; //*10 =  some Hz
+      break;
+    case 4: //100000, //*10Hz 1 Mhz
+      ADF4351_frequency = 100000 * ADF4351_frequency / 100000; //*10 =  some Hz
+      break;
+    case 5: //1000000, //*10Hz 10 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
+      ADF4351_frequency = 100000 * ADF4351_frequency / 100000; //*10 =  some Hz
+      break;
+    case 6: //10000000 //100MHz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
+      ADF4351_frequency = 100000 * ADF4351_frequency / 100000; //*10 =  some Hz
+      break;
+
+  }
+
+
+
   SYS_isNeedProcessConfig = true;
 }
 
@@ -274,6 +302,3 @@ void ADF4351_prepareConfig() {
   the spurs. Figure 10 through Figure 12 show the trade-offs in a
   typical W-CDMA setup for different noise and spur settings.
 */
-
-
-
