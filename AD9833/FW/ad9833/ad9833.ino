@@ -62,9 +62,9 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 
 #define ENCODER_button 4
 #define BTN_future0 5
-#define BTN_future1 6
+#define BTN_future1 8
 #define BTN_wavetype 7
-#define BTN_digipot 8
+#define BTN_digipot 5
 
 
 //=====================================1602 LCD i2c==============================================================
