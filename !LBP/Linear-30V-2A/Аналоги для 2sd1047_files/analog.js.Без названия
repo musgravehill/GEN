@@ -1,0 +1,140 @@
+// Аналоги
+//
+$(document).ready( function () {
+	$("#analogsearchform").submit(function(e) {
+		// Ссылка
+		var url = '/modules/analog/';
+		var analog = $('#analogsearchform input[name=\'analog\']').val();
+		if ( analog ) {
+			url += encodeURIComponent( analog ).toLowerCase();
+		}
+        // Устанавливаем аналог
+		$("#analog_filter_form input[name='analog']").val( analog );
+		// Устанавливаем страницу
+		$("#analog_filter_form input[name='page']").val( 1 );
+		// Загружаем аналоги
+		analogAjaxAnalog( url );
+		return false;
+    });
+	// AJAX поиск
+	$('#analogsearchform input[name=\'analog\']').autocomplete({
+		// Задержка
+		delay: 500,
+		// Минимальное число
+		minLength: 2,
+		// Источник
+		source: function(request, response) {
+			$.ajax({
+				url: '/modules/element/autocomplete.php?name=' +  encodeURIComponent(request.term) + '&is_analogs=1',
+				dataType: 'json',
+				success: function(json) {	
+					response($.map(json, function(item) {
+						return {
+							label: item.name,
+							value: item.name,
+							symlink: item.symlink
+						}
+					}));
+				}
+			});
+		},
+		//
+		select: function( event, ui ) {
+			if( ui.item.value == "" ){
+				return false;
+			} else {
+				// Устанавливаем аналог
+				$("#analog_filter_form input[name='analog']").val( ui.item.value );
+				// Устанавливаем страницу
+				$("#analog_filter_form input[name='page']").val( 1 );
+				// Загружаем аналоги
+				analogAjaxAnalog( ui.item.symlink );
+				return true;
+			}
+		}
+	});
+});    
+
+// AJAX аналоги
+$('#analogLblAnalog a.analog_link').live("click", function() {
+	// Устанавливаем аналог
+	$("#analog_filter_form input[name='analog']").val( $(this).text() );
+	// Устанавливаем страницу
+	$("#analog_filter_form input[name='page']").val( 1 );
+	// Загружаем аналоги
+	analogAjaxAnalog( $(this).attr('href') );
+	return false;
+});
+// AJAX пагенатор
+$('.xo-pagenav a').live("click", function() {
+	// Устанавливаем страницу
+	$("#analog_filter_form input[name='page']").val( $(this).text() );
+	// Загружаем аналоги
+	analogAjaxAnalog( $(this).attr('href') );
+	return false;
+});
+
+//
+function analogAjaxAnalog( page_url ) {
+	// Выполняем AJAX запрос
+	$.ajax({
+		url: '/modules/analog/analog.php',
+		type: 'POST',
+		data: $("#analog_filter_form").serialize(),
+		dataType: 'json',
+		beforeSend: function (XMLHttpRequest) {
+			//
+			$('#xo-content').fadeTo("slow", 0.33);
+		},
+		success: function( json, textStatus ){
+			// Если небыло ошибок
+			if( !json.error ) {
+				// Название
+				$("#analogLblHead").html( json.analogHead );
+				// Предыдущая страница
+				if( json.linkPrev ) {
+					$('link[rel="prev"]').attr( 'href', json.linkPrev );
+				} else {
+					$('link[rel="prev"]').attr( 'href', '' );
+				}
+				// Следующая страница
+				if( json.linkNext ) {
+					$('link[rel="next"]').attr( 'href', json.linkNext );
+				} else {
+					$('link[rel="next"]').attr( 'href', '' );
+				}
+				// Пагенатор
+				$("#analogLblPagenav").html( json.pagenav );
+				// Заголовок таблицы
+				$("#analogLblTableHead").html( json.tableHead );
+				// Хлебные крошки
+				$("#breadcrumbs").html( $( "#smartyTplBreadcrumbs" ).render( json.breadcrumbs ) );
+				// Установка тайтла
+				$('title').html( json.pagetitle );
+				// Мета теги описания
+				$('meta[name="description"]').attr( 'content', json.metaDescription );
+				// Аналоги
+				$("#analogLblAnalog").html( $( "#analogTplAnalog" ).render( json.searchResults ) );
+				// Установка аналога в форме поиска
+				$('#analogsearchform input[name="analog"]').val( json.analogAnalog );
+				// Установка адреса страницы
+				if( typeof history.pushState != 'undefined' ) {
+					history.pushState( null, null, page_url );
+				}
+			// Если возникла ошибка
+			} else {
+				// Выводим сообщение
+				$.jGrowl( json.error, { life:5000, position: "center", speed: "slow" });
+			}
+		},
+		complete: function( XMLHttpRequest, textStatus ) {
+			//
+			$('#xo-content').fadeTo("fast", 1);
+			$('html, body').animate({ scrollTop: 0 }, 'slow');
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			// Если произошла ошибка - перебросить на URL
+			document.location = page_url;
+		}
+	});
+}

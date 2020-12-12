@@ -1,0 +1,128 @@
+.rating-star,  
+.rating-star a:hover,  
+.rating-star a:active,  
+.rating-star a:focus,  
+.rating-star .rating-star-current{  
+ background: url(../images/starrating_stars.png) left -1000px repeat-x;
+ /* В качестве фона для сылок, списка и текущего рейтинга 
+    зададим нашу картинку и расположим ее пока за 
+    пределами элемента */  
+}  
+  
+.rating-star{  
+ position: relative;  
+ width: 125px; /* Ширина всего рейтинга*/  
+ height: 25px;  
+ overflow: hidden;  
+ list-style: none;  
+ margin: 0;  
+ padding: 0;  
+ background-position: left top;  
+ /* Фоном будет являться "пустая" звездочка */  
+}  
+  
+.rating-star li{  
+ display: inline;  
+ /* Элементы списка пойдут друг за другом. */
+ list-style: none;
+}  
+  
+.rating-star a,  
+.rating-star .rating-star-current{  
+ position: absolute;  
+ top: 0;  
+ left: 0;  
+ text-indent: -1000em;  
+ /* Уберем текст за пределы видимости */  
+ height: 25px;  
+ line-height: 25px;  
+ outline: none;  
+ overflow: hidden;  
+ border: none;  
+}  
+  
+.rating-star a:hover,  
+.rating-star a:active,  
+.rating-star a:focus{  
+ background-position: left bottom;  
+ /* При наведении мышки и т.д. фоном будет 
+    нижняя часть картинки, а именно "подсвеченная" 
+    звездочка */  
+}  
+  
+/* Зададим стили для каждой звездочки */  
+.rating-star a.rating-star-one{  
+ width: 20%;  
+ z-index: 6;  
+}  
+  
+.rating-star a.rating-star-two{  
+ width: 40%;  
+ z-index: 5;  
+}  
+  
+.rating-star a.rating-star-three{  
+ width: 60%;  
+ z-index: 4;  
+}  
+  
+.rating-star a.rating-star-four{  
+ width: 80%;  
+ z-index: 3;  
+}  
+  
+.rating-star a.rating-star-five{  
+width:100%;  
+z-index:2;  
+}  
+  
+/* Текущий рейтинг выше всех и имеет в качестве 
+   фона "нормальную" звездочку */  
+.rating-star .rating-star-current{  
+ z-index: 1;  
+ background-position: left center;  
+}
+
+/* Число голосов */
+div.rating-star-rating{
+	width: 125px;
+}
+
+div.rating-star-votes{
+	width: 27px;
+	float: right;
+	background: url("../images/bg_r.png") no-repeat scroll left center transparent;
+	padding: 0 0 0 8px;
+	text-align: center;
+	font-size:12px;
+}
+div.rating-star-votes div {
+    background: url("../images/bg_r.png") no-repeat scroll right center transparent;
+    height: 25px;
+	padding:0 6px 0 2px;
+}
+div.rating-star-votes div span {
+    line-height:2em;
+	cursor:help;
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Рейтинг +1/-1
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/* Стили для всего рейтинга */
+.rating-one{}
+/* Стили для +1 */
+.rating-one-yes, .rating-one-yes:hover{
+	color:#0F0;
+}
+/* Стили для -1 */
+.rating-one-no, .rating-one-no:hover{
+	color:#F00;
+}
+/*  */
+.rating-one-votes-yes, .rating-one-votes-no{
+	cursor:help;
+}
