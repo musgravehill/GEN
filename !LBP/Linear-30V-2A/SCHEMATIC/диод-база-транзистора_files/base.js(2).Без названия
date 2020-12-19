@@ -1,0 +1,883 @@
+"use strict";
+
+(function () {
+  var windowLink = top.window;
+  var documentLink = windowLink.document;
+
+  function initializeFn() {
+    // Оператор - допустимые значения rtk, mf, t2, RTK, MF, T2
+    var operator = 'rtk'; // Запрашиваемые баннеры
+
+    var enabledBanners = {
+      header: true,
+      fullscreen: false,
+      sidebar: true,
+      native: true,
+      footer: true
+    }; // Умный футер или обычный
+
+    var isSmartFooter = true;
+    var isDeviceMobile = isMobile(); // Иконка кнопки закрытия баннера
+
+    var closingIconSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAALVBMVEVHcEz///++vr3d3d3///9wcG////////////////////+lpaTIyMj///9oaGeSbWsWAAAADnRSTlMAzN/WxfwjnhYdTejcuKlqdCoAAADlSURBVHheRdIhCkJBFIXhk1SjKhjEoGAVRFyAxQ2IVRTcgM1osxpMNqMuQnArD14SZg1eLnPnv+XA8KUzR1L7fRP3eHkcO2veGqv+3mNiGXfsjtceybLAWWXEIlkWmIzobhHURapGelo4zdDuq8MyOS0w1XM1e7tMA24Gap0yBZ6la9ACL4ICBQUKChQUKOgHCAUKCoQCoUAKHya7X+mVeuiVHukVCAVCJWA9hVI4XwCc8wXAAV8APLegovBCgRL0TuFOmY1Dp8wmQ6cxm4BOy2wcBs2z2ToMmmezcBg0z6ZjATXxB9PTJiI2Ki0XAAAAAElFTkSuQmCC'; // Должен ли отправляться запрос в паблишер при отсутствии креатива для слота
+
+    var isReturningFunctionEnabled = false; // Флаг, отслеживающий, срабатывала ли заглушка возврата в паблишер - она должна срабатывать один раз
+
+    var isReturningFunctionFired = false; // Таймер автозакрытия баннера fullscreen
+
+    var fullscreenClosingTimer = 30; // Таймер проверки ответа от РС MyTarget
+
+    var stylesTimeout = 2000; // HTML код шаблона. Обязательно должен быть элемент с id === fbqsr-wrapper.
+    // Структуру лучше не менять, а также не удалять существующие элементы.
+
+    var html = '<div id="mbnr4web"><div id="fbqsr-wrapper" data-type="header"><div id="fbqsr-popup"><div class="mbnr4web"><div id="fbqsr-button"><div class="mbnr4web__image-container"><div class="mbnr4web__image" id="fbqsr-image"><div id="fbqsr-popup-close" class="mbnr4web__close"></div></div></div></div></div></div></div></div>'; // CSS код шаблона. Стили лучше не удалять
+
+    var css = '#fbqsr-popup{display:none;position:absolute;top:0;left:100%;opacity:0;overflow:hidden;width:100%;height:100%;transition:opacity .4s ease-in;-webkit-transition:opacity .4s ease-in;-moz-transition:opacity .4s ease-in;-ms-transition:opacity .4s ease-in;-o-transition:opacity .4s ease-in;padding:0;}#fbqsr-popup.fbqsr-popup-steady{display:block}#fbqsr-popup.fbqsr-popup-ready{opacity:1}#fbqsr-wrapper{position:fixed;z-index:1000000;top:0;left:-100%;width:100%;touch-action:none}.nobr{white-space:nowrap}#fbqsr-button{position:absolute;z-index:1;top:0;left:0;width:100%;height:100%;cursor:pointer}.mbnr4web{position:relative;width:100%;height:100%}.mbnr4web .mbnr4web__image-container{width:100%;height:100%;}.mbnr4web .mbnr4web__image{position:relative;height:100%;margin:auto;background-position:50%;background-size:auto 100%;background-repeat:no-repeat}#fbqsr-wrapper{position:relative}.mbnr4web__close{display:none;width:18px;height:18px;}@media screen and (min-width:468px){.mbnr4web__close{width:20px;height:20px;}}}@media screen and (min-width:1456px){.mbnr4web__close{width:64px;height:64px;}}'; // Приватные параметры и вычисления
+
+    if (closingIconSrc) css += '#fbqsr-popup-close{position:absolute;z-index:100001;top:5px;right:5px;cursor:pointer}';
+    if (closingIconSrc) css += ".mbnr4web__close{display:block;background-image:url(".concat(closingIconSrc, ");background-repeat:no-repeat;background-size:cover;};");
+    var bannerData = {
+      nodes: {},
+      handlers: []
+    };
+    bannerData.img = [];
+
+    function createPixel() {
+      var key = '7175617361722d766172';
+      new Image().src = "http://dmg.digitaltarget.ru/1/6628/i/i?i=".concat(Math.random(), "&c=tg:sid_na%20aid_").concat(window[key].kw_id ? window[key].kw_id : '', "%20reg_").concat(window[key].kw_reg ? window[key].kw_reg : '', "%20step_tpl%20rid_").concat(window.rid ? window.rid : '');
+    }
+
+    function addHtml(html) {
+      var div = documentLink.createElement('div');
+      div.innerHTML = html;
+      documentLink.body.appendChild(div);
+    }
+
+    function addCss(css) {
+      var style = documentLink.createElement('style');
+      style.type = 'text/css';
+
+      if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(documentLink.createTextNode(css));
+      }
+
+      documentLink.head.appendChild(style);
+    }
+
+    function isPortrait() {
+      return windowLink.innerWidth < windowLink.innerHeight;
+    }
+
+    function attachHandler(element, event, handler) {
+      element.addEventListener(event, handler, false);
+      bannerData.handlers.push({
+        element: element,
+        event: event,
+        handler: handler
+      });
+    }
+
+    function detachHandler(element, event, handler) {
+      element.removeEventListener(event, handler, false);
+    }
+
+    function moveWrapperUp() {
+      var bannerContainer = bannerData.nodes.wrapper.parentNode;
+      var bannerHeightInPx = "".concat(bannerContainer.offsetHeight, "px");
+      var documentElement = documentLink.documentElement;
+      documentLink.body.insertBefore(bannerContainer, documentLink.body.childNodes[0]);
+      documentLink.body.style.overflow = 'visible';
+      bannerContainer.style.position = 'absolute';
+      bannerContainer.style.top = '0';
+      bannerContainer.style.left = '0';
+      bannerContainer.style.right = "".concat(-(windowLink.innerWidth - documentElement.clientWidth), "px");
+      var documentElementStyle = getComputedStyle(documentElement);
+
+      if (documentElementStyle.marginTop) {
+        bannerData.documentElementMargin = documentElementStyle.marginTop;
+        documentElement.style.paddingTop = documentElementStyle.marginTop;
+        documentElement.style.marginTop = '0';
+      }
+
+      documentElement.style.marginTop = bannerHeightInPx;
+      var bodyStyle = getComputedStyle(documentLink.body);
+      var isFirefox = windowLink.navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+      if (bodyStyle.backgroundImage && parseInt(bodyStyle.backgroundPositionY) === 0 && isFirefox) {
+        bannerData.nodes.bodyBackgroundStyle = documentLink.createElement('style');
+        bannerData.nodes.bodyBackgroundStyle.innerHTML = "body{background-position-y:".concat(bannerHeightInPx, " !important;}");
+        documentLink.getElementsByTagName('head')[0].appendChild(bannerData.nodes.bodyBackgroundStyle);
+      }
+    }
+
+    function processNode(node) {
+      var attribute = node.getAttribute('id');
+      var prefix = 'fbqsr-';
+
+      if (!!node.getAttribute && !!attribute && attribute.indexOf(prefix) === 0) {
+        bannerData.nodes[attribute.substring(prefix.length)] = node;
+      }
+
+      Array.from(node.children).forEach(function (el) {
+        return processNode(el);
+      });
+    }
+
+    function openBanner() {
+      windowLink.scrollBy(0, 0);
+      bannerData.isOpened = true;
+      bannerData.nodes.popup.className = 'fbqsr-popup-steady';
+      setTimeout(function () {
+        bannerData.nodes.popup.className = 'fbqsr-popup-steady fbqsr-popup-ready';
+      }, 100);
+    }
+
+    function checkLayout() {
+      if (isPortrait()) {
+        bannerData.nodes.wrapper.classList.add('fbqsr-portrait');
+        bannerData.nodes.wrapper.classList.remove('fbqsr-landscape');
+        return;
+      }
+
+      bannerData.nodes.wrapper.classList.remove('fbqsr-portrait');
+      bannerData.nodes.wrapper.classList.add('fbqsr-landscape');
+    }
+
+    function closeBanner(event) {
+      event && event.preventDefault();
+      clearTimeout(bannerData.closeBannerTimeout);
+      clearInterval(bannerData.watchZIndexInterval);
+      bannerData.handlers.forEach(function (handlerInfo) {
+        return detachHandler(handlerInfo.element, handlerInfo.event, handlerInfo.handler);
+      });
+      bannerData.handlers = [];
+      bannerData.nodes.wrapper.parentNode.removeChild(bannerData.nodes.wrapper);
+      documentLink.documentElement.style.transform = 'none';
+
+      if (bannerData.documentElementMargin) {
+        documentLink.documentElement.style.marginTop = bannerData.documentElementMargin;
+        documentLink.documentElement.style.paddingTop = '0';
+      }
+
+      if (bannerData.nodes.bodyBackgroundStyle) {
+        bannerData.nodes.bodyBackgroundStyle.parentNode.removeChild(bannerData.nodes.bodyBackgroundStyle);
+      }
+    }
+
+    function resizeEnd() {
+      if (!bannerData.isAdaptive) {
+        setTimeout(function () {
+          setBannerData();
+          calcBannerHeight();
+          moveWrapperUp();
+        }, 100);
+      }
+
+      if (bannerData.isAdaptive) {
+        setTimeout(function () {
+          setBannerData();
+          calcBannerHeight();
+          moveWrapperUp();
+        }, 100);
+      }
+    }
+
+    function init() {
+      processNode(documentLink.getElementById('fbqsr-wrapper').parentNode);
+      attachHandler(windowLink, 'resize', resizeEnd);
+      attachHandler(windowLink, 'orientationchange', checkLayout);
+      bannerData.nodes.wrapper.classList.add('fbqsr-mobile');
+      setupZIndex();
+      bannerData.watchZIndexInterval = setInterval(setupZIndex, 500);
+    }
+
+    function setupZIndex() {
+      var wrapper = bannerData.nodes.wrapper;
+      var maxZIndex = getMaxZIndex();
+
+      if (wrapper && wrapper.style.zIndex < maxZIndex) {
+        wrapper.style.zIndex = maxZIndex + 1;
+        wrapper.parentNode.style.zIndex = maxZIndex + 1;
+      }
+    }
+
+    function getMaxZIndex() {
+      var zIndex,
+          maxZIndex = 0;
+      var allElements = documentLink.getElementsByTagName('*');
+      Array.from(allElements).forEach(function (elem) {
+        zIndex = documentLink.defaultView.getComputedStyle(elem, null).getPropertyValue('z-index');
+        zIndex = parseInt(zIndex, 10);
+        maxZIndex = zIndex ? Math.max(maxZIndex, zIndex) : maxZIndex;
+      });
+      return maxZIndex;
+    }
+
+    function setBannerData() {
+      var innerWidth = Math.max(documentLink.body.clientWidth, windowLink.innerWidth);
+      var innerHeight = Math.max(documentLink.body.clientHeight, windowLink.innerHeight);
+      var fixed = getFixedElements();
+      var banner = bannerData.img.find(function (banner) {
+        var isBannerFitsWindow = innerWidth >= banner.width && innerHeight >= banner.height * 5;
+        var isTop = canPlaceAmong(fixed, banner, true);
+        return isBannerFitsWindow && isTop;
+      });
+
+      if (banner) {
+        // Для отображения баннера так же, как и для обычного хэдера строится контейнер по размерам,
+        // только вместо обычного отображения изображения добавлется дополнительный div с id из рекламной сети
+        // вместе с добавлением служебного скрипта, который и рисует рекламу
+        bannerData.nodes.wrapper.style.height = "".concat(banner.height, "px");
+        bannerData.nodes.image.style.width = "".concat(banner.width, "px");
+        var div = documentLink.createElement('div');
+        div.id = banner.id;
+        div.style.height = "".concat(banner.height, "px");
+        div.style.width = "".concat(banner.width, "px");
+        bannerData.nodes['popup-close'].style.display = 'none';
+        bannerData.nodes.image.appendChild(div); // Проверка, загрузился ли креатив
+
+        if (typeof window.sapeRtbPlaceCallback === 'undefined') {
+          window.sapeRtbPlaceCallback = {};
+        }
+
+        window.sapeRtbPlaceCallback[banner.id.split('_')[1]] = function (state) {
+          if (state === 'ad') {
+            createTrackingPixel('header', banner.id);
+          } else if (state === 'stub') {
+            closeBanner();
+          }
+        };
+      }
+    }
+
+    function calcBannerHeight() {
+      var bannerWrapper = bannerData.nodes.wrapper;
+      bannerWrapper.height = bannerWrapper.offsetHeight;
+    }
+
+    function preloadImages(images, callback) {
+      if (!images.length) return callback();
+      var imageSrc = images.pop();
+      if (!imageSrc) return preloadImages(images, callback);
+      var img = new Image();
+      img.onload = preloadImages.bind(this, images, callback);
+      img.src = imageSrc;
+    }
+
+    function getFixedElements() {
+      var result = [];
+      var elements = document.getElementsByTagName('*');
+      Array.from(elements).forEach(function (elem) {
+        var position = getComputedStyle(elem, null).position;
+
+        if (position === 'fixed') {
+          result.push(elem);
+        }
+      });
+      return result;
+    }
+
+    function canPlaceAmong(fixedElements, bannerSizes, isTop) {
+      return !fixedElements.some(function (elem) {
+        var elementRect = elem.getBoundingClientRect();
+        var left = document.documentElement.clientWidth / 2 - bannerSizes.width / 2;
+        var right = left + bannerSizes.width;
+        return !(right < elementRect.left || left > elementRect.right || bannerSizes.height < (isTop ? elementRect.top : elementRect.bottom));
+      });
+    }
+
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent);
+    } // Функция поиска подходящих для баннера мест на странице
+
+
+    function getNativeAnchors() {
+      var blockHeight = 100;
+      var maxBoundOverdraft = 30;
+      var properElements = [];
+      var allElements = document.getElementsByTagName('div');
+      Array.from(allElements).forEach(function (currentElement) {
+        var elementOffsetParent = currentElement.offsetParent;
+        var elementWidth = currentElement.clientWidth;
+        var elementHeight = currentElement.clientHeight;
+        var elementLeft = currentElement.getBoundingClientRect().left;
+        var elementBottom = currentElement.getBoundingClientRect().bottom;
+        var elementPositionType = document.defaultView.getComputedStyle(currentElement, null).getPropertyValue('position');
+
+        if (checkVisibility(elementOffsetParent) && checkElementPositionType(elementPositionType, currentElement) && checkElementSize(elementWidth, elementHeight) && checkElementBounds(elementLeft, elementWidth, elementBottom)) {
+          properElements.push(currentElement);
+        }
+      });
+      return properElements;
+
+      function checkVisibility(elOffsetParent) {
+        return !!elOffsetParent;
+      }
+
+      function checkElementSize(elWidth, elHeight) {
+        return elWidth >= window.innerWidth * 0.84 && elHeight <= 2 * window.innerHeight && elHeight > blockHeight;
+      } // Функция проверки позиционирования элемента, в котором может быть размещен баннер
+
+
+      function checkElementPositionType(posType, currentElement) {
+        var parents = [];
+        var elem = currentElement;
+        var isParentsFits = true; // Не подходят элементы с position fixed, absolute и sticky
+
+        if (posType === 'sticky' || posType === 'absolute' || posType === 'fixed') {
+          return false;
+        }
+
+        var siblingFloat = window.getComputedStyle(elem.parentNode.children[0], null).float; // Не подходят элементы со свойством float
+
+        if (siblingFloat === "left" || siblingFloat === "right") {
+          return false;
+        }
+
+        while (elem.parentNode && elem.parentNode.nodeName.toLowerCase() !== 'body') {
+          elem = elem.parentNode;
+          parents.push(elem);
+        } // Ни один родитель элемента, в котором размещен баннер, не должен иметь position fixed, absolute или sticky
+
+
+        isParentsFits = !parents.some(function (elem) {
+          var pos = getComputedStyle(elem).position;
+          return pos === 'sticky' || pos === 'absolute' || pos === 'fixed';
+        });
+        return isParentsFits;
+      }
+
+      function checkElementBounds(elLeft, elWidth, elBottom) {
+        return elLeft < window.innerWidth && Math.abs(elLeft + elWidth - window.innerWidth) < maxBoundOverdraft && elBottom > window.innerHeight;
+      }
+    } // Функция создания хэдер баннера
+
+
+    function createHeaderBanner(res) {
+      bannerData.img = res;
+
+      if (!bannerData.img) {
+        return;
+      }
+
+      preloadImages([closingIconSrc], function () {
+        addHtml(html);
+        addCss(css);
+        init();
+        setBannerData();
+        calcBannerHeight();
+        moveWrapperUp();
+        openBanner();
+      });
+    }
+
+    ; // Функция инициализации рекламной сети Sape
+
+    function initializeSape() {
+      var sape = document.createElement('script');
+      var useSSL = 'https:' === document.location.protocol;
+      var node = document.getElementsByTagName('script')[0];
+      sape.async = true;
+      sape.type = 'text/javascript';
+      sape.src = "".concat(useSSL ? 'https:' : 'http:', "//cdn-rtb.sape.ru/rtb-b/js/963/2/111963.js");
+      node.parentNode.insertBefore(sape, node);
+    }
+
+    function isDocumentContainsElement(selector, searchType) {
+      var element;
+
+      switch (searchType) {
+        case 'id':
+          element = document.getElementById(selector);
+          break;
+
+        case 'query':
+          element = document.querySelector(selector);
+          break;
+
+        default:
+          element = null;
+          break;
+      }
+
+      return document.body.contains(element) ? element : null;
+    } // Функция создания сайдблок баннера
+
+
+    function createSideblockBanner() {
+      // Минимальная ширина окна браузера для работы баннера
+      var minWindowWidth = 900; // Максимальная ширина баннера
+
+      var maxAdWidth = 300;
+      var maxAdHeight = 600; // Минимальная ширина баннера
+
+      var minAdWidth = 240;
+      var minAdHeight = 400; // ID слота баннера максимальной ширины
+
+      var maxSlot = 'SRTB_564149'; // ID слота баннера минимальной ширины
+
+      var minSlot = 'SRTB_573167';
+      var windowWidthForAd = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
+      var bodyWidthAd = document.body;
+      var wrapWidthAd = isDocumentContainsElement('wrap', 'id');
+      var containerWidthAd = isDocumentContainsElement('container', 'id');
+      var wrapperWidthAd = isDocumentContainsElement('wrapper', 'id');
+      var contentWidthAd = isDocumentContainsElement('content', 'id');
+      var mainWidthAd = isDocumentContainsElement('main', 'id');
+      var classContentWidth = isDocumentContainsElement('.content', 'query');
+      var classContainerWidth = isDocumentContainsElement('.container', 'query');
+      var classWrapperWidth = isDocumentContainsElement('.wrapper', 'query');
+      var elementForAd = Math.max(wrapWidthAd ? wrapWidthAd.offsetWidth : 0, containerWidthAd ? containerWidthAd.offsetWidth : 0, wrapperWidthAd ? wrapperWidthAd.offsetWidth : 0, contentWidthAd ? contentWidthAd.offsetWidth : 0, mainWidthAd ? mainWidthAd.offsetWidth : 0, classContentWidth ? classContentWidth.offsetWidth : 0, classContainerWidth ? classContainerWidth.offsetWidth : 0, classWrapperWidth ? classWrapperWidth.offsetWidth : 0, bodyWidthAd.offsetWidth);
+      var adWidthForSide = (windowWidthForAd - elementForAd) / 2;
+
+      if (isDeviceMobile || windowWidthForAd < minWindowWidth || adWidthForSide < minAdWidth) {
+        returnToPublisher();
+        return;
+      }
+
+      var bannerWidth = adWidthForSide < maxAdWidth ? minAdWidth : maxAdWidth;
+      var bannerHeight = adWidthForSide < maxAdWidth ? minAdHeight : maxAdHeight;
+      var target = document.getElementsByTagName('body')[0];
+      var div = document.createElement('div');
+      var banner = document.createElement('div');
+      var close = document.createElement('div');
+      div.id = 'mbnr4web-sideblock';
+      div.style.textAlign = 'center';
+      div.style.width = "".concat(bannerWidth, "px");
+      div.style.height = "".concat(bannerHeight, "px");
+      div.style.position = 'fixed';
+      div.style.right = '0';
+      div.style.top = '20%';
+      div.style.zIndex = 1000;
+      close.id = 'mbnr4web-sideblock-close';
+      close.style.backgroundImage = "url(".concat(closingIconSrc, ")");
+      close.style.position = 'absolute';
+      close.style.top = '0px';
+      close.style.right = '0px';
+      close.style.cursor = 'pointer';
+      close.style.zIndex = 100001;
+      close.style.width = '20px';
+      close.style.height = '20px';
+      close.style.backgroundSize = 'contain';
+      close.addEventListener('click', function () {
+        div.remove();
+      });
+      banner.id = adWidthForSide < maxAdWidth ? minSlot : maxSlot;
+      target.before(div);
+      div.append(banner);
+      div.append(close);
+
+      if (typeof window.sapeRtbPlaceCallback === 'undefined') {
+        window.sapeRtbPlaceCallback = {};
+      }
+
+      window.sapeRtbPlaceCallback[banner.id.split('_')[1]] = function (state) {
+        if (state === 'ad') {
+          createTrackingPixel('sideblock', banner.id);
+        } else if (state === 'stub') {
+          container.style.display = 'none';
+        }
+      };
+    } // Функция создания нативного баннера
+
+
+    function createNativeBanner(slotID) {
+      // Максимальное кол-во баннеров, отображаемых на странице
+      var numberOfSlots = 5;
+      var anchors = getNativeAnchors();
+      var places = [];
+
+      if (anchors.length !== 0) {
+        for (var i = 0; i < (numberOfSlots < anchors.length ? numberOfSlots : anchors.length); i++) {
+          places.push(anchors[i]);
+        }
+
+        places.forEach(function (bannerPlace, counter) {
+          var banner = document.createElement('div');
+          banner.id = "mbnr4web-native-".concat(counter);
+          banner.style.textAlign = 'center';
+          var iframe = document.createElement('iframe');
+          iframe.setAttribute('scrolling', 'no');
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('marginwidth', '0');
+          iframe.setAttribute('marginheight', '0');
+          iframe.setAttribute('width', 300);
+          iframe.setAttribute('height', 250);
+
+          var iframeWait = function iframeWait(iframe) {
+            var d = iframe.contentDocument || iframe.document;
+            var w = iframe.contentWindow || iframe.window;
+
+            if (typeof d === 'undefined' || d === null || d.readyState !== 'interactive' && d.readyState !== 'complete') {
+              setTimeout(_iframeWait, 100);
+              return;
+            }
+
+            var script = document.createElement('script');
+            script.src = '//cdn-rtb.sape.ru/rtb-b/js/963/2/111963.js';
+            script.type = 'text/javascript';
+            script.async = 'async';
+            var div = document.createElement('div');
+            div.id = slotID;
+
+            if (typeof w.sapeRtbPlaceCallback === 'undefined') {
+              w.sapeRtbPlaceCallback = {};
+            }
+
+            w.sapeRtbPlaceCallback[slotID.split('_')[1]] = function (state) {
+              if (state === 'ad') {
+                createTrackingPixel('native', slotID);
+              } else if (state === 'stub') {
+                iframe.parentNode.style.display = 'none';
+              }
+            };
+
+            d.open();
+            d.write(div.outerHTML + script.outerHTML);
+            d.close();
+          };
+
+          bannerPlace.parentNode.insertBefore(banner, bannerPlace.nextElementSibling);
+          banner.append(iframe);
+          iframeWait(iframe);
+        });
+      }
+
+      returnToPublisher();
+    } // Функция создания футер баннера
+
+
+    function createFooterBanner(bannerSlots) {
+      var innerWidth = Math.max(documentLink.body.clientWidth, windowLink.innerWidth);
+      var innerHeight = Math.max(documentLink.body.clientHeight, windowLink.innerHeight);
+      var fixed = getFixedElements();
+      var isStatusReturned = false;
+      var banner = bannerSlots.find(function (banner) {
+        var isBannerFitsWindow = innerWidth >= banner.width && innerHeight >= banner.height * 5;
+        var isFixed = canPlaceAmong(fixed, banner, false);
+        return isBannerFitsWindow && isFixed;
+      });
+
+      if (banner) {
+        var _container = document.createElement('div');
+
+        var bannerDiv = document.createElement('div');
+        var close = document.createElement('div');
+        var body = document.body;
+        _container.id = 'mbnr4web-footer';
+
+        if (isSmartFooter) {
+          _container.style.position = 'sticky';
+          _container.style.bottom = '0px';
+          close.id = 'mbnr4web-footer-close';
+          close.style.backgroundImage = "url(".concat(closingIconSrc, ")");
+          close.style.position = 'absolute';
+          close.style.top = '5px';
+          close.style.right = '5px';
+          close.style.cursor = 'pointer';
+          close.style.zIndex = 100001;
+          close.style.width = '15px';
+          close.style.height = '15px';
+          close.style.backgroundSize = 'contain';
+        } else {
+          _container.style.position = 'relative';
+        }
+
+        _container.style.width = "".concat(banner.width, "px");
+        _container.style.left = "calc(50% - ".concat(banner.width / 2, "px)");
+        _container.style.zIndex = '1000';
+        bannerDiv.id = banner.id;
+        bannerDiv.style.margin = '0 auto';
+        bannerDiv.style.width = "".concat(banner.width, "px");
+        bannerDiv.style.height = "".concat(banner.height, "px");
+        body.append(_container);
+
+        _container.append(bannerDiv);
+
+        if (typeof window.sapeRtbPlaceCallback === 'undefined') {
+          window.sapeRtbPlaceCallback = {};
+        }
+
+        window.sapeRtbPlaceCallback[banner.id.split('_')[1]] = function (state) {
+          isStatusReturned = true;
+
+          if (state === 'ad') {
+            if (isSmartFooter) {
+              _container.append(close);
+
+              close.addEventListener('click', function () {
+                _container.remove();
+              });
+              var headerContainer = document.getElementById('mbnr4web');
+              var header = headerContainer.querySelectorAll('div[id*="SRTB"]');
+              var isHeaderExists = header.length > 0;
+
+              if (isHeaderExists) {
+                var headerHeight = header[0].scrollHeight;
+                headerContainer.style.top = "-".concat(headerHeight, "px");
+                _container.style.position = 'absolute';
+                _container.parentElement.style.position = 'relative';
+                document.addEventListener('scroll', function () {
+                  if (window.pageYOffset >= headerHeight) {
+                    _container.style.position = 'fixed';
+                    return;
+                  }
+
+                  if (_container.style.position !== 'absolute') {
+                    _container.style.position = 'absolute';
+                  }
+                });
+              }
+            }
+
+            createTrackingPixel('footer', banner.id);
+          } else if (state === 'stub') {
+            _container.style.display = 'none';
+          }
+        };
+
+        setTimeout(function () {
+          if (!isStatusReturned) {
+            _container.style.display = 'none';
+          }
+        }, 1000);
+      }
+    } // Функция создания фуллскрин баннера
+
+
+    function createFullscreenBanner() {
+      var bannerWidth = 300;
+      var bannerHeight = 600; // Соотношение сторон креатива для корректной адаптации баннера
+
+      var ratio = bannerWidth / bannerHeight;
+      var slot = 'SRTB_572651';
+      var screenWidth = document.documentElement.clientWidth;
+      var screenHeight = document.documentElement.clientHeight;
+      var container = document.createElement('div');
+      var close = document.createElement('div');
+      var banner = document.createElement('div');
+      var meta = document.querySelector('meta[content*="width=device-width"]');
+      container.id = 'mbnr4web-fullscreen';
+      container.style.position = 'fixed';
+      container.style.width = '100%';
+      container.style.height = '100%';
+      container.style.left = '0';
+      container.style.top = '0';
+      container.style.display = 'flex';
+      container.style.justifyContent = 'center';
+      container.style.alignItems = 'center';
+      container.style.zIndex = '1000000';
+      container.style.backgroundColor = 'rgba(0,0,0,.7)';
+      close.id = 'mbnr4web-fullscreen-close';
+      close.style.backgroundImage = "url(".concat(closingIconSrc, ")");
+      close.style.position = 'absolute';
+      close.style.top = '20px';
+      close.style.right = '20px';
+      close.style.cursor = 'pointer';
+      close.style.zIndex = 10000001;
+      close.style.width = '30px';
+      close.style.height = '30px';
+      close.style.backgroundSize = 'contain';
+      close.addEventListener('click', function () {
+        container.remove();
+      });
+
+      if (fullscreenClosingTimer) {
+        setInterval(function () {
+          container.remove();
+        }, fullscreenClosingTimer * 1000);
+      }
+
+      banner.id = slot;
+
+      if (screenWidth / screenHeight < ratio) {
+        banner.style.width = "".concat(screenWidth > bannerWidth ? bannerWidth : screenWidth, "px");
+        banner.style.height = 'auto';
+      } else {
+        banner.style.height = "".concat(screenHeight > bannerHeight ? bannerHeight : screenHeight, "px");
+        banner.style.width = 'auto';
+      }
+
+      if (!meta) {
+        close.style.transform = 'scale(2.5)';
+        close.style.transformOrigin = 'top right';
+        banner.style.transform = 'scale(2.5)';
+        banner.style.transformOrigin = 'center';
+      }
+
+      document.body.append(container);
+      container.append(banner);
+      container.append(close);
+
+      if (typeof window.sapeRtbPlaceCallback === 'undefined') {
+        window.sapeRtbPlaceCallback = {};
+      }
+
+      window.sapeRtbPlaceCallback[slot.split('_')[1]] = function (state) {
+        if (state === 'ad') {
+          createTrackingPixel('fullscreen', slot);
+        } else if (state === 'stub') {
+          container.style.display = 'none';
+        }
+      };
+    } // Функция создания трекингового пикселя
+
+
+    function createTrackingPixel(bannerType, acid) {
+      new Image().src = "http://d.d1tracker.ru/p.gif?ci=".concat(acid, "&r=").concat(Math.random(), "&t=im&b=").concat(bannerType);
+    }
+
+    function initMT() {
+      var initScript = document.createElement('script');
+      initScript.src = 'https://ad.mail.ru/static/ads-async.js';
+      document.head.append(initScript);
+    }
+
+    addYandexMetrics();
+
+    if (operator.toLowerCase() === 'rtk') {
+      createPixel();
+    }
+
+    if (isDeviceMobile && enabledBanners.fullscreen) {
+      createFullscreenBanner();
+    } else if (enabledBanners.header) {
+      createHeaderBanner([{
+        width: isDeviceMobile ? 320 : 728,
+        height: isDeviceMobile ? 50 : 90,
+        id: isDeviceMobile ? 'SRTB_564171' : 'SRTB_562851'
+      }, {
+        width: isDeviceMobile ? 320 : 468,
+        height: isDeviceMobile ? 50 : 60,
+        id: isDeviceMobile ? 'SRTB_564171' : 'SRTB_563630'
+      }]);
+    }
+
+    if (enabledBanners.sidebar) {
+      createSideblockBanner();
+    }
+
+    if (enabledBanners.native) {
+      var slot = 'SRTB_563634'; //код для работы с монеткой. будет использоваться позднее. не удалять
+      //var slotA = 'SRTB_563634';
+      //var slotB = '';
+      //var slot = randomChooseSlot(slotA, slotB);
+
+      createNativeBanner(slot);
+    }
+
+    if (enabledBanners.footer) {
+      createFooterBanner([{
+        width: isDeviceMobile ? 468 : 728,
+        height: isDeviceMobile ? 60 : 90,
+        id: isDeviceMobile ? 'SRTB_563630' : 'SRTB_562851'
+      }, {
+        width: isDeviceMobile ? 320 : 468,
+        height: isDeviceMobile ? 50 : 60,
+        id: isDeviceMobile ? 'SRTB_564171' : 'SRTB_563630'
+      }]);
+    }
+
+    initializeSape(); // Функция рандомного равновероятностного выбора одного значения слота баннера из двух
+
+    function randomChooseSlot(slotA, slotB) {
+      var slot = ''; //Количество слотов, из которых делается выбор
+
+      var slotsCount = 2;
+      var rand = Math.floor(1 + Math.random() * slotsCount);
+
+      switch (rand) {
+        case 1:
+          slot = slotA;
+          break;
+
+        case 2:
+          slot = slotB;
+          break;
+
+        default:
+          break;
+      }
+
+      return slot;
+    } // Функция возврата в паблишер в случае отсутствия креатива для запрошенного баннера
+
+
+    function returnToPublisher() {
+      if (!isReturningFunctionEnabled || isReturningFunctionFired) {
+        return;
+      }
+
+      var publisherURLs = {
+        t2: {
+          url: 'http://p.tlrtb.com/ad/base.js?omit=',
+          baseSelector: 'script[src*="base.js?kw="]'
+        },
+        mf: {
+          url: 'http://p.mobilebanner.ru/ad/base.js?omit=',
+          baseSelector: 'script[src*="base.js?kw="]'
+        },
+        rtk: {
+          url: 'http://p.analytic.press/ad/base.js?omit=',
+          baseSelector: 'script[src*="base.js?id="]'
+        }
+      };
+      var operatorData = publisherURLs[operator.toLowerCase()];
+      var head = document.getElementsByTagName('head')[0];
+      var banner = document.createElement('script');
+      var params = getParams();
+
+      function getParams() {
+        var baseScripts = document.querySelectorAll(operatorData.baseSelector);
+        var baseScriptWithKeywords = Array.from(baseScripts).find(function (script) {
+          return script.src.includes('&kw=') ? script : '';
+        });
+        return baseScriptWithKeywords ? baseScriptWithKeywords.src.substring(baseScriptWithKeywords.src.indexOf('?') + 1) : '';
+      }
+
+      var paramsParam = params ? "&".concat(params) : '';
+      banner.src = "".concat(operatorData.url).concat(encodeURIComponent('mb')).concat(paramsParam);
+      banner.type = 'text/javascript';
+      banner.async = true;
+      head.appendChild(banner);
+    }
+  }
+
+  function initYandexMetrics() {
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () {
+        (m[i].a = m[i].a || []).push(arguments);
+      };
+
+      m[i].l = 1 * new Date();
+      k = e.createElement(t);
+      a = e.getElementsByTagName(t)[0];
+      k.async = 1;
+      k.src = r;
+      a.parentNode.insertBefore(k, a);
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(68470690, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true
+    });
+  }
+
+  function addYandexMetrics() {
+    var ymHTML = "\n      <!-- Yandex.Metrika counter -->\n      <noscript><div><img src=\"https://mc.yandex.ru/watch/68470690\" style=\"position:absolute; left:-9999px;\" alt=\"\" /></div></noscript>\n      <!-- /Yandex.Metrika counter -->";
+    document.addEventListener('yacounter68470690inited', function () {
+      ym(68470690, 'reachGoal', 'BANNER');
+    });
+    document.body.insertAdjacentHTML('beforeend', ymHTML);
+    initYandexMetrics();
+  }
+
+  if (documentLink.readyState === 'loading') {
+    documentLink.addEventListener('DOMContentLoaded', initializeFn);
+  } else {
+    initializeFn();
+  }
+})();

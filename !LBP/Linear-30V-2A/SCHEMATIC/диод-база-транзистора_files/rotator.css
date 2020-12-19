@@ -1,0 +1,53 @@
+ul.slides_rotator{
+	margin: 0;
+	padding: 0;
+	position: relative;
+    list-style: none;
+}
+
+
+div.rotator{
+	float: center;
+	margin: 0 0;
+    position: relative;
+}
+
+
+a.rotator-nav{
+	position: absolute;
+	top: 50%;
+	margin-top: -16px;
+	z-index: 3;
+	cursor: pointer;
+}
+
+
+a.rotator-nav div{
+	height: 32px;
+	width: 32px;
+	background: url('/images/rotator/nav.png')  no-repeat;
+}
+
+#rotator-left{
+	left:-16px;
+}
+
+#rotator-left div{
+	background-position: 0 0;
+}
+
+#rotator-left:hover div{
+	background-position: 0 -32px;
+}
+
+#rotator-right{
+	right:-16px;
+}
+
+#rotator-right div{
+	background-position: -32px 0;
+}
+
+#rotator-right:hover div{
+	background-position: -32px -32px;
+}
