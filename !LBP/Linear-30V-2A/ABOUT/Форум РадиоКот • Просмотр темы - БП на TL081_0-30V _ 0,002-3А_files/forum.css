@@ -1,0 +1,250 @@
+﻿.postauthor
+{cursor:pointer;}
+
+.for_kd:after{content:" платно"}
+.color1 .row1,.color1 .row2{background-color:PaleGreen;}
+.color2 .row1,.color2 .row2{background-color:DodgerBlue;}
+.color2 .row1 a{color:white!important;}
+.color3 .row1,.color3 .row2{background-color:Salmon;}
+.color3 .row1 a{color:white!important;}
+#color_button
+{height:19px;
+border-radius:3px;
+background-color:silver;
+}
+#color_button:hover
+{
+border-color:green;
+}
+.srate{
+background-image:url(/forum/sasauge21.png);
+height:15px;
+background-repeat:repeat-x;
+display:inline-block;}
+.frate{
+background-image:url(/forum/sasauge22.png);
+height:15px;
+width:125px;
+background-repeat:repeat-x;
+display:inline-block;}
+
+#smout{
+display:none;
+position: fixed;
+top:0px;
+left:0px;
+width:100%;
+height:100%;
+text-align:center;
+padding-top:20%;
+vertical-align: middle;
+background-color:rgba(0,0,0,0.7);
+
+z-index:1000;}
+#smover{
+display:inline-block;
+background-color:white;
+z-index:1100;
+max-width:80%;
+max-height:50%;
+overflow:scroll;
+max-height: calc(100% - 400px);}
+
+.smb,.closerate
+{
+margin-top:5px;
+width:100px;
+height:15px;
+border-style:solid;
+border-width:2px;
+border-color:gray;
+border-radius:5px;
+_background-color:white;
+font-size:10px;
+font-weight:bold;
+text-align:center;
+cursor:pointer;
+color:#006699;
+}
+.smt
+{
+
+font-size:10px;
+font-weight:bold;
+
+cursor:pointer;
+color:#006699;
+}
+.ratetable,.ratetable td,.ratetable th
+{
+border-style:solid;
+border-width:2px;
+border-color:gray;
+border-collapse:collapse;
+}
+.sm
+{margin:250px 100px;}
+/*
+.postbody
+{word-break:break-all;
+word-wrap:break-word;
+overflow-wrap: break-word;}*/
+.row3{
+background-color:#FFFFCC;}
+.atl{
+display: inline-block;
+ float: right;
+  text-align: right;
+  padding-right:10px;
+}
+
+#forum_news
+{height:23px;
+overflow:hidden;
+}
+#news1,#news2
+{padding-left:5px;
+line-height:23px;
+height:23px;
+}
+#news1 a,#news2 a
+{color:329800;}
+#b{
+width:21px;
+height:21px;
+background-image:url(/forum/ni/back.png);
+}
+#b:hover{
+background-image:url(/forum/ni/backh.png);
+}
+#f{
+width:21px;
+height:21px;
+background-image:url(/forum/ni/forw.png);
+}
+#f:hover{
+background-image:url(/forum/ni/forwh.png);
+}
+#p{
+width:21px;
+height:21px;
+background-image:url(/forum/ni/pause.png);
+}
+#p:hover{
+background-image:url(/forum/ni/pauseh.png);
+}
+#s{
+width:21px;
+height:21px;
+background-image:url(/forum/ni/start.png);
+}
+#s:hover{
+background-image:url(/forum/ni/starth.png);
+}
+.tagline
+{ float: left; 
+ font-weight: bold; 
+ font-family: Verdana, Arial, Helvetica, sans-serif; 
+ color: #069;}
+#tagline a,#tag_helper a
+{display: block;   
+border-radius: 5px;
+    background: #ddf8af;
+	float: left;
+    padding: 5px;
+
+	border: 1px solid #a5d24a;
+	color: #638421;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: helvetica;
+	font-size: x-small;
+	}
+	#tag_helper
+	{
+	margin-bottom:20px;
+	}
+	
+	.simart
+	{display:block;
+	width:250px;
+	height:250px;
+	border-radius:10px;
+	float:left;
+	border-style:solid;
+	border-width:1px;
+	border-color:white;
+	background-color:yellow;
+	margin:15px;
+	overflow:hidden;}
+	
+	.simart span
+	{display:block;
+	position:relative;
+	background-color:rgba(255,255,255,0.8);
+	min-height:30%;
+	padding:10px;
+	bottom:175px;
+	}
+	.simart img
+	{width:250px;
+	height:250px;
+	}
+	
+	/*nds*/
+#btn11{z-index:1002;}
+
+
+/*тест 05012019*/
+
+html[data-useragent*='Android'] #TopicTags-Cloud
+{display:none!important;}
+
+html[data-useragent*='Android'] body, html[data-useragent*='Android'] 
+{
+background-image:none;
+min-width:0;}
+/*#plata
+{left:0;
+width:100%!important;}*/
+html[data-useragent*='Android'] .postbody
+{font-size:24pt;
+line-height:normal;}
+
+html[data-useragent*='Android'] .attach, html[data-useragent*='Android'] .attach .genmed,html[data-useragent*='Android'] .attachtitle, html[data-useragent*='Android'] .attachcontent .genmed
+{font-size:20pt!important;
+line-height:normal;}
+.buttonformobile
+{display:none;}
+html[data-useragent*='Android'] .buttonformobile
+{display:inline-block;
+font-size:24pt;
+border-style:solid;
+border-color:gray;
+border-radius:10px;
+padding:0px 10px;
+background-color:white;
+}
+html[data-useragent*='Android'] .buttonfordesktop
+{display:none;}
+
+html[data-useragent*='Android'] .avatar img
+{width:100%!important;
+height:auto!important;}
+html[data-useragent*='Android'] .postauthor
+{display: inline-block;
+width:130px;
+font-size:16pt;
+white-space: pre-wrap;
+word-wrap: break-word;/*
+
+word-break: break-all;*/}
+
+html[data-useragent*='Android'] .topictitle, html[data-useragent*='Android'] .forumlink,html[data-useragent*='Android'] .topictitle:hover, html[data-useragent*='Android'] .forumlink:hover
+{
+font-size:16pt;
+}
+html[data-useragent*='Android'] .pagination, html[data-useragent*='Android'] .breadcrumbs, html[data-useragent*='Android'] .titles
+{
+font-size:14pt;
+}
