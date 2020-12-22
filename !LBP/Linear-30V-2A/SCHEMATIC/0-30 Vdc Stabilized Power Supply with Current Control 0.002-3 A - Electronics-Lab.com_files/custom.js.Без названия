@@ -1,0 +1,86 @@
+$(document).ready(function() {
+
+/*---  other --- */
+    jQuery(".menu-toggle .responsive-menu-ico").click(function() {
+       jQuery("body").toggleClass("scroll");
+    });
+
+    jQuery(".responsive-menu-ico").click(function() {
+        jQuery("nav").addClass("toggled");
+    });
+
+    jQuery(".custom-btn-close").click(function(){
+        jQuery("nav").removeClass("toggled");
+    });
+    
+//alert('hghg');
+    /* script for slider */
+   
+
+
+    
+
+    /*--  Custom scroll -- */
+
+    jQuery(".scrollbar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    
+
+    
+
+});
+jQuery(function() {
+
+    jQuery("#categoryClick").addClass("active-tab");
+    jQuery("#categoryClick").click(function(e) {
+        e.preventDefault();
+        jQuery("#categoryPanel").show();
+        jQuery("#blogRollPanel").hide();
+        jQuery("#categoryClick").addClass("active-tab");
+        jQuery("#blogRollClick").removeClass("active-tab");
+    });
+    jQuery("#blogRollClick").click(function(e) {
+        e.preventDefault();
+        jQuery("#categoryPanel").hide();
+        jQuery("#blogRollPanel").show();
+        jQuery("#blogRollClick").addClass("active-tab");
+        jQuery("#categoryClick").removeClass("active-tab");
+    });
+});
+
+
+jQuery(document).ready(function() { 
+jQuery('#ser_result').hide();  
+jQuery("#res_ser").mCustomScrollbar();
+    jQuery('#search_download').keypress(function(event) {
+	
+    
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    var s_txt = jQuery('#search_download').val();            
+        var data = {
+        'action': 'my_action',
+        'search_txt': s_txt
+        // We pass php values differently!
+    };    
+    
+    // We can also pass the url value separately from ajaxurl for front end AJAX implementations
+    jQuery.post(ajax_object.ajax_url, data, function(response) {      
+        jQuery('#ser_result').show();
+		  
+        if(response == '0'){
+            jQuery('#ser_result').html('<span class="no_res" id="no_res">No Result!</span>');
+        }else{
+            jQuery('#ser_result').html(response);
+            jQuery("#res_ser").mCustomScrollbar();
+        }           
+    });
+  
+    event.stopPropagation();
+    });      
+});
+
+jQuery(document).on('click', function (e) {
+jQuery('#ser_result').attr("style", "display: none !important");
+});

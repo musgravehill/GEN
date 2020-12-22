@@ -1,0 +1,40 @@
+var foundPartNumber = '';
+
+function run(){
+	if (foundPartNumber != '') { 
+		loadCustomStyle();
+		createPluginArea();
+		loadPluginScript();
+	};
+}
+
+jQuery('.share_tag .btn-gray').each(function() {
+	var tagContent = jQuery(this).html()
+	var tagToFind = 'MPN:'; 
+	if ( tagContent.indexOf(tagToFind) == 0 ) {
+		foundPartNumber = tagContent.replace(tagToFind, '').trim();
+	}
+});
+
+
+function loadCustomStyle() {
+	jQuery('head').append('<link href="https://api.oemsecrets.com/v2/headers/electronics-lab-articles/custom-style.css" rel="stylesheet">')
+}
+
+function createPluginArea() {
+	jQuery('.blog-detail-tags').after('<div class="distributor_results"></div>')
+}
+
+function loadPluginScript() {
+	var scriptElement = document.createElement('script');
+	var scriptPlaceholder = document.querySelector('.distributor_results');
+	
+	scriptElement.type = 'text/javascript';
+	scriptElement.src = 'https://api.oemsecrets.com/v2/search.js';    
+	scriptElement.id = 'oemsec-script';
+	scriptElement.setAttribute('data-oemsec_key', 'xymu73l60ofodwheck8sroiy77j684rbtkb6dn231ni4p5p8v3qdhzhvcqrqlork');
+	scriptElement.setAttribute('data-oemsec_search', foundPartNumber);
+	scriptPlaceholder.appendChild(scriptElement);
+}
+
+run();

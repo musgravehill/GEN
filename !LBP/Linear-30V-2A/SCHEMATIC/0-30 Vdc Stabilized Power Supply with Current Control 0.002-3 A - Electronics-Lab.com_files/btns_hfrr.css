@@ -1,0 +1,41 @@
+@import url("oas_icons_white.css");
+@import url("oas_icons_colored.css");
+
+.oas_box_btns_hfrr .oas_btn_addon {
+	margin: 11px 5px 0;
+}
+
+.oas_box_btns_hfrr .oas_btn .oas_btn_brd {
+	border-radius: 6px;
+}
+
+.oas_box_btns_hfrr .oas_btn .oas_btn_txt {
+	font-size: 12px;
+	padding: 0 10px 0 8px;
+	display: inline-block;
+	margin: 4px 0;
+	line-height: 24px
+}
+
+.oas_box_btns_hfrr .oas_btn_service .oas_btn_txt {
+	border-left: 1px solid rgba(255, 255, 255, 0.3);
+	color: #fff;
+}
+
+.oas_box_btns_hfrr .oas_btn_ico {
+	background-image: url("/img/api/themes/iconsets/flat_w32_h32_w_b_v2.png");
+	background-repeat: no-repeat;
+	width: 32px;
+	height: 32px;
+	margin-left: 2px;
+}
+
+@media only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2) {
+    .oas_box_btns_hfrr .oas_btn_ico  {
+       	background-image: url("/img/api/themes/iconsets/flat_w64_h64_w_b_v1.png");
+       	background-size: 32px;
+    }
+}

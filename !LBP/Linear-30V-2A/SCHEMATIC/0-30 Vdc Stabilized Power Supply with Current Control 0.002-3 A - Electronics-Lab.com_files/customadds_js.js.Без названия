@@ -1,0 +1,128 @@
+var regexp = /^\d{0,4}(\.\d{0,2})?$/;
+jQuery('#publish').click(function()
+{
+    var error = 0;          
+    jQuery( ".boxclass" ).each(function() {
+        if(jQuery( this).children('.requiredbox').val()=='')
+            {
+            jQuery( this).children('.errormessage').text("This Field is Required.");
+            jQuery( this).children('.errormessage').show();                        
+            error=1;
+        }
+        else
+            {
+            jQuery( this).children('.errormessage').hide();                        
+        }
+    });
+
+    jQuery( ".currencybox" ).each(function() {
+        if(jQuery( this).siblings('.errormessage').text()==''){
+            if (!regexp.test(jQuery( this).val())) {
+                jQuery( this).siblings('.errormessage').text("Invalid Currency Format.");
+                jQuery( this).siblings('.errormessage').show();                            
+                error=1;
+            }
+            else
+                {
+                jQuery( this).children('.errormessage').hide();                        
+            }
+        }
+    });
+   
+    jQuery( ".emailbox" ).each(function() {
+
+        if(jQuery( this).siblings('.errormessage').text()==''){
+            if (!validateEmail(jQuery( this).val()))
+                {
+                jQuery( this).siblings('.errormessage').text("Invalid Email Address Format.");
+                jQuery( this).siblings('.errormessage').show();                            
+                error=1;
+            }
+            else
+                {
+                jQuery( this).children('.errormessage').hide();                        
+            }
+        }
+    });
+
+
+
+    if(error==0)
+        {
+           jQuery('#post').submit();    
+    }
+
+
+});
+jQuery(document).ready(function() {
+    jQuery('.numberbox').keydown(function(event) {
+        // Allow special chars + arrows 
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 
+        || event.keyCode == 27 || event.keyCode == 13 
+        || (event.keyCode == 65 && event.ctrlKey === true) 
+        || (event.keyCode >= 35 && event.keyCode <= 39)){
+            return;
+        }else {
+            // If it's not a number stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+});
+// Function that validates email address through a regular expression.
+function validateEmail(sEmail) {
+    var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+    if (filter.test(sEmail)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+// This function is used to Ads Statistics click count functionality
+jQuery(document).ready(function(){    
+    jQuery(".ads_statistics").click(function(){
+        var ad_id = jQuery(this).attr("id");
+        var ad_number = jQuery(this).attr("value");
+        var actionType = "statistics_count";
+        var process_url = myScript.pluginsUrl+"/custom-adsence/statistics_process.php";
+        var dataString = 'actionType='+actionType+'&id='+ad_id+'&ad_number='+ad_number;
+        jQuery.ajax({
+            type: "POST",
+            url: process_url,
+            data: dataString,
+            success: function(html) {
+                console.log(html);
+            }
+        });        
+    });
+});
+
+// This function is used to Ads Statistics impression load in webpage count functionality
+jQuery(document).ready(function(){  
+    var impressions   = []; // new Array() shorthand
+    var ad_number_arr = [];
+    var dvImages   = jQuery('.ads_statistics');
+    var ads_number = jQuery('.ads_statistics').attr("value");
+    
+    jQuery.each(dvImages, function(i) {
+        impressions.push(jQuery(this).attr("id"));
+        ad_number_arr.push(jQuery(this).attr("id")+'_'+jQuery(this).attr("value"));
+    });
+    
+    var ad_ids = impressions;
+    var process_url = myScript.pluginsUrl+"/custom-adsence/statistics_process.php";
+    var actionType  = "impressions_count";
+    
+    var dataString = 'actionType='+actionType+'&id='+ad_ids+'&ad_number='+ad_number_arr;
+    jQuery.ajax({
+        type: "POST",
+        url: process_url,
+        data: dataString,
+        success: function(html) {
+            console.log(html);
+        }
+    });   
+});
