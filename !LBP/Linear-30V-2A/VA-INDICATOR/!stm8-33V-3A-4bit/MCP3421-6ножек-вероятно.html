@@ -1,0 +1,3910 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0081)http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Мини обзор АЦП MCP3421 с выходом I2C | Аппаратная платформа Arduino</title>
+    
+<link rel="shortcut icon" href="http://arduino.ru/sites/default/files/framework_favicon.ico" type="image/x-icon">
+<meta name="description" content="Прикупил букашку сигма-дельта АЦП MCP3421, в корпусе sot23-6 Опорное напряжение встроенное 2.048в точность 0,05%.  Для дифф измерения разрядность -18 бит.  Для обычного измерения разрядность - 17 бит, и входное 0.. 2,048в   Соответственно 1 LSB примерно 15uV. АЦП умеет усиливать входной сигнал в 2,4,8 раз.">
+<meta name="keywords" content="Arduino,контроллер,электроника,плата,конструктор,электротехника,программирование">
+<link rel="canonical" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c">
+<meta name="revisit-after" content="1 day">
+    <link type="text/css" rel="stylesheet" media="all" href="./MCP3421-6ножек-вероятно_files/css_6e50cf799a4a3edc1d0e9261f5c3d907.css">
+<link type="text/css" rel="stylesheet" media="print" href="./MCP3421-6ножек-вероятно_files/css_3c7c0a9f860b56b294eba3ab104f35a0.css">
+    <script async="" src="./MCP3421-6ножек-вероятно_files/async-ads.js.Без названия"></script><script type="text/javascript" async="" src="./MCP3421-6ножек-вероятно_files/f.txt"></script><script type="text/javascript" async="" src="./MCP3421-6ножек-вероятно_files/ga.js.Без названия"></script><script type="text/javascript" src="./MCP3421-6ножек-вероятно_files/js_8b9f465faaedca6b79f36adfd07b8e22.js.Без названия"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "lightbox2": { "rtl": "0", "file_path": "/(\\w\\w/)sites/default/files", "default_image": "/modules/lightbox2/images/brokenimage.jpg", "border_size": 10, "font_color": "000", "box_color": "fff", "top_position": "", "overlay_opacity": "0.8", "overlay_color": "000", "disable_close_click": true, "resize_sequence": 0, "resize_speed": 400, "fade_in_speed": 400, "slide_down_speed": 600, "use_alt_layout": false, "disable_resize": false, "disable_zoom": false, "force_show_nav": false, "show_caption": true, "loop_items": false, "node_link_text": "View Image Details", "node_link_target": false, "image_count": "Image !current of !total", "video_count": "Video !current of !total", "page_count": "Page !current of !total", "lite_press_x_close": "press \x3ca href=\"#\" onclick=\"hideLightbox(); return FALSE;\"\x3e\x3ckbd\x3ex\x3c/kbd\x3e\x3c/a\x3e to close", "download_link_text": "", "enable_login": false, "enable_contact": false, "keys_close": "c x 27", "keys_previous": "p 37", "keys_next": "n 39", "keys_zoom": "z", "keys_play_pause": "32", "display_image_size": "original", "image_node_sizes": "()", "trigger_lightbox_classes": "", "trigger_lightbox_group_classes": "", "trigger_slideshow_classes": "", "trigger_lightframe_classes": "", "trigger_lightframe_group_classes": "", "custom_class_handler": 0, "custom_trigger_classes": "", "disable_for_gallery_lists": true, "disable_for_acidfree_gallery_lists": true, "enable_acidfree_videos": true, "slideshow_interval": 5000, "slideshow_automatic_start": true, "slideshow_automatic_exit": true, "show_play_pause": true, "pause_on_next_click": false, "pause_on_previous_click": true, "loop_slides": false, "iframe_width": 600, "iframe_height": 400, "iframe_border": 1, "enable_video": false }, "syntaxhighlighter": { "clipboard": "/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf" } });
+//--><!]]>
+</script>
+    <!--[if lte IE 7]><link type="text/css" rel="stylesheet" media="all" href="/themes/framework/ie.css" /><![endif]--> <!--If Less Than or Equal (lte) to IE 7-->
+
+<script>window._epn = {campaign:5338179317};</script>
+<script src="./MCP3421-6ножек-вероятно_files/epn-smart-tools.js.Без названия"></script>
+<script type="text/javascript">
+
+window.onload = function formatHrefs() {
+    var baseRedirect = "http://out.arduino.ru/?redirect=";
+    var anchors = document.getElementsByTagName("a");
+    var baseUrl = window.location.href;
+
+    for (var i = 0; i < anchors.length; i++) {
+        if ((anchors[i].hostname === "arduino.ru") || (anchors[i].hostname === "")|| (anchors[i].hostname === "ru.wikipedia.org")|| (anchors[i].hostname === "www.youtube.com")|| (anchors[i].hostname === "youtube.com")||(anchors[i].hostname === "google.com")|| (anchors[i].hostname === "www.google.com")||(anchors[i].hostname === "out.arduino.ru")|| (anchors[i].hostname === "rover.ebay.com")) { continue; }
+        anchors[i].href = baseRedirect + encodeURIComponent(anchors[i].href) + "&baseU=" + encodeURIComponent(baseUrl);
+        anchors[i].setAttribute('target', '_blank');
+        anchors[i].setAttribute('rel', 'nofollow');
+    }
+
+
+	var p = document.getElementsByClassName("pager")[0];
+	var p_up = p.cloneNode(true);
+	var p_container = document.getElementById("upper-pager");
+	p_container.appendChild(p_up);
+	if (p) {
+    	p_container.setAttribute("style", "height:1em");
+	}
+
+}
+</script>
+
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2018649-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+   </script>
+  <style></style><script src="./MCP3421-6ножек-вероятно_files/cse_element__ru.js.Без названия" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="./MCP3421-6ножек-вероятно_files/default+ru.css"><link type="text/css" rel="stylesheet" href="./MCP3421-6ножек-вероятно_files/default.css"><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-refinementsGradient{background:linear-gradient(to left,rgba(233,233,233,1),rgba(233,233,233,0))}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{vertical-align:middle;opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gssb_a{padding:0 9px}.gsib_a{padding:5px 9px 4px 9px}.gscb_a{line-height:27px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+  <body class="lightbox-processed">
+    <!-- Layout -->
+    <div class="container"> <!-- add "showgrid" class to display grid -->
+  
+      <div id="header" class="clearfix">
+        <div id="block-block-15" class="block block-block">
+
+  
+  <div class="content">
+        <p style="margin:0 0 -10px 80px;"><sup><span>Официальный сайт компании Arduino по адресу <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Farduino.cc%2F&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">arduino.cc</a></span></sup></p>
+  </div>
+
+</div>
+
+                  <a href="http://arduino.ru/" title="">
+            <img src="./MCP3421-6ножек-вероятно_files/framework_logo.png" alt="" id="logo">
+          </a>
+        
+        <div id="sitename">
+					  
+                      <h1><a href="http://arduino.ru/" title="">Arduino.ru</a></h1>
+                  </div> <!-- /#sitename -->
+
+        			<div style="float:right; width:450px; height:60px;">
+				<div id="block-block-10" class="block block-block">
+
+  
+  <div class="content">
+        <script>
+  (function() {
+    var cx = '000212414265083961610:_80qtkoe9oo';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script><style type="text/css">
+   .gsc-control-cse {padding:0;}
+</style><p><div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-ru"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 gsc-input" style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="поиск" id="gsc-i-id1" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; background: url(&quot;https://www.google.com/cse/static/images/1x/ru/branding.png&quot;) left center no-repeat rgb(255, 255, 255); outline: none;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" title="Очистить окно поиска" role="button" style="display: none;"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>поиск</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="удалить результаты">&nbsp;</div></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-positioningWrapper"><div class="gsc-tabsAreaInvisible"><div aria-label="refinement" role="tab" class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Система пользовательского поиска</div><span class="gs-spacer"> </span></div></div><div class="gsc-positioningWrapper"><div class="gsc-tabsAreaInvisible"></div></div><div class="gsc-above-wrapper-area-invisible"><table cellspacing="0" cellpadding="0" class="gsc-above-wrapper-area-container"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div></div></div></div></p>
+  </div>
+
+</div>
+			</div>
+					
+      </div> <!-- /#header -->
+
+      <div id="nav">
+                  <div id="block-menu-primary-links" class="block block-menu">
+
+  
+  <div class="content">
+        <ul class="menu"><li class="leaf first even"><a href="http://arduino.ru/About" title="Что такое Ардуино?">Что такое Ардуино?</a></li>
+<li class="leaf odd"><a href="http://arduino.ru/Arduino_environment" title="Среда разработки Arduino">Среда разработки</a></li>
+<li class="leaf even"><a href="http://arduino.ru/Reference" title="Программирование Ардуино">Программирование</a></li>
+<li class="leaf odd"><a href="http://arduino.ru/Hardware" title="Аппартная часть платформы Arduino">Контроллеры Arduino</a></li>
+<li class="leaf even"><a href="http://arduino.ru/projects" title="">Проекты</a></li>
+<li class="leaf odd"><a href="http://arduino.ru/forum" title="">Форум</a></li>
+<li class="leaf last even"><a href="http://arduino.ru/buy" title="">Купить в России</a></li>
+</ul>  </div>
+
+</div>
+        
+              </div> <!-- /#nav -->
+
+			
+      <div id="main">
+        <div class="breadcrumb"><a href="http://arduino.ru/">Главная</a> » <a href="http://arduino.ru/forum">Форумы</a> » <a href="http://arduino.ru/forumy/apparatnye-voprosy">Аппаратные вопросы</a></div>                <h2>Мини обзор АЦП MCP3421 с выходом I2C</h2>                                                
+
+  <div id="upper-pager" class="item-list" style="height:1em"><ul class="pager"><li class="pager-current first">1</li>
+<li class="pager-item"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1" title="На страницу номер 2" class="active">2</a></li>
+<li class="pager-next"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1" title="На следующую страницу" class="active">следующая ›</a></li>
+<li class="pager-last last"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1" title="На последнюю страницу" class="active">последняя »</a></li>
+</ul></div>
+
+
+<div class="forum-topic-header clear-block">
+  <a id="top"></a>
+
+  <ul class="forum-links"><li class="comment_forbidden first last"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+</ul>
+  <div class="reply-count">
+    66 ответов
+    
+           [<a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1#comment-563453" class="active">Последнее сообщение</a>]
+    
+  </div>
+
+
+</div>
+  
+    <div id="node-8695" class="top-post forum-post  clear-block">
+
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 14/01/2015 - 22:35
+          </div>
+
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Прикупил букашку сигма-дельта АЦП MCP3421, в корпусе sot23-6 Опорное напряжение встроенное 2.048в точность 0,05%.&nbsp; Для дифф измерения разрядность -18 бит.&nbsp; Для обычного измерения разрядность - 17 бит, и входное 0.. 2,048в&nbsp;&nbsp; Соответственно 1 LSB примерно 15uV. АЦП умеет усиливать входной сигнал в 2,4,8 раз. Питается от 2,7..5,5в.&nbsp; Обвеса никакого не требует, только блокировочная ёмкость по питанию и подтяжка шины. АЦП аппаратно поддерживает режимы 12,14,16,18 бит. Работает медленно, - скорость 240; 60; 15; 3,75 SPS (отсчётов в секунду) соответственно битности. Но&nbsp; работает очень хорошо, после SAR АЦП меги -это просто сказка. Девиация счёта всего (х +1) LSB,&nbsp; и это без всяких усреднений и программной обработки. И то в зависимости как попадёшь меж границами. Подкруткой многооборотника удавалось добиться выдачи стабильно-одинаковых показаний. На фото -типовое чтение, напряжение гуляет всего на 15 микровольт.</p>
+<p><img alt="" src="./MCP3421-6ножек-вероятно_files/deviaciya2.jpg" style="width:357px;height:480px;" width="357" height="480"></p>
+<p>Правда источник напряжения для тестов у меня бесшумный -батарейка и многооборотный переменник для регулировки напряжения с неё. С реальными сигналами конечно счёт будет сильнее болтаться. Тестовая платка запитана от внешнего аккумулятора и собственного стабилизатора на 78l05 для минимизации возможных помех. ( не запаянные элементы -под входной делитель) <img alt="" src="./MCP3421-6ножек-вероятно_files/mcp3421_test.jpg" style="width:640px;height:473px;" width="640" height="473"></p>
+<p>Программа:&nbsp; в скетче не стал вводить отслеживание факта обновления данных счёта, т.е. если запрашивать АЦП на каждом круге loop то будет регулярно выдавать уже считанные ранее данные. ( напомню на 18 битах обновление данных в регистрах всего 3,75 раза в секунду)</p>
+<div id="highlighter_194596" class="syntaxhighlighter collapsed  "><div class="bar"><div class="toolbar"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#expandSource" title="показать код" class="item expandSource" style="width: 16px; height: 16px;">показать код</a><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#viewSource" title="код" class="item viewSource" style="width: 16px; height: 16px;">код</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_194596_clipboard" type="application/x-shockwave-flash" title="скопировать" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_194596" menu="false" src="/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#printSource" title="расечатать" class="item printSource" style="width: 16px; height: 16px;">расечатать</a><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="preprocessor">#include "Wire.h"</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">setup</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.begin(9600);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="plain">Wire.begin();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="plain">Wire.beginTransmission(0x68);</code><code class="comments">//i2c адрес MCP3421= B1101000</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="plain">Wire.write(B11100); </code><code class="comments">// настройка АЦП: постоянное преобразование, 18бит, усиление=1.</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="plain">Wire.endTransmission();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">loop</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="plain">Wire.requestFrom(0x68,3); </code><code class="comments">//запросить 3 байта данных</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="keyword">long</code> <code class="plain">value= ((Wire.read()&lt;&lt;8) | Wire.read());</code><code class="comments">//упаковка в одну переменную.</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="plain">value= ((value&lt;&lt;8)| Wire.read()); </code><code class="comments">//упаковка в одну переменную.</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.print (</code><code class="string">"ExtADC= "</code><code class="plain">);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.print(value); </code><code class="keyword">Serial</code><code class="plain">.print(</code><code class="string">"&nbsp;&nbsp;&nbsp;&nbsp; Voltage= "</code><code class="plain">);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="keyword">float</code> <code class="plain">voltage = value * 2.048 /131072 ; </code><code class="comments">// LSB=15uV</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.println(voltage,6);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="plain">delay(300);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+
+<p>&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links inline forum-links"><li class="comment_forbidden first last"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+</ul>      </div>
+      </div>
+</div><div id="comments"><a id="comment-95181"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пт, 16/01/2015 - 12:04
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-95181" class="active">#1</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Michal      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-4779.gif" alt="Michal аватар" title="Michal аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 26.04.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>удобная АЦП, если разрядность нужна большая. И главное мало выводов. Я такой использовал ADC121S021(12бит) в своих железках.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-104205"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 08/03/2015 - 11:47
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-104205" class="active">#2</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        adrusha      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 02.03.2015        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Выложи, пожалуйста схему с комментариями. Закажу компоненты, буду паять.&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-104209"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 08/03/2015 - 13:14
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-104209" class="active">#3</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        a5021      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 07.07.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>"Букашка" стоит, как две атмеги8. Это омрачает.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-104215"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 08/03/2015 - 13:50
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-104215" class="active">#4</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        slider      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 17.06.2014        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p><span style="line-height:1.5em;">спасибо&nbsp;</span><span style="font-size:14.3999996185303px;font-weight:bold;line-height:12px;">dimax</span><span style="line-height:1.5em;">. давно купил на али много&nbsp;</span><span style="line-height:1.5em;">MCP3421</span><span style="line-height:1.5em;">&nbsp;на всяк случай (если что, для контроля последовательных АКБ, последовательных солнечных панелей) что-то получилось очень дёшево рублей 30-50. Дело встало в опторазвязке, и изготовлении многообмоточного DC-DC для развязки по питанию.</span></p>
+<p><span style="line-height:1.5em;">Черкни пожалуйста здесь на будущее, как их вцепить впараллель по I2С (</span><span style="font-family:Consolas, &#39;Bitstream Vera Sans Mono&#39;, &#39;Courier New&#39;, Courier, monospace;font-size:1em;line-height:1.1em;text-align:right;">05</span><code class="plain" style="font-size:1em;margin:0px;padding:0px;border:0px;float:none;vertical-align:baseline;height:auto;width:auto;line-height:1.1em;font-family:Consolas, &#39;Bitstream Vera Sans Mono&#39;, &#39;Courier New&#39;, Courier, monospace;color:rgb(0,0,0);background:none;">&nbsp;Wire.beginTransmission(0x68);</code><code class="comments" style="font-size:1em;margin:0px;padding:0px;border:0px;float:none;vertical-align:baseline;height:auto;width:auto;line-height:1.1em;font-family:Consolas, &#39;Bitstream Vera Sans Mono&#39;, &#39;Courier New&#39;, Courier, monospace;color:rgb(0,130,0);background:none;">//i2c адрес MCP3421= B1101000 &nbsp;) - &nbsp;</code><span style="line-height:1.5em;">Должен же быть адрес в шине от 0-7 ?</span></p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-104233"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 08/03/2015 - 16:41
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-104233" class="active">#5</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p><strong>adrusha</strong>,&nbsp; подключение подробно расписано в <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Fww1.microchip.com%2Fdownloads%2Fen%2FDeviceDoc%2F22003e.pdf&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">даташите</a></p>
+<p><strong>slider</strong>, увы, они не паралелятся на шине, адрес зашит жёстко.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-104234"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 08/03/2015 - 17:00
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-104234" class="active">#6</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        trembo      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-190.jpg" alt="trembo аватар" title="trembo аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 08.04.2011        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p><strong><span style="line-height:1.5em;">slider: &gt;&gt;&nbsp; Дело встало в опторазвязке, и изготовлении многообмоточного DC-DC для развязки по питанию.</span>&gt;&gt;</strong></p>
+<p>Питайте прямо от ячеек аккумуляторов или от солнечных панелей. У вас уже есть то что вам надо, идеальный случай.</p>
+<p>А вот данные от ваших " коробочек" развязывайте оптронами. Или радио.&nbsp; Или Serial, или VirtualWire .... Или по проводам или через 433 (Они-же в одну сторону пойдут) или NRF24L01 или на esp8266 , с вебом, да ещё и с графиками.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-115563"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 17/05/2015 - 15:45
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-115563" class="active">#7</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        nik182      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 04.05.2015        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>dimax, не подскажите где mcp3421 можно быстро взять? Поисковики не дали ни одного места, где можно купить сегодня или завтра :-( по приемлимой цене. Влучшем случае 3 дня.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-115590"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 17/05/2015 - 17:34
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-115590" class="active">#8</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>nik182, прямо сразу -вряд ли, вещь не ходовая. Я в митраконе брал, 120руб. Но там тоже будут со склада подвозить.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-136991"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 13/09/2015 - 17:51
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-136991" class="active">#9</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        OlegK      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-10235.jpg" alt="OlegK аватар" title="OlegK аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 26.11.2014        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>dimax</em> пишет:</div><strong>slider</strong>, увы, они не паралелятся на шине, адрес зашит жёстко.</div><p></p>
+<p>Адрес зашит да, жёстко, но для параллельной работе по шине нужно брать с соответствующей маркировкой - т.е. в названии чипа указан адрес из 8 возможных, которые устанавливаются производителем.</p>
+<p>Диапазон адресов А0-А7, соответственно маркировка <strong class="item_name">MCP3421A0 - <strong class="item_name">MCP3421A7</strong></strong></p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-158489"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 03/01/2016 - 23:30
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-158489" class="active">#10</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihleb      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 03.01.2016        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>А почему делим на <code class="plain">131072? Ведь когда в 17 разрядах "1", это соответствует числу <code class="plain">131071!</code></code></p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-158507"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пнд, 04/01/2016 - 01:26
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-158507" class="active">#11</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>mihleb, по этому вопросу, правда, применительно к 10 битной разрядности (1024 или 1023) регулярно бывают жаркие споры. Каждый в итоге остаётся при свом мнении. Но, для справки,&nbsp; в примерах от Атмела везде 1024. Хотя я сам сторонник делить на 1023 ;)<br>
+	&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-159275"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 07/01/2016 - 22:18
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-159275" class="active">#12</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihleb      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 03.01.2016        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Согласен. Но это легко проверяетсяю При входном напряжении 2.048в, т.е. равном опорному, выходной код будет 131071, согласны? Тогда и делить надо на это число для получения верного результата. Хотя погрешность будет, конечно, мизерной...</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-159276"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 07/01/2016 - 22:18
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-159276" class="active">#13</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihleb      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 03.01.2016        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Вы его температурой не пытали?</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-347398"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 24/02/2018 - 20:08
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-347398" class="active">#14</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        a5021      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 07.07.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>На странице 22 в даташите по MCP3421 наличествует вот такая схема:</p>
+<p><img alt="" src="./MCP3421-6ножек-вероятно_files/screenshot-2018-2-24_18-bit_adc_with_i2c_interface_and_onboard_reference_ds_-_22003b_pdf.png" style="width:532px;height:600px;" width="532" height="600"></p>
+<p>Я в полной растерянности: как оно может что-то измерять, когда оба "измерительных" входа замкнуты друг на друга?</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-347439"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 25/02/2018 - 00:09
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-347439" class="active">#15</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>a5021, какое-то недоразумение видимо. Заглянул в даташит от <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Fww1.microchip.com%2Fdownloads%2Fen%2FDeviceDoc%2F22003e.pdf&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">микрочипа</a> и от <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Fwww.farnell.com%2Fdatasheets%2F1669442.pdf&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">фарнел</a> -там нормальные схемы.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-347445"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Вс, 25/02/2018 - 00:48
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-347445" class="active">#16</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        a5021      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 07.07.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Вот же гадость! Никак я не мог допустить, что у них на сайте лежат разные доки на один и тот же чип. Я разглядывал <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Fww1.microchip.com%2Fdownloads%2Fen%2FDeviceDoc%2F22003b.pdf&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">версию от 2006-го года</a> и там упомянутая мной чепуха наличествовала. По любому, благодарю за внесенную ясность.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-348305"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 28/02/2018 - 03:45
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-348305" class="active">#17</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Волшебник      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 22.12.2016        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Почитал, почитал и дай думаю прикуплю. В целом неплохо, линейность и смещение нуля порадовали. Но ошибка шкалы большая,&nbsp;</p>
+<p>Gain Error (Note 6) ---&nbsp; &nbsp;0.05(typ) --- 0,35% (max)&nbsp; PGA = 1, DR = 3.75 SPS.&nbsp; &nbsp;При 2.000В на входе, мой намерял 1.995В, т.е. -0.25%.&nbsp;</p>
+<p>&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-348306"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 28/02/2018 - 03:59
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-348306" class="active">#18</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        a5021      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 07.07.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Выставил 2.046 вольта на источнике, MCP3421 намерял 2.040.&nbsp; 6 милливольт -- это для моих целей слишком большая ошибка. Думал будет хотя бы 1мв, но пришлось обломаться.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-368797"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 24/05/2018 - 10:52
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-368797" class="active">#19</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Уф Уф, а ведь поначалу внимания не&nbsp; обратил, а у меня такая же ерунда. В первом сообщении у вас значения повторяются, 28/28/28/44/44/44/44/28/28 ведь ацп такой точный, как так выходит, я бы понял, если бы было бы 28/29/43/30/28/43, но ведь нет, они повторяются, как так? При том при сем понимаю, что это не из-за того, что в порт вы чаще отправляете данные, чем сам ацп считывает ибо у вас есть 1 место 44/28/44</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-368798"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 24/05/2018 - 11:05
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-368798" class="active">#20</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>AVS, девиация оцифровки в 15<strong>µV</strong>, куда ещё точнее??</p>
+<p>&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-368800"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 24/05/2018 - 11:18
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-368800" class="active">#21</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>тут дело не в точности, а как раз таки в повторе значений, у меня такая ерунда была и есть при измерении внутреннего напряжения на МК, специально делаю, чтобы напряжение падало, и записываю значение в еепром, но в итоге получается, что скачки могут быть до 0,2 в, тьо есть 2.12 в 2,12/2,12/2,12, а потом рехзко 1,98 1,98 1,98 и тд, то есть так быть не должно, поидее. Вот собираю сейчас устройство на этом ацп дабы проверить верность измерения</p>
+<p>ну и дело здесь не в округлении никаком, разбивал на 2 байта число, полученное напрямую от ацп, такая же ерунда</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-368803"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 24/05/2018 - 11:33
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-368803" class="active">#22</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>AVS, этот "повтор значений" обусловлен математической кратностью минимальному отсчёту АЦП.&nbsp; Девиация счёта в 1 LSB даёт в данном случае шаг 2.048/131072=0,000015625 вольта который и видем на картинке. Для понимания сколь мало это значение&nbsp; - у АЦП меги это число выше примерно в 1..2 <strong>тысячи</strong> раз.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-368806"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Чт, 24/05/2018 - 11:53
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-368806" class="active">#23</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>ну тут в принципе да, получается, что так оно и есть..а у меня то почему так , если даже в 2 тр это 0,03125 в...ладно, приду домой, еще раз все проверю</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-369141"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 26/05/2018 - 19:50
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-369141" class="active">#24</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <div id="highlighter_485813" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#viewSource" title="код" class="item viewSource" style="width: 16px; height: 16px;">код</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_485813_clipboard" type="application/x-shockwave-flash" title="скопировать" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_485813" menu="false" src="/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#printSource" title="расечатать" class="item printSource" style="width: 16px; height: 16px;">расечатать</a><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content">&nbsp;</td></tr></tbody></table></div></div></div>
+
+<div>
+	#include &lt;Wire.h&gt;</div>
+<div>
+	&nbsp;</div>
+<div>
+	void setup()</div>
+<div>
+	{</div>
+<div>
+	&nbsp; Wire.begin();&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>
+	&nbsp; Serial.begin(9600);&nbsp;</div>
+<div>
+	&nbsp; write_register(0b00011100);</div>
+<div>
+	}</div>
+<div>
+	&nbsp;</div>
+<div>
+	void loop()</div>
+<div>
+	{</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; Wire.requestFrom(0x68, 3);&nbsp; &nbsp;&nbsp;</div>
+<div>
+	&nbsp; while (Wire.available())</div>
+<div>
+	&nbsp; {</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; &nbsp; Serial.println(Wire.read());</div>
+<div>
+	&nbsp; }</div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp; delay(1500);</div>
+<div>
+	&nbsp; Serial.println("_");</div>
+<div>
+	}</div>
+<div>
+	void write_register(byte my_byte) {</div>
+<div>
+	&nbsp; Wire.beginTransmission(0x68);</div>
+<div>
+	&nbsp; Wire.write(my_byte);</div>
+<div>
+	&nbsp; Wire.endTransmission();</div>
+<div>
+	}</div>
+<p>я пытался, как сделать, чтобы клд заработаля?</p>
+<p>3 полученных бита это 3 части одного целого числа?</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-369337"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 26/05/2018 - 20:07
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-369337" class="active">#25</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>@<span style="color:rgb(73,73,73);font-family:Arial, Helvetica, sans-serif;font-size:13px;">Как видно из диаграммы на рис.5, результат измерения представлен в трех байтах: В первом байте 7 старших бит соответствуют знаку результата измерения (если эти биты равны 0, то знак “+”, если 1 – то знак “-“). Младший бит первого байта соответствует старшему биту результата измерения, а его младшие биты располагаются во 2 и 3 байтах. Таким образом, из 18 значащих бит получаемых от микросхемы результат измерения занимает 17 бит, а знак результата – 1 бит.@</span></p>
+<p><span style="color:rgb(73,73,73);font-family:Arial, Helvetica, sans-serif;font-size:13px;">вот что есть в интернете, но я не пойму, сначала написано, что за знак отвечаюьт аж 7 бит из байта, а в конце пишут, что за знак отвечает лишь один бит..не понимаю, как получить число и в последствии вольтаж то?</span></p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-369341"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 26/05/2018 - 20:18
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-369341" class="active">#26</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>AVS, всё просто, чип оперирует целыми байтами, поэтому в случае отрицательного значения все "лишние" биты в старшем байте заполняются единицами в полном соответствии с системой хранения отрицательных чисел. Как получить вольтаж -дан пример в топике.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-369545"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пнд, 28/05/2018 - 00:15
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-369545" class="active">#27</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Logik      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 05.08.2014        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Наверно сабж действительно неплох. А я се ads1115 взял. Тоже дельта-сигма на i2c, впечатления в целом аналогичные. И младший разряд не скачет. &nbsp;Отличия помелочам конечно есть - 16 бит, но зато 860&nbsp;<span style="line-height:1.5em;">SPS и 4 канала.</span></p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-369603"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пнд, 28/05/2018 - 10:38
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-369603" class="active">#28</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Да уж, а я и не зжаметил, что вы еще и код выкладывали...вот как можно быть таким невнимательным...спасибо)</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-369604"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пнд, 28/05/2018 - 10:39
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-369604" class="active">#29</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        AVS      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 11.12.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>Logik</em> пишет:</div><p></p>
+<p>Наверно сабж действительно неплох. А я се ads1115 взял. Тоже дельта-сигма на i2c, впечатления в целом аналогичные. И младший разряд не скачет. &nbsp;Отличия помелочам конечно есть - 16 бит, но зато 860&nbsp;<span style="line-height:1.5em;">SPS и 4 канала.</span></p>
+<p></p></div>ну и стоит она примерно в 6 раз больше, во всяком случае у нас<p></p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-370131"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 30/05/2018 - 09:38
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-370131" class="active">#30</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Logik      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 05.08.2014        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Где это такие цены. На али они оба в раене 2-3 баксов на плате &nbsp;<a href="http://out.arduino.ru/?redirect=https%3A%2F%2Fru.aliexpress.com%2Fitem%2F16-Bit-I2C-ADS1115-Module-ADC-4-channel-with-Pro-Gain-Amplifier-for-Arduino-RPi-1PCS%2F32817162654.html%3Fspm%3Da2g0v.10010108.1000014.1.733d2711fuTpYI%26scm%3D1007.13338.98644.000000000000000%26scm_id%3D1007.13338.98644.000000000000000%26scm-url%3D1007.13338.98644.000000000000000%26pvid%3Da6fb1040-b0bc-4b68-a041-5843f9da7ac0%26_t%3Dpvid%253Aa6fb1040-b0bc-4b68-a041-5843f9da7ac0%252Cscm-url%253A1007.13338.98644.000000000000000&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">https://ru.aliexpress.com/item/16-Bit-I2C-ADS1115-Module-ADC-4-channel-with-Pro-Gain-Amplifier-for-Arduino-RPi-1PCS/32817162654.html?spm=a2g0v.10010108.1000014.1.733d2711fuTpYI&amp;scm=1007.13338.98644.000000000000000&amp;scm_id=1007.13338.98644.000000000000000&amp;scm-url=1007.13338.98644.000000000000000&amp;pvid=a6fb1040-b0bc-4b68-a041-5843f9da7ac0&amp;_t=pvid%3Aa6fb1040-b0bc-4b68-a041-5843f9da7ac0%2Cscm-url%3A1007.13338.98644.000000000000000</a> &nbsp;<a href="http://out.arduino.ru/?redirect=https%3A%2F%2Fru.aliexpress.com%2Fitem%2FMCP3421-I2C-SOT23-6-delta-sigma-ADC-Evaluation-Board-For-PICkit-Serial-Analyzer-Module%2F32850739713.html%3Fspm%3Da2g0v.search0204.3.38.1ee313847Wsb7X%26ws_ab_test%3Dsearchweb0_0%2Csearchweb201602_3_10152_10151_10065_10344_10068_5722815_10342_10343_10340_5722915_10341_5711416_5722615_10696_10084_10083_10618_10307_5722715_5711215_10059_308_100031_10103_5711515_10624_10623_10622_5711315_5722515_10621_10620_10125%2Csearchweb201603_2%2CppcSwitch_4_ppcChannel%26algo_expid%3Dab5ddbef-a746-4010-ae81-3fd11bd6337b-6%26algo_pvid%3Dab5ddbef-a746-4010-ae81-3fd11bd6337b%26priceBeautifyAB%3D0&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">https://ru.aliexpress.com/item/MCP3421-I2C-SOT23-6-delta-sigma-ADC-Evaluation-Board-For-PICkit-Serial-Analyzer-Module/32850739713.html?spm=a2g0v.search0204.3.38.1ee313847Wsb7X&amp;ws_ab_test=searchweb0_0,searchweb201602_3_10152_10151_10065_10344_10068_5722815_10342_10343_10340_5722915_10341_5711416_5722615_10696_10084_10083_10618_10307_5722715_5711215_10059_308_100031_10103_5711515_10624_10623_10622_5711315_5722515_10621_10620_10125,searchweb201603_2,ppcSwitch_4_ppcChannel&amp;algo_expid=ab5ddbef-a746-4010-ae81-3fd11bd6337b-6&amp;algo_pvid=ab5ddbef-a746-4010-ae81-3fd11bd6337b&amp;priceBeautifyAB=0</a> &nbsp;</p>
+<p>&nbsp;</p>
+<p>и центов по 70 - 80 голый чип от 10шт.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-424539"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 23/01/2019 - 22:25
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-424539" class="active">#31</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Радиогубитель      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 23.01.2019        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Всем привет! Хотел уточнить один момент.<br>
+Если на микросхему в диф. режиме с усилением Wire.write(B11111) (0.256В опорное) подать напряжение например 3-4 вольта, способно ли это напряжение сжечь микросхему??? Ясно, что посчитать без делителя это напряжение не получится, но для микросхемы это будет штатным режимом или критическим?</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-424561"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 23/01/2019 - 23:04
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-424561" class="active">#32</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        asam      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-42897.jpg" alt="asam аватар" title="asam аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 12.12.2018        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>Радиогубитель</em> пишет:</div>Всем привет! Хотел уточнить один момент. Если на микросхему в диф. режиме с усилением Wire.write(B11111) (0.256В опорное) подать напряжение например 3-4 вольта, способно ли это напряжение сжечь микросхему??? Ясно, что посчитать без делителя это напряжение не получится, но для микросхемы это будет штатным режимом или критическим?</div><p></p>
+<p>А вы про какую микросхему говорите? У MCP3421 опорное всегда 2.048В</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-424568"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 23/01/2019 - 23:29
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-424568" class="active">#33</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Радиогубитель      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 23.01.2019        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Я имел ввиду с усилением Wire.write(B11111) больше 0,256В измерить не получится (то есть Vref / коэф. усиления), а если подать 3-5В, может ли это как то навредить микросхеме или просто будет "переполнение" кода и мы упремся в границу 0,256В без вреда для микросхемы? </p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-424571"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 23/01/2019 - 23:48
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-424571" class="active">#34</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        asam      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-42897.jpg" alt="asam аватар" title="asam аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 12.12.2018        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>При условии, что поданное напряжение не больше чем Vdd-Vss - не сгорит. Но есть и еще одно ограничение - входной ток должен быть не больше 2мА.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-424573"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 23/01/2019 - 23:59
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-424573" class="active">#35</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        Радиогубитель      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 23.01.2019        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Спасибо! Ну да в даташите я тоже это видел, просто решил еще уточнить. Главное, чтобы микросхема в таком режиме работала штатно, а не в "стрессовом" режиме. Я просто хотел сделать миллиОмметр, а там создается такая ситуация, когда убираем исследуемый резистор из щупов Кельвина, то на вход Vin+ MCP3421 приходит сразу 5В, а посчитать она может только 0,256В</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-507427"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пнд, 13/01/2020 - 23:59
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-507427" class="active">#36</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        grecha      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 13.01.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>mihleb</em> пишет:</div><p></p>
+<p>А почему делим на <code class="plain">131072? Ведь когда в 17 разрядах "1", это соответствует числу <code class="plain">131071!</code></code></p>
+<p></p></div><p></p>
+<p>Все правильно у автора, делить надо на 131072. Есть еще ноль.</p>
+<p>И в случае с 10 битным АЦП делить нужно на 1024 и никак иначе.&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-530741"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пт, 17/04/2020 - 18:44
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-530741" class="active">#37</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        svorog      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 27.04.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>ТС или другие грамотные люди, подскажите пожалуйста, как настроить данный АЦП с максимальной частой? у меня задача&nbsp; измерять несколько мВ (0-30), подключил используя&nbsp; код из первого поста, тоже запитал от аккумулятора, точность очень хорошая, чуть хуже чем у ТС , показания плавают на 30 мкВ, но для меня это предел мечтаний, на предыдущих ацп хорошо если&nbsp; миливольт получалось добиться. Но вот частота 3,75Гц для меня слабовата, готов пожертвовать точностью но измерять побыстрее, на базе кода, немного изменив настройки каким то образом получил до 600 измерений в секунду вот код</p>
+<div id="highlighter_192790" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#viewSource" title="код" class="item viewSource" style="width: 16px; height: 16px;">код</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_192790_clipboard" type="application/x-shockwave-flash" title="скопировать" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_192790" menu="false" src="/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#printSource" title="расечатать" class="item printSource" style="width: 16px; height: 16px;">расечатать</a><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="preprocessor">#include "Wire.h"</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">setup</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.begin(115200);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="plain">Wire.begin();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="plain">Wire.beginTransmission(0x68);</code><code class="comments">//i2c адрес MCP3421= B1101000</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="plain">Wire.write(B11111); </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="plain">Wire.endTransmission();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">loop</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="plain">Wire.requestFrom(0x68,3); </code><code class="comments">//запросить 3 байта данных</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="keyword">long</code> <code class="plain">value= ((Wire.read()&lt;&lt;8) | Wire.read());</code><code class="comments">//упаковка в одну переменную.</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="plain">value= ((value&lt;&lt;8)| Wire.read()); </code><code class="comments">//упаковка в одну переменную.</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.println(value); </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+
+<p>600 измерений я насчитал скопировав данные за 5 секунд в эксель, возможно при увеличении скорости сериалпорта и из-за убранной задержки он мне просто начал одно и тоже измерение по несколько раз выкидывать, но не суть пусть задваивает, проблема в том что когда этот код добавил в рабочий проект то у меня появилась очень большая инерция после изменения сигнала еще около секунды показания в себя приходят, думаю это из-за перегрузки сериал порта или в принципе платы от такой кучи измерений.</p>
+<p>я любитель в программировании, так что побайтовая настройка из дата шита для меня спустя пол дня мне не покорилась</p>
+<p>Можете подсказать настройку модуля, это я так понимаю вот эта строка Wire.write(B11111) что бы скорость опроса увеличилась до 220 Гц&nbsp; ну и диапазон меня интересует минимальный, мне важны только первые несколько миливольт сигнала в относительных единицах.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-530845"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 18/04/2020 - 02:02
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-530845" class="active">#38</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        nik182      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 04.05.2015        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Нельзя. Или - или. Или скорость или точность. Дима ж всё написал. 240 отсчётов в секунду при 12 битах.&nbsp;&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-530862"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 18/04/2020 - 09:25
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-530862" class="active">#39</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        svorog      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 27.04.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Я понимаю, просто в любом случае этот модуль, самый малошумящий из тех которые я испытывал, поэтому и хочу его на 12 битах использовать, просто не могу понять как&nbsp; будет выглядеть строка Wire.write(B11111) при настройке в 12 бит.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-530873"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 18/04/2020 - 10:44
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-530873" class="active">#40</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        andreyii      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 15.04.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Wire.write(B10011), и считывать 2 байта в loop'e.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-530889"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 18/04/2020 - 11:55
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-530889" class="active">#41</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        svorog      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 27.04.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <div id="highlighter_688692" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#viewSource" title="код" class="item viewSource" style="width: 16px; height: 16px;">код</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_688692_clipboard" type="application/x-shockwave-flash" title="скопировать" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_688692" menu="false" src="/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#printSource" title="расечатать" class="item printSource" style="width: 16px; height: 16px;">расечатать</a><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="plain">так ?</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="preprocessor">#include "Wire.h"</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">setup</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.begin(115200);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="plain">Wire.begin();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="plain">Wire.beginTransmission(0x68);</code><code class="comments">//i2c адрес MCP3421= B1101000</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="plain">Wire.write(B10011); </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="plain">Wire.endTransmission();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">loop</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="plain">Wire.requestFrom(0x68,2); </code><code class="comments">//запросить 2 байта данных</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="keyword">long</code> <code class="plain">value= ((Wire.read()&lt;&lt;8) | Wire.read());</code><code class="comments">//упаковка в одну переменную.</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="plain">value= ((value&lt;&lt;8)| Wire.read()); </code><code class="comments">//упаковка в одну переменную.</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.println(value); </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-530896"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Сб, 18/04/2020 - 12:21
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-530896" class="active">#42</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        andreyii      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 15.04.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>строка 13 правильно</p>
+<p>но&nbsp; по прежнему читаеться&nbsp; 3&nbsp; байта...</p>
+<p>удали строку 15</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-531406"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Пнд, 20/04/2020 - 09:26
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-531406" class="active">#43</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <div id="highlighter_63618" class="syntaxhighlighter  "><div class="bar"><div class="toolbar"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#viewSource" title="код" class="item viewSource" style="width: 16px; height: 16px;">код</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_63618_clipboard" type="application/x-shockwave-flash" title="скопировать" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_63618" menu="false" src="/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#printSource" title="расечатать" class="item printSource" style="width: 16px; height: 16px;">расечатать</a><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="comments">//дифф.вольтметр&nbsp; -256 ..0..+256 милливольт</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="preprocessor">#include "Wire.h"</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">setup</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.begin(115200);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="plain">Wire.begin();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="plain">Wire.beginTransmission(0x68);</code><code class="comments">//i2c адрес MCP3421</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="plain">Wire.write(B10011); </code><code class="comments">// настройка АЦП: постоянное преобразование, 12бит, усиление x 8.</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="plain">Wire.endTransmission();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="keyword">void</code> <code class="keyword">loop</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="plain">Wire.requestFrom(0x68,2); </code><code class="comments">//запросить 2 байта данных</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="keyword">int</code> <code class="plain">voltage= ((Wire.read()&lt;&lt;8) | Wire.read())/8&nbsp; ; </code><code class="comments">//результат разделить на усиление</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.print(</code><code class="string">"voltage,mv="</code><code class="plain">);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="keyword">Serial</code><code class="plain">.println(voltage);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+
+<p>&nbsp;</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563126"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 19:40
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563126" class="active">#44</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihail14      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 21.10.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>grecha</em> пишет:</div><p></p>
+<p></p><div class="quote-msg"><div class="quote-author"><em>mihleb</em> пишет:</div><p></p>
+<p>А почему делим на <code class="plain">131072? Ведь когда в 17 разрядах "1", это соответствует числу <code class="plain">131071!</code></code></p>
+<p></p></div><p></p>
+<p>Все правильно у автора, делить надо на 131072. Есть еще ноль.</p>
+<p>И в случае с 10 битным АЦП делить нужно на 1024 и никак иначе.&nbsp;</p>
+<p></p></div><p></p>
+<p>Попробую объяснить для особоодаренных. Пусть у нас всего двухразрядный АЦП, т.е. на выходе может быть четыре двоичных (в скобках десятичных) значения кода : 00(0), 01(1), 10(2) и 11(3). Пусть возможное максимальное значение входного сигнала 12 В (для удобства). Тогда код 00(0) будет соответствовать 0 В; 01(1) - 4 В; 10(2) - 8 В, а 11(3) - 12 В. Максимальный код 11(3). Чтобы узнать вес одного бита и надо делить на максимальный код 3. 12:3=4В. Т.е. вес одного разряда 4 В.</p>
+<p>Если разделить, как предлагает grecha, на 4, то получится вес одного разряда 3 В. Тогда при пересчете получим, что код 00(0) будет соответствовать 0 В; 01(1) - 3 В; 10(2) - 6 В, а 11(3) - 9 В. Т.е. полная ахинея!</p>
+<p>Еще вопросы есть?</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563130"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 19:52
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563130" class="active">#45</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        DetSimen      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-25991.jpg" alt="DetSimen аватар" title="DetSimen аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.01.2017        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>Главное, влез то как вовремя. Некрофил проклятый.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563132"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 19:57
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563132" class="active">#46</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>mihail14, а вас не смущает, что в даташитах и апноутах атмела&nbsp; в формуле расчёта стоит именно 1024? :) По факту каждый должен решить для себя сам что нужно получить в качестве результата - "не менее, чем x вольт" или "не более чем x вольт". Я сам кстати предпочитаю 1023 :)</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563147"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 20:24
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563147" class="active">#47</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihail14      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 21.10.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>dimax</em> пишет:</div><p></p>
+<p>mihail14, а вас не смущает, что в даташитах и апноутах атмела&nbsp; в формуле расчёта стоит именно 1024? :) По факту каждый должен решить для себя сам что нужно получить в качестве результата - "не менее, чем x вольт" или "не более чем x вольт". Я сам кстати предпочитаю 1023 :)</p>
+<p></p></div><p></p>
+<p>Конечно смущает! Но если у нас 10-разрядный АЦП и максимальное входное напряжение 5 В, то деля на 1024, мы никогда не получим при пересчете значение 5 В, т.к. 10-разрядный АЦП может выдать максимум 1111111111 = 1023!</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563148"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 20:25
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563148" class="active">#48</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihail14      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 21.10.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>DetSimen</em> пишет:</div><p></p>
+<p>Главное, влез то как вовремя. Некрофил проклятый.</p>
+<p></p></div><p></p>
+<p>Это что за отрыжка?</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563150"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 20:27
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563150" class="active">#49</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        mihail14      </div>
+
+                    
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 21.10.2020        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p>dimax, интересно Ваше мнение по поводу сравнения MCP3421 и ADS1115.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><a id="comment-563173"></a>
+
+    <div class="forum-post  clear-block">
+
+  <div class="post-info clear-block">
+    <div class="posted-on">
+      Ср, 21/10/2020 - 22:01
+          </div>
+
+          <span class="post-num"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#comment-563173" class="active">#50</a> </span>
+      </div>
+
+  <div class="forum-post-wrapper">
+
+    <div class="forum-post-panel-sub">
+      
+
+<div class="author-pane">
+ <div class="author-pane-inner">
+        <div class="author-pane-section author-pane-general">
+            <div class="author-pane-line author-name">
+        dimax      </div>
+
+                    
+  <div class="picture">
+          <img src="./MCP3421-6ножек-вероятно_files/picture-6856.jpg" alt="dimax аватар" title="dimax аватар">      </div>
+      
+                    <div class="author-pane-line author-offline">
+           Offline        </div>
+      
+            
+            
+            
+                    <div class="author-pane-line author-joined">
+          <span class="author-pane-label">Зарегистрирован:</span> 25.12.2013        </div>
+      
+            
+                </div>
+
+        <div class="author-pane-section author-pane-contact">
+            
+            
+            
+                </div>
+
+        <div class="author-pane-section author-pane-admin">
+            
+          
+               </div>
+  </div>
+</div>
+    </div>
+
+    <div class="forum-post-panel-main clear-block">
+      
+      <div class="content">
+        <p></p><div class="quote-msg"><div class="quote-author"><em>mihail14</em> пишет:</div><p></p>
+<p>если у нас 10-разрядный АЦП и максимальное входное напряжение 5 В, то деля на 1024, мы никогда не получим при пересчете значение 5 В, т.к. 10-разрядный АЦП может выдать максимум 1111111111 = 1023!</p>
+<p></p></div><p></p>
+<p>Вся&nbsp; философия тут в том, после расчёта мы имеем&nbsp; не точную цифру вольтажа, а некий диапазон, в котором находится измеренное напряжение, для 1023 и 5в референса это диапазон&nbsp; 4.995...5.000 вольт. Соответсвенно подставляя 1023 или 1024 мы видим его нижнюю или верхнюю границу -то есть это дело личного вкуса :-)</p>
+<p></p><div class="quote-msg"><div class="quote-author"><em>mihail14</em> пишет:</div><p></p>
+<p>интересно Ваше мнение по поводу сравнения MCP3421 и ADS1115.</p>
+<p></p></div><p></p>
+<p>Второй ацп у меня есть, я даже включал его, но близко не знакомился. Так что сказать особо нечего. Вроде такой же хороший, с учётом меньшей разрядности.</p>
+      </div>
+
+          </div>
+  </div>
+
+  <div class="forum-post-footer clear-block">
+    <div class="forum-jump-links">
+      <a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#top" title="Jump to top of page">Верх</a>
+    </div>
+
+          <div class="forum-post-links">
+        <ul class="links forum-links"><li class="comment_forbidden first"><span><a href="http://arduino.ru/user/login?destination=node%2F8695%23comment-form">Войдите</a> или <a href="http://arduino.ru/user/register?destination=node%2F8695%23comment-form">зарегистрируйтесь</a>, чтобы получить возможность отправлять комментарии</span></li>
+<li class="vud_comment_votes_count last"></li>
+</ul>      </div>
+      </div>
+</div><div class="item-list"><ul class="pager"><li class="pager-current first">1</li>
+<li class="pager-item"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1" title="На страницу номер 2" class="active">2</a></li>
+<li class="pager-next"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1" title="На следующую страницу" class="active">следующая ›</a></li>
+<li class="pager-last last"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c?page=1" title="На последнюю страницу" class="active">последняя »</a></li>
+</ul></div></div>      </div> <!-- /#main -->
+
+      
+       <div class="clear"></div> 
+       <div id="push"></div> 
+    </div> <!-- /.container -->
+    <!-- /layout -->
+
+   <div id="footer" class="clear">
+        <div id="block-block-5" class="block block-block">
+
+  
+  <div class="content">
+        <div style="float: left; margin: 18px 0pt 0pt 18px;">
+	Материалы по программированию Arduino переведены с официального сайта проекта Ардуино&nbsp;— <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Farduino.cc%2F&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" target="_blank" rel="nofollow">http://arduino.cc</a><br>
+	и представлены по лицензии <a href="http://out.arduino.ru/?redirect=http%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-sa%2F3.0%2F&amp;baseU=http%3A%2F%2Farduino.ru%2Fforum%2Fapparatnye-voprosy%2Fmini-obzor-atsp-mcp3421-s-vykhodom-i2c" rel="nofollow" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.<br>
+	Электропочта для связи: <strong> <script language="javascript">
+        <!--
+        var part1 = "electropochta";
+        var part2 = "arduino.ru";
+        document.write("<a href=\"mailto:"+ part1 + '@' + part2+"\">"+part1 + '@' + part2+"<\/a>");
+        // -->
+    </script><a href="mailto:electropochta@arduino.ru">electropochta@arduino.ru</a></strong></div>
+  </div>
+
+</div>
+              </div> <!-- /#footer -->
+  <script type="text/javascript" src="./MCP3421-6ножек-вероятно_files/js_5be51d4088c294eef5f0ba8bdfbab867.js.Без названия"></script>
+
+  
+
+<div id="lightbox2-overlay" style="display: none;"></div>      <div id="lightbox" style="display: none;" class="lightbox2-orig-layout">        <div id="outerImageContainer" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);"><div id="modalContainer" style="display: none; padding: 10px;"></div><div id="frameContainer" style="display: none; padding: 10px;"></div><div id="imageContainer" style="display: none; padding: 10px;"><img id="lightboxImage" alt=""><div id="hoverNav"><a id="prevLink" title="Previous" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="padding-top: 10px;"></a><a id="nextLink" title="Next" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="padding-top: 10px;"></a></div></div><div id="loading"><a href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" id="loadingLink"></a></div></div>        <div id="imageDataContainer" class="clearfix" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">          <div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><div id="frameHoverNav"><a id="framePrevLink" title="Previous" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="padding-top: 10px;"></a><a id="frameNextLink" title="Next" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="padding-top: 10px;"></a></div><a id="bottomNavClose" title="Close" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);"></a><a id="bottomNavZoom" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#"></a><a id="bottomNavZoomOut" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#"></a><a id="lightshowPause" title="Pause Slideshow" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="display: none;"></a><a id="lightshowPlay" title="Play Slideshow" href="http://arduino.ru/forum/apparatnye-voprosy/mini-obzor-atsp-mcp3421-s-vykhodom-i2c#" style="display: none;"></a></div></div>        </div>      </div><img src="./MCP3421-6ножек-вероятно_files/1" style="text-decoration: none; border: 0px; padding: 0px; margin: 0px;"><table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 365px; display: none; top: 81px; position: absolute; left: 701px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body><app-content ng-version="10.1.5"></app-content></html>
