@@ -1,0 +1,207 @@
+/* Main layout CSS */
+
+body {
+   background-color: #F2F2F2;
+}
+
+.container_12 {
+   background-color: #FFFFFF;
+}
+
+.grid_6.sitelogo {
+   margin-top: 15px;
+}
+
+
+/* Search module CSS */
+
+.search {
+   margin-top: 23px;
+   position: absolute;
+   right: 10px;
+}
+
+
+/* Top Menu CSS */
+
+div.moduletable-topmenu {
+   background-color: #80766E;
+   padding-top: 7px;
+   padding-bottom: 7px;
+   padding-left: 2px;
+}
+
+ul.menu-topmenu {
+   margin-bottom: 0px;
+}
+
+ul.menu-topmenu li {
+   display: inline;
+   margin-left: 0px;
+}
+
+ul.menu-topmenu a {
+   color: #FFFFFF;
+   text-decoration: none;
+   padding-top: 7px;
+   padding-bottom: 7px;
+   padding-left: 15px;
+   padding-right: 15px;
+}
+
+ul.menu-topmenu a:hover {
+   color: #000000;
+   background-color: #FFFFFF;
+}
+
+
+/* Breadcrumb Module CSS */
+
+div.moduletable-breadcrumb {
+   background-color: #0083BE;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   margin-bottom: 2px;
+}
+
+ul.breadcrumb-breadcrumb {
+   margin-bottom: 0px;
+}
+
+.breadcrumb-breadcrumb li {
+   margin-top: 2px;
+   margin-bottom: 2px;
+   display: inline-block;
+   margin-left: 5px;
+}
+
+.breadcrumb-breadcrumb a
+{
+   text-decoration: none;
+   color: #000000;
+   font-weight: bold;
+}
+
+.breadcrumb-breadcrumb a:hover
+{
+   text-decoration: none;
+   color: yellow;
+   font-weight: bold;
+}
+
+
+.breadcrumb-breadcrumb li.active {
+   margin-left: 5px;
+   color: #FFFFFF;
+   font-weight: bold;
+}
+
+
+/* Flexheader Module CSS */
+
+div.moduleid108.flexheader {
+   margin-top: 0px;
+   margin-bottom: 0px;
+}
+
+
+/* Latest Articles Module CSS */
+
+div.moduletable-latest {
+   padding-top: 10px;
+   padding-left: 5px;
+   padding-right: 5px;
+   background-color: #F1F3F0;
+   height: 100%;
+}
+
+.moduletable-latest h3 {
+   color: #BB0000;
+}
+
+ul.latestnews-latest {
+   margin-bottom: 2px;
+   list-style-type: none;
+}
+
+ul.latestnews-latest li {
+   margin-bottom: 10px;
+   margin-left: 15px;
+}
+
+ul.latestnews-latest a {
+   text-decoration: none;
+   color: #0083BE;
+   font-weight: bold;
+}
+
+ul.latestnews-latest a:visited {
+   color: #0083BE;
+}
+
+ul.latestnews-latest a:hover {
+   color: #CC0000;
+}
+
+
+
+/* Content CSS */
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+
+.page-header h2 {
+   padding-top:10px;
+   color: #0083BE;
+}
+
+
+/* Bottom Menu CSS */
+
+.moduletable-bottommenu {
+   margin-top: 1px;
+   background-color: #DDDDDD;
+   padding-top: 7px;
+   padding-bottom: 7px;
+   padding-left: 2px;
+}
+
+ul.menu-bottommenu {
+   margin-bottom: 0px;
+}
+
+ul.menu-bottommenu li {
+   display: inline;
+   margin-left: 0px;
+}
+
+ul.menu-bottommenu a {
+   color: #444444;
+   text-decoration: none;
+   padding-top: 7px;
+   padding-bottom: 7px;
+   padding-left: 15px;
+   padding-right: 15px;
+   border-right: 1px dotted #777777;
+}
+
+ul.menu-bottommenu a:hover {
+   color: #000000;
+   background-color: #FFFFFF;
+}
+
+
+/* Footer Module CSS */
+
+.grid_12.footer {
+   color: #999999;
+}
+
+.footer1 {
+   color: #000000;
+   text-align: center;
+}
