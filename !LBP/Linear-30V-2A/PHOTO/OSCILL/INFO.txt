@@ -1,0 +1,1 @@
+4.7uF electrolytic capacitor on PCB4.7uF  film capacitor on terminals 
