@@ -1,0 +1,301 @@
+/* ----------------------------------------------   
+   Danneo CMS Default Template © 2005 Danneo Team   
+   ---------------------------------------------- */
+   
+body { 
+	/*width: 1000px; */
+	background-image: url(../images/bk.jpg); 
+	background-color: #bfcae9;
+	vertical-align: bottom; 
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	
+}
+img {opacity: 1.0; z-index: 2;}
+/** Главный контейнер **/
+.conttitle{ font-family: Trebuchet MS; font-size: 10pt; color: #663300; font-weight: bold; padding: 0 0 0 10px;margin-right: 20px;}
+.conttext{ padding: 0 10 0 10px; font-size: 9pt; font-family: Tahoma, Sans Serif; margin-right: 20px; }
+.continfo{ font-family: Trebuchet MS; font-size: 8pt; color: #663300; font-weight: bold; text-align: right;
+padding: 2 10 2 0px; margin-right: 20px; border-bottom-color: #cad4df; border-bottom-width: 0.2em; border-bottom-style: solid; padding-bottom: 10px;}
+.cont {margin-top: 15px;}
+
+.onlytitle{ font-family: Trebuchet MS; font-size: 10pt; color: #663300; font-weight: bold;}
+/* Верх сайта */
+.banner {background: url(../images/logo.jpg) no-repeat left; width: ; height:164; background-position: center}
+/*.top  				        { font-size: 70%; }
+.top a 				        { color: #c5dff8 }
+#topleft a 				{ background: url(../images/logo.png) no-repeat left; width: 190px; height: 122px; display: block; text-decoration: none }
+#topleft  				{ height: 152px; width: 190px }
+#topcenter  				{ width: auto }
+#topright  				{ height: 122px; width: 14em }
+#topright div 				{ font-size: .8em; margin: 0 0 2.5em; text-align: center }
+*/
+/** контент **/
+
+/** Низ сайта **/
+
+/* Заголовки глобально */
+h1                                      { font-size: 1.4em }
+h2                                      { font-size: 1.3em }
+h3                                      { font-size: 1.1em }
+h4                                      { font-size: 1.0em }
+h5                                      { font-size: 0.9em }
+
+/*главный лист*/
+.maintb { border-spacing: 0px; margin: 0;}
+/*верх*/
+.topl                                 { background-image: url(../images/lt.png); background-repeat: no-repeat; width: 77px; height: 45px;opacity: 0.92;z-index: 1;}
+.topc                                 { background-image: url(../images/ct.png); width: 840px; opacity: 0.92;z-index: 1;}
+.topr                                 { background-image: url(../images/rt.png); background-repeat: no-repeat;width: 79px;opacity: 0.92;z-index: 1;}
+/*центр*/
+.centerl                                 { background-image: url(../images/l.png);background-repeat: repeat-y; width: 77px;opacity: 0.92;z-index: 1;}
+.centerc                                 { background-color: f3fbff; width: 840px;opacity: 0.92;z-index: 1;}
+.centerr                                 { background-image: url(../images/r.png); background-repeat: repeat-y;width: 79px;opacity: 0.92;z-index: 1;}
+/*низ*/
+.botl                                 { background-image: url(../images/lb.png); background-repeat: no-repeat; width: 77px; height: 57px;opacity: 0.92;z-index: 1;}
+.botc                                 { background-image: url(../images/cb.png); width: 840px; height: 57px;opacity: 0.92;z-index: 1;}
+.botr                                 { background-image: url(../images/rb.png); background-repeat: no-repeat; width: 79px; height: 57px;opacity: 0.92; z-index: 1;}
+
+/*левый блок*/
+.leftb {vertical-align: top; width: 100px;}
+/*центральный блок*/
+.centerb {vertical-align: top; width: 840px;}
+/*правый блок*/
+.rightb {vertical-align: top; width: 0px;}
+
+/** Ссылки **/
+a:link, a:visited  			{ color:#663300; text-decoration: none }
+a:hover  				{ color: #565040; text-decoration: none }
+a.cat:link, a.cat:visited               { color: #6699cc; font-size: 10pt;}
+a.cat:hover                             { color: #343434; text-decoration: underline }
+a.blockmenu:link, a.blockmenu:visited  	{ font-family: Verdana; font-size: 8pt; color: #75798a; background: url(../images/arrow.gif) no-repeat left center; display: block; border-top: .1em solid #cad4df; line-height: 175%; padding-left: 1.8em;}
+a.blockmenu:hover  			{ color: #000; background: #b8e3ff url(../images/arrow_over.gif) no-repeat left center; text-decoration: none }
+a.linkbutton    			{}
+a.last     				{ color: #649bb5 }
+a.load:link, a.load:visited  		{ border: 3px double #cacbcd; color: #555; background: #efefef; padding: .1em 1em; text-decoration: none }
+a.load:hover  		                { color: #000; text-decoration: none }
+a.jump:link, a.jump:hover  		{ border: 3px double #cacbcd; color: #555; background: #efefef; padding: 0 1em; text-decoration: none }
+
+/** Блоки **/
+.lgblock {font-size: 9pt;}
+.lgfield {width: 85px;}
+.lblock, .rblock                        { width: 160px; /*background: #fcfcfc */ padding: 0 10 0 0px; margin-left: -10px;} 
+.tblock, .bblock  			{ width: 100%; margin: 0 0 1em; border-bottom: 2px dashed #cad4df }
+.lbtitle, .rbtitle, 
+.tbtitle, .bbtitle, .redbtitle          { text-transform: uppercase; font-weight: bold; font-size: 80%; line-height: 145%; padding: .5em 1em  .4em 1em; font-family: Verdana; color: #444444;} 
+.redbtitle  		        	{ background: #f8dbdb url(../images/gray/tfbg_red.gif) center; color: #600 }
+.redblock                               { width: 15em; border-top: .1em solid #fff; background: #fefafa } 
+.btext  			        { border-top: .1em solid #cad4df; color: #75798a; padding: 1em .8em; font-family: Tahoma; font-size: 8pt; } 
+.btext a 			        { color: #9fa1ae; vertical-align: middle }
+.btext a:hover 			        { text-decoration: underline } 
+.btext big			        { color: #9d937b; font-size: 1.5em; margin-right: .5em; vertical-align: middle }
+.cbtext  			        { padding: .5em 1.1em; margin: 0 0 1em }
+#bmtext  			        { border-top: .0em solid #fff; padding: .1em 0 }
+
+/** оглавления разделов **/
+.sitetitle  				{ background: #fff; font-size: 1.4em; margin: 0 0 .5em; }
+.sitetitle .cont  			{ color: #9d937b; line-height: 100%; padding: .3em 0 }
+.sitetitle .ins  			{ color: #8d4d50; background: #eaebec; line-height: 100%; padding: .3em 1em }
+.sitetitle a:link, .sitetitle a:visited { color: #9d937b; text-decoration: none }
+.sitetitle a:hover  			{ color: #9d937b; text-decoration: underline }
+
+/* Верхнее меню */
+#topmenu     			        { font-size: 60%; background: #efefef url(../images/gray/tfbg.gif) center; padding: 0 .3em; margin: 0 .7em; height: 2.5em; line-height: 2.5em }
+#topmenu a:link, #topmenu a:visited  	{ text-transform: uppercase; display: block; float: left; padding: 0 .8em; color: #333; line-height: 2.5em  }
+#topmenu a:hover  			{ text-decoration: underline; color: #333; line-height: 2.5em }
+#topmenu a.tune:link, a.tune:hover      { font-size: 1.1em; line-height: 2.1em; background: none; text-transform: none; text-decoration: none }
+#topmenu a.tune:visited                 { line-height: 2.1em; text-transform: none } 
+
+/* Нижнее меню */
+#botmenu  			        { font-size: 70%; padding: 0 .3em; margin: .5em auto 0; text-align: center; height: 2.5em; line-height: 2.5em; color: b8e3ff;}
+#botmenu a:link, #botmenu a:visited  	{ padding: 0 .4em; color: #b8e3ff; line-height: 2.5em; text-decoration: none }
+#botmenu a:hover  			{ color: #a3a4a6; line-height: 2.5em; text-decoration: none }
+#ups                                    { text-align: right; margin: .5em 12em }
+ 
+/** Формы **/
+form                                    { margin:0 }
+textarea, input, select, option  	{ font: normal .9em tahoma, arial, verdana, sans-serif; color: #777; vertical-align: middle; font-size: 10pt; }
+textarea, input 	                { border: .1em solid #acaeb9; padding: .1em .3em .2em } 
+select                        	        { padding: .1em .3em .1em }
+textarea                        	{ overflow: auto } 
+.button  				{ border: 3px double #cacbcd; color: #555; background: #efefef; padding: 0 .7em } 
+.oneselect                              { background: #898a8f; color: #343434 }
+.form                                   { border-top: .1em solid #bbbfc5; border-bottom: .1em solid #bbbfc5; padding: 1em; text-align: center;}
+.form table                             { text-align: center; margin: 0 auto; } 
+.form table td                          { font-weight: normal; color: #999; padding: .2em .1em; vertical-align: top; text-align: left;  font-family: Tahoma; font-size: 9pt; } 
+.form table td p                        { font-weight: normal; color: #999; margin: .1em .1em 0 } 
+.form table td b                        { color: #c00 } 
+.form table td div                      { margin: 0 0 .5em } 
+.form fieldset                          { border: 1px solid #eee; padding: .5em 3em .8em }
+.form legend  				{ color: #555; padding: 0 .5em }
+/* Блок */
+.binput 			        { border: 1px solid #acaeb9; color: #777; }
+.bbutton  				{ border: 3px double #cacbcd; color: #555; background: #efefef; padding: 0 .7em }
+
+/* Calendar */
+.calendar                               { width: 100%; font-size: 1em; border-collapse: separate; background: #fff }
+.calendar td                            { color: #323439; background: #efefef; font-size: .8em; padding: .2em } 
+a.calendarlink   			{ color: #c00 }
+.calendartitle,.calendarmonth,
+.calendarempty,.calendartoday,
+.calendarallday                         {}
+
+/* Листинг страниц */
+.pages                                  { padding: 1em 1.2em; color: #c8c9d0; font-size: .95em }
+.pagesempty                             { color: #c8c9d0; padding: .1em .1em }
+a.pages:link, a.pages:visited  		{ padding: .1em .4em; background-color: #f3f8fc }
+a.pages:hover  				{ background-color: #75798a; text-decoration: none; color: #32455c }
+ 
+/* Блок рекомендуем */
+.siterec  				{ line-height: 85%; padding: 0 1em 1em }
+.siterectime  				{ background: #f7f7f7; color: #68717a; float: right; font-size: 0.9em; padding: 0 .5em }
+
+/*** Базовый контейнер ***/
+
+/** Категории **/
+.cat                                    { border: none; width: 100%; }
+.cat .head td                           { padding: .3em 1em; border-bottom: 1px solid #565040; border-right: 1px solid #565040; color: #565040; text-align:center; font-size: 10pt;}
+.cat td                                 { padding: .3em 1em; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; color: #68717a }
+.cat td span                            { color: #aaa; font-weight: normal }
+#catinfo                                { color: #b7baba; text-align: right; border: 0 }
+ 
+/** Доплнительная информация 
+    файлы, фото **/
+.details                                { border: none; width: 100%; }
+.details .head td                       { padding: .3em 1em; border-bottom: 1px solid #8d4d50; color: #8d4d50; text-align:center }
+.details td                             { padding: .3em 1em; border-bottom: 1px solid #ddd; color: #444a50 }
+.infone                                 { background: #fbfbfb; color: #444a50 !important }
+.inftwo                                 { background: #fff; color: #4d698d !important }
+
+/* Чередование цветов таблиц 
+в категориях */
+.newsone,.articleone,.linkone,.downone,.faqone,.photosone                      {font-size: 8pt}
+.newstwo,.articletwo,.linktwo,.downtwo,.faqtwo,.photostwo                      {font-size: 8pt}
+
+/** Комментарии **/
+.com                                    { border: none; width: 100% }
+.com .head td                           { padding: .3em 1em; border-bottom: 1px solid #8d4d50; color: #bc8486 }
+.com .head td big                       { color: #8d4d50; font-size: 1em }
+.com td                                 { padding: .3em 1em; vertical-align: top; border-bottom: 1px solid #ccc; color: #444a50 }
+.com td p                               { color: #68717a; margin: 0; padding: .3em 0 }
+#cominfo                                { text-align: right; border: 0 }
+
+/* Сообщения */
+.errtitle  				{ background: #fff; font-size: 1.07em }
+.errtitle .cont  			{ color: #600; background: #e89ca0; line-height: 100%; padding: .4em 1em }
+.errortxt                               { border-top: .1em solid #e89ca0; border-bottom: .1em solid #e89ca0; padding: 1em; color: #800; font-style: italic }
+.support                                { border-top: .2em solid #e89ca0; border-bottom: .2em solid #e89ca0; width: 50%; padding: 3em; color: #800; font-size: 0.85em }
+.support img                            { float: right }
+.messtitle  				{ background: #fff; font-size: 1.07em }
+.messtitle .cont  			{ color: #060; background: #99db84; line-height: 100%; padding: .4em 1em }
+.messtxt                                { border-top: .1em solid #99db84; border-bottom: .1em solid #99db84; padding: 1em; color: #000 }
+.notice                                 { color: #ca0000; background: #ffe; border: .1em dashed #fcc; padding: .5em 1em; text-align:center; font-style: italic }
+
+/* Цвета */
+.redfont                                { color: #8d4d50 }
+.red                                    { color: #c00 }
+.blue                                   { color: #0a469e } 
+.green                                  { color: #239e0a }
+.crimson                                { color: #600 }
+
+/* Map */
+.mapcont                                { background: #fff; margin: 0 5% 1em }
+.maptitle h2                            { padding: .3em 0; margin: 1.5em 1em .5em; font-size: 1.1em; font-weight: normal; color: #800; border-bottom: 1px solid #eee }
+.maptitle h2 a                          { text-decoration: underline }
+.maptitle h2 a:hover                    { text-decoration: none }
+.maptext                                { padding: 0 1.5em; color: #68717a; font-style: italic }
+.maplink                                { padding: 0 5em; margin: 0 }
+
+/* Info */
+.infotitle                              { padding: .2em 1.5em 0; color: #68717a }
+.infotitle big                          { color: #68717a; font-size: 1.7em; vertical-align: middle; padding-right: .6em }
+
+/* Poll */
+.poll                                   { text-align: center; width: 100% }  
+.poll td                                { font-weight: normal; color: #68717a; padding: .1em .1em } 
+.pollbar                                { background:#000; height: 1em } 
+.pollbarout                             { background: #f6f6f6; padding: 0; text-align: left }
+.pollbarout_block                       { padding: 0; margin: 0 .2em; background: #fff; text-align: left }
+
+/* Faq */
+.faqul                                  { margin: 0 0 3em; padding: .5em 1.9em; border-bottom: .1em solid #ccc; border-top: .1em solid #ccc }
+.faqli                                  { color: #446688; padding: .2em .5em; font-weight: normal; list-style-type: square } 
+.faqli a                                { text-decoration: underline } 
+.faqtitle                               { color: #4d698d; padding: .2em 1.8em; font-weight: normal }
+.faqtitle big                           { color: #446688; font-size: 1.7em; vertical-align: middle; padding-right: .6em } 
+.faqtext                                { color: #50743f; padding: .2em 3.5em }
+
+/* Thumb */
+.thumb                                  { margin: 1em .5em; text-align: center; opacity: 1.0; }
+.thumbtitle                             { color: #8d4d50; font-weight: bold }
+.thumbcet                               { padding: .3em }
+.thumbcet img                           { border: .5em solid #eee; padding: .3em }
+.thumbtext                              { color: #68717a }
+
+/**/
+.search                                 { color: #68717a; text-align: right; padding: 1em }
+
+/* Images */
+.tableod                                { padding: 5px 25px; text-align: center }
+.tableod #img                           { border: solid 10px #ccc }
+.tableod img                            { border: 1em solid #eee; padding: .3em }
+.tablein                                { padding: 5px; text-align: center; color: #68717a } 
+.tablein img                            { border: .5em solid #eee; padding: .3em }
+.mediain                                { display: inline; padding: 3px } 
+.mediaod                                { border: solid 5px #ccc }
+.mediait                                { border: solid 5px #e89ca0 }
+
+/* Rating */
+.rating                                 { background: #fff }
+.ratingrows                             { background: #fdfdfd; line-height: 2em; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: .5em; color: #8d4d50 }
+#rating                                 { float: left; margin: 0; padding: 0 5px 0 0 }
+#rating dd                              { margin: 0; padding: 0 }
+#rating ol                              { list-style: none; margin: 0; padding: 0; width: 70px; height: 14px; position: relative; background: url(../images/rates.gif) }
+#rating li                              { float: left; margin: 0; padding: 0 }
+#rating li a                            { display: block; width: 14px; height: 14px; position: absolute; text-decoration: none; z-index:3 }
+#rating li a:hover                      { left: 0; background: url(../../images/rates.gif) left center; z-index: 2 }
+#rating a.rate1                         { left: 0 }
+#rating a.rate1:hover                   { width: 14px }
+#rating a.rate2                         { left: 14px }
+#rating a.rate2:hover                   { width: 28px }
+#rating a.rate3                         { left: 28px }
+#rating a.rate3:hover                   { width: 42px }
+#rating a.rate4                         { left: 42px }
+#rating a.rate4:hover                   { width: 56px }
+#rating a.rate5                         { left: 56px }
+#rating a.rate5:hover                   { width: 70px }
+#rating li.current                      { height: 14px; background: url(../../images/rates.gif) left bottom; z-index:1 }
+
+/* Float */
+.fl                                     { float: left }
+.fr                                     { float: right }
+/* Align */
+.al                                     { text-align: left }
+.ar                                     { text-align: right }
+.ac                                     { text-align: center } 
+/* Valign */
+.vt                                     { vertical-align: top; padding: 5 0 5 0px;}
+.vm                                     { vertical-align: middle } 
+.vb                                     { vertical-align: bottom }
+/* Float img-thumb */
+.imgleft                                { float: left; margin: .2em 1em 1em 0 }
+.imgright                               { float: right; margin: .2em 0 1em 1em }
+
+/* Line */
+.sline  				{ clear: both; font-size: .5em; height: .5em }
+.clear  				{ clear: both; height: 0 } 
+hr                                      { padding: 0; height: 0; border: .1em solid #cad4df }
+.hr2                                      { padding: 0; height: 0; border: .1em solid #cad4df; width: 500px;}
+
+/* Img */
+img                                     { border: 0; vertical-align: middle }
+ 
+/* Forum */
+
+/* Debug */
+.debug                                  { overflow: hidden; background: #ffe; border: .2em solid #960; font-size: .6em; color: #960; padding: .5em 2em; margin: 1em 1%; -moz-border-radius: 1em }
+
+/* Hints - всплывающие подсказки */
+.hint                                   { background: #e4e6e6; border-left: .3em solid #999; line-height: 1.2em; color: #333; width: auto; 
+                                          z-index: 1000; font-size: .6em; position: absolute; visibility: hidden; margin:0; padding: .4em .6em .4em 1.2em }
