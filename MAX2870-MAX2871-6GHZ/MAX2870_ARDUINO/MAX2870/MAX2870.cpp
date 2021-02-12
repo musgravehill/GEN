@@ -12,7 +12,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
   pin_LE = MAX2870_pin_LE;
   pin_CE = MAX2870_pin_CE;
   pin_RF_EN = MAX2870_pin_RF_EN;
-  pin_LD=MAX2870_pin_LD;
+  pin_LD = MAX2870_pin_LD;
 
   pinMode (pin_LE, OUTPUT);
   digitalWrite(pin_LE, LOW);
@@ -23,7 +23,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
   pinMode (pin_RF_EN, OUTPUT);
   digitalWrite(pin_RF_EN, LOW);
 
-  pinMode (pin_LD, INPUT); 
+  pinMode (pin_LD, INPUT);
 
   SPI.setClockDivider(SPI_CLOCK_DIV16); //16MHz system clock \ 16 = 1MHz SPI
   SPI.setDataMode(SPI_MODE0); //CPOL = CPHA = 0, 8 bits per frame
@@ -81,7 +81,7 @@ void MAX2870::set_RF_OUT_A(double freq) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
 
-  //double f_pfd = getPFD(); //GOT IT FROM main code???
+  //double f_pfd = getPFD(); //set f_pfd wnen MAX2870_my.setPFD(**)  in begin() block
 
   while (freq * powf(2, diva) < 3000.0)  {
     diva = diva + 1;
@@ -107,9 +107,12 @@ void MAX2870::set_RF_OUT_A(double freq) {
 void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
   f_pfd = ref_in / rdiv;
 
-  if (f_pfd > 32.0)
+  if (f_pfd > 32.0) {
     reg2.bits.lds = 1;
-  else reg2.bits.lds = 0;
+  }
+  else {
+    reg2.bits.lds = 0;
+  }
 
   reg3.bits.cdiv = round(f_pfd / 0.10);
 
