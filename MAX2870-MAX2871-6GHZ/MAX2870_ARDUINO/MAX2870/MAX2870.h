@@ -69,7 +69,7 @@ class MAX2870 {
   public:
 
     ///@brief MAX2870 Constructor
-    MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN);
+    MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN, const uint8_t MAX2870_pin_LD);
 
     //MAX2870 Registers
     enum Registers_e
@@ -242,19 +242,19 @@ class MAX2870 {
 
     ///@brief Writes raw 32-bit data pattern. The MAX2870 accepts 32-bit words at a time; 29 data bits and 3 address bits.
     ///@param[in] data - 32-bit word to write to the MAX2870. Bits[31:3] contain the register data, and Bits[2:0] contain the register address.
-    void write(const uint32_t data);
+    void writeData(uint32_t data);
 
     ///@brief Updates MAX2870 settings to achieve target output frequency on channel A.\n
     ///@param[in] freq - Frequency in MHz
-    void setRFOUTA(const double freq);
+    void set_RF_OUT_A(double freq);
 
     ///@brief Provide frequency input to REF_IN pin.\n
     ///@param[in] ref_in - Frequency in MHz
-    void setPFD(const double ref_in, const uint16_t rdiv);
+    void setPFD(double ref_in, uint16_t rdiv);
 
-    void powerOn(const bool pwr);
+    void powerOn(bool pwr);
 
-    void updateAll();
+    void setConfig();
 
   private:
 
@@ -269,9 +269,10 @@ class MAX2870 {
     double f_pfd;
     double f_rfouta;
 
-     uint8_t pin_LE;
-     uint8_t pin_CE;
-     uint8_t pin_RF_EN;
+    uint8_t pin_LE;
+    uint8_t pin_CE;
+    uint8_t pin_RF_EN;
+    uint8_t pin_LD;
 };
 
 #endif /* _MAX2870_H_ */

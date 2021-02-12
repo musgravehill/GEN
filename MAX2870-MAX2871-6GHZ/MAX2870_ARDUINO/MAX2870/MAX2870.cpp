@@ -6,10 +6,31 @@
 #include <stdio.h>
 
 //****************************************************************************
-MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN) {
+MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN, const uint8_t MAX2870_pin_LD) {
+  delay(20);
+
   pin_LE = MAX2870_pin_LE;
   pin_CE = MAX2870_pin_CE;
   pin_RF_EN = MAX2870_pin_RF_EN;
+  pin_LD=MAX2870_pin_LD;
+
+  pinMode (pin_LE, OUTPUT);
+  digitalWrite(pin_LE, LOW);
+
+  pinMode (pin_CE, OUTPUT);
+  digitalWrite(pin_CE, LOW);
+
+  pinMode (pin_RF_EN, OUTPUT);
+  digitalWrite(pin_RF_EN, LOW);
+
+  pinMode (pin_LD, INPUT); 
+
+  SPI.setClockDivider(SPI_CLOCK_DIV16); //16MHz system clock \ 16 = 1MHz SPI
+  SPI.setDataMode(SPI_MODE0); //CPOL = CPHA = 0, 8 bits per frame
+  SPI.setBitOrder(MSBFIRST);
+  SPI.begin();
+
+  delay(20);
 
   reg0.all = 0x007d0000;
   reg1.all = 0x2000fff9;
@@ -19,48 +40,50 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
   reg5.all = 0x00400005;
   reg6.all = 0x00000000;
 
-  updateAll();
+  setConfig();
 
   delay(20);
 
-  updateAll();
+  setConfig();
 }
 
 
 
 //****************************************************************************
-void MAX2870::write(const uint32_t data) {
-  //TODO  m_le = 0;
+void MAX2870::writeData(uint32_t data) {
+  digitalWrite(pin_LE, LOW);
+  delayMicroseconds(10);
+
   SPI.transfer((0xFF000000 & data) >> 24);  //????  в таком порядке или обратном????
   SPI.transfer((0x00FF0000 & data) >> 16);
   SPI.transfer((0x0000FF00 & data) >> 8);
   SPI.transfer( 0x000000FF & data);
-  //TODO  m_le = 1;
+
+  delayMicroseconds(2500);
+  digitalWrite(pin_LE, HIGH);
+  delayMicroseconds(2500);
 }
 
 //****************************************************************************
-void MAX2870::updateAll()
-{
-  write(reg5.all);
-  write(reg4.all);
-  write(reg3.all);
-  write(reg2.all);
-  write(reg1.all);
-  write(reg0.all);
+void MAX2870::setConfig() {
+  writeData(reg5.all);
+  writeData(reg4.all);
+  writeData(reg3.all);
+  writeData(reg2.all);
+  writeData(reg1.all);
+  writeData(reg0.all);
 }
 
 
 
 //****************************************************************************
-void MAX2870::setRFOUTA(const double freq)
-{
+void MAX2870::set_RF_OUT_A(double freq) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
 
   //double f_pfd = getPFD(); //GOT IT FROM main code???
 
-  while (freq * powf(2, diva) < 3000.0)
-  {
+  while (freq * powf(2, diva) < 3000.0)  {
     diva = diva + 1;
   }
   pll_coefficient = freq * powf(2, diva) / f_pfd;
@@ -77,12 +100,11 @@ void MAX2870::setRFOUTA(const double freq)
 
   reg3.bits.mutedel = 1;
 
-  updateAll();
+  setConfig();
   f_rfouta = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
 }
 
-void MAX2870::setPFD(const double ref_in, const uint16_t rdiv)
-{
+void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
   f_pfd = ref_in / rdiv;
 
   if (f_pfd > 32.0)
@@ -97,21 +119,21 @@ void MAX2870::setPFD(const double ref_in, const uint16_t rdiv)
 
   uint32_t bs = f_pfd * 20;
 
-  if (bs > 1023)
+  if (bs > 1023) {
     bs = 1023;
-  else if (bs < 1)
+  }
+  else if (bs < 1) {
     bs = 1;
+  }
 
   reg4.bits.bs = 0x03FF & bs;
   reg4.bits.bs2 = 0x03 & (bs >> 8);
 
-  updateAll();
+  setConfig();
 }
 
 
-
-void MAX2870::powerOn(const bool pwr)
-{
+void MAX2870::powerOn(bool pwr) {
   reg2.bits.shdn =  !pwr;
   reg4.bits.sdldo = !pwr;
   reg4.bits.sddiv = !pwr;
@@ -119,7 +141,7 @@ void MAX2870::powerOn(const bool pwr)
   reg4.bits.sdvco = !pwr;
   reg5.bits.sdpll = !pwr;
 
-  updateAll();
+  setConfig();
 }
 
 
