@@ -17,10 +17,10 @@
 
 #define MAX2870_reference_frequency_mhz 25.0  //reference frequency 25-50-100MHz quartz
 #define MAX2870_R_divider 2                   //R divider to set phase/frequency detector comparison frequency
-#define MAX2870_pin_LE 10                     //DigitalOut, init = 1 //latch enable
-#define MAX2870_pin_CE 9                      //DigitalOut, init =1 //chip enable
-#define MAX2870_pin_RF_EN 8                   //DigitalOut, init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
-#define MAX2870_pin_LD 7                      //Lock detect  
+#define MAX2870_pin_LE 10                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
+#define MAX2870_pin_CE 9                      //init =1 //chip enable
+#define MAX2870_pin_RF_EN 8                   //init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
+#define MAX2870_pin_LD 7                      //input for Lock detect  
 
 
 MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_CE, MAX2870_pin_RF_EN, MAX2870_pin_LD);
