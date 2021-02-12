@@ -229,12 +229,12 @@ class MAX2870 {
       {
         uint32_t addr      : 3;
         uint32_t v         : 6;
-        uint32_t vasa      : 1;
-        uint32_t reserved1 : 5;
-        uint32_t adcv      : 1;
-        uint32_t adc       : 7;
-        uint32_t por       : 1;
-        uint32_t reserved2 : 4;
+        uint32_t vasa      : 1;  //max2871?
+        uint32_t reserved1 : 5;  //max2871?
+        uint32_t adcv      : 1;  //max2871?
+        uint32_t adc       : 7;  //max2871?
+        uint32_t por       : 1;  //max2871?
+        uint32_t reserved2 : 4;  //max2871?
         uint32_t die       : 4;
       } bits;
     };

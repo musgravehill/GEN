@@ -15,13 +15,13 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
   pin_LD = MAX2870_pin_LD;
 
   pinMode (pin_LE, OUTPUT);
-  digitalWrite(pin_LE, LOW);
+  digitalWrite(pin_LE, 1);
 
   pinMode (pin_CE, OUTPUT);
-  digitalWrite(pin_CE, LOW);
+  digitalWrite(pin_CE, 1);
 
   pinMode (pin_RF_EN, OUTPUT);
-  digitalWrite(pin_RF_EN, LOW);
+  digitalWrite(pin_RF_EN, 1);
 
   pinMode (pin_LD, INPUT);
 
@@ -51,7 +51,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 
 //****************************************************************************
 void MAX2870::writeData(uint32_t data) {
-  digitalWrite(pin_LE, LOW);
+  digitalWrite(pin_LE, 0);
   delayMicroseconds(10);
 
   SPI.transfer((0xFF000000 & data) >> 24);  //????  в таком порядке или обратном????
@@ -60,7 +60,7 @@ void MAX2870::writeData(uint32_t data) {
   SPI.transfer( 0x000000FF & data);
 
   delayMicroseconds(2500);
-  digitalWrite(pin_LE, HIGH);
+  digitalWrite(pin_LE, 1);
   delayMicroseconds(2500);
 }
 
