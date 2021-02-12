@@ -1,7 +1,7 @@
 
 //TODO
 /*
-  pins in constrructor  MAX2871 MAX2871_my(10);
+  pins in constrructor  MAX2870 MAX2870_my(10);
   function setPFD???
   How to determinate f_pfd = frequency of PFD
   How to determinate frequency reference from oscillator?
@@ -32,11 +32,12 @@
 
 
 
+  include <> ""
+  angle brackets (<>) causes the compiler to search the default include directory.
+  Double quotes ("") causes it to search the current working directory and, if that search fails, it defaults to the default include directory.
 
-  Что значит <> "" include
 
 
-  SET SPI mode0, MSB, spi begin
 
   pinMode (ADF4351_ss_pin, OUTPUT);
   digitalWrite(ADF4351_ss_pin, LOW);
@@ -48,27 +49,26 @@
 
 
 #include <SPI.h>
-#include "MAX2871.h" // .h auto-connect .cpp ?  #include "MAX2871.cpp"
+#include "MAX2870.h" //is .h auto-connect .cpp ?  #include "MAX2870.cpp" cause error
 
-#define MAX2871_reference_frequency_mhz 25.0  //reference frequency 25-50-100MHz quartz
-#define MAX2871_R_divider 2 //R divider to set phase/frequency detector comparison frequency
-#define MAX2871_pin_LE 10   //DigitalOut, init = 1 //latch enable
-#define MAX2871_pin_CE 9    //DigitalOut, init =1 //chip enable
-#define MAX2871_pin_RF_EN 8    //DigitalOut, init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
+#define MAX2870_reference_frequency_mhz 25.0  //reference frequency 25-50-100MHz quartz
+#define MAX2870_R_divider 2 //R divider to set phase/frequency detector comparison frequency
+#define MAX2870_pin_LE 10   //DigitalOut, init = 1 //latch enable
+#define MAX2870_pin_CE 9    //DigitalOut, init =1 //chip enable
+#define MAX2870_pin_RF_EN 8    //DigitalOut, init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
 
-             
 
-MAX2871 MAX2871_my(10);
+MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_CE, MAX2870_pin_RF_EN);
 
 void setup() {
-  pinMode (MAX2871_pin_LE, OUTPUT);
-  digitalWrite(MAX2871_pin_LE, LOW);
+  pinMode (MAX2870_pin_LE, OUTPUT);
+  digitalWrite(MAX2870_pin_LE, LOW);
 
-  pinMode (MAX2871_pin_CE, OUTPUT);
-  digitalWrite(MAX2871_pin_CE, LOW);
+  pinMode (MAX2870_pin_CE, OUTPUT);
+  digitalWrite(MAX2870_pin_CE, LOW);
 
-  pinMode (MAX2871_pin_RF_EN, OUTPUT);
-  digitalWrite(MAX2871_pin_RF_EN, LOW);
+  pinMode (MAX2870_pin_RF_EN, OUTPUT);
+  digitalWrite(MAX2870_pin_RF_EN, LOW);
 
   SPI.setClockDivider(SPI_CLOCK_DIV16); //16MHz system clock \ 16 = 1MHz SPI
   SPI.setDataMode(SPI_MODE0); //CPOL = CPHA = 0, 8 bits per frame
@@ -76,9 +76,9 @@ void setup() {
 
   SPI.begin();
 
-  MAX2871_my.powerOn(true); //set all hardware enable pins and deassert software shutdown bits
-  MAX2871_my.setPFD(MAX2871_reference_frequency_mhz , MAX2871_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector comparison frequency
-  MAX2871_my.setRFOUTA(433);
+  MAX2870_my.powerOn(true); //set all hardware enable pins and deassert software shutdown bits
+  MAX2870_my.setPFD(MAX2870_reference_frequency_mhz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector comparison frequency
+  MAX2870_my.setRFOUTA(433);
 
 }
 

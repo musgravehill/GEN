@@ -1,13 +1,13 @@
-#ifndef _MAX2871_H_
-#define _MAX2871_H_ 
+#ifndef _MAX2870_H_
+#define _MAX2870_H_
 
 #include <Arduino.h>
 
 /**
-  @brief The MAX2871 is an ultra-wideband phase-locked loop (PLL) with integrated
+  @brief The MAX2870 is an ultra-wideband phase-locked loop (PLL) with integrated
   voltage control oscillators (VCOs)capable of operating in both integer-N and
   fractional-N modes. When combined with an external reference oscillator and
-  loop filter, the MAX2871 is a high-performance frequency synthesizer capable
+  loop filter, the MAX2870 is a high-performance frequency synthesizer capable
   of synthesizing frequencies from 23.5MHz to 6.0GHz while maintaining superior
   phase noise and spurious performance.
 
@@ -15,7 +15,7 @@
   #include "mbed.h"
   #include <stdio.h>
 
-  #include "MAX2871.h"
+  #include "MAX2870.h"
 
   SPI         spi(D11,D12,D13);           //mosi, miso, sclk
   Serial      pc(USBTX,USBRX,9600);       //tx, rx, baud
@@ -26,7 +26,7 @@
 
   int main() {
     float freq_entry;                   //frequency input to terminal
-    float freq_actual;                  //frequency based on MAX2871 settings
+    float freq_actual;                  //frequency based on MAX2870 settings
     float freq_pfd;                     //frequency of phase frequency detector
     float pll_coefficient;              //fractional-N coefficient (N + F/M)
     float vco_divisor;                  //divisor from f_vco to f_rfouta
@@ -35,43 +35,43 @@
     spi.format(8,0);                    //CPOL = CPHA = 0, 8 bits per frame
     spi.frequency(1000000);             //1 MHz SPI clock
 
-    MAX2871 max2871(spi,D10);           //create object of class MAX2871
+    MAX2870 MAX2870(spi,D10);           //create object of class MAX2870
 
     //The routine in the while(1) loop will ask the user to input a desired
     //output frequency, calculate the corresponding register settings, update
-    //the MAX2871 registers, and then independently use the programmed values
+    //the MAX2870 registers, and then independently use the programmed values
     //from the registers to re-calculate the output frequency chosen
     while(1){
         pc.printf("\n\rEnter a frequency in MHz:");
         fgets(buffer,256,stdin);        //store entry as string until newline entered
         freq_entry = atof (buffer);     //convert string to a float
-        max2871.frequency(freq_entry);  //update MAX2871 registers for new frequency
-        max2871.readRegister6();        //read register 6 and update max2871.reg6
+        MAX2870.frequency(freq_entry);  //update MAX2870 registers for new frequency
+        MAX2870.readRegister6();        //read register 6 and update MAX2870.reg6
 
         //Examples for how to calculate important operation parameters like
-        //PFD frequency and divisor ratios using members of the MAX2871 class
-        freq_pfd = max2871.f_reference*(1+max2871.reg2.bits.dbr)/(max2871.reg2.bits.r*(1+max2871.reg2.bits.rdiv2));
-        pll_coefficient = (max2871.reg0.bits.n+1.0*max2871.reg0.bits.frac/max2871.reg1.bits.m);
-        vco_divisor = powf(2,max2871.reg4.bits.diva);
+        //PFD frequency and divisor ratios using members of the MAX2870 class
+        freq_pfd = MAX2870.f_reference*(1+MAX2870.reg2.bits.dbr)/(MAX2870.reg2.bits.r*(1+MAX2870.reg2.bits.rdiv2));
+        pll_coefficient = (MAX2870.reg0.bits.n+1.0*MAX2870.reg0.bits.frac/MAX2870.reg1.bits.m);
+        vco_divisor = powf(2,MAX2870.reg4.bits.diva);
 
         //calculate expected f_RFOUTA based on the register settings
         freq_actual = freq_pfd*pll_coefficient/vco_divisor;
         pc.printf("\n\rTarget: %.3f MHz\tActual: %.3f MHz",freq_entry,freq_actual);
-        pc.printf("\n\rDie: %d, VCO: %d, F_PFD: %f",max2871.reg6.bits.die,max2871.reg6.bits.v,freq_pfd);
-        pc.printf("\n\rN: %d, F: %d, M: %d, N+F/M: %f",max2871.reg0.bits.n,max2871.reg0.bits.frac,max2871.reg1.bits.m,pll_coefficient);
+        pc.printf("\n\rDie: %d, VCO: %d, F_PFD: %f",MAX2870.reg6.bits.die,MAX2870.reg6.bits.v,freq_pfd);
+        pc.printf("\n\rN: %d, F: %d, M: %d, N+F/M: %f",MAX2870.reg0.bits.n,MAX2870.reg0.bits.frac,MAX2870.reg1.bits.m,pll_coefficient);
     }
 
   }
 
   @endcode
 */
-class MAX2871 {
+class MAX2870 {
   public:
 
-    ///@brief MAX2871 Constructor
-    MAX2871(const uint8_t MAX2871_SS_pin);
+    ///@brief MAX2870 Constructor
+    MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN);
 
-    //MAX2871 Registers
+    //MAX2870 Registers
     enum Registers_e
     {
       REG0          = 0x00,
@@ -239,51 +239,25 @@ class MAX2871 {
       } bits;
     };
 
-    
 
-
-
-
-    ///@brief Writes raw 32-bit data pattern. The MAX2871 accepts 32-bit words at a time; 29 data bits and 3 address bits.
-    ///
-    ///On Entry:
-    ///@param[in] data - 32-bit word to write to the MAX2871. Bits[31:3] contain the register data, and Bits[2:0] contain the register address.
-    ///
-    ///@returns None
+    ///@brief Writes raw 32-bit data pattern. The MAX2870 accepts 32-bit words at a time; 29 data bits and 3 address bits.
+    ///@param[in] data - 32-bit word to write to the MAX2870. Bits[31:3] contain the register data, and Bits[2:0] contain the register address.
     void write(const uint32_t data);
 
-
-
-    ///@brief Updates MAX2871 settings to achieve target output frequency on channel A.\n
-    ///
-    ///On Entry:
+    ///@brief Updates MAX2870 settings to achieve target output frequency on channel A.\n
     ///@param[in] freq - Frequency in MHz
-    ///
-    ///@returns None
     void setRFOUTA(const double freq);
 
     ///@brief Provide frequency input to REF_IN pin.\n
-    ///
-    ///On Entry:
     ///@param[in] ref_in - Frequency in MHz
-    ///
-    ///@returns None
     void setPFD(const double ref_in, const uint16_t rdiv);
 
-
-
-
-
     void powerOn(const bool pwr);
-
-
-
-
 
     void updateAll();
 
   private:
-  
+
     REG0_u reg0;
     REG1_u reg1;
     REG2_u reg2;
@@ -294,8 +268,12 @@ class MAX2871 {
 
     double f_pfd;
     double f_rfouta;
+
+     uint8_t pin_LE;
+     uint8_t pin_CE;
+     uint8_t pin_RF_EN;
 };
 
-#endif /* _MAX2871_H_ */
+#endif /* _MAX2870_H_ */
 
 
