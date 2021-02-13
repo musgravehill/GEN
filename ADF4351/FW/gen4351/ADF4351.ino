@@ -39,7 +39,7 @@ void ADF4351_step_next() {
       break;
     case 1: //1000, //*10Hz 10 khz
       ADF4351_frequency = 1000 * (ADF4351_frequency / 1000); //*10 =  some Hz
-      break;   
+      break;
     case 2: //10000, //*10Hz 100 khz
       ADF4351_frequency = 10000 * (ADF4351_frequency / 10000); //*10 =  some Hz
       break;
@@ -91,13 +91,25 @@ void ADF4351_setConfig() {
 
 }
 
-void ADF4351_writeToRegister(int idx)
-{ // make 4 byte from integer for SPI-Transfer
-  byte buf[4];
-  for (uint8_t i = 0; i < 4; i++)
+void ADF4351_writeToRegister(int idx) { // make 4 byte from integer for SPI-Transfer
+  digitalWrite(ADF4351_LE_pin, LOW);
+  delayMicroseconds(10);
+
+  SPI.transfer((0xFF000000 & ADF4351_registers[idx]) >> 24);   
+  SPI.transfer((0x00FF0000 & ADF4351_registers[idx]) >> 16);
+  SPI.transfer((0x0000FF00 & ADF4351_registers[idx]) >> 8);
+  SPI.transfer( 0x000000FF & ADF4351_registers[idx]);
+
+  ADF4351_ss_toggle();
+
+  /*
+    byte buf[4];
+    for (uint8_t i = 0; i < 4; i++)
     buf[i] = (byte)(ADF4351_registers[idx] >> (i * 8));
-  ADF4351_writeData(buf[3], buf[2], buf[1], buf[0]);
+    ADF4351_writeData(buf[3], buf[2], buf[1], buf[0]);
+  */
 }
+/*
 void ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
   // write over SPI to ADF4351
   digitalWrite(ADF4351_LE_pin, LOW);
@@ -107,7 +119,8 @@ void ADF4351_writeData(byte a1, byte a2, byte a3, byte a4) {
   SPI.transfer(a3);
   SPI.transfer(a4);
   ADF4351_ss_toggle();
-}
+}*/
+
 void ADF4351_ss_toggle() {
   digitalWrite(ADF4351_LE_pin, HIGH);
   delayMicroseconds(5);

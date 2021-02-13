@@ -1,0 +1,1 @@
+see https://github.com/musgravehill/MAX2870.git
