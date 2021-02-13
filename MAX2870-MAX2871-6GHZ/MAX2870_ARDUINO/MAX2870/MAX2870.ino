@@ -11,6 +11,14 @@
   Double quotes ("") causes it to search the current working directory and, if that search fails, it defaults to the default include directory.
 */
 
+// ========== 3v3 ======== generator 3v3 logic ====== 3v3 =========
+// ========== 3v3 ======== generator 3v3 logic ====== 3v3 =========
+// ========== 3v3 ======== generator 3v3 logic ====== 3v3 =========
+// ========== 3v3 ======== generator 3v3 logic ====== 3v3 =========
+// ======== USE LOGIC LEVEL CONVERTER between Arduino and MAX2870 ========== 
+// ======== USE LOGIC LEVEL CONVERTER between Arduino and MAX2870 ========== 
+// ======== USE LOGIC LEVEL CONVERTER between Arduino and MAX2870 ==========  
+
 
 #include <SPI.h>
 #include "MAX2870.h" //is .h auto-connect .cpp ?  #include "MAX2870.cpp" cause error
