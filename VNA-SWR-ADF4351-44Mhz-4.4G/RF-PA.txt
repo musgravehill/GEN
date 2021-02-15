@@ -1,0 +1,10 @@
+RF power amp
+
+RF power from ADF4351 (LowNoise, +5dBm config). I set +5dBm, but real out power is -5 ... 1 dBm
+
+Frequency,MHz	RF_POWER_IN,dBm		RF_POWER_OUT,dBm   	AMP,dB 
+4400			-5					9.5					14.5
+3000			0					15					15
+2400			1.5					17.5				16
+915				0.5					20					19.5
+433				0.5					21					20.5
