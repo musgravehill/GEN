@@ -21,7 +21,6 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
   digitalWrite(pin_CE, 1);
 
   pinMode (pin_RF_EN, OUTPUT);
-  digitalWrite(pin_RF_EN, 1);
 
   pinMode (pin_LD, INPUT);
 
@@ -31,6 +30,8 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
   SPI.begin();
 
   delay(20);
+
+  // fractional-N mode  see registers at MAX2870-all.png
 
   reg0.all = 0x0022B568;
   reg1.all = 0x2000FD01;
@@ -42,7 +43,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 
   setConfig();
 
-  delay(20);
+  delay(20); //see datasheed: init  & powerUp
 
   setConfig();
 }
@@ -52,7 +53,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 //****************************************************************************
 void MAX2870::writeData(uint32_t data) {
   digitalWrite(pin_LE, 0);
-  delayMicroseconds(10);
+  delayMicroseconds(100);
 
   SPI.transfer((0xFF000000 & data) >> 24);  //????  в таком порядке или обратном????
   SPI.transfer((0x00FF0000 & data) >> 16);
@@ -77,11 +78,11 @@ void MAX2870::setConfig() {
 
 
 //****************************************************************************
-void MAX2870::set_RF_OUT_A(double freq) {
+void MAX2870::set_OUT_A_frequency(double freq) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
 
-  //double f_pfd = getPFD(); //set f_pfd wnen MAX2870_my.setPFD(**)  in begin() block
+
 
   while (freq * powf(2, diva) < 3000.0)  {
     diva = diva + 1;
@@ -101,7 +102,7 @@ void MAX2870::set_RF_OUT_A(double freq) {
   //reg3.bits.mutedel = 1;  2871 only
 
   setConfig();
-  f_rfouta = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
+  f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
 }
 
 void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
@@ -141,15 +142,25 @@ void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
 }
 
 
-void MAX2870::powerOn(bool pwr) {
-  reg2.bits.shdn =  !pwr;
-  reg4.bits.sdldo = !pwr;
-  reg4.bits.sddiv = !pwr;
-  reg4.bits.sdref = !pwr;
-  //reg4.bits.sdvco = !pwr;  2871 only
-  //reg5.bits.sdpll = !pwr;  2871 only
+void MAX2870::setActive(bool isOn) {
+  reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown 
+  reg4.bits.sdldo = (isOn ? B0 : B1);
+  reg4.bits.sddiv = (isOn ? B0 : B1);
+  reg4.bits.sdref = (isOn ? B0 : B1); 
+  //reg4.bits.sdvco = !isOn;  2871 only
+  //reg5.bits.sdpll = !isOn;  2871 only
 
   setConfig();
+
+  digitalWrite(pin_RF_EN, (isOn ? 1 : 0));
+}
+
+double MAX2870::getPFD() {
+  return f_pfd;
+}
+
+double MAX2870::get_OUT_A_frequency() {
+  return f_out_A;
 }
 
 
