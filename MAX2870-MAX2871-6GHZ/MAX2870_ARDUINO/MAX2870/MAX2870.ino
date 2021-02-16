@@ -13,27 +13,38 @@
 // ======== USE LOGIC LEVEL CONVERTER between Arduino and MAX2870 ========== 
 // ======== USE LOGIC LEVEL CONVERTER between Arduino and MAX2870 ========== 
 // ======== USE LOGIC LEVEL CONVERTER between Arduino and MAX2870 ==========  
+/*
+MOSI 11 ----> DATA
+MISO 12 ---- null, but d12 is SPI
+SCK 13 -----> CLK
+d10 no connect, but SPI SS. NOT use it for MAX2870_LE!
+ */  
 
 
 #include <SPI.h>
 #include "MAX2870.h" //is .h auto-connect .cpp ?  #include "MAX2870.cpp" cause error
 
-#define MAX2870_reference_frequency_mhz 25.0  //reference frequency 25-50-100MHz quartz
+#define MAX2870_reference_frequency_mhz 100.0  //reference frequency 25-50-100MHz quartz
 #define MAX2870_R_divider 2                   //R divider to set phase/frequency detector comparison frequency. If reference oscill is 100MHZ, R=2 because in Fraction_mode F_PFD 50MHz max!
-#define MAX2870_pin_LE 10                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
-#define MAX2870_pin_CE 9                      //init =1 //chip enable
-#define MAX2870_pin_RF_EN 8                   //init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
-#define MAX2870_pin_LD 7                      //input for Lock detect  
+#define MAX2870_pin_LE 9                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
+#define MAX2870_pin_CE 8                      //init =1 //chip enable
+#define MAX2870_pin_RF_EN 7                   //init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
+#define MAX2870_pin_LD 6                      //input for Lock detect  
 
 
 MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_CE, MAX2870_pin_RF_EN, MAX2870_pin_LD);
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Begin");
+  
+  MAX2870_my.start();
   MAX2870_my.setActive(true); 
   MAX2870_my.setPFD(MAX2870_reference_frequency_mhz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector comparison frequency
-  MAX2870_my.set_OUT_A_frequency(433.92);
+  MAX2870_my.set_OUT_A_frequency(433.92);  
 
   double real_freq = MAX2870_my.get_OUT_A_frequency(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
+  Serial.println(real_freq);
 }
 
 /*

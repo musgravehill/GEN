@@ -314,6 +314,8 @@ class MAX2870 {
     double getPFD();
     double get_OUT_A_frequency();
 
+    void start();
+
   private:
 
     REG0_u reg0;

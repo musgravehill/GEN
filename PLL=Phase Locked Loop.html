@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://karooza.net/basic-signal-generator -->
+<html lang="en" prefix="og: https://ogp.me/ns#" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://karooza.net/xmlrpc.php">
+
+<title>Basic RF Signal Generator - karooza.net</title>
+
+		<!-- All in One SEO 4.0.15 -->
+		<meta name="description" content="When you start to experiment with radio frequency circuits and projects one of the tools that is a must have is a RF signal generator. Sometimes you want to test the response of a filter and need to sweep through a range of frequencies or need to generate a carrier or clock frequency. Having a […]">
+		<link rel="canonical" href="http://karooza.net/basic-signal-generator">
+		<meta property="og:site_name" content="karooza.net - Covering electronics and coding for the hobbyist that wants to build everything">
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="Basic RF Signal Generator - karooza.net">
+		<meta property="og:description" content="When you start to experiment with radio frequency circuits and projects one of the tools that is a must have is a RF signal generator. Sometimes you want to test the response of a filter and need to sweep through a range of frequencies or need to generate a carrier or clock frequency. Having a […]">
+		<meta property="og:url" content="http://karooza.net/basic-signal-generator">
+		<meta property="article:published_time" content="2018-12-22T17:53:20Z">
+		<meta property="article:modified_time" content="2019-03-30T10:02:43Z">
+		<meta property="twitter:card" content="summary">
+		<meta property="twitter:domain" content="karooza.net">
+		<meta property="twitter:title" content="Basic RF Signal Generator - karooza.net">
+		<meta property="twitter:description" content="When you start to experiment with radio frequency circuits and projects one of the tools that is a must have is a RF signal generator. Sometimes you want to test the response of a filter and need to sweep through a range of frequencies or need to generate a carrier or clock frequency. Having a […]">
+		<script type="text/javascript" async="" src="./PLL=Phase Locked Loop_files/recaptcha__ru.js.Без названия" crossorigin="anonymous" integrity="sha384-ucGmx7rhZl2PbYropzwbVwDAER12V4RR0FOqVOBfdMkMH1o/ckQ6ph7ilQdcZgvq"></script><script type="application/ld+json" class="aioseo-schema">
+			{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebSite","@id":"http:\/\/karooza.net\/#website","url":"http:\/\/karooza.net\/","name":"karooza.net","description":"Covering electronics and coding for the hobbyist that wants to build everything","publisher":{"@id":"http:\/\/karooza.net\/#organization"},"potentialAction":{"@type":"SearchAction","target":"http:\/\/karooza.net\/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"http:\/\/karooza.net\/#organization","name":"karooza.net","url":"http:\/\/karooza.net\/"},{"@type":"BreadcrumbList","@id":"http:\/\/karooza.net\/basic-signal-generator#breadcrumblist","itemListElement":[{"@type":"ListItem","@id":"http:\/\/karooza.net\/#listItem","position":"1","item":{"@id":"http:\/\/karooza.net\/#item","name":"Home","description":"karooza.net is run by hobbyists that wants to make everything, from websites to UAVs. We investigate everything, including","url":"http:\/\/karooza.net\/"}}]},{"@type":"Person","@id":"http:\/\/karooza.net\/author\/jan#author","url":"http:\/\/karooza.net\/author\/jan","name":"Jan","image":{"@type":"ImageObject","@id":"http:\/\/karooza.net\/basic-signal-generator#authorImage","url":"http:\/\/0.gravatar.com\/avatar\/96462de48918229569510244353a9cf8?s=96&d=wavatar&r=g","width":"96","height":"96","caption":"Jan"}},{"@type":"WebPage","@id":"http:\/\/karooza.net\/basic-signal-generator#webpage","url":"http:\/\/karooza.net\/basic-signal-generator","name":"Basic RF Signal Generator - karooza.net","description":"When you start to experiment with radio frequency circuits and projects one of the tools that is a must have is a RF signal generator. Sometimes you want to test the response of a filter and need to sweep through a range of frequencies or need to generate a carrier or clock frequency. Having a [\u2026]","inLanguage":"en-GB","isPartOf":{"@id":"http:\/\/karooza.net\/#website"},"breadcrumb":{"@id":"http:\/\/karooza.net\/basic-signal-generator#breadcrumblist"},"author":"http:\/\/karooza.net\/basic-signal-generator#author","creator":"http:\/\/karooza.net\/basic-signal-generator#author","image":{"@type":"ImageObject","@id":"http:\/\/karooza.net\/#mainImage","url":"https:\/\/i1.wp.com\/karooza.net\/wp-content\/uploads\/2018\/12\/CW500MHz.png?fit=1082%2C685","width":"1082","height":"685"},"primaryImageOfPage":{"@id":"http:\/\/karooza.net\/basic-signal-generator#mainImage"},"datePublished":"2018-12-22T17:53:20+00:00","dateModified":"2019-03-30T10:02:43+00:00"},{"@type":"BlogPosting","@id":"http:\/\/karooza.net\/basic-signal-generator#blogposting","name":"Basic RF Signal Generator - karooza.net","description":"When you start to experiment with radio frequency circuits and projects one of the tools that is a must have is a RF signal generator. Sometimes you want to test the response of a filter and need to sweep through a range of frequencies or need to generate a carrier or clock frequency. Having a [\u2026]","headline":"Basic RF Signal Generator","author":{"@id":"http:\/\/karooza.net\/author\/jan#author"},"publisher":{"@id":"http:\/\/karooza.net\/#organization"},"datePublished":"2018-12-22T17:53:20+00:00","dateModified":"2019-03-30T10:02:43+00:00","articleSection":"Code, Electronics, ADF4351, Signal Generator, STM32F103","mainEntityOfPage":{"@id":"http:\/\/karooza.net\/basic-signal-generator#webpage"},"isPartOf":{"@id":"http:\/\/karooza.net\/basic-signal-generator#webpage"},"image":{"@type":"ImageObject","@id":"http:\/\/karooza.net\/#articleImage","url":"https:\/\/i1.wp.com\/karooza.net\/wp-content\/uploads\/2018\/12\/CW500MHz.png?fit=1082%2C685","width":"1082","height":"685"}}]}
+		</script>
+		<!-- All in One SEO -->
+
+<link rel="dns-prefetch" href="http://www.google.com/">
+<link rel="dns-prefetch" href="http://secure.gravatar.com/">
+<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="dns-prefetch" href="http://v0.wordpress.com/">
+<link rel="dns-prefetch" href="http://i0.wp.com/">
+<link rel="dns-prefetch" href="http://i1.wp.com/">
+<link rel="dns-prefetch" href="http://i2.wp.com/">
+<link rel="dns-prefetch" href="http://widgets.wp.com/">
+<link rel="dns-prefetch" href="http://s0.wp.com/">
+<link rel="dns-prefetch" href="http://0.gravatar.com/">
+<link rel="dns-prefetch" href="http://1.gravatar.com/">
+<link rel="dns-prefetch" href="http://2.gravatar.com/">
+<link rel="alternate" type="application/rss+xml" title="karooza.net » Feed" href="http://karooza.net/feed">
+<link rel="alternate" type="application/rss+xml" title="karooza.net » Comments Feed" href="http://karooza.net/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="karooza.net » Basic RF Signal Generator Comments Feed" href="http://karooza.net/basic-signal-generator/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/karooza.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.6.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./PLL=Phase Locked Loop_files/wp-emoji-release.min.js.Без названия" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-quicklatex-format-css" href="./PLL=Phase Locked Loop_files/quicklatex-format.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./PLL=Phase Locked Loop_files/style.min.css" type="text/css" media="all">
+<style id="wp-block-library-inline-css" type="text/css">
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel="stylesheet" id="contact-form-7-css" href="./PLL=Phase Locked Loop_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="flymag-bootstrap-css" href="./PLL=Phase Locked Loop_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flymag-body-fonts-css" href="./PLL=Phase Locked Loop_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="flymag-headings-fonts-css" href="./PLL=Phase Locked Loop_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="flymag-style-css" href="./PLL=Phase Locked Loop_files/style.css" type="text/css" media="all">
+<style id="flymag-style-inline-css" type="text/css">
+.social-navigation li:hover > a::before, a, a:hover, a:focus, a:active { color:}
+.custom-menu-item-1:hover, .custom-menu-item-1 .sub-menu, .ticker-info, button, .button, input[type="button"], input[type="reset"], input[type="submit"] { background-color:}
+.custom-menu-item-1 { border-color:}
+.custom-menu-item-2:hover, .custom-menu-item-2 .sub-menu { background-color:}
+.custom-menu-item-2 { border-color:}
+.custom-menu-item-3:hover, .custom-menu-item-3 .sub-menu { background-color:}
+.custom-menu-item-3 { border-color:}
+.custom-menu-item-4:hover, .custom-menu-item-4 .sub-menu { background-color:}
+.custom-menu-item-4 { border-color:}
+.custom-menu-item-0:hover, .custom-menu-item-0 .sub-menu { background-color:}
+.custom-menu-item-0 { border-color:}
+.news-ticker { background-color:}
+.site-title a, .site-title a:hover { color:#ffffff}
+.site-description { color:#ffffff}
+.main-navigation { background-color:}
+.main-navigation a, .main-navigation li::before { color:}
+body { color:#2a3033}
+.widget-area .widget, .widget-area .widget a { color:}
+.site-footer, .footer-widget-area { background-color:}
+.site-branding { padding:110px 30px; }
+body { font-family:'Roboto', sans-serif;}
+h1, h2, h3, h4, h5, h6, .ticker-info, .main-navigation { font-family:'Spartan', sans-serif;}
+.site-title { font-size:72px; }
+.site-description { font-size:20px; }
+.main-navigation li { font-size:20px; }
+h1 { font-size:36px; }
+h2 { font-size:32px; }
+h3 { font-size:26px; }
+h4 { font-size:20px; }
+h5 { font-size:16px; }
+h6 { font-size:14px; }
+body { font-size:17px; }
+.site-logo { max-width:250px; }
+
+</style>
+<link rel="stylesheet" id="flymag-font-awesome-css" href="./PLL=Phase Locked Loop_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-lazyloadxt-spinner-css-css" href="./PLL=Phase Locked Loop_files/jquery.lazyloadxt.spinner.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./PLL=Phase Locked Loop_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.min.js.Без названия" id="jquery-core-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery-migrate.min.js.Без названия" id="jquery-migrate-js"></script>
+<script type="text/javascript" id="jetpack_related-posts-js-extra">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/related-posts.min.js.Без названия" id="jetpack_related-posts-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.fitvids.js.Без названия" id="flymag-fitvids-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.slicknav.min.js.Без названия" id="flymag-slicknav-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/imagesloaded.pkgd.min.js.Без названия" id="flymag-imagesloaded-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/masonry-init.js.Без названия" id="flymag-masonry-init-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.easy-ticker.min.js.Без названия" id="flymag-ticker-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/wow.min.js.Без названия" id="flymag-animations-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/scripts.js.Без названия" id="flymag-scripts-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/owl.carousel.min.js.Без названия" id="flymag-owl-script-js"></script>
+<script type="text/javascript" id="flymag-slider-init-js-extra">
+/* <![CDATA[ */
+var sliderOptions = {"slideshowspeed":"5000"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/slider-init.js.Без названия" id="flymag-slider-init-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/wp-quicklatex-frontend.js.Без названия" id="wp-quicklatex-frontend-js"></script>
+<link rel="https://api.w.org/" href="http://karooza.net/wp-json/"><link rel="alternate" type="application/json" href="http://karooza.net/wp-json/wp/v2/posts/1759"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://karooza.net/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://karooza.net/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.6.1">
+<link rel="shortlink" href="https://wp.me/pa1ifS-sn">
+<link rel="alternate" type="application/json+oembed" href="http://karooza.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fkarooza.net%2Fbasic-signal-generator">
+<link rel="alternate" type="text/xml+oembed" href="http://karooza.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fkarooza.net%2Fbasic-signal-generator&amp;format=xml">
+<style type="text/css">img#wpstats{display:none}</style><!--[if lt IE 9]>
+<script src="http://karooza.net/wp-content/themes/flymag/js/html5shiv.js"></script>
+<![endif]-->
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style>
+			<style type="text/css">
+				.site-branding {
+					background: url(http://karooza.net/wp-content/uploads/2021/01/cropped-HeaderEdited-1.jpg) no-repeat;
+					background-position: center;
+					background-size: cover;
+				}
+			</style>
+		<link rel="icon" href="https://i0.wp.com/karooza.net/wp-content/uploads/2017/02/cropped-f9c95ba89d5706d0254c53677223da24-1.jpg?fit=32%2C32" sizes="32x32">
+<link rel="icon" href="https://i0.wp.com/karooza.net/wp-content/uploads/2017/02/cropped-f9c95ba89d5706d0254c53677223da24-1.jpg?fit=192%2C192" sizes="192x192">
+<link rel="apple-touch-icon" href="https://i0.wp.com/karooza.net/wp-content/uploads/2017/02/cropped-f9c95ba89d5706d0254c53677223da24-1.jpg?fit=180%2C180">
+<meta name="msapplication-TileImage" content="https://i0.wp.com/karooza.net/wp-content/uploads/2017/02/cropped-f9c95ba89d5706d0254c53677223da24-1.jpg?fit=270%2C270">
+			<style type="text/css" id="wp-custom-css">
+				.carousel-overlay, .thumb-overlay{
+background: rgba(0, 0, 0, 0.25) !important;
+}			</style>
+		<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style></style><link type="text/css" rel="stylesheet" charset="UTF-8" href="./PLL=Phase Locked Loop_files/translateelement.css"></head>
+
+<body class="post-template-default single single-post postid-1759 single-format-standard group-blog">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="http://karooza.net/basic-signal-generator#content">Skip to content</a>
+
+	
+	<header id="masthead" class="site-header container clearfix" role="banner">
+		<div class="site-branding clearfix">
+							<h1 class="site-title"><a href="http://karooza.net/" rel="home">karooza.net</a></h1>
+				<h2 class="site-description">Covering electronics and coding for the hobbyist that wants to build everything</h2>
+					</div>
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<div class="menu-hoofmenu-container"><ul id="menu-hoofmenu" class="menu"><li id="menu-item-1477" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1477 custom-menu-item-1"><a href="http://karooza.net/category/projects">Projects</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2316" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2316"><a href="http://karooza.net/category/projects/robotics">Robotics</a></li>
+	<li id="menu-item-2315" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2315"><a href="http://karooza.net/category/projects/uav">UAV</a></li>
+	<li id="menu-item-2317" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2317"><a href="http://karooza.net/category/projects/opengl">OpenGL</a></li>
+</ul>
+</li>
+<li id="menu-item-2465" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2465 custom-menu-item-2"><a href="http://karooza.net/category/reviews">Reviews</a></li>
+<li id="menu-item-1476" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1476 custom-menu-item-3"><a href="http://karooza.net/category/electronics">Electronics</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2318" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2318"><a href="http://karooza.net/category/electronics/raspberry-pi">Raspberry Pi</a></li>
+	<li id="menu-item-2320" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2320"><a href="http://karooza.net/category/electronics/arduino">Arduino</a></li>
+	<li id="menu-item-2319" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2319"><a href="http://karooza.net/category/electronics/stm32f1">STM32F1</a></li>
+</ul>
+</li>
+<li id="menu-item-1475" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1475 custom-menu-item-4"><a href="http://karooza.net/category/code">Code</a></li>
+<li id="menu-item-1479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1479 custom-menu-item-0"><a href="http://karooza.net/home">Karooza</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-1487" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1487"><a href="http://karooza.net/about">About</a></li>
+	<li id="menu-item-1488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1488"><a href="http://karooza.net/contact">Contact</a></li>
+</ul>
+</li>
+<li id="menu-item-2556" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2556 custom-menu-item-1"><a href="https://karooza.teemill.com/">Shop T-shirts</a></li>
+</ul></div>			<span class="search-toggle"><i class="fa fa-search"></i></span>
+			
+<div class="search-wrapper">
+	<form role="search" method="get" class="flymag-search-form" action="http://karooza.net/">
+		<span class="search-close"><i class="fa fa-times"></i></span>
+		<label>
+			<span class="screen-reader-text">Search for:</span>
+			<input type="search" class="search-field" placeholder="Type and press enter" value="" name="s" title="Search for:">
+		</label>
+	</form>
+</div>
+	
+		</nav><!-- #site-navigation -->
+		<nav class="mobile-nav"><div class="slicknav_menu"><a href="http://karooza.net/basic-signal-generator#" aria-haspopup="true" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt"><i class="fa fa-bars"></i></span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1477 custom-menu-item-1 slicknav_collapsed slicknav_parent"><a href="http://karooza.net/basic-signal-generator#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="http://karooza.net/category/projects" tabindex="-1">Projects</a>
+<span class="slicknav_arrow">+</span></a><ul class="sub-menu slicknav_hidden" style="display: none;" role="menu" aria-hidden="true">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2316"><a href="http://karooza.net/category/projects/robotics" role="menuitem" tabindex="-1">Robotics</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2315"><a href="http://karooza.net/category/projects/uav" role="menuitem" tabindex="-1">UAV</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2317"><a href="http://karooza.net/category/projects/opengl" role="menuitem" tabindex="-1">OpenGL</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2465 custom-menu-item-2"><a href="http://karooza.net/category/reviews" role="menuitem" tabindex="-1">Reviews</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1476 custom-menu-item-3 slicknav_collapsed slicknav_parent"><a href="http://karooza.net/basic-signal-generator#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="http://karooza.net/category/electronics" tabindex="-1">Electronics</a>
+<span class="slicknav_arrow">+</span></a><ul class="sub-menu slicknav_hidden" style="display: none;" role="menu" aria-hidden="true">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2318"><a href="http://karooza.net/category/electronics/raspberry-pi" role="menuitem" tabindex="-1">Raspberry Pi</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2320"><a href="http://karooza.net/category/electronics/arduino" role="menuitem" tabindex="-1">Arduino</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2319"><a href="http://karooza.net/category/electronics/stm32f1" role="menuitem" tabindex="-1">STM32F1</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1475 custom-menu-item-4"><a href="http://karooza.net/category/code" role="menuitem" tabindex="-1">Code</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1479 custom-menu-item-0 slicknav_collapsed slicknav_parent"><a href="http://karooza.net/basic-signal-generator#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="http://karooza.net/home" tabindex="-1">Karooza</a>
+<span class="slicknav_arrow">+</span></a><ul class="sub-menu slicknav_hidden" style="display: none;" role="menu" aria-hidden="true">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1487"><a href="http://karooza.net/about" role="menuitem" tabindex="-1">About</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1488"><a href="http://karooza.net/contact" role="menuitem" tabindex="-1">Contact</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2556 custom-menu-item-1"><a href="https://karooza.teemill.com/" role="menuitem" tabindex="-1">Shop T-shirts</a></li>
+</ul></div></nav>
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content container clearfix">
+	
+	
+	<div id="primary" class="content-area ">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-1759" class="post-1759 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-electronics tag-adf4351 tag-signal-generator tag-stm32f103">
+
+			<div class="single-thumb">
+			<img width="820" height="519" src="./PLL=Phase Locked Loop_files/CW500MHz.png" data-lazy-type="image" data-src="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=820%2C519" class="attachment-entry-thumb size-entry-thumb wp-post-image lazy-loaded" alt="" loading="lazy" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?w=1082 1082w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=300%2C190 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=768%2C486 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=1024%2C648 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=820%2C519 820w" data-srcset="" sizes="(max-width: 820px) 100vw, 820px" data-attachment-id="1771" data-permalink="http://karooza.net/basic-signal-generator/cw500mhz" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1082%2C685" data-orig-size="1082,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="CW500MHz" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=300%2C190" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1024%2C648"><noscript><img width="820" height="519" src="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=820%2C519" class="attachment-entry-thumb size-entry-thumb wp-post-image" alt="" loading="lazy" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?w=1082 1082w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=300%2C190 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=768%2C486 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=1024%2C648 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=820%2C519 820w" sizes="(max-width: 820px) 100vw, 820px" data-attachment-id="1771" data-permalink="http://karooza.net/basic-signal-generator/cw500mhz" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1082%2C685" data-orig-size="1082,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="CW500MHz" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=300%2C190" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1024%2C648" /></noscript>		</div>	
+	
+	<header class="entry-header">
+		<h1 class="entry-title">Basic RF Signal Generator</h1>
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p style="text-align: justify">When you start to experiment with radio frequency circuits and projects one of the tools that is a must have is a RF signal generator. Sometimes you want to test the response of a filter and need to sweep through a range of frequencies or need to generate a carrier or clock frequency. Having a signal generator could be invaluable for these types of experiments and projects. The problem is that these devices are normally not cheap and most makers and hobbyists just can’t afford to buy expensive signal generators that can produce signals in the GHz range. Recently I noticed a number of people rolling their own by either using a chip from Analog Devices that goes up to 4.4GHz or one from Maxim which goes even higher up to 6GHz.</p>
+<p style="text-align: justify">So in this post I will discuss my attempt (and work in progress) at building a RF signal generator that can generate signals from 35MHz up to 4.4GHz. It will do this with 1kHz frequency resolution and adjustable output power levels. At the heart of this generator will be the ADF4351 synthesizer chip from Analog Devices. It achieves this wide band signal generation by using a phase locked loop (PLL) with a reference oscillator and number of divider circuits. If you are a bit rusty on PLL’s I will quickly explain the basics since it will help to understand how to program this chip later.</p>
+<h2>Phase Locked Loop</h2>
+<p>In a typical PLL there are 3 critical parts: the voltage controlled oscillator, the phase comparator or detector and the loop filter.</p>
+<h3>VCO</h3>
+<p style="text-align: justify">The voltage controlled oscillator (VCO) takes an input voltage and outputs a frequency that depends on that input voltage. In other words by changing the input voltage we can adjust the output frequency of the VCO. So in theory if we wanted to build a signal generator we could just program a digital to analog converter to set a voltage on the VCO input and on the output we would have our signal. This should work but it would be an open loop system and the output signal would not be very stable. The problem is that small voltage changes on the VCO input can have fairly large changes in the frequency of the output signal and we have no way of automatically correcting any error. To fix this we need to have a closed loop system that would constantly adjust the VCO voltage to keep the output signal frequency constant. This is where the next two parts fit in.</p>
+<h3>Phase comparator/detector</h3>
+<p style="text-align: justify">The phase comparator take two input signals and, as it’s name suggests, compares them to produces an output voltage that is proportional to the phase difference of the two input signals at any time. So if the instantaneous phase of the two signals are the same it would produce a constant voltage and if not it produces a higher or lower voltage. Since we know that two signals which always stays in phase must have the same frequency it means that the two frequencies are compared.</p>
+<h3>Loop filter</h3>
+<p style="text-align: justify">The last part of the PLL is the loop filter. The purpose of this filter is to remove any noise and high frequency components that could have been generated by the phase comparator. It also helps to improve the response of the VCO by for example dampening the phase comparator output to prevent overshoot or oscillations when there is sudden changes in frequency. Keeping the bandwidth of this filter low produces a steadier output frequency but will also increase the time needed to change the frequency. If your application needs quick frequency changes then a wider bandwidth filter would be better.</p>
+<p style="text-align: justify">Now if we connect the parts together and add a reference signal we get a nice closed loop system that produces a very stable VCO output frequency.</p>
+<p><img data-attachment-id="1760" data-permalink="http://karooza.net/basic-signal-generator/pll" data-orig-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?fit=586%2C112" data-orig-size="586,112" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="PLL" data-image-description="" data-medium-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?fit=300%2C57" data-large-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?fit=586%2C112" loading="lazy" class="size-full wp-image-1760 aligncenter lazy-loaded" src="./PLL=Phase Locked Loop_files/PLL.png" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/PLL.png" alt="" width="586" height="112" srcset="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?w=586 586w, https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?resize=300%2C57 300w" data-srcset="" sizes="(max-width: 586px) 100vw, 586px"><noscript><img data-attachment-id="1760" data-permalink="http://karooza.net/basic-signal-generator/pll" data-orig-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?fit=586%2C112" data-orig-size="586,112" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="PLL" data-image-description="" data-medium-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?fit=300%2C57" data-large-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?fit=586%2C112" loading="lazy" class="size-full wp-image-1760 aligncenter" src="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?resize=586%2C112" alt="" width="586" height="112" srcset="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?w=586 586w, https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/PLL.png?resize=300%2C57 300w" sizes="(max-width: 586px) 100vw, 586px" data-recalc-dims="1" /></noscript></p>
+<p style="text-align: justify">When we switch this circuit on the phase comparator will produce a large output voltage since initially the second input is 0Hz. As the VCO starts to kick in and it’s output frequency increases, the phase comparator voltage will decrease. When the two frequencies match, the phase comparator output voltage stabilizes and the loop is said to be locked. In the locked state this PLL will then output the exact same frequency as the reference input.</p>
+<p style="text-align: justify">This is all good and well but after all this we still only have the reference frequency! Are we not suppose to build a signal generator that can generated signals of various frequencies! Just read on, we will get to that part next.</p>
+<h3>Synthesizer</h3>
+<p style="text-align: justify">Imagine we could place a circuit in the VCO feedback path which would divide the frequency by a given number, say for example 2. The phase comparator would then increase it’s output to the loop filter and VCO until it’s two inputs match again. Since in this example we divided the feedback by 2, it means the phase comparator will drive the VCO to output a signal 2x the reference frequency. If our reference was 10MHz then the VCO would now output 20MHz.</p>
+<p><img data-attachment-id="1761" data-permalink="http://karooza.net/basic-signal-generator/pllwithdiv" data-orig-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?fit=582%2C134" data-orig-size="582,134" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="PLLwithDiv" data-image-description="" data-medium-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?fit=300%2C69" data-large-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?fit=582%2C134" loading="lazy" class="size-full wp-image-1761 aligncenter lazy-loaded" src="./PLL=Phase Locked Loop_files/PLLwithDiv.png" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png" alt="" width="582" height="134" srcset="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?w=582 582w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?resize=300%2C69 300w" data-srcset="" sizes="(max-width: 582px) 100vw, 582px"><noscript><img data-attachment-id="1761" data-permalink="http://karooza.net/basic-signal-generator/pllwithdiv" data-orig-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?fit=582%2C134" data-orig-size="582,134" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="PLLwithDiv" data-image-description="" data-medium-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?fit=300%2C69" data-large-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?fit=582%2C134" loading="lazy" class="size-full wp-image-1761 aligncenter" src="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?resize=582%2C134" alt="" width="582" height="134" srcset="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?w=582 582w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/PLLwithDiv.png?resize=300%2C69 300w" sizes="(max-width: 582px) 100vw, 582px" data-recalc-dims="1" /></noscript></p>
+<p style="text-align: justify">As you can see, by adjusting the division in the VCO feedback path we can adjust the output frequency. This is basically how an Integer-N PLL Synthesizer works.</p>
+<p style="text-align: justify">One thing you might have noticed is that the output will always be an integer multiple of the reference frequency. So if you have a 10MHz reference you would only be able to generate 10MHz, 20MHz, 30MHz, etc. To solve this many manufacturers of PLL devices also allows fractions of the reference to be used. These types are known as Fractional-N PLL Synthesizers. Furthermore, you will also notice that in addition to the divider circuit in the VCO feedback path, many devices also adds dividers on the reference frequency input and on the VCO output. By tuning all these different dividers one can generate a large variety of frequencies within the device’s range.</p>
+<h2>Back to the generator</h2>
+<p style="text-align: justify">As mentioned in the introduction we will be using the ADF4351 Fractional-N Synthesizer chip for our RF signal generator. Now this is a really great device but it still needs a couple of supporting components. Things like the loop filter circuit and a reference oscillator still needs to be added and then there is PCB layout considerations when working with VHF and UHF frequencies. These are all things that could slow down the project if we tried to build it from scratch. Luckily for us some breakout or evaluation boards are cheaply available online which has all these things covered. There are various versions of these boards but the one I used is build on a black PCB as in the photo below:</p>
+<p><img data-attachment-id="1762" data-permalink="http://karooza.net/basic-signal-generator/adf4351module" data-orig-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?fit=521%2C279" data-orig-size="521,279" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="ADF4351Module" data-image-description="" data-medium-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?fit=300%2C161" data-large-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?fit=521%2C279" loading="lazy" class="alignnone size-full wp-image-1762 lazy-loaded" src="./PLL=Phase Locked Loop_files/ADF4351Module.jpg" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg" alt="" width="521" height="279" srcset="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?w=521 521w, https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?resize=300%2C161 300w" data-srcset="" sizes="(max-width: 521px) 100vw, 521px"><noscript><img data-attachment-id="1762" data-permalink="http://karooza.net/basic-signal-generator/adf4351module" data-orig-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?fit=521%2C279" data-orig-size="521,279" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="ADF4351Module" data-image-description="" data-medium-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?fit=300%2C161" data-large-file="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?fit=521%2C279" loading="lazy" class="alignnone size-full wp-image-1762" src="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?resize=521%2C279" alt="" width="521" height="279" srcset="https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?w=521 521w, https://i0.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351Module.jpg?resize=300%2C161 300w" sizes="(max-width: 521px) 100vw, 521px" data-recalc-dims="1" /></noscript></p>
+<p>I bought this one more than a year ago and can’t remember the exact price but normally they go for about $20.</p>
+<p>In addition to the ADF4351 the board also contains:</p>
+<ul style="list-style-type: circle">
+<li>25MHz TCXO (Temperature Compensate Crystal Oscillator) reference oscillator</li>
+<li>small linear voltage regulator (as the ADF4351 is a 3.3V device)</li>
+<li>loop filter circuit</li>
+<li>fundamental and compliment RF outputs on SMA connectors</li>
+<li>external reference oscillator input on SMA connector</li>
+<li>SPI and a few other pins broken out to a 2×5 0.1″ header connector</li>
+</ul>
+<p>This covers most things and all we need now is a microcontroller to drive this board.</p>
+<h3>Microcontroller</h3>
+<p style="text-align: justify">The chip provides a SPI interface to configure it’s six 32bit registers. So basically all that the microcontroller should do is to calculate these register values and write them. This means we could use just about any MCU and the popular options would be to use an Arduino Uno or Nano. In my case I decided on the STM32F103 and in particular the “Blue Pill” board that I reviewed <a href="http://karooza.net/getting-started-with-stm32f1">here</a>. The reason for this is that it’s already a 3.3V device (so no level translation is needed on the SPI pins) and I plan to add some features in the future which might take advantage of the faster processor and extra memory. Another added bonus is that the STM32duino framework uses 64bit double variable types compared to 32bit doubles used by the normal framework. This comes in real handy when having to hold numbers like 4300000000Hz (or 4.3GHz) where a 32bit unsigned integer just falls short at a maximum of 4 294 967 296. This does not mean that you can’t build this project with the normal Arduino framework, it just would take some extra planning to handle large numbers or high precision small numbers.</p>
+<h3>Wiring it all up</h3>
+<p>I wired the SPI pins of the STM32 board to the ADF4351 board like in the table below:</p>
+<table style="border-collapse: collapse;width: 42.1863%;height: 168px" border="1">
+<tbody>
+<tr style="height: 24px">
+<td style="width: 13.9036%"><strong>Pin Function</strong></td>
+<td style="width: 14.4052%;height: 24px"><strong>STM32 Board</strong></td>
+<td style="width: 14.3307%;height: 24px"><strong>ADF4351 Board</strong></td>
+</tr>
+<tr style="height: 24px">
+<td style="width: 13.9036%">Load Enable</td>
+<td style="width: 14.4052%;height: 24px;text-align: center">PA4</td>
+<td style="width: 14.3307%;height: 24px;text-align: center">LE</td>
+</tr>
+<tr style="height: 24px">
+<td style="width: 13.9036%">SPI Clock</td>
+<td style="width: 14.4052%;height: 24px;text-align: center">PA5</td>
+<td style="width: 14.3307%;height: 24px;text-align: center">CLK</td>
+</tr>
+<tr style="height: 24px">
+<td style="width: 13.9036%">SPI MOSI</td>
+<td style="width: 14.4052%;height: 24px;text-align: center">PA7</td>
+<td style="width: 14.3307%;height: 24px;text-align: center">DAT</td>
+</tr>
+<tr style="height: 24px">
+<td style="width: 13.9036%">Lock Detect</td>
+<td style="width: 14.4052%;height: 24px;text-align: center">PB0</td>
+<td style="width: 14.3307%;height: 24px;text-align: center">LD</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify">For programming and interfacing my PC with the MCU I connected a small USB to serial adapter board to pins PA9 and PA10 (which is UART1 for this MCU). This adapter board then also provides a 5V output from the USB port which is used to power both of the boards.</p>
+<p><img data-attachment-id="1774" data-permalink="http://karooza.net/basic-signal-generator/breadboardview1" data-orig-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?fit=914%2C649" data-orig-size="914,649" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="BreadboardView1" data-image-description="" data-medium-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?fit=300%2C213" data-large-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?fit=914%2C649" loading="lazy" class="alignnone size-full wp-image-1774 lazy-loaded" src="./PLL=Phase Locked Loop_files/BreadboardView1.jpg" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg" alt="" width="803" height="570" srcset="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?w=914 914w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=300%2C213 300w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=768%2C545 768w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=820%2C582 820w" data-srcset="" sizes="(max-width: 914px) 100vw, 914px"><noscript><img data-attachment-id="1774" data-permalink="http://karooza.net/basic-signal-generator/breadboardview1" data-orig-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?fit=914%2C649" data-orig-size="914,649" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="BreadboardView1" data-image-description="" data-medium-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?fit=300%2C213" data-large-file="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?fit=914%2C649" loading="lazy" class="alignnone size-full wp-image-1774" src="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=914%2C649" alt="" width="914" height="649" srcset="https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?w=914 914w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=300%2C213 300w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=768%2C545 768w, https://i2.wp.com/karooza.net/wp-content/uploads/2018/12/BreadboardView1.jpg?resize=820%2C582 820w" sizes="(max-width: 914px) 100vw, 914px" data-recalc-dims="1" /></noscript></p>
+<p>When the RF power is switched on both output ports (OUT+ and OUT-) will output the signal but just with a 180° phase difference. To prevent having an open connection that would reflect the energy back to the device I terminated one of the outputs with a 50ohm dummy load. On the the output that I am using I placed a fixed 10dB attenuator just to protect the spectrum analyzer a bit incase something went wrong.</p>
+<h3>Programming the ADF4351</h3>
+<p style="text-align: justify">As mentioned before, the chip has six 32bit registers that is programmed via it’s SPI interface. It only has an input (MOSI) called DATA, a clock (CLK) input and a chip select (LE) input so we can only write to the registers. The order in which the registers are programmed are also important and should be from register 5 through to register 0.</p>
+<p style="text-align: justify">While programming the chip registers it helps to have a good understanding of how all it’s different parts fit together, therefore I added the block diagram provided in the datasheet (which you should anyway also read in combination with this post) below:</p>
+<p><img data-attachment-id="1763" data-permalink="http://karooza.net/basic-signal-generator/adf4351blockdiagram" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?fit=916%2C559" data-orig-size="916,559" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="ADF4351BlockDiagram" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?fit=300%2C183" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?fit=916%2C559" loading="lazy" class="alignnone size-full wp-image-1763 lazy-loaded" src="./PLL=Phase Locked Loop_files/ADF4351BlockDiagram.png" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png" alt="" width="803" height="490" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?w=916 916w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=300%2C183 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=768%2C469 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=820%2C500 820w" data-srcset="" sizes="(max-width: 916px) 100vw, 916px"><noscript><img data-attachment-id="1763" data-permalink="http://karooza.net/basic-signal-generator/adf4351blockdiagram" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?fit=916%2C559" data-orig-size="916,559" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="ADF4351BlockDiagram" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?fit=300%2C183" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?fit=916%2C559" loading="lazy" class="alignnone size-full wp-image-1763" src="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=916%2C559" alt="" width="916" height="559" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?w=916 916w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=300%2C183 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=768%2C469 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/ADF4351BlockDiagram.png?resize=820%2C500 820w" sizes="(max-width: 916px) 100vw, 916px" data-recalc-dims="1" /></noscript></p>
+<p style="text-align: justify">As you can see there are a couple more blocks than the simple synthesizer diagram we looked at earlier, but still not rocket science. Some interesting things to note is that on the reference input (top left corner) there are also some doubler, divider and counter blocks. These allow us pretty fine control over the reference frequency which reaches the phase comparator. We can also see that pin CPout feeds the external loop filter and provides the voltage back to pin Vtune which feeds the VCO. From the VCO we see the feedback path through the divider circuit and back into the phase comparator. Then there is also the VCO output to another set of dividers just before the final output stage.</p>
+<p style="text-align: justify">This last set of dividers are actually also very important since the VCO of the chip can only output frequencies between 2.2GHz and 4.4GHz. So if we want to output lower frequency signals we would need to use these dividers in our calculations. Something to also keep in mind is that the VCO on the chip is actually build from 3 different VCO’s which have overlapping frequency ranges. Luckily for us the selection of which of these VCO’s to use is mostly handled automatically, and needs very little input from our side.</p>
+<h3>Calculate the frequency</h3>
+<p style="text-align: justify">When setting the output frequency we would need to calculate values for the divider on the feedback path between the VCO and phase comparator and also on the output dividers just before the RF output. The divider on the feedback path consists of 3 values: the integer (INT) value, the fractional (FRAC) value and the modulus value (MOD).</p>
+<h4>RF Divider</h4>
+<p style="text-align: justify">Typically we start with the output divider value, as an example lets use an output frequency of 433MHz. We know that the VCO operates only between 2.2GHz and 4.4GHz so we have to select a divider value which will put our wanted frequency in the VCO output range. In this case an output divider of 8 would work, since this would put the VCO output range from 2.2GHz / 8 = 275MHz to 4.4GHz / 8 = 550MHz. If we are going to divide the VCO RF output by 8 to get our wanted frequency then it means we would also need to make sure the VCO generates a frequency 8 times higher than our wanted frequency. So the VCO output frequency we would aim for would be 433MHz x 8 = 3464MHz.</p>
+<h4>INT, MOD and FRAC</h4>
+<p style="text-align: justify">To get this VCO frequency we need to find values for the feedback path divider. The first one would be the integer value, which is pretty easy since we talked about it earlier. All we need to do is take the wanted VCO frequency divide by the reference oscillator input. Let’s say in this case it’s a 25MHz reference then the integer value would be 3464MHz / 25MHz = 138.56 and since it’s an integer we only take 138. Next we need the modulus which we calculate by taking the reference oscillator divided by the smallest frequency resolution we would need. Lets say 100kHz resolution which will give us a modulus of 25MHz / 100kHz = 250. Finally we calculate the fractional part by multiplying the modulus with the fractions that we lost during the integer calculation which gives (138.56 – 138) * 250 = 140. If you wanted to optimize these last two values you could also look for the common denominator which would be 10 and would make the modulus 25 and the fraction 14.</p>
+<h4>Frequency resolution</h4>
+<p style="text-align: justify">Something to note about the resolution is that the modulus is stored in 12bit space which means the smallest fraction we can represent is 1/4096 multiplied by the reference frequency. In the example above we used 25MHz which would give a resolution of about 1/4096 * 25MHz = 6.103kHz. In the beginning of this post we mentioned a 1kHz resolution, so how do we get it. Since we can not change the modulus size all that’s left to change is the reference frequency. Here we have two options, physically replace the oscillator with a lower frequency one or we use the reference oscillator counter to divide it down. If you look back at the block diagram you will notice the “10-BIT R-COUNTER” block between the reference input and the phase comparator. If we use this counter to divide by 8 we have a new reference of 25MHz / 8 = 3.125MHz which would now give a frequency resolution of 1/4096 * 3.125MHz = 763Hz. So as we can see, by dividing the reference frequency down to a lower value we can increase the output resolution.</p>
+<p style="text-align: justify">One last catch, remember earlier we spoke about the VCO that actually consists of 3 VCO’s operating in different bands but which is automatically selected for us. Well the R-Counter also clocks this automatic circuitry and by changing the R-Counter we also adjust it’s clock which should stay below 125kHz. This clock can be adjusted to stay below the 125kHz limit by updating the BandSelectDivider bits, for me using 200 / R-Counter worked well.</p>
+<p style="text-align: justify">Armed with the calculated values, we can now set our desired frequency by writing them to the relevant registers. As a tip, Analog Devices also provides a small program that you can download from their site to help calculate registe values. Initially it is very helpfull and is highly recommended to verify your register values against but later you would anyway need to learn how to calculate the values yourself.</p>
+<h3>Output power level</h3>
+<p style="text-align: justify">The chip allows us to change the output power in 3dB steps from -4dBm up to 5dBm by writing to the relevant bits in register 4. The absolute accuracy of the output power depends on the board layout and components used. On the tests I performed I got about 5dB less on the absolute levels but the relative levels were very close. Below about 1.4GHz the absolute level seems fairly stable and within 1dB but higher up it started to fluctuate up to about 5dB higher and lower.</p>
+<h3>Building the signal generator</h3>
+<p style="text-align: justify">After wiring the STM32 and the ADF4351 board together I wrote a small library for the ADF4351 which more or less performs the tasks we talked about in the above sections. I also wrote a basic command line interface that allow me to set the frequency, power etc. This interface is based on SCPI which is the Standard Commands for Programmable Instruments. The commands are ASCII based so can be easily send from a terminal program. I have also added some extra features like sweeping over a frequency range which would be very usefull when testing the frequency response of a device under tests. A very basic working version of the source code can be downloaded here: <a href="http://karooza.net/wp-content/uploads/2018/12/SignalGen22-12-2018.zip">SignalGen(22-12-2018)</a>.</p>
+<h3>Using the signal generator</h3>
+<p>After flashing the code the signal generator can be controlled by sending it commands via UART1. The commands that are currently implemented are all in group SOURCE and shown below.</p>
+<table style="border-collapse: collapse;width: 91.0643%" border="1">
+<tbody>
+<tr>
+<td style="width: 25.1004%"><strong>Task</strong></td>
+<td style="width: 29.518%"><strong>Command</strong></td>
+<td style="width: 36.4458%"><strong>Example</strong></td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Set the frequency</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:FREQ</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:FREQ 433000000</td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Set the power level</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:PWR</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:PWR 0</td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Enable/disable RF output</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:RFON</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:RFON 1</td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Check if PLL is locked</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:FREQLOCK?</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:FREQLOCK?</td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Set sweep start frequency</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:SWEEPSTART</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:SWEEPSTART 35000000</td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Set sweep stop frequnecy</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:SWEEPSTOP</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:SWEEPSTOP 4400000000</td>
+</tr>
+<tr>
+<td style="width: 25.1004%">Start/stop sweep</td>
+<td style="width: 29.518%">&nbsp;:SOURCE:SWEEP</td>
+<td style="width: 36.4458%">&nbsp;:SOURCE:SWEEP 1</td>
+</tr>
+</tbody>
+</table>
+<p>As I progress with the project I will add new commands and also improve the command line interface to comply more with the SCPI standard.</p>
+<h2>So how good is it?</h2>
+<p>Well concidering what it cost us to build this basic signal generator it’s not that bad. Depending on what you want to do with it, it might be perfect for the job.</p>
+<h3>Harmonics</h3>
+<p style="text-align: justify">The output signal has some pretty strong harmonics on the lower frequencies which might be due to the dividers. Generating signals between 2.2GHz and 4.4GHz the power in the harmonics seems lower, which could confirm our idea that the dividers causes more squarish waves. Below is a trace of a 100MHz signal and it’s odd harmonics:</p>
+<p><img data-attachment-id="1770" data-permalink="http://karooza.net/basic-signal-generator/harmonics100mhz" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?fit=1097%2C685" data-orig-size="1097,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Harmonics100MHz" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?fit=300%2C187" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?fit=1024%2C639" loading="lazy" class="alignnone size-full wp-image-1770 lazy-loaded" src="./PLL=Phase Locked Loop_files/Harmonics100MHz.png" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png" alt="" width="803" height="803" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?w=1097 1097w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=300%2C187 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=768%2C480 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=1024%2C639 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=820%2C512 820w" data-srcset="" sizes="(max-width: 1097px) 100vw, 1097px"><noscript><img data-attachment-id="1770" data-permalink="http://karooza.net/basic-signal-generator/harmonics100mhz" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?fit=1097%2C685" data-orig-size="1097,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Harmonics100MHz" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?fit=300%2C187" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?fit=1024%2C639" loading="lazy" class="alignnone size-full wp-image-1770" src="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=1097%2C685" alt="" width="1097" height="685" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?w=1097 1097w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=300%2C187 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=768%2C480 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=1024%2C639 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/Harmonics100MHz.png?resize=820%2C512 820w" sizes="(max-width: 1097px) 100vw, 1097px" data-recalc-dims="1" /></noscript></p>
+<p style="text-align: justify">So as we have said, some pretty strong harmonics. But I have read that some people actually take advantage of these harmonics to get signals at frequencies far beyond the range of the device. If for example you needed a 8GHz signal then you could tune to 4GHz and use the second harmonic.</p>
+<h3>Frequency stability</h3>
+<p style="text-align: justify">On the frequency stability side it also performs okay. It helps to give the oscillator a couple of minutes to warm up if you want to increase the accuracy a bit. It seems the TCXO’s on these boards has a frequency tolerance of about 20ppm to 50ppm which starts to show on the higher frequencies. To compensate for this I checked the frequency error (assuming my spectrum analyzer is correct) at a couple of frequencies and calculated a ppm value. The value came out at around the expected 20ppm which I then applied to the reference frequency in the calculations. This seems to work pretty well and most signals are now very close to the desired frequency. In the trace below I allow a couple of minutes for warming up and then tuned to 500MHz:</p>
+<p><img data-attachment-id="1771" data-permalink="http://karooza.net/basic-signal-generator/cw500mhz" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1082%2C685" data-orig-size="1082,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="CW500MHz" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=300%2C190" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1024%2C648" loading="lazy" class="alignnone size-full wp-image-1771 lazy-loaded" src="./PLL=Phase Locked Loop_files/CW500MHz(1).png" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/CW500MHz.png" alt="" width="803" height="803" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?w=1082 1082w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=300%2C190 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=768%2C486 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=1024%2C648 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=820%2C519 820w" data-srcset="" sizes="(max-width: 1082px) 100vw, 1082px"><noscript><img data-attachment-id="1771" data-permalink="http://karooza.net/basic-signal-generator/cw500mhz" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1082%2C685" data-orig-size="1082,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="CW500MHz" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=300%2C190" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?fit=1024%2C648" loading="lazy" class="alignnone size-full wp-image-1771" src="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=1082%2C685" alt="" width="1082" height="685" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?w=1082 1082w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=300%2C190 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=768%2C486 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=1024%2C648 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/CW500MHz.png?resize=820%2C519 820w" sizes="(max-width: 1082px) 100vw, 1082px" data-recalc-dims="1" /></noscript>Just 27Hz error (again assuming the spectrum analyzer is perfect). Not bad, but I noticed that slight temperature changes like blowing over the oscillator can cause the frequency to change a bit.</p>
+<h3>Phase noise</h3>
+<p>Unfortunately my spectrum analyzer can’t measure phase noise, but you can make your own crude estimations from the 500MHz trace above. If I have to estimate it looks a bit worce than the values provided in the datasheet (-114dBc/Hz at 100kHz) but it’s still not that bad and again depends on your application. One thing I have read is that a better power supply could also improve the phase noise and is something I will try in the future.</p>
+<h3>Spurious emissions</h3>
+<p>We can see two spurs, one on each side of the 500MHz plot. With my configuration I have actually not noted a lot of other spurious emissions.</p>
+<h3>Output power</h3>
+<p>As mentioned earlier the levels are a fair bit lower than the chip specifications and also not so constant at higher frequencies, but this could all be due to the board. Below I have made two maximum hold sweeps, one at the maximum power and one at the minimum power.</p>
+<p><img data-attachment-id="1772" data-permalink="http://karooza.net/basic-signal-generator/sweepwideband" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?fit=1097%2C685" data-orig-size="1097,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="SweepWideBand" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?fit=300%2C187" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?fit=1024%2C639" loading="lazy" class="alignnone size-full wp-image-1772 lazy-loaded" src="./PLL=Phase Locked Loop_files/SweepWideBand.png" data-lazy-type="image" data-src="http://karooza.net/wp-content/uploads/2018/12/SweepWideBand.png" alt="" width="803" height="803" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?w=1097 1097w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=300%2C187 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=768%2C480 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=1024%2C639 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=820%2C512 820w" data-srcset="" sizes="(max-width: 1097px) 100vw, 1097px"><noscript><img data-attachment-id="1772" data-permalink="http://karooza.net/basic-signal-generator/sweepwideband" data-orig-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?fit=1097%2C685" data-orig-size="1097,685" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="SweepWideBand" data-image-description="" data-medium-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?fit=300%2C187" data-large-file="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?fit=1024%2C639" loading="lazy" class="alignnone size-full wp-image-1772" src="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=1097%2C685" alt="" width="1097" height="685" srcset="https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?w=1097 1097w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=300%2C187 300w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=768%2C480 768w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=1024%2C639 1024w, https://i1.wp.com/karooza.net/wp-content/uploads/2018/12/SweepWideBand.png?resize=820%2C512 820w" sizes="(max-width: 1097px) 100vw, 1097px" data-recalc-dims="1" /></noscript></p>
+<p>We can see that the relative power levels looks fine with a 9dB difference between the two but the absolute levels are not on par.</p>
+<h2>Conclusion</h2>
+<p>All in all I am very happy with the project and performance of the ADF4351 (running on this low cost board) and it pretty much do what I wanted it to do. If you wanted to use this as a signal source for sweeping a filter it would be perfect. But if you wanted to use it to generate a test carrier signal that you will be transmitting into space then you might want to add some additional filtering to get rid of the harmonics.</p>
+<h2>What’s next</h2>
+<p>This is a good start but there are still a lot we can do to improve this signal generator. Some of these things and other fun experiments include:</p>
+<ul style="list-style-type: circle">
+<li>Add a filter bank on the output to try and supress the harmonics.</li>
+<li>Use a more accurate reference frequency oscillator.</li>
+<li>Add an amplifier and adjustable attenuator to allow a larger range of output powers.</li>
+<li>Add LCD and external controls to allow the signal generator to be used without a PC, maybe also add a battery pack.</li>
+<li>Make a nice enclosure for it.</li>
+<li>Add a RF power detector to add some scaler network analyser features.</li>
+<li>Improve and optimize the code.</li>
+<li>Experiment with a modulation input to perform Direct Digital Modulation to create FSK modulated signals.</li>
+</ul>
+
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-visual jp-relatedposts-grid "><div class="jp-relatedposts-post jp-relatedposts-post0 jp-relatedposts-post-thumbs" data-post-id="1836" data-post-format="false"><a class="jp-relatedposts-post-a" href="http://karooza.net/how-to-interface-a-ps2-keyboard" title="How to interface a PS2 keyboard" data-origin="1759" data-position="0"><img class="jp-relatedposts-post-img" src="./PLL=Phase Locked Loop_files/ps2kb_cover.jpg" width="350" alt=""></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://karooza.net/how-to-interface-a-ps2-keyboard" title="How to interface a PS2 keyboard" data-origin="1759" data-position="0">How to interface a PS2 keyboard</a></h4><p class="jp-relatedposts-post-excerpt">In this post I will discuss some of the basic concepts needed to add PS2 type keyboard support to your next project. For the examples I will be using an Arduino Uno, but the idea is to generally keep the post generic so that it's also useful on the platform…</p><time class="jp-relatedposts-post-date" datetime="30/06/2019" style="display: block;">30/06/2019</time><p class="jp-relatedposts-post-context">In "Arduino"</p></div><div class="jp-relatedposts-post jp-relatedposts-post1 jp-relatedposts-post-thumbs" data-post-id="1919" data-post-format="false"><a class="jp-relatedposts-post-a" href="http://karooza.net/building-a-uavcan-node" title="Building a UAVCAN Node" data-origin="1759" data-position="1"><img class="jp-relatedposts-post-img" src="./PLL=Phase Locked Loop_files/UAVCAN_Node_Cover.jpg" width="350" alt=""></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://karooza.net/building-a-uavcan-node" title="Building a UAVCAN Node" data-origin="1759" data-position="1">Building a UAVCAN Node</a></h4><p class="jp-relatedposts-post-excerpt">Using CAN bus to connect peripherals on a drone has always sounded like a good idea. It is well known for it's robustness and efficiency in connecting electrical control units in cars together, so it should also be well suited for drones. Flight controllers like the Pixhawk and Cube have…</p><time class="jp-relatedposts-post-date" datetime="17/05/2020" style="display: block;">17/05/2020</time><p class="jp-relatedposts-post-context">In "UAV"</p></div><div class="jp-relatedposts-post jp-relatedposts-post2 jp-relatedposts-post-thumbs" data-post-id="2793" data-post-format="false"><a class="jp-relatedposts-post-a" href="http://karooza.net/running-arduboy-on-an-arduino-nano" title="Running Arduboy on an Arduino Nano" data-origin="1759" data-position="2"><img class="jp-relatedposts-post-img" src="./PLL=Phase Locked Loop_files/Arduboy_Feature.jpg" width="350" alt="Arduboy"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://karooza.net/running-arduboy-on-an-arduino-nano" title="Running Arduboy on an Arduino Nano" data-origin="1759" data-position="2">Running Arduboy on an Arduino Nano</a></h4><p class="jp-relatedposts-post-excerpt">A couple of months back I stumbled upon Arduboy, a mini handheld game console which draws inspiration from the original Gameboy by Nintendo. As you can deduce from its name it is powered by Arduino. What this means is that it uses an Arduino compatible chip (the ATMega32u4) and can…</p><time class="jp-relatedposts-post-date" datetime="18/01/2021" style="display: block;">18/01/2021</time><p class="jp-relatedposts-post-context">In "Arduino"</p></div></div></div>			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+			</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+					<nav class="navigation post-navigation clearfix" role="navigation">
+			<h1 class="screen-reader-text">Post navigation</h1>
+			<div class="nav-links">
+				<div class="nav-previous button"><a href="http://karooza.net/fpv-racer-build" rel="prev"><span class="meta-nav">←</span>&nbsp;FPV Racer Build</a></div><div class="nav-next button"><a href="http://karooza.net/multi-protocol-module-for-rc-models" rel="next">Multi-protocol Module for RC Models&nbsp;<span class="meta-nav">→</span></a></div>			</div><!-- .nav-links -->
+		</nav><!-- .navigation -->
+		
+			
+<div id="comments" class="comments-area">
+
+	
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://karooza.net/basic-signal-generator#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="http://karooza.net/wp-login.php?redirect_to=http%3A%2F%2Fkarooza.net%2Fbasic-signal-generator">logged in</a> to post a comment.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+<div id="secondary" class="widget-area" role="complementary">
+	<aside id="tag_cloud-5" class="widget widget_tag_cloud"><h3 class="widget-title"><span>Tags</span></h3><div class="tagcloud"><a href="http://karooza.net/tag/imu" class="tag-cloud-link tag-link-57 tag-link-position-1" style="font-size: 8pt;" aria-label="#IMU (1 item)">#IMU</a>
+<a href="http://karooza.net/tag/mpu6050" class="tag-cloud-link tag-link-56 tag-link-position-2" style="font-size: 8pt;" aria-label="#MPU6050 (1 item)">#MPU6050</a>
+<a href="http://karooza.net/tag/3d" class="tag-cloud-link tag-link-16 tag-link-position-3" style="font-size: 18.181818181818pt;" aria-label="3D (4 items)">3D</a>
+<a href="http://karooza.net/tag/486" class="tag-cloud-link tag-link-17 tag-link-position-4" style="font-size: 8pt;" aria-label="486 (1 item)">486</a>
+<a href="http://karooza.net/tag/accelerometer" class="tag-cloud-link tag-link-58 tag-link-position-5" style="font-size: 8pt;" aria-label="accelerometer (1 item)">accelerometer</a>
+<a href="http://karooza.net/tag/adf4351" class="tag-cloud-link tag-link-61 tag-link-position-6" style="font-size: 8pt;" aria-label="ADF4351 (1 item)">ADF4351</a>
+<a href="http://karooza.net/tag/arduino" class="tag-cloud-link tag-link-53 tag-link-position-7" style="font-size: 22pt;" aria-label="Arduino (6 items)">Arduino</a>
+<a href="http://karooza.net/tag/atmega328p" class="tag-cloud-link tag-link-68 tag-link-position-8" style="font-size: 12.581818181818pt;" aria-label="atmega328p (2 items)">atmega328p</a>
+<a href="http://karooza.net/tag/beplanning" class="tag-cloud-link tag-link-18 tag-link-position-9" style="font-size: 8pt;" aria-label="Beplanning (1 item)">Beplanning</a>
+<a href="http://karooza.net/tag/bitbucket" class="tag-cloud-link tag-link-19 tag-link-position-10" style="font-size: 8pt;" aria-label="Bitbucket (1 item)">Bitbucket</a>
+<a href="http://karooza.net/tag/blue-pill" class="tag-cloud-link tag-link-55 tag-link-position-11" style="font-size: 8pt;" aria-label="Blue pill (1 item)">Blue pill</a>
+<a href="http://karooza.net/tag/broken-sword" class="tag-cloud-link tag-link-20 tag-link-position-12" style="font-size: 8pt;" aria-label="Broken Sword (1 item)">Broken Sword</a>
+<a href="http://karooza.net/tag/complimentary-filter" class="tag-cloud-link tag-link-60 tag-link-position-13" style="font-size: 8pt;" aria-label="complimentary filter (1 item)">complimentary filter</a>
+<a href="http://karooza.net/tag/detroit" class="tag-cloud-link tag-link-22 tag-link-position-14" style="font-size: 8pt;" aria-label="Detroit (1 item)">Detroit</a>
+<a href="http://karooza.net/tag/drone" class="tag-cloud-link tag-link-23 tag-link-position-15" style="font-size: 8pt;" aria-label="Drone (1 item)">Drone</a>
+<a href="http://karooza.net/tag/duke-nukem-3d" class="tag-cloud-link tag-link-24 tag-link-position-16" style="font-size: 8pt;" aria-label="Duke Nukem 3D (1 item)">Duke Nukem 3D</a>
+<a href="http://karooza.net/tag/eclipse" class="tag-cloud-link tag-link-25 tag-link-position-17" style="font-size: 12.581818181818pt;" aria-label="Eclipse (2 items)">Eclipse</a>
+<a href="http://karooza.net/tag/esp8266" class="tag-cloud-link tag-link-26 tag-link-position-18" style="font-size: 8pt;" aria-label="ESP8266 (1 item)">ESP8266</a>
+<a href="http://karooza.net/tag/gyroscope" class="tag-cloud-link tag-link-59 tag-link-position-19" style="font-size: 8pt;" aria-label="gyroscope (1 item)">gyroscope</a>
+<a href="http://karooza.net/tag/leer" class="tag-cloud-link tag-link-28 tag-link-position-20" style="font-size: 8pt;" aria-label="Leer (1 item)">Leer</a>
+<a href="http://karooza.net/tag/linux" class="tag-cloud-link tag-link-29 tag-link-position-21" style="font-size: 8pt;" aria-label="Linux (1 item)">Linux</a>
+<a href="http://karooza.net/tag/makefile" class="tag-cloud-link tag-link-30 tag-link-position-22" style="font-size: 8pt;" aria-label="makefile (1 item)">makefile</a>
+<a href="http://karooza.net/tag/matrikse" class="tag-cloud-link tag-link-31 tag-link-position-23" style="font-size: 8pt;" aria-label="Matrikse (1 item)">Matrikse</a>
+<a href="http://karooza.net/tag/mingw" class="tag-cloud-link tag-link-32 tag-link-position-24" style="font-size: 8pt;" aria-label="MinGW (1 item)">MinGW</a>
+<a href="http://karooza.net/tag/nexus-5x" class="tag-cloud-link tag-link-33 tag-link-position-25" style="font-size: 8pt;" aria-label="Nexus 5X (1 item)">Nexus 5X</a>
+<a href="http://karooza.net/tag/nodemcu" class="tag-cloud-link tag-link-34 tag-link-position-26" style="font-size: 8pt;" aria-label="NodeMCU (1 item)">NodeMCU</a>
+<a href="http://karooza.net/tag/openttd" class="tag-cloud-link tag-link-36 tag-link-position-27" style="font-size: 8pt;" aria-label="OpenTTD (1 item)">OpenTTD</a>
+<a href="http://karooza.net/tag/pentium" class="tag-cloud-link tag-link-37 tag-link-position-28" style="font-size: 8pt;" aria-label="Pentium (1 item)">Pentium</a>
+<a href="http://karooza.net/tag/pxfmini" class="tag-cloud-link tag-link-38 tag-link-position-29" style="font-size: 8pt;" aria-label="PXFMini (1 item)">PXFMini</a>
+<a href="http://karooza.net/tag/raspberry-pi" class="tag-cloud-link tag-link-95 tag-link-position-30" style="font-size: 15.636363636364pt;" aria-label="Raspberry Pi (3 items)">Raspberry Pi</a>
+<a href="http://karooza.net/tag/retropie" class="tag-cloud-link tag-link-51 tag-link-position-31" style="font-size: 15.636363636364pt;" aria-label="Retropie (3 items)">Retropie</a>
+<a href="http://karooza.net/tag/self-balancing-robot" class="tag-cloud-link tag-link-104 tag-link-position-32" style="font-size: 12.581818181818pt;" aria-label="Self-balancing robot (2 items)">Self-balancing robot</a>
+<a href="http://karooza.net/tag/selfoon" class="tag-cloud-link tag-link-39 tag-link-position-33" style="font-size: 8pt;" aria-label="Selfoon (1 item)">Selfoon</a>
+<a href="http://karooza.net/tag/signal-generator" class="tag-cloud-link tag-link-62 tag-link-position-34" style="font-size: 8pt;" aria-label="Signal Generator (1 item)">Signal Generator</a>
+<a href="http://karooza.net/tag/starcraft" class="tag-cloud-link tag-link-40 tag-link-position-35" style="font-size: 8pt;" aria-label="Starcraft (1 item)">Starcraft</a>
+<a href="http://karooza.net/tag/stm32duino" class="tag-cloud-link tag-link-54 tag-link-position-36" style="font-size: 8pt;" aria-label="STM32duino (1 item)">STM32duino</a>
+<a href="http://karooza.net/tag/stm32f1" class="tag-cloud-link tag-link-52 tag-link-position-37" style="font-size: 12.581818181818pt;" aria-label="STM32F1 (2 items)">STM32F1</a>
+<a href="http://karooza.net/tag/tomb-raider" class="tag-cloud-link tag-link-41 tag-link-position-38" style="font-size: 8pt;" aria-label="Tomb Raider (1 item)">Tomb Raider</a>
+<a href="http://karooza.net/tag/toolchain" class="tag-cloud-link tag-link-42 tag-link-position-39" style="font-size: 18.181818181818pt;" aria-label="Toolchain (4 items)">Toolchain</a>
+<a href="http://karooza.net/tag/transport-tycoon" class="tag-cloud-link tag-link-43 tag-link-position-40" style="font-size: 8pt;" aria-label="Transport Tycoon (1 item)">Transport Tycoon</a>
+<a href="http://karooza.net/tag/tutoriaal" class="tag-cloud-link tag-link-44 tag-link-position-41" style="font-size: 12.581818181818pt;" aria-label="Tutoriaal (2 items)">Tutoriaal</a>
+<a href="http://karooza.net/tag/tutorial" class="tag-cloud-link tag-link-117 tag-link-position-42" style="font-size: 12.581818181818pt;" aria-label="Tutorial (2 items)">Tutorial</a>
+<a href="http://karooza.net/tag/usb-mikroskoop" class="tag-cloud-link tag-link-45 tag-link-position-43" style="font-size: 8pt;" aria-label="USB Mikroskoop (1 item)">USB Mikroskoop</a>
+<a href="http://karooza.net/tag/vergrootglas" class="tag-cloud-link tag-link-46 tag-link-position-44" style="font-size: 8pt;" aria-label="Vergrootglas (1 item)">Vergrootglas</a>
+<a href="http://karooza.net/tag/visual-studio" class="tag-cloud-link tag-link-47 tag-link-position-45" style="font-size: 12.581818181818pt;" aria-label="Visual Studio (2 items)">Visual Studio</a></div>
+</aside></div><!-- #secondary -->
+
+	</div><!-- #content -->
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="container">
+			<div class="site-info col-md-6 col-sm-6">
+
+				<a href="http://wordpress.org/" rel="nofollow">
+					Proudly powered by WordPress				</a>
+				<span class="sep"> | </span>
+				Theme: <a href="http://themeisle.com/themes/flymag/" rel="nofollow">FlyMag</a> by Themeisle.			</div><!-- .site-info -->
+					</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/photon.min.js.Без названия" id="jetpack-photon-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"http:\/\/karooza.net\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/scripts.js(1).Без названия" id="contact-form-7-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/api.js.Без названия" id="google-recaptcha-js"></script>
+<script type="text/javascript" id="wpcf7-recaptcha-js-extra">
+/* <![CDATA[ */
+var wpcf7_recaptcha = {"sitekey":"6LeePsgZAAAAAKQ-FzTeHWOI6vfLbrkDbV8WuHfv","actions":{"homepage":"homepage","contactform":"contactform"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/script.js.Без названия" id="wpcf7-recaptcha-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/skip-link-focus-fix.js.Без названия" id="flymag-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/comment-reply.min.js.Без названия" id="comment-reply-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/imagesloaded.min.js.Без названия" id="imagesloaded-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/masonry.min.js.Без названия" id="masonry-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.masonry.min.js.Без названия" id="jquery-masonry-js"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_params = {"apply_images":"1","apply_videos":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.lazyloadxt.extra.min.js.Без названия" id="jquery-lazyloadxt-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.lazyloadxt.srcset.min.js.Без названия" id="jquery-lazyloadxt-srcset-js"></script>
+<script type="text/javascript" id="jquery-lazyloadxt-extend-js-extra">
+/* <![CDATA[ */
+var a3_lazyload_extend_params = {"edgeY":"0","horizontal_container_classnames":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jquery.lazyloadxt.extend.js.Без названия" id="jquery-lazyloadxt-extend-js"></script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/wp-embed.min.js.Без названия" id="wp-embed-js"></script>
+<script type="text/javascript" id="jetpack-carousel-js-extra">
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"http:\/\/karooza.net\/wp-admin\/admin-ajax.php","nonce":"b0280bb284","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"1","require_name_email":"1","login_url":"http:\/\/karooza.net\/wp-login.php?redirect_to=http%3A%2F%2Fkarooza.net%2Fbasic-signal-generator","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<p id=\"jp-carousel-commenting-as\">You must be <a href=\"#\" class=\"jp-carousel-comment-login\">logged in<\/a> to post a comment.<\/p>"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./PLL=Phase Locked Loop_files/jetpack-carousel.min.js.Без названия" id="jetpack-carousel-js"></script>
+<script src="./PLL=Phase Locked Loop_files/e-202107.js.Без названия" defer=""></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:9.4',blog:'148071864',post:'1759',tz:'0',srv:'karooza.net'} ]);
+	_stq.push([ 'clickTrackerInit', '148071864', '1759' ]);
+</script>
+
+
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe src="./PLL=Phase Locked Loop_files/anchor.html" width="256" height="60" role="presentation" name="a-zc229msuezv" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./PLL=Phase Locked Loop_files/saved_resource.html"></iframe></div><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./PLL=Phase Locked Loop_files/translate_24dp.png" width="20" height="20" alt="Google Переводчик"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Исходный текст</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Предложить лучший вариант перевода</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><img src="./PLL=Phase Locked Loop_files/g.gif" alt=":)" width="6" height="5" id="wpstats"><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body><app-content ng-version="11.1.0"></app-content></html>

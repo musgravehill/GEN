@@ -7,12 +7,21 @@
 
 //****************************************************************************
 MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN, const uint8_t MAX2870_pin_LD) {
-  delay(20);
-
   pin_LE = MAX2870_pin_LE;
   pin_CE = MAX2870_pin_CE;
   pin_RF_EN = MAX2870_pin_RF_EN;
   pin_LD = MAX2870_pin_LD;
+}
+
+void MAX2870::start() {
+  delay(100);
+  
+  SPI.setClockDivider(SPI_CLOCK_DIV16); //16MHz system clock \ 16 = 1MHz SPI
+  SPI.setDataMode(SPI_MODE0); //CPOL = CPHA = 0, 8 bits per frame
+  SPI.setBitOrder(MSBFIRST);
+  SPI.begin();
+
+  delay(50);
 
   pinMode (pin_LE, OUTPUT);
   digitalWrite(pin_LE, 1);
@@ -24,12 +33,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 
   pinMode (pin_LD, INPUT);
 
-  SPI.setClockDivider(SPI_CLOCK_DIV16); //16MHz system clock \ 16 = 1MHz SPI
-  SPI.setDataMode(SPI_MODE0); //CPOL = CPHA = 0, 8 bits per frame
-  SPI.setBitOrder(MSBFIRST);
-  SPI.begin();
-
-  delay(20);
+  delay(100);
 
   // fractional-N mode  see registers at MAX2870-all.png
 
@@ -43,9 +47,10 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 
   setConfig();
 
-  delay(20); //see datasheed: init  & powerUp
+  delay(100); //see datasheed: init  & powerUp
 
   setConfig();
+
 }
 
 
@@ -143,10 +148,10 @@ void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
 
 
 void MAX2870::setActive(bool isOn) {
-  reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown 
+  reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown
   reg4.bits.sdldo = (isOn ? B0 : B1);
   reg4.bits.sddiv = (isOn ? B0 : B1);
-  reg4.bits.sdref = (isOn ? B0 : B1); 
+  reg4.bits.sdref = (isOn ? B0 : B1);
   //reg4.bits.sdvco = !isOn;  2871 only
   //reg5.bits.sdpll = !isOn;  2871 only
 
