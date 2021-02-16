@@ -30,6 +30,7 @@ void MAX2870::start() {
   digitalWrite(pin_CE, 1);
 
   pinMode (pin_RF_EN, OUTPUT);
+  digitalWrite(pin_RF_E, 0); //disable rf out
 
   pinMode (pin_LD, INPUT);
 
@@ -50,6 +51,8 @@ void MAX2870::start() {
   delay(100); //see datasheed: init  & powerUp
 
   setConfig();
+
+  delay(50); //see datasheed: init  & powerUp
 
 }
 

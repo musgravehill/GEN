@@ -39,9 +39,9 @@ void setup() {
   Serial.println("Begin");
   
   MAX2870_my.start();
-  //MAX2870_my.setActive(true); 
-  //MAX2870_my.setPFD(MAX2870_reference_frequency_mhz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector comparison frequency
-  //MAX2870_my.set_OUT_A_frequency(433.92);  
+  MAX2870_my.setActive(true); 
+  MAX2870_my.setPFD(MAX2870_reference_frequency_mhz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector comparison frequency
+  MAX2870_my.set_OUT_A_frequency(433.92);  
 
   //double real_freq = MAX2870_my.get_OUT_A_frequency(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
  // Serial.println(real_freq,6);
