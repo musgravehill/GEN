@@ -98,7 +98,7 @@ void MAX2870::set_RF_OUT_A(double freq) {
   reg1.bits.m = m;
   reg4.bits.diva = diva;
 
-  reg3.bits.mutedel = 1;
+  //reg3.bits.mutedel = 1;  2871 only
 
   setConfig();
   f_rfouta = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
@@ -146,8 +146,8 @@ void MAX2870::powerOn(bool pwr) {
   reg4.bits.sdldo = !pwr;
   reg4.bits.sddiv = !pwr;
   reg4.bits.sdref = !pwr;
-  reg4.bits.sdvco = !pwr;
-  reg5.bits.sdpll = !pwr;
+  //reg4.bits.sdvco = !pwr;  2871 only
+  //reg5.bits.sdpll = !pwr;  2871 only
 
   setConfig();
 }

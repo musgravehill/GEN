@@ -37,8 +37,8 @@ void setup() {
   lcd.setCursor(18, 0);
   lcd.print("Hz");
 
-  lcd.setCursor(12, 1);
-  lcd.print("STP 100k");
+  lcd.setCursor(13, 1);
+  lcd.print("<> 100k");
 
   lcd.setCursor(12, 2);
   lcd.print("LowNoise");

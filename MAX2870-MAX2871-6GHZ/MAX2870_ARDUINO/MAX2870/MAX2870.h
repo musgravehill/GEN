@@ -113,7 +113,7 @@ class MAX2870 {
         uint32_t p            : 12;
         uint32_t cpt          : 2;
         uint32_t cpl          : 2;
-        uint32_t reserved1    : 1;
+        uint32_t cpoc         : 1;
       } bits;
     };
 
@@ -156,10 +156,10 @@ class MAX2870 {
         uint32_t addr      : 3;
         uint32_t cdiv      : 12;
         uint32_t cdm       : 2;
-        uint32_t mutedel   : 1;
-        uint32_t csm       : 1;
-        uint32_t reserved1 : 5;
-        uint32_t vas_temp  : 1;
+        uint32_t reserved1 : 1;
+        uint32_t reserved2 : 1;
+        uint32_t reserved3 : 5;
+        uint32_t retune    : 1;
         uint32_t vas_shdn  : 1;
         uint32_t vco       : 6;
       } bits;
@@ -174,22 +174,22 @@ class MAX2870 {
       //Access individual bits
       struct BitField_s
       {
-        uint32_t addr       : 3;
-        uint32_t apwr       : 2;
-        uint32_t rfa_en     : 1;
-        uint32_t bpwr       : 2;
-        uint32_t rfb_en     : 1;
-        uint32_t bdiv       : 1;
-        uint32_t mtld       : 1;
-        uint32_t sdvco      : 1;
-        uint32_t bs         : 8;
-        uint32_t diva       : 3;
-        uint32_t fb         : 1;
-        uint32_t bs2        : 2;
-        uint32_t sdref      : 1;
-        uint32_t sddiv      : 1;
-        uint32_t sdldo      : 1;
-        uint32_t reservered1: 3;
+        uint32_t addr        : 3;
+        uint32_t apwr        : 2;
+        uint32_t rfa_en      : 1;
+        uint32_t bpwr        : 2;
+        uint32_t rfb_en      : 1;
+        uint32_t bdiv        : 1;
+        uint32_t reservered1 : 1;
+        uint32_t reservered2 : 1;
+        uint32_t bs          : 8;
+        uint32_t diva        : 3;
+        uint32_t fb          : 1;
+        uint32_t bs2         : 2;
+        uint32_t sdref       : 1;
+        uint32_t sddiv       : 1;
+        uint32_t sdldo       : 1;
+        uint32_t reservered3 : 3;
       } bits;
     };
 
@@ -203,17 +203,12 @@ class MAX2870 {
       struct BitField_s
       {
         uint32_t addr      : 3;
-        uint32_t adcm      : 3;
-        uint32_t adcs      : 1;
-        uint32_t reserved1 : 11;
-        uint32_t mux       : 1;
+        uint32_t reserved1 : 15;         
+        uint32_t mx3       : 1;
         uint32_t reserved2 : 3;
         uint32_t ld        : 2;
-        uint32_t f01       : 1;
-        uint32_t sdpll     : 1;
-        uint32_t reserved3 : 3;
-        uint32_t vas_dly   : 2;
-        uint32_t reserved4 : 1;
+        uint32_t f01       : 1;      
+        uint32_t reserved4 : 7;
 
       } bits;
     };
