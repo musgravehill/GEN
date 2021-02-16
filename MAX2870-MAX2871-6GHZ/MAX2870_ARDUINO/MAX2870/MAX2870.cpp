@@ -32,13 +32,13 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 
   delay(20);
 
-  reg0.all = 0x007d0000;
-  reg1.all = 0x2000fff9;
-  reg2.all = 0x00004042;
-  reg3.all = 0x0000000b;
-  reg4.all = 0x6180b23c;
+  reg0.all = 0x0022B568;
+  reg1.all = 0x2000FD01;
+  reg2.all = 0x80008042;
+  reg3.all = 0x0000000B;
+  reg4.all = 0x63BE823C;
   reg5.all = 0x00400005;
-  reg6.all = 0x00000000;
+  reg6.all = 0x00000006;
 
   setConfig();
 
@@ -105,11 +105,11 @@ void MAX2870::set_RF_OUT_A(double freq) {
 }
 
 void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
-  // fPFD = fREF * [(1 + DBR)/(R * (1 + RDIV2))]  
+  // fPFD = fREF * [(1 + DBR)/(R * (1 + RDIV2))]
   // DBR=0 RDIV2=0
   // fPFD = fREF * [1/R] = fREF / R
   //
-  
+
   f_pfd = ref_in / rdiv;
 
   if (f_pfd > 32.0) {
