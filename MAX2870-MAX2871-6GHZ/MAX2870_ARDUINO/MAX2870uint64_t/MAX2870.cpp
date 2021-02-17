@@ -91,16 +91,53 @@ void MAX2870::setConfig() {
 void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
+  m = 4000;
 
-  while ( (float(freqHz) / 1000000.0) * powf(2, diva) < 3000.0)  {
-    diva = diva + 1;
+  if (freqHz >= 3000000000) {
+    diva = B000;
   }
+  else if (1500000000 <= freqHz && freqHz < 3000000000) {
+    diva = B001;
+  }
+  else if (750000000 <= freqHz && freqHz < 1500000000) {
+    diva = B010;
+  }
+  else if (375000000 <= freqHz && freqHz < 750000000) {
+    diva = B011;
+  }
+  else if (187500000 <= freqHz && freqHz < 375000000) {
+    diva = B100;
+  }
+  else if (93750000 <= freqHz && freqHz < 187500000) {
+    diva = B101;
+  }
+  else if (46875000 <= freqHz && freqHz < 93750000) {
+    diva = B110;
+  }
+  else {
+    diva = B111;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   pll_coefficient = (float(freqHz) / float(f_pfd))  * powf(2, diva) ;
   n = floor(pll_coefficient);
 
   fractional = pll_coefficient - n;
-  m = 4000;
+
   frac = round(m * fractional);
+
 
   reg0.bits.frac = frac;
   reg0.bits.n = n;
@@ -125,7 +162,7 @@ void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   Serial.println(reg4.bits.diva, DEC);
 
   Serial.print("f_out_A=");
-  Serial.println(float(f_out_A/1000));
+  Serial.println(float(f_out_A / 1000));
 
 
 }
