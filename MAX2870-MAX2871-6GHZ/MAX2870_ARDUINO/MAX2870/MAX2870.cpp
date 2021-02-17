@@ -6,11 +6,12 @@
 #include <stdio.h>
 
 //****************************************************************************
-MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN, const uint8_t MAX2870_pin_LD) {
+//const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN,
+MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_LD) {
   pin_LE = MAX2870_pin_LE;
-  pin_CE = MAX2870_pin_CE;
-  pin_RF_EN = MAX2870_pin_RF_EN;
   pin_LD = MAX2870_pin_LD;
+  //pin_CE = MAX2870_pin_CE;
+  //pin_RF_EN = MAX2870_pin_RF_EN;
 }
 
 void MAX2870::start() {
@@ -24,15 +25,15 @@ void MAX2870::start() {
   delay(50);
 
   pinMode (pin_LE, OUTPUT);
-  digitalWrite(pin_LE, 1);
-
-  pinMode (pin_CE, OUTPUT);
-  digitalWrite(pin_CE, 1);
-
-  pinMode (pin_RF_EN, OUTPUT);
-  digitalWrite(pin_RF_EN, 0); //disable rf_out until fully start
+  digitalWrite(pin_LE, 1);  
 
   pinMode (pin_LD, INPUT);
+
+  //pinMode (pin_CE, OUTPUT);
+  //digitalWrite(pin_CE, 1);
+
+  //pinMode (pin_RF_EN, OUTPUT);
+  //digitalWrite(pin_RF_EN, 0); //disable rf_out until fully start
 
   delay(100);
 
@@ -54,7 +55,7 @@ void MAX2870::start() {
 
   delay(50); //see datasheed: init  & powerUp
 
-  setActive(true);
+  //setActive(true); always active
 }
 
 
@@ -149,7 +150,7 @@ void MAX2870::setPFD(const double referenceFreqMHz, const uint16_t rdiv) {
   setConfig();
 }
 
-
+/*
 void MAX2870::setActive(bool isOn) {
   reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown
   reg4.bits.sdldo = (isOn ? B0 : B1);
@@ -160,8 +161,9 @@ void MAX2870::setActive(bool isOn) {
 
   setConfig();
 
-  digitalWrite(pin_RF_EN, (isOn ? 1 : 0));
+  //digitalWrite(pin_RF_EN, (isOn ? 1 : 0));
 }
+*/
 
 double MAX2870::getPFD() {
   return f_pfd;

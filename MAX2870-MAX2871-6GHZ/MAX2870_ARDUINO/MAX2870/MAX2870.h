@@ -129,7 +129,8 @@ class MAX2870 {
   public:
 
     ///@brief MAX2870 Constructor
-    MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN, const uint8_t MAX2870_pin_LD);
+    //const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN, 
+    MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_LD);
 
     //MAX2870 Registers
     enum Registers_e
@@ -301,7 +302,7 @@ class MAX2870 {
     void setConfig();
 
     void start();
-    void setActive(bool isOn);
+    //void setActive(bool isOn);  always active 
     void setPFD(double referenceFreqMHz, uint16_t rdiv);
     void set_frequency_OUT_A(double freqMHz);
     void set_power_OUT_A();
@@ -337,8 +338,8 @@ class MAX2870 {
     double f_out_A; //frequency at OUT A
 
     uint8_t pin_LE;
-    uint8_t pin_CE; //Chip Enable. 0 = powerDown
-    uint8_t pin_RF_EN;  //RF Output Enable. 0 = powerDown
+    //uint8_t pin_CE; //Chip Enable. 0 = powerDown
+    //uint8_t pin_RF_EN;  //RF Output Enable. 0 = powerDown
     uint8_t pin_LD; // OUT  1=lockDetect ok.
 };
 

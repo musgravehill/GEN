@@ -7,51 +7,64 @@
   String hex = String(long1, HEX) + String(long2, HEX); // six octets
 */
 
+//===========================================MAX2870=============================================================
+#define MAX2870_pin_LE 9                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
+#define MAX2870_pin_LD 8                      //input for Lock detect 
+uint64_t MAX2870_OUT_A_frequency_target = 433920000; //Hz   store F for dec\inc dF
+uint64_t MAX2870_OUT_A_frequency_real = 433920480; //Hz  store real F from MAX2870 due to fraction-mode. I wish 433920000, but chip set F = 433920480
+
+uint32_t MAX2870_step[6] = {
+  1000,
+  10000,
+  100000,
+  1000000,
+  10000000,
+  100000000
+};
+uint8_t MAX2870_step_idx = 3;
+String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};
 
 
+//========================================== INTERFACE ==========================================================
+#define ENCODER_pin_A 2 //Пин прерывания
+#define ENCODER_pin_B 3 //Любой другой пин 
+
+//Периодически проверять ENCODER_interrupt_delta и делать действтия,потом ENCODER_interrupt_delta=0 и снова ждем вращения
+//в прерываниях делать дела нельзя - слишком долго
+volatile int ENCODER_interrupt_delta = 0;       //Счетчик оборотов.
+volatile int ENCODER_interrupt_state = 0;       // Переменная хранящая статус вращения
+volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хранящие состояние пина, для экономии времени
+volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
+
+#define ENCODER_button 4
+#define BTN_1 5
+#define BTN_2 6
+#define BTN_3 7
+#define BTN_4 8
+
+
+//=====================================1602 LCD i2c==============================================================
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 20, 4);
 
-LiquidCrystal_I2C lcd(0x27, 20, 4); // set the LCD address to 0x27 for a 20 chars and 4 line display
+
+//================================== TIMEMACHINE =================================================================
+uint32_t TIMEMACHINE_next_101ms = 0L;
+uint32_t TIMEMACHINE_next_311ms = 0L;
+//uint32_t TIMEMACHINE_next_2000ms = 0L;
+
+//=======================================SYS=======================================================================
+volatile boolean SYS_isNeedProcessConfig = true;
+
 
 void setup() {
-  uint64_t ADF4351_frequency = 5123456789;  //uint_32t max 4294967295
 
-  uint16_t frq_GHz = ADF4351_frequency / 1000000000;
-  uint16_t frq_MHz = (ADF4351_frequency % 1000000000) / 1000000;
-  uint16_t frq_kHz = (ADF4351_frequency % 1000000) / 1000;
-  uint16_t frq_Hz = (ADF4351_frequency % 1000);
+  MONITOR_init();
 
-  lcd.init();
-  lcd.backlight();
 
-  lcd.setCursor(0, 0);
-  lcd.print(frq_GHz, DEC);
-  lcd.setCursor(2, 0);
-  lcd.print(frq_MHz, DEC);
-  lcd.setCursor(6, 0);
-  lcd.print(frq_kHz, DEC);
-  lcd.setCursor(10, 0);
-  lcd.print(frq_Hz, DEC);    
-  
-  lcd.setCursor(18, 0);
-  lcd.print("Hz");
 
-  lcd.setCursor(13, 1);
-  lcd.print("<> 100k");
 
-  lcd.setCursor(12, 2);
-  lcd.print("LowNoise");
-
-  lcd.setCursor(12, 3);
-  lcd.print("PA +5dBm");
-
-  lcd.setCursor(0, 2);
-  lcd.print("A0=1023");
-  lcd.setCursor(0, 3);
-  lcd.print("A1=1023");
-
-   
 }
 
 
