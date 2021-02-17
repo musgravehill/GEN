@@ -29,7 +29,7 @@ My board doesnt have MAX2870_pin_RF_EN. And CE pin I hard connected to 3v3. My A
 #include <SPI.h>
 #include "MAX2870.h" //is .h auto-connect .cpp ?  #include "MAX2870.cpp" cause error
 
-#define MAX2870_reference_frequency_MHz 100.0  //reference frequency 25-50-100MHz quartz
+#define MAX2870_reference_frequency_Hz 100000000UL  //reference frequency 25-50-100MHz quartz  !!!! NOTE UL= only 4,294,967,295 == 4Ghz 294Mhz 967kHz 295Hz
 #define MAX2870_R_divider 2                   //R divider to set phase/frequency detector comparison frequency. If reference oscill is 100MHZ, R=2 because in Fraction_mode F_PFD 50MHz max!
 #define MAX2870_pin_LE 9                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
 #define MAX2870_pin_LD 8                      //input for Lock detect  
@@ -44,7 +44,7 @@ void setup() {
   Serial.println("Begin");
 
   MAX2870_my.start();
-  MAX2870_my.setPFD(MAX2870_reference_frequency_MHz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector frequency
+  MAX2870_my.setPFD(MAX2870_reference_frequency_Hz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector frequency
   MAX2870_my.set_frequency_OUT_A(433.92);
 
   MAX2870_my.outPower_idx = 2; //+2dBm

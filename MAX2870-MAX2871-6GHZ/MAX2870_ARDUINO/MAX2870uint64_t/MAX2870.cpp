@@ -25,7 +25,7 @@ void MAX2870::start() {
   delay(50);
 
   pinMode (pin_LE, OUTPUT);
-  digitalWrite(pin_LE, 1);  
+  digitalWrite(pin_LE, 1);
 
   pinMode (pin_LD, INPUT);
 
@@ -114,28 +114,29 @@ void MAX2870::set_frequency_OUT_A(double freqMHz) {
   f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
 }
 
-void MAX2870::setPFD(const double referenceFreqMHz, const uint16_t rdiv) {
-  // fPFD = fREF * [(1 + DBR)/(R * (1 + RDIV2))]
+void MAX2870::setPFD(const uint64_t referenceFreqHz, const uint16_t rdiv) {
+  // fPFD = (fREF/1M) * [(1 + DBR)/(R * (1 + RDIV2))]
   // DBR=0 RDIV2=0
   // fPFD = fREF * [1/R] = fREF / R
   //
 
-  f_pfd = referenceFreqMHz / rdiv;
+  f_pfd = referenceFreqHz / rdiv;
 
-  if (f_pfd > 32.0) {
+  if (f_pfd > 32000000UL) {
     reg2.bits.lds = 1;
   }
   else {
     reg2.bits.lds = 0;
   }
 
-  reg3.bits.cdiv = round(f_pfd / 0.10);
+  reg3.bits.cdiv = f_pfd / 100000UL; // round  (fHz/E6)/0.10 === /1 000 00    !!!E5
 
   reg2.bits.dbr = 0;
   reg2.bits.rdiv2 = 0;
   reg2.bits.r = rdiv;
 
-  uint32_t bs = f_pfd * 20;
+  uint32_t bs = 20 * (f_pfd / 1000000UL);
+
 
   if (bs > 1023) {
     bs = 1023;
@@ -158,10 +159,14 @@ void MAX2870::setPFD(const double referenceFreqMHz, const uint16_t rdiv) {
   Serial.print("bs=");
   Serial.println(bs, DEC);
 
+  
+
+
+
 }
 
 /*
-void MAX2870::setActive(bool isOn) {
+  void MAX2870::setActive(bool isOn) {
   reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown
   reg4.bits.sdldo = (isOn ? B0 : B1);
   reg4.bits.sddiv = (isOn ? B0 : B1);
@@ -172,10 +177,10 @@ void MAX2870::setActive(bool isOn) {
   setConfig();
 
   //digitalWrite(pin_RF_EN, (isOn ? 1 : 0));
-}
+  }
 */
 
-double MAX2870::getPFD() {
+uint64_t MAX2870::getPFD() {
   return f_pfd;
 }
 
