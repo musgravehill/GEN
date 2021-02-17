@@ -11,7 +11,7 @@
 #define MAX2870_pin_LE 9                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
 #define MAX2870_pin_LD 8                      //input for Lock detect 
 uint64_t MAX2870_OUT_A_frequency_target = 433920000; //Hz   store F for dec\inc dF
-uint64_t MAX2870_OUT_A_frequency_real = 433030020; //Hz  store real F from MAX2870 due to fraction-mode. I wish 433920000, but chip set F = 433920480
+uint64_t MAX2870_OUT_A_frequency_real = 433000000; //Hz  store real F from MAX2870 due to fraction-mode. I wish 433920000, but chip set F = 433920480
 
 uint32_t MAX2870_step[6] = {
   1000,
@@ -22,7 +22,7 @@ uint32_t MAX2870_step[6] = {
   100000000
 };
 uint8_t MAX2870_step_idx = 5;
-String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};  
+String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};
 
 
 //========================================== INTERFACE ==========================================================
@@ -37,7 +37,9 @@ volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хран
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
 #define ENCODER_button 4
-#define BTN_ANALOG_IN A3
+#define BTN_ANALOG_IN A2 
+#define PORT_ANALOG_IN_0 A0
+#define PORT_ANALOG_IN_1 A1
 
 
 
@@ -60,10 +62,10 @@ void setup() {
   MONITOR_init();
 
   //MAX init
-  
+
   ENCODER_init();
   BUTTON_init();
-  // Serial.begin(9600);
+  Serial.begin(9600);
 }
 
 

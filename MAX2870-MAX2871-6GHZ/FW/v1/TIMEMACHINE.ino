@@ -34,7 +34,7 @@ void TIMEMACHINE_2000ms() {
   MAX2870_step_idx++;
   if (MAX2870_step_idx > 5) {
     MAX2870_step_idx = 0;
-  }
+  }  
 
 }
 

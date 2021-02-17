@@ -36,6 +36,9 @@ My board doesnt have MAX2870_pin_RF_EN. And CE pin I hard connected to 3v3. My A
 
 MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_LD);
 
+
+Переделать double (в Арудино он как float, точность 6 знаков после зпт)  на uint64_t. В setPFD, setFreq - вначале вывести все значения при дабл. Потом переделать и проверить, чтобы вывело все регистры значения такие же!
+
 void setup() {
   //Serial.begin(9600);
   //Serial.println("Begin");
