@@ -304,22 +304,20 @@ class MAX2870 {
     void start();
     //void setActive(bool isOn);  always active 
     void setPFD(uint64_t referenceFreqHz, uint16_t rdiv);
-    void set_frequency_OUT_A(double freqMHz);
+    void set_frequency_OUT_A(uint64_t freqHz);
     void set_power_OUT_A();
     void set_noiseMode();
     void set_chargePumpCurrent();
 
     uint64_t getPFD();
-    double get_frequency_OUT_A();
+    uint64_t get_frequency_OUT_A();
     
     //config data
     uint8_t noiseMode[3] = {B0, B10, B11};
-    uint8_t noiseMode_idx = 0; // 0 1 2
-    String noiseMode_verb[3] = {"N", "S1", "S2"};
+    uint8_t noiseMode_idx = 0; // 0 1 2    
 
     uint8_t outPower[4] = {B0, B01, B10, B11};
-    uint8_t outPower_idx = 0;  // 0 1 2 3
-    int8_t outPower_verb[4] = { -4, -1, 2, 5};
+    uint8_t outPower_idx = 0;  // 0 1 2 3    
 
     uint8_t chargePumpCurrent[16] = {B0000, B0001, B0010, B0011, B0100, B0101, B0110, B0111, B1000, B1001, B1010, B1011, B1100, B1101, B1110, B1111};
     uint8_t chargePumpCurrent_idx = 0;// 0-15
@@ -335,12 +333,13 @@ class MAX2870 {
     REG6_u reg6;
 
     uint64_t f_pfd;
-    double f_out_A; //frequency at OUT A
+    uint64_t f_out_A; //frequency at OUT A
 
     uint8_t pin_LE;
     //uint8_t pin_CE; //Chip Enable. 0 = powerDown
     //uint8_t pin_RF_EN;  //RF Output Enable. 0 = powerDown
     uint8_t pin_LD; // OUT  1=lockDetect ok.
+    
 };
 
 #endif /* _MAX2870_H_ */

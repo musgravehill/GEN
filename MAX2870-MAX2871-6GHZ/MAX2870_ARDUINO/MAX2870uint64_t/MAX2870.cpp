@@ -88,14 +88,14 @@ void MAX2870::setConfig() {
 
 
 //****************************************************************************
-void MAX2870::set_frequency_OUT_A(double freqMHz) {
+void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
 
-  while (freqMHz * powf(2, diva) < 3000.0)  {
+  while ( (float(freqHz) / 1000000.0) * powf(2, diva) < 3000.0)  {
     diva = diva + 1;
   }
-  pll_coefficient = freqMHz * powf(2, diva) / f_pfd;
+  pll_coefficient = (float(freqHz) / float(f_pfd))  * powf(2, diva) ;
   n = floor(pll_coefficient);
 
   fractional = pll_coefficient - n;
@@ -106,12 +106,28 @@ void MAX2870::set_frequency_OUT_A(double freqMHz) {
   reg0.bits.n = n;
   reg1.bits.m = m;
   reg4.bits.diva = diva;
-
   //reg3.bits.mutedel = 1;  2871 only
 
   setConfig();
 
   f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
+
+  Serial.print("reg0.bits.frac=");
+  Serial.println(reg0.bits.frac, DEC);
+
+  Serial.print("reg0.bits.n=");
+  Serial.println(reg0.bits.n, DEC);
+
+  Serial.print("reg1.bits.m=");
+  Serial.println(reg1.bits.m, DEC);
+
+  Serial.print("reg4.bits.diva=");
+  Serial.println(reg4.bits.diva, DEC);
+
+  Serial.print("f_out_A=");
+  Serial.println(float(f_out_A/1000));
+
+
 }
 
 void MAX2870::setPFD(const uint64_t referenceFreqHz, const uint16_t rdiv) {
@@ -159,7 +175,7 @@ void MAX2870::setPFD(const uint64_t referenceFreqHz, const uint16_t rdiv) {
   Serial.print("bs=");
   Serial.println(bs, DEC);
 
-  
+
 
 
 
@@ -184,7 +200,7 @@ uint64_t MAX2870::getPFD() {
   return f_pfd;
 }
 
-double MAX2870::get_frequency_OUT_A() {
+uint64_t MAX2870::get_frequency_OUT_A() {
   return f_out_A;
 }
 

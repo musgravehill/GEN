@@ -106,12 +106,27 @@ void MAX2870::set_frequency_OUT_A(double freqMHz) {
   reg0.bits.n = n;
   reg1.bits.m = m;
   reg4.bits.diva = diva;
-
   //reg3.bits.mutedel = 1;  2871 only
 
   setConfig();
 
   f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
+
+
+  Serial.print("reg0.bits.frac=");
+  Serial.println(reg0.bits.frac, DEC);
+
+  Serial.print("reg0.bits.n=");
+  Serial.println(reg0.bits.n, DEC);
+
+  Serial.print("reg1.bits.m=");
+  Serial.println(reg1.bits.m, DEC);
+
+  Serial.print("reg4.bits.diva=");
+  Serial.println(reg4.bits.diva, DEC);
+
+  Serial.print("f_out_A=");
+  Serial.println(f_out_A,6);
 }
 
 void MAX2870::setPFD(const double referenceFreqMHz, const uint16_t rdiv) {

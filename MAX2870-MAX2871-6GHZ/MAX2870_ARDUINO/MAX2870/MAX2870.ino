@@ -45,7 +45,7 @@ void setup() {
 
   MAX2870_my.start();
   MAX2870_my.setPFD(MAX2870_reference_frequency_MHz , MAX2870_R_divider); //inputs are reference frequency and R divider to set phase/frequency detector frequency
-  MAX2870_my.set_frequency_OUT_A(433.92);
+  MAX2870_my.set_frequency_OUT_A(5665.000000); //433.92 //25.111222 //5665.000000
 
   MAX2870_my.outPower_idx = 2; //+2dBm
   MAX2870_my.set_power_OUT_A();
