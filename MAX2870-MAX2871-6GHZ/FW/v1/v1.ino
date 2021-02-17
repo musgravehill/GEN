@@ -37,10 +37,8 @@ volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хран
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
 #define ENCODER_button 4
-#define BTN_1 5
-#define BTN_2 6
-#define BTN_3 7
-#define BTN_4 8
+#define BTN_ANALOG_IN A3
+
 
 
 //=====================================1602 LCD i2c==============================================================
@@ -59,14 +57,16 @@ volatile boolean SYS_isNeedProcessConfig = true;
 
 
 void setup() {
-
   MONITOR_init();
 
-
-
-
+  //MAX init
+  
+  ENCODER_init();
+  BUTTON_init();
+  // Serial.begin(9600);
 }
 
 
 void loop() {
+  TIMEMACHINE_loop();
 }
