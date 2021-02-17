@@ -15,7 +15,7 @@ MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_CE, con
 
 void MAX2870::start() {
   delay(100);
-  
+
   SPI.setClockDivider(SPI_CLOCK_DIV16); //16MHz system clock \ 16 = 1MHz SPI
   SPI.setDataMode(SPI_MODE0); //CPOL = CPHA = 0, 8 bits per frame
   SPI.setBitOrder(MSBFIRST);
@@ -30,7 +30,7 @@ void MAX2870::start() {
   digitalWrite(pin_CE, 1);
 
   pinMode (pin_RF_EN, OUTPUT);
-  digitalWrite(pin_RF_E, 0); //disable rf out
+  digitalWrite(pin_RF_EN, 0); //disable rf_out until fully start
 
   pinMode (pin_LD, INPUT);
 
@@ -54,6 +54,7 @@ void MAX2870::start() {
 
   delay(50); //see datasheed: init  & powerUp
 
+  setActive(true);
 }
 
 
@@ -61,7 +62,7 @@ void MAX2870::start() {
 //****************************************************************************
 void MAX2870::writeData(uint32_t data) {
   digitalWrite(pin_LE, 0);
-  delayMicroseconds(100);
+  delayMicroseconds(300);
 
   SPI.transfer((0xFF000000 & data) >> 24);  //????  в таком порядке или обратном????
   SPI.transfer((0x00FF0000 & data) >> 16);
@@ -86,16 +87,14 @@ void MAX2870::setConfig() {
 
 
 //****************************************************************************
-void MAX2870::set_OUT_A_frequency(double freq) {
+void MAX2870::set_frequency_OUT_A(double freqMHz) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
 
-
-
-  while (freq * powf(2, diva) < 3000.0)  {
+  while (freqMHz * powf(2, diva) < 3000.0)  {
     diva = diva + 1;
   }
-  pll_coefficient = freq * powf(2, diva) / f_pfd;
+  pll_coefficient = freqMHz * powf(2, diva) / f_pfd;
   n = floor(pll_coefficient);
 
   fractional = pll_coefficient - n;
@@ -110,16 +109,17 @@ void MAX2870::set_OUT_A_frequency(double freq) {
   //reg3.bits.mutedel = 1;  2871 only
 
   setConfig();
+
   f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
 }
 
-void MAX2870::setPFD(const double ref_in, const uint16_t rdiv) {
+void MAX2870::setPFD(const double referenceFreqMHz, const uint16_t rdiv) {
   // fPFD = fREF * [(1 + DBR)/(R * (1 + RDIV2))]
   // DBR=0 RDIV2=0
   // fPFD = fREF * [1/R] = fREF / R
   //
 
-  f_pfd = ref_in / rdiv;
+  f_pfd = referenceFreqMHz / rdiv;
 
   if (f_pfd > 32.0) {
     reg2.bits.lds = 1;
@@ -167,8 +167,26 @@ double MAX2870::getPFD() {
   return f_pfd;
 }
 
-double MAX2870::get_OUT_A_frequency() {
+double MAX2870::get_frequency_OUT_A() {
   return f_out_A;
+}
+
+void MAX2870::set_noiseMode() {
+  noiseMode_idx = constrain(noiseMode_idx, 0, 2);
+  reg2.bits.sdn = noiseMode[noiseMode_idx];
+  setConfig();
+}
+
+void MAX2870::set_power_OUT_A() {
+  outPower_idx = constrain(outPower_idx, 0, 3);
+  reg4.bits.apwr = outPower[outPower_idx];
+  setConfig();
+}
+
+void MAX2870::set_chargePumpCurrent() {
+  chargePumpCurrent_idx = constrain(chargePumpCurrent_idx, 0, 15);
+  reg2.bits.cp = chargePumpCurrent[chargePumpCurrent_idx];
+  setConfig();
 }
 
 
