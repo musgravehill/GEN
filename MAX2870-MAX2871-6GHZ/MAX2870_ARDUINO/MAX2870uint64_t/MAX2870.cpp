@@ -93,6 +93,12 @@ void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   double pll_coefficient, fractional = 0;
   m = 4000;
 
+  double freqMHz = freqHz / 1000000.0;
+  while (freqMHz * powf(2, diva) < 3000.0)  {
+    diva = diva + 1;
+  }
+  
+  /* OR u can use if if if from datasheet
   if (freqHz >= 3000000000) {
     diva = B000;
   }
@@ -114,22 +120,9 @@ void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   else if (46875000 <= freqHz && freqHz < 93750000) {
     diva = B110;
   }
-  else {
+  else if (freqHz < 46875000) {
     diva = B111;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }*/
 
   pll_coefficient = (float(freqHz) / float(f_pfd))  * powf(2, diva) ;
   n = floor(pll_coefficient);
