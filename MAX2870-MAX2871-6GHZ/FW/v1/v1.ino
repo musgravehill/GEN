@@ -1,7 +1,7 @@
 
 //=====================================================================================================
 //============================== HOWTO ================================================================
-// SWEEP:  open COM-port at 115200. Send [freqMHz_from;freqMHz_to;]  [400;500;] 
+// SWEEP:  open COM-port at 115200. Send [freqMHz_from;freqMHz_to;]  [400;500;]  [5000;6000;]
 // SWEEP: GET from COM-port data  [freqMHz;AnalogPort0;AnalogPort1;]  AnalogPort=0...1023
 
 
