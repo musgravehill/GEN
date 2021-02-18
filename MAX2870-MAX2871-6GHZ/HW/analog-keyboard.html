@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html -->
+<html class="v2" dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./analog-keyboard_files/3416767676-css_bundle_v2.css" rel="stylesheet" type="text/css">
+<meta content="width=1100" name="viewport">
+
+<meta content="blogger" name="generator">
+<link href="http://www.ignorantofthings.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Ignorant of Things - Atom" href="http://www.ignorantofthings.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Ignorant of Things - RSS" href="http://www.ignorantofthings.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Ignorant of Things - Atom" href="https://www.blogger.com/feeds/7560067702171491867/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Ignorant of Things - Atom" href="http://www.ignorantofthings.com/feeds/3161736881749103976/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/1277698886-ieretrofit.js"></script>
+<![endif]-->
+<link href="./analog-keyboard_files/schematic.png" rel="image_src">
+<meta content="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html" property="og:url">
+<meta content="The perfect multi-button input resistor ladder" property="og:title">
+<meta content="A resistor ladder  is a brilliant but super simple way to attach multiple buttons to a single analog to digital converter  (ADC) pin on an A..." property="og:description">
+<meta content="https://4.bp.blogspot.com/-lZ3VBBNHpIs/W1CGeZcdxyI/AAAAAAAAl_w/fim1Yyrv7pcv0QYNzUvRvNlzodV4vj7cgCLcBGAs/w1200-h630-p-k-no-nu/schematic.png" property="og:image">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Ignorant of Things: The perfect multi-button input resistor ladder</title>
+<style type="text/css">@font-face{font-family:'Droid Sans';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/s/droidsans/v12/SlGVmQWMvZQIdix7AFxXkHNSbQ.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlbHYjedg.woff2)format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlSHYjedg.woff2)format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlZHYjedg.woff2)format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB;}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlYHYjedg.woff2)format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYg.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}@font-face{font-family:'Oswald';font-style:normal;font-weight:700;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlbHYjedg.woff2)format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;}@font-face{font-family:'Oswald';font-style:normal;font-weight:700;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlSHYjedg.woff2)format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}@font-face{font-family:'Oswald';font-style:normal;font-weight:700;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlZHYjedg.woff2)format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB;}@font-face{font-family:'Oswald';font-style:normal;font-weight:700;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlYHYjedg.woff2)format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'Oswald';font-style:normal;font-weight:700;src:url(//fonts.gstatic.com/s/oswald/v36/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYg.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style>
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Awesome Inc.
+Designer: Tina Chen
+URL:      tinachen.org
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="keycolor" description="Main Color" type="color" default="#ffffff"/>
+<Group description="Page" selector="body">
+<Variable name="body.font" description="Font" type="font"
+default="normal normal 13px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="body.background.color" description="Background Color" type="color" default="#000000"/>
+<Variable name="body.text.color" description="Text Color" type="color" default="#ffffff"/>
+</Group>
+<Group description="Links" selector=".main-inner">
+<Variable name="link.color" description="Link Color" type="color" default="#888888"/>
+<Variable name="link.visited.color" description="Visited Color" type="color" default="#444444"/>
+<Variable name="link.hover.color" description="Hover Color" type="color" default="#cccccc"/>
+</Group>
+<Group description="Blog Title" selector=".header h1">
+<Variable name="header.font" description="Title Font" type="font"
+default="normal bold 40px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="header.text.color" description="Title Color" type="color" default="#444444" />
+<Variable name="header.background.color" description="Header Background" type="color" default="transparent" />
+</Group>
+<Group description="Blog Description" selector=".header .description">
+<Variable name="description.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="description.text.color" description="Text Color" type="color"
+default="#444444" />
+</Group>
+<Group description="Tabs Text" selector=".tabs-inner .widget li a">
+<Variable name="tabs.font" description="Font" type="font"
+default="normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="tabs.text.color" description="Text Color" type="color" default="#444444"/>
+<Variable name="tabs.selected.text.color" description="Selected Color" type="color" default="#444444"/>
+</Group>
+<Group description="Tabs Background" selector=".tabs-outer .PageList">
+<Variable name="tabs.background.color" description="Background Color" type="color" default="#141414"/>
+<Variable name="tabs.selected.background.color" description="Selected Color" type="color" default="#444444"/>
+<Variable name="tabs.border.color" description="Border Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Date Header" selector=".main-inner .widget h2.date-header, .main-inner .widget h2.date-header span">
+<Variable name="date.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="date.text.color" description="Text Color" type="color" default="#666666"/>
+<Variable name="date.border.color" description="Border Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Post Title" selector="h3.post-title, h4, h3.post-title a">
+<Variable name="post.title.font" description="Font" type="font"
+default="normal bold 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="post.title.text.color" description="Text Color" type="color" default="#444444"/>
+</Group>
+<Group description="Post Background" selector=".post">
+<Variable name="post.background.color" description="Background Color" type="color" default="#ffffff" />
+<Variable name="post.border.color" description="Border Color" type="color" default="#eeeeee" />
+<Variable name="post.border.bevel.color" description="Bevel Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Gadget Title" selector="h2">
+<Variable name="widget.title.font" description="Font" type="font"
+default="normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="widget.title.text.color" description="Text Color" type="color" default="#444444"/>
+</Group>
+<Group description="Gadget Text" selector=".sidebar .widget">
+<Variable name="widget.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="widget.text.color" description="Text Color" type="color" default="#444444"/>
+<Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#666666"/>
+</Group>
+<Group description="Gadget Links" selector=".sidebar .widget">
+<Variable name="widget.link.color" description="Link Color" type="color" default="#3778cd"/>
+<Variable name="widget.link.visited.color" description="Visited Color" type="color" default="#4d469c"/>
+<Variable name="widget.link.hover.color" description="Hover Color" type="color" default="#3778cd"/>
+</Group>
+<Group description="Gadget Background" selector=".sidebar .widget">
+<Variable name="widget.background.color" description="Background Color" type="color" default="#141414"/>
+<Variable name="widget.border.color" description="Border Color" type="color" default="#222222"/>
+<Variable name="widget.border.bevel.color" description="Bevel Color" type="color" default="#000000"/>
+</Group>
+<Group description="Sidebar Background" selector=".column-left-inner .column-right-inner">
+<Variable name="widget.outer.background.color" description="Background Color" type="color" default="transparent" />
+</Group>
+<Group description="Images" selector=".main-inner">
+<Variable name="image.background.color" description="Background Color" type="color" default="transparent"/>
+<Variable name="image.border.color" description="Border Color" type="color" default="transparent"/>
+</Group>
+<Group description="Feed" selector=".blog-feeds">
+<Variable name="feed.text.color" description="Text Color" type="color" default="#444444"/>
+</Group>
+<Group description="Feed Links" selector=".blog-feeds">
+<Variable name="feed.link.color" description="Link Color" type="color" default="#3778cd"/>
+<Variable name="feed.link.visited.color" description="Visited Color" type="color" default="#4d469c"/>
+<Variable name="feed.link.hover.color" description="Hover Color" type="color" default="#3778cd"/>
+</Group>
+<Group description="Pager" selector=".blog-pager">
+<Variable name="pager.background.color" description="Background Color" type="color" default="#ffffff" />
+</Group>
+<Group description="Footer" selector=".footer-outer">
+<Variable name="footer.background.color" description="Background Color" type="color" default="#ffffff" />
+<Variable name="footer.text.color" description="Text Color" type="color" default="#444444" />
+</Group>
+<Variable name="title.shadow.spread" description="Title Shadow" type="length" default="-1px" min="-1px" max="100px"/>
+<Variable name="body.background" description="Body Background" type="background"
+color="#eeeeee"
+default="$(color) none repeat scroll top left"/>
+<Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
+default="none"/>
+<Variable name="body.background.size" description="Body Background Size" type="string" default="auto"/>
+<Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
+default="none"/>
+<Variable name="header.background.gradient" description="Header Background Gradient" type="url" default="none" />
+<Variable name="header.padding.top" description="Header Top Padding" type="length" default="22px" min="0" max="100px"/>
+<Variable name="header.margin.top" description="Header Top Margin" type="length" default="0" min="0" max="100px"/>
+<Variable name="header.margin.bottom" description="Header Bottom Margin" type="length" default="0" min="0" max="100px"/>
+<Variable name="widget.padding.top" description="Widget Padding Top" type="length" default="8px" min="0" max="20px"/>
+<Variable name="widget.padding.side" description="Widget Padding Side" type="length" default="15px" min="0" max="100px"/>
+<Variable name="widget.outer.margin.top" description="Widget Top Margin" type="length" default="0" min="0" max="100px"/>
+<Variable name="widget.outer.background.gradient" description="Gradient" type="url" default="none" />
+<Variable name="widget.border.radius" description="Gadget Border Radius" type="length" default="0" min="0" max="100px"/>
+<Variable name="outer.shadow.spread" description="Outer Shadow Size" type="length" default="0" min="0" max="100px"/>
+<Variable name="date.header.border.radius.top" description="Date Header Border Radius Top" type="length" default="0" min="0" max="100px"/>
+<Variable name="date.header.position" description="Date Header Position" type="length" default="15px" min="0" max="100px"/>
+<Variable name="date.space" description="Date Space" type="length" default="30px" min="0" max="100px"/>
+<Variable name="date.position" description="Date Float" type="string" default="static" />
+<Variable name="date.padding.bottom" description="Date Padding Bottom" type="length" default="0" min="0" max="100px"/>
+<Variable name="date.border.size" description="Date Border Size" type="length" default="0" min="0" max="10px"/>
+<Variable name="date.background" description="Date Background" type="background" color="transparent"
+default="$(color) none no-repeat scroll top left" />
+<Variable name="date.first.border.radius.top" description="Date First top radius" type="length" default="0" min="0" max="100px"/>
+<Variable name="date.last.space.bottom" description="Date Last Space Bottom" type="length"
+default="20px" min="0" max="100px"/>
+<Variable name="date.last.border.radius.bottom" description="Date Last bottom radius" type="length" default="0" min="0" max="100px"/>
+<Variable name="post.first.padding.top" description="First Post Padding Top" type="length" default="0" min="0" max="100px"/>
+<Variable name="image.shadow.spread" description="Image Shadow Size" type="length" default="0" min="0" max="100px"/>
+<Variable name="image.border.radius" description="Image Border Radius" type="length" default="0" min="0" max="100px"/>
+<Variable name="separator.outdent" description="Separator Outdent" type="length" default="15px" min="0" max="100px"/>
+<Variable name="title.separator.border.size" description="Widget Title Border Size" type="length" default="1px" min="0" max="10px"/>
+<Variable name="list.separator.border.size" description="List Separator Border Size" type="length" default="1px" min="0" max="10px"/>
+<Variable name="shadow.spread" description="Shadow Size" type="length" default="0" min="0" max="100px"/>
+<Variable name="startSide" description="Side where text starts in blog language" type="automatic" default="left"/>
+<Variable name="endSide" description="Side where text ends in blog language" type="automatic" default="right"/>
+<Variable name="date.side" description="Side where date header is placed" type="string" default="right"/>
+<Variable name="pager.border.radius.top" description="Pager Border Top Radius" type="length" default="0" min="0" max="100px"/>
+<Variable name="pager.space.top" description="Pager Top Space" type="length" default="1em" min="0" max="20em"/>
+<Variable name="footer.background.gradient" description="Background Gradient" type="url" default="none" />
+<Variable name="mobile.background.size" description="Mobile Background Size" type="string"
+default="auto"/>
+<Variable name="mobile.background.overlay" description="Mobile Background Overlay" type="string"
+default="transparent none repeat scroll top left"/>
+<Variable name="mobile.button.color" description="Mobile Button Color" type="color" default="#ffffff" />
+*/
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 14px Droid Sans;
+color: #444444;
+background: #eeeeee none repeat scroll top left;
+}
+html body .content-outer {
+min-width: 0;
+max-width: 100%;
+width: 100%;
+}
+a:link {
+text-decoration: none;
+color: #3778cd;
+}
+a:visited {
+text-decoration: none;
+color: #4d469c;
+}
+a:hover {
+text-decoration: underline;
+color: #3778cd;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 276px;
+width: 100%;
+background: transparent none repeat-x scroll top left;
+_background-image: none;
+}
+/* Columns
+----------------------------------------------- */
+.content-inner {
+padding: 0;
+}
+.header-inner .section {
+margin: 0 16px;
+}
+.tabs-inner .section {
+margin: 0 16px;
+}
+.main-inner {
+padding-top: 30px;
+}
+.main-inner .column-center-inner,
+.main-inner .column-left-inner,
+.main-inner .column-right-inner {
+padding: 0 5px;
+}
+*+html body .main-inner .column-center-inner {
+margin-top: -30px;
+}
+#layout .main-inner .column-center-inner {
+margin-top: 0;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+margin: 0 0 0 0;
+background: transparent none repeat scroll 0 0;
+}
+.Header h1 {
+font: normal bold 42px Oswald;
+color: #444444;
+text-shadow: 0 0 -1px #000000;
+}
+.Header h1 a {
+color: #444444;
+}
+.Header .description {
+font: normal normal 14px Droid Sans;
+color: #666666;
+}
+.header-inner .Header .titlewrapper,
+.header-inner .Header .descriptionwrapper {
+padding-left: 0;
+padding-right: 0;
+margin-bottom: 0;
+}
+.header-inner .Header .titlewrapper {
+padding-top: 22px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-outer {
+overflow: hidden;
+position: relative;
+background: #eeeeee url(//www.blogblog.com/1kt/awesomeinc/tabs_gradient_light.png) repeat scroll 0 0;
+}
+#layout .tabs-outer {
+overflow: visible;
+}
+.tabs-cap-top, .tabs-cap-bottom {
+position: absolute;
+width: 100%;
+border-top: 1px solid #999999;
+}
+.tabs-cap-bottom {
+bottom: 0;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+margin: 0;
+padding: .6em 1.5em;
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+border-left: 1px solid #999999;
+height: 16px;
+line-height: 16px;
+}
+.tabs-inner .widget li:last-child a {
+border-right: 1px solid #999999;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+background: #666666 url(//www.blogblog.com/1kt/awesomeinc/tabs_gradient_light.png) repeat-x scroll 0 -100px;
+color: #ffffff;
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+/* Widgets
+----------------------------------------------- */
+.main-inner .section {
+margin: 0 27px;
+padding: 0;
+}
+.main-inner .column-left-outer,
+.main-inner .column-right-outer {
+margin-top: 0;
+}
+#layout .main-inner .column-left-outer,
+#layout .main-inner .column-right-outer {
+margin-top: 0;
+}
+.main-inner .column-left-inner,
+.main-inner .column-right-inner {
+background: transparent none repeat 0 0;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+#layout .main-inner .column-left-inner,
+#layout .main-inner .column-right-inner {
+margin-top: 0;
+}
+.sidebar .widget {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+.sidebar .widget a:link {
+color: #3778cd;
+}
+.sidebar .widget a:visited {
+color: #4d469c;
+}
+.sidebar .widget a:hover {
+color: #3778cd;
+}
+.sidebar .widget h2 {
+text-shadow: 0 0 -1px #000000;
+}
+.main-inner .widget {
+background-color: #ffffff;
+border: 1px solid #eeeeee;
+padding: 0 15px 15px;
+margin: 20px -16px;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+.main-inner .widget h2 {
+margin: 0 -15px;
+padding: .6em 15px .5em;
+border-bottom: 1px solid transparent;
+}
+.footer-inner .widget h2 {
+padding: 0 0 .4em;
+border-bottom: 1px solid transparent;
+}
+.main-inner .widget h2 + div, .footer-inner .widget h2 + div {
+border-top: 1px solid #eeeeee;
+padding-top: 8px;
+}
+.main-inner .widget .widget-content {
+margin: 0 -15px;
+padding: 7px 15px 0;
+}
+.main-inner .widget ul, .main-inner .widget #ArchiveList ul.flat {
+margin: -8px -15px 0;
+padding: 0;
+list-style: none;
+}
+.main-inner .widget #ArchiveList {
+margin: -8px 0 0;
+}
+.main-inner .widget ul li, .main-inner .widget #ArchiveList ul.flat li {
+padding: .5em 15px;
+text-indent: 0;
+color: #666666;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid transparent;
+}
+.main-inner .widget #ArchiveList ul li {
+padding-top: .25em;
+padding-bottom: .25em;
+}
+.main-inner .widget ul li:first-child, .main-inner .widget #ArchiveList ul.flat li:first-child {
+border-top: none;
+}
+.main-inner .widget ul li:last-child, .main-inner .widget #ArchiveList ul.flat li:last-child {
+border-bottom: none;
+}
+.post-body {
+position: relative;
+}
+.main-inner .widget .post-body ul {
+padding: 0 2.5em;
+margin: .5em 0;
+list-style: disc;
+}
+.main-inner .widget .post-body ul li {
+padding: 0.25em 0;
+margin-bottom: .25em;
+color: #444444;
+border: none;
+}
+.footer-inner .widget ul {
+padding: 0;
+list-style: none;
+}
+.widget .zippy {
+color: #666666;
+}
+/* Posts
+----------------------------------------------- */
+body .main-inner .Blog {
+padding: 0;
+margin-bottom: 1em;
+background-color: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.main-inner .section:last-child .Blog:last-child {
+padding: 0;
+margin-bottom: 1em;
+}
+.main-inner .widget h2.date-header {
+margin: 0 -15px 1px;
+padding: 0 0 0 0;
+font: normal normal 12px Droid Sans;
+color: #999999;
+background: transparent none no-repeat scroll top left;
+border-top: 0 solid #eeeeee;
+border-bottom: 1px solid transparent;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+position: static;
+bottom: 100%;
+right: 15px;
+text-shadow: 0 0 -1px #000000;
+}
+.main-inner .widget h2.date-header span {
+font: normal normal 12px Droid Sans;
+display: block;
+padding: .5em 15px;
+border-left: 0 solid #eeeeee;
+border-right: 0 solid #eeeeee;
+}
+.date-outer {
+position: relative;
+margin: 30px 0 20px;
+padding: 0 15px;
+background-color: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+.date-outer:first-child {
+margin-top: 0;
+}
+.date-outer:last-child {
+margin-bottom: 20px;
+-moz-border-radius-bottomleft: 0;
+-moz-border-radius-bottomright: 0;
+-webkit-border-bottom-left-radius: 0;
+-webkit-border-bottom-right-radius: 0;
+-goog-ms-border-bottom-left-radius: 0;
+-goog-ms-border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+.date-posts {
+margin: 0 -15px;
+padding: 0 15px;
+clear: both;
+}
+.post-outer, .inline-ad {
+border-top: 1px solid #eeeeee;
+margin: 0 -15px;
+padding: 15px 15px;
+}
+.post-outer {
+padding-bottom: 10px;
+}
+.post-outer:first-child {
+padding-top: 0;
+border-top: none;
+}
+.post-outer:last-child, .inline-ad:last-child {
+border-bottom: none;
+}
+.post-body {
+position: relative;
+}
+.post-body img {
+padding: 8px;
+background: transparent;
+border: 1px solid transparent;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+border-radius: 0;
+}
+h3.post-title, h4 {
+font: normal normal 22px Oswald;
+color: #3778cd;
+}
+h3.post-title a {
+font: normal normal 22px Oswald;
+color: #3778cd;
+}
+h3.post-title a:hover {
+color: #3778cd;
+text-decoration: underline;
+}
+.post-header {
+margin: 0 0 1em;
+}
+.post-body {
+line-height: 1.4;
+}
+.post-outer h2 {
+color: #444444;
+}
+.post-footer {
+margin: 1.5em 0 0;
+}
+#blog-pager {
+padding: 15px;
+font-size: 120%;
+background-color: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+-goog-ms-border-top-left-radius: 0;
+-goog-ms-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius-topright: 0;
+margin-top: 1em;
+}
+.blog-feeds, .post-feeds {
+margin: 1em 0;
+text-align: center;
+color: #444444;
+}
+.blog-feeds a, .post-feeds a {
+color: #3778cd;
+}
+.blog-feeds a:visited, .post-feeds a:visited {
+color: #4d469c;
+}
+.blog-feeds a:hover, .post-feeds a:hover {
+color: #3778cd;
+}
+.post-outer .comments {
+margin-top: 2em;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Footer
+----------------------------------------------- */
+.footer-outer {
+margin: -20px 0 -1px;
+padding: 20px 0 0;
+color: #444444;
+overflow: hidden;
+}
+.footer-fauxborder-left {
+border-top: 1px solid #eeeeee;
+background: #ffffff none repeat scroll 0 0;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+margin: 0 -20px;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+*+html body.mobile .main-inner .column-center-inner {
+margin-top: 0;
+}
+.mobile .main-inner .widget {
+padding: 0 0 15px;
+}
+.mobile .main-inner .widget h2 + div,
+.mobile .footer-inner .widget h2 + div {
+border-top: none;
+padding-top: 0;
+}
+.mobile .footer-inner .widget h2 {
+padding: 0.5em 0;
+border-bottom: none;
+}
+.mobile .main-inner .widget .widget-content {
+margin: 0;
+padding: 7px 0 0;
+}
+.mobile .main-inner .widget ul,
+.mobile .main-inner .widget #ArchiveList ul.flat {
+margin: 0 -15px 0;
+}
+.mobile .main-inner .widget h2.date-header {
+right: 0;
+}
+.mobile .date-header span {
+padding: 0.4em 0;
+}
+.mobile .date-outer:first-child {
+margin-bottom: 0;
+border: 1px solid #eeeeee;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+-goog-ms-border-top-left-radius: 0;
+-goog-ms-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+.mobile .date-outer {
+border-color: #eeeeee;
+border-width: 0 1px 1px;
+}
+.mobile .date-outer:last-child {
+margin-bottom: 0;
+}
+.mobile .main-inner {
+padding: 0;
+}
+.mobile .header-inner .section {
+margin: 0;
+}
+.mobile .post-outer, .mobile .inline-ad {
+padding: 5px 0;
+}
+.mobile .tabs-inner .section {
+margin: 0 10px;
+}
+.mobile .main-inner .widget h2 {
+margin: 0;
+padding: 0;
+}
+.mobile .main-inner .widget h2.date-header span {
+padding: 0;
+}
+.mobile .main-inner .widget .widget-content {
+margin: 0;
+padding: 7px 0 0;
+}
+.mobile #blog-pager {
+border: 1px solid transparent;
+background: #ffffff none repeat scroll 0 0;
+}
+.mobile .main-inner .column-left-inner,
+.mobile .main-inner .column-right-inner {
+background: transparent none repeat 0 0;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+-goog-ms-box-shadow: none;
+box-shadow: none;
+}
+.mobile .date-posts {
+margin: 0;
+padding: 0;
+}
+.mobile .footer-fauxborder-left {
+margin: 0;
+border-top: inherit;
+}
+.mobile .main-inner .section:last-child .Blog:last-child {
+margin-bottom: 0;
+}
+.mobile-index-contents {
+color: #444444;
+}
+.mobile .mobile-link-button {
+background: #3778cd url(//www.blogblog.com/1kt/awesomeinc/tabs_gradient_light.png) repeat scroll 0 0;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background: transparent;
+border-top: 1px solid;
+border-color: #999999;
+color: #444444;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #999999;
+}
+#blog-pager {
+display:none;
+}
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+body {
+min-width: 850px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 850px;
+max-width: 850px;
+_width: 850px;
+}
+.main-inner .columns {
+padding-left: 0px;
+padding-right: 0px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0px;
+right: 0px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0px") -
+parseInt("0px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 0px;
+}
+.main-inner .column-left-outer {
+width: 0px;
+right: 100%;
+margin-left: -0px;
+}
+.main-inner .column-right-outer {
+width: 0px;
+margin-right: -0px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+body#layout div.add_widget {
+padding: 8px;
+}
+body#layout div.add_widget a {
+margin-left: 32px;
+}
+--></style>
+<link href="./analog-keyboard_files/authorization.css" media="all" onload="if(media!=&#39;all&#39;)media=&#39;all&#39;" rel="stylesheet"><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=7560067702171491867&amp;zx=ae224ee5-47d5-405f-b5e0-95c214418c61' rel='stylesheet'/></noscript>
+
+<style></style></head>
+<body class="">
+<div class="navbar no-items section" id="navbar" name="Navbar">
+</div>
+<div class="body-fauxcolumns">
+<div class="fauxcolumn-outer body-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content">
+<div class="content-fauxcolumns">
+<div class="fauxcolumn-outer content-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content-outer">
+<div class="content-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left content-fauxborder-left">
+<div class="fauxborder-right content-fauxborder-right"></div>
+<div class="content-inner">
+<header>
+<div class="header-outer">
+<div class="header-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left header-fauxborder-left">
+<div class="fauxborder-right header-fauxborder-right"></div>
+<div class="region-inner header-inner">
+<div class="header section" id="header" name="Header"><div class="widget Header" data-version="1" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://www.ignorantofthings.com/">
+Ignorant of Things
+</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>IoT, Arduino, ESP8266, WiFi, SDR, RF and anything else relevant to my interests</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="header-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</header>
+<div class="tabs-outer">
+<div class="tabs-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left tabs-fauxborder-left">
+<div class="fauxborder-right tabs-fauxborder-right"></div>
+<div class="region-inner tabs-inner">
+<div class="tabs no-items section" id="crosscol" name="Cross-Column"></div>
+<div class="tabs no-items section" id="crosscol-overflow" name="Cross-Column 2"></div>
+</div>
+</div>
+<div class="tabs-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="main-outer">
+<div class="main-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left main-fauxborder-left">
+<div class="fauxborder-right main-fauxborder-right"></div>
+<div class="region-inner main-inner">
+<div class="columns fauxcolumns">
+<div class="fauxcolumn-outer fauxcolumn-center-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-left-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-right-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class="columns-inner">
+<div class="column-center-outer">
+<div class="column-center-inner">
+<div class="main section" id="main" name="Main"><div class="widget Blog" data-version="1" id="Blog1">
+<div class="blog-posts hfeed">
+
+          <div class="date-outer">
+        
+<h2 class="date-header"><span>Thursday, July 19, 2018</span></h2>
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry uncustomized-post-template" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<meta content="https://4.bp.blogspot.com/-lZ3VBBNHpIs/W1CGeZcdxyI/AAAAAAAAl_w/fim1Yyrv7pcv0QYNzUvRvNlzodV4vj7cgCLcBGAs/s400/schematic.png" itemprop="image_url">
+<meta content="7560067702171491867" itemprop="blogId">
+<meta content="3161736881749103976" itemprop="postId">
+<a name="3161736881749103976"></a>
+<h3 class="post-title entry-title" itemprop="name">
+The perfect multi-button input resistor ladder
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-3161736881749103976" itemprop="description articleBody">
+A <a href="https://en.wikipedia.org/wiki/Resistor_ladder">resistor ladder</a> is a brilliant but super simple way to attach multiple buttons to a single <a href="https://en.wikipedia.org/wiki/Analog-to-digital_converter">analog to digital converter</a> (ADC) pin on an Arduino or other microcontroller.&nbsp; By expanding on the concept of the <a href="https://en.wikipedia.org/wiki/Voltage_divider">voltage divider</a>, the resistor ladder offers a way to create various reference voltages by tapping into each 'rung' of the ladder.&nbsp; Consider the following schematic:<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://4.bp.blogspot.com/-lZ3VBBNHpIs/W1CGeZcdxyI/AAAAAAAAl_w/fim1Yyrv7pcv0QYNzUvRvNlzodV4vj7cgCLcBGAs/s1600/schematic.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="558" data-original-width="1356" height="163" src="./analog-keyboard_files/schematic.png" width="400"></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<br></div>
+By attaching our analog pin between the first and subsequent series resistors and a button to earth at each 'rung', we're effectively creating a variable voltage divider.&nbsp; If we measure or calculate the values read by our analog pin, we can interpret each reading as a different button being pressed with a few lines of code:<br>
+<!-- HTML generated using hilite.me --><br>
+<div style="background: #f8f8f8; border-left: 4px solid gray; margin-left: 5%; overflow: auto; padding: 0.2em 0.6em; width: 90%;">
+<pre style="line-height: 125%; margin: 0;"><span style="color: #bc7a00;">#define INPUT_PIN A0</span>
+
+<span style="color: #b00040;">void</span> <span style="color: blue;">setup</span>() {
+  Serial.begin(<span style="color: #666666;">9600</span>);
+  pinMode(INPUT_PIN, INPUT);
+}
+
+<span style="color: #b00040;">void</span> <span style="color: blue;">loop</span>() {
+  <span style="color: #b00040;">int</span> result <span style="color: #666666;">=</span> readAnalogButton();
+  Serial.println(result);
+}
+
+<span style="color: #b00040;">int</span> <span style="color: blue;">readAnalogButton</span>() {
+  <span style="color: #b00040;">int</span> button <span style="color: #666666;">=</span> analogRead(INPUT_PIN);
+  <span style="color: green; font-weight: bold;">if</span> (button <span style="color: #666666;">&gt;</span> <span style="color: #666666;">921</span>) <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">0</span>;
+  <span style="color: green; font-weight: bold;">if</span> (button <span style="color: #666666;">&lt;</span> <span style="color: #666666;">256</span>) <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">1</span>;
+  <span style="color: green; font-weight: bold;">if</span> (button <span style="color: #666666;">&lt;</span> <span style="color: #666666;">598</span>) <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">2</span>;
+  <span style="color: green; font-weight: bold;">if</span> (button <span style="color: #666666;">&lt;</span> <span style="color: #666666;">726</span>) <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">3</span>;
+  <span style="color: green; font-weight: bold;">if</span> (button <span style="color: #666666;">&lt;</span> <span style="color: #666666;">794</span>) <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">4</span>;
+  <span style="color: green; font-weight: bold;">if</span> (button <span style="color: #666666;">&lt;</span> <span style="color: #666666;">921</span>) <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">5</span>;
+}
+</pre>
+</div>
+<br>
+Rather than telling our code to look for the exact values we expect the analog pin to read, we set a <i><b>range of values</b></i> that can be interpreted as belonging to a specific button.&nbsp; We do this by calculating the points <i><b>halfway between</b></i> each expected ADC reading and set these as as the boundaries of our ranges.&nbsp; Just like that, we've got 5 buttons on the one pin!&nbsp; We're not done just yet though, because this is just about the worst possible way we could implement this.<br>
+<br>
+Assuming perfect resistors, the voltage readings for each button should be around 0.0V, 2.5V, 3.33V, 3.75V and 4.0V, with corresponding ADC readings of around&nbsp;0, 512, 683, 768 and 819.&nbsp; You might have already noticed a trend by this point...<br>
+<br>
+If we add another 5 switches each with a 1kΩ resistor, the subsequent voltages will be 4.17V, 4.29V, 4.38V, 4.44V&nbsp; and 4.5V, and will continue to grow logarithmically with each 1kΩ resistor we add:<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://4.bp.blogspot.com/-6YxgobtTvH8/Wy9aq7O41WI/AAAAAAAAl30/VZiEytGCBRohsu-OqOFLQsZD4AKr-mTQgCLcBGAs/s1600/graph.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="641" data-original-width="1038" height="246" src="./analog-keyboard_files/graph.png" width="400"></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}--></style><br>
+This might work for a project with a small number of buttons if you measure each value, and calculate and hard-code your ADC boundaries for each button - but&nbsp;<a href="https://stackoverflow.com/questions/47882/what-is-a-magic-number-and-why-is-it-bad">magic numbers are bad</a>, and you should feel bad.<br>
+<br>
+If we change the voltage scaling from logarithmic to linear, each adjacent ADC value will become roughly equidistant.&nbsp; This means that we can <b><i>dynamically calculate the corresponding button for any given reading</i></b>, rather than hard-coding fixed values.&nbsp; This allows us to use the same piece of code for any number of buttons and as a bonus, uses the full range of our ADC - in the above example, we jump straight from 0 to 512 between the first two buttons - that's half our resolution!<br>
+<br>
+So, how do we know what resistors we should use?<br>
+<br>
+For the following example, I've used a 47k Ω resistor for R1.&nbsp; I've chosen this value as it allows us to operate the circuit at a super low current (by <a href="https://en.wikipedia.org/wiki/Ohm%27s_law">Ohm's law</a>, 5V / 47kΩ = 0.11 mA) and still use a wide-range of commonly available resistor values.&nbsp; We'll use 5 buttons total, and calculate the value for button 1 (which is actually the second button, like a zero-indexed array).<br>
+<br>
+Since we have a fixed value of R1 we can work out the value for R2 using the following formula:<br>
+<br>
+<br>
+<div style="text-align: center;">
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="font-size: large;"><b>R<sub>button</sub> = R1 / (1 - (B<sub>index</sub> / B<sub>total</sub>)) - R<sub>total</sub></b></span></span></div>
+<div style="text-align: center;">
+<br>
+<div style="text-align: left;">
+<br>
+Where B<sub>index</sub> is the index of the button in question, B<sub>total</sub> is the total number of buttons and R<sub>total</sub> is the combined value of all resistors in the circuit prior to the current (in this case, it's just the 47kΩ for button 0).&nbsp; So from the above, we have 47000 / (1 - (1 / 5)) - 47000 = 11750Ω.&nbsp; We can use a <a href="https://ecee.colorado.edu/~mcclurel/resistorsandcaps.pdf">lookup table to find our closest equivalent value</a>, which in this instance is 12kΩ.<br>
+<br>
+If we do this for the remaining buttons, we get values of 20k, 29k and 120k, which should give us corresponding ADC readings of around 0, 208, 415, 616 and 822.<br>
+<div>
+<br></div>
+That's still a bit of a process to work out - especially if you've got more than a handful of buttons, which is why I made<a href="https://docs.google.com/spreadsheets/d/1G6wTsAxZDnVvzIDBkg5LrhhY1T7q4p_pDSZ6owvBCMA/edit?usp=sharing"> this Google Sheets spreadsheet</a> to do all the heavy lifting!&nbsp; Just enter the number of buttons you want to use and the tolerance of your resistors (which is only a consideration with a very large number of buttons - otherwise you can leave this at the default 2%.)<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-hSk4lLNCH_A/Wy9rzrf8KoI/AAAAAAAAl4A/8MIeK3ZhNfcKME-_RHPH-wKOv8GADyZ8ACLcBGAs/s1600/spreadsheet.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="155" data-original-width="1478" height="67" src="./analog-keyboard_files/spreadsheet.png" width="640"></a></div>
+<br>
+The column you're most interested in is "Closest R" - this performs a lookup of the closest common resistor value to the calculated required value.&nbsp; The "Req'd" columns indicate the exact values we're looking for, while the "Actual" columns indicate the voltages for the calculated closest available resistor.&nbsp; "Variance" simply tells us the difference between the current and previous ADC reading - if the result here is greater than the specified resistor tolerance, this will be indicated by the "In Tolerance" column.<br>
+<br>
+Great - so we've got our resistors all worked out - all that's left now is the code!<br>
+<!-- HTML generated using hilite.me --><br>
+<div style="background: #f8f8f8; border-left: 4px solid gray; margin-left: 5%; overflow: auto; padding: 0.2em 0.6em; width: 90%;">
+<pre style="line-height: 125%; margin: 0;"><span style="color: #bc7a00;">#define BUTTONS 5</span>
+<span style="color: #bc7a00;">#define RESOLUTION 1023</span>
+
+<span style="color: #b00040;">int</span> <span style="color: blue;">readAnalogButton</span>() {
+  <span style="color: #b00040;">float</span> avg <span style="color: #666666;">=</span> RESOLUTION <span style="color: #666666;">/</span> <span style="color: #b00040;">float</span>(BUTTONS);
+  <span style="color: #b00040;">int</span> val <span style="color: #666666;">=</span> analogRead(ANALOG_PIN);
+
+  <span style="color: green; font-weight: bold;">if</span> (val <span style="color: #666666;">&gt;</span> (BUTTONS <span style="color: #666666;">-</span> <span style="color: #666666;">0.5</span>) <span style="color: #666666;">*</span> avg) { 
+    <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">0</span>; 
+  }
+
+  <span style="color: green; font-weight: bold;">for</span> (<span style="color: #b00040;">int</span> i <span style="color: #666666;">=</span> <span style="color: #666666;">0</span>; i <span style="color: #666666;">&lt;</span> BUTTONS; i<span style="color: #666666;">++</span>) {
+    <span style="color: green; font-weight: bold;">if</span> (val <span style="color: #666666;">&lt;</span> round((i <span style="color: #666666;">+</span> <span style="color: #666666;">0.5</span>) <span style="color: #666666;">*</span> avg)) { 
+      <span style="color: green; font-weight: bold;">return</span> i <span style="color: #666666;">+</span> <span style="color: #666666;">1</span>; 
+    }
+  }
+
+  <span style="color: green; font-weight: bold;">return</span> <span style="color: #666666;">0</span>;
+}
+</pre>
+</div>
+<br>
+We start by determining the average difference between adjacent ADC readings, enabling us to dynamically calculate each button's expected ADC reading.&nbsp; To test for an open circuit - the most likely result - we check if the measured value is less than halfway between 0 and our dynamically-calculated reading for the first button.&nbsp; If this evaluates to false, we begin by testing for each button in turn, comparing our ADC reading against the range boundaries that lie between adjacent readings, until we find a match.<br>
+<br>
+Note that because "no button pressed" is a valid result in addition to each individual button press, we treat a zero value as an open circuit, and commence indexing our buttons from 1, as opposed to the zero index used during calculation.<br>
+<br>
+With the above code, we can scale up and down by simply changing the value defined by the macro <span style="background-color: #f8f8f8; color: #bc7a00; font-family: monospace;">#define&nbsp;BUTTONS&nbsp;5</span>, with the number of buttons only limited by the tolerance of your resistors and resolution of your microcontroller's ADC.  We'll see just how far we can push this in a future post!<br>
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}--></div>
+</div>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1">
+<span class="post-author vcard">
+Posted by
+<span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+<meta content="https://www.blogger.com/profile/07120203120079062767" itemprop="url">
+<a class="g-profile" href="https://www.blogger.com/profile/07120203120079062767" rel="author" title="author profile">
+<span itemprop="name">Chris</span>
+</a>
+</span>
+</span>
+<span class="post-timestamp">
+at
+<meta content="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html" itemprop="url">
+<a class="timestamp-link" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html" rel="bookmark" title="permanent link"><abbr class="published" itemprop="datePublished" title="2018-07-19T23:12:00+10:00">11:12 PM</abbr></a>
+</span>
+<span class="reaction-buttons">
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-control blog-admin pid-1885471367">
+<a href="https://www.blogger.com/post-edit.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;from=pencil" title="Edit Post">
+<img alt="" class="icon-action" height="18" src="./analog-keyboard_files/icon18_edit_allbkg.gif" width="18">
+</a>
+</span>
+</span>
+<div class="post-share-buttons goog-inline-block">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;target=blog" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=270,width=475&quot;); return false;" target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;target=facebook" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=430,width=640&quot;); return false;" target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2">
+<span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3">
+<span class="post-location">
+</span>
+</div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>13 comments:</h4>
+<div class="comments-content">
+<script async="async" src="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html" type="text/javascript"></script>
+<script type="text/javascript">
+    (function() {
+      var items = null;
+      var msgs = null;
+      var config = {};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        var text = (entry &&
+                    ((entry.content && entry.content.$t) ||
+                     (entry.summary && entry.summary.$t))) ||
+            '';
+        if (entry && entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + text + '</span>';
+            }
+          }
+        }
+        return text;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/delete-comment.g?blogID='
+               + config.blogId + '&postID=' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+  </script>
+<div id="comment-holder">
+<div class="comment-thread toplevel-thread"><ol id="top-ra"><li class="comment" id="c717445692228170880"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/06191368243842568640" rel="nofollow">Simon</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1547578129883#c717445692228170880">January 16, 2019 at 5:48 AM</a></span></div><p class="comment-content">If I use 3,3v how modify the spreadsheet?<br>Thank you , Simon</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="717445692228170880" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-533235014"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=717445692228170880">Delete</a></span></span></div><div class="comment-replies"><div id="c717445692228170880-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c717445692228170880-ra" class="thread-chrome thread-expanded"><div></div><div id="c717445692228170880-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="717445692228170880" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c717445692228170880-ce"></div></li><li class="comment" id="c7360171714761988056"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/07120203120079062767" rel="nofollow">Chris</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1550062750825#c7360171714761988056">February 13, 2019 at 11:59 PM</a></span></div><p class="comment-content">Hi Simon, sorry I'm late to respond here!<br><br>I've modified the spreadsheet so you can enter the voltage yourself - thanks for the feedback!  I should recognise that not all ADCs reference 5V - the ESP8266 references only 1V, for example!<br><br>You'll need to make a copy of this file to your own Google Drive using the "Make a copy" function from the "File" menu. This will make a copy that you're free to edit and play with as much as you like!<br><br>Good luck - let me know if you need any further help with it.</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="7360171714761988056" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-1885471367"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=7360171714761988056">Delete</a></span></span></div><div class="comment-replies"><div id="c7360171714761988056-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c7360171714761988056-ra" class="thread-chrome thread-expanded"><div></div><div id="c7360171714761988056-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="7360171714761988056" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c7360171714761988056-ce"></div></li><li class="comment" id="c4448287680128226266"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/10489045140164776784" rel="nofollow">Unknown</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1574590725586#c4448287680128226266">November 24, 2019 at 9:18 PM</a></span></div><p class="comment-content">Thanks for this post!</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="4448287680128226266" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-2065492861"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=4448287680128226266">Delete</a></span></span></div><div class="comment-replies"><div id="c4448287680128226266-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c4448287680128226266-ra" class="thread-chrome thread-expanded"><div></div><div id="c4448287680128226266-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="4448287680128226266" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c4448287680128226266-ce"></div></li><li class="comment" id="c4642591318189736073"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/00067677260426683454" rel="nofollow">Babas Judi</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1582529136911#c4642591318189736073">February 24, 2020 at 6:25 PM</a></span></div><p class="comment-content">Awesome information once again! I am looking forward for your next post:) <a href="http://www.ariasourcing.com/" rel="nofollow">obsolete electronic components uk</a><br></p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="4642591318189736073" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-712135286"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=4642591318189736073">Delete</a></span></span></div><div class="comment-replies"><div id="c4642591318189736073-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c4642591318189736073-ra" class="thread-chrome thread-expanded"><div></div><div id="c4642591318189736073-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="4642591318189736073" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c4642591318189736073-ce"></div></li><li class="comment" id="c2938198665992917882"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/08374534443127431680" rel="nofollow">sdev</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1594815936626#c2938198665992917882">July 15, 2020 at 10:25 PM</a></span></div><p class="comment-content">if we press two or more keys in that case adc will interpret the different adc value and different key function will execute.<br>am i right?</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="2938198665992917882" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-117628534"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=2938198665992917882">Delete</a></span></span></div><div class="comment-replies"><div id="c2938198665992917882-rt" class="comment-thread inline-thread"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c2938198665992917882-ra" class="thread-chrome thread-expanded"><div><li class="comment" id="c3683821503878996139"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/07120203120079062767" rel="nofollow">Chris</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1594820482845#c3683821503878996139">July 15, 2020 at 11:41 PM</a></span></div><p class="comment-content">Hi sdev!<br><br>You've discovered the limitation of this particular implementation!<br><br>Because electricity will always follow the path of least resistance (no pun intended!) it will only ever register the lowest button push, no matter how many buttons you've got or are holding down.<br><br>It's certainly not a perfect solution, but definitely a handy one for when you don't need to read more than one button press.  If you want to look at an option that will allow this with minimal GPIOs, take a look into multiplexing.<br><br>Thanks for stopping by! :)</p><span class="comment-actions secondary-text"><span class="item-control blog-admin blog-admin pid-1885471367"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=3683821503878996139">Delete</a></span></span></div><div class="comment-replies"><div id="c3683821503878996139-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c3683821503878996139-ra" class="thread-chrome thread-expanded"><div></div><div id="c3683821503878996139-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="3683821503878996139" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c3683821503878996139-ce"></div></li></div><div id="c2938198665992917882-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="2938198665992917882" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c2938198665992917882-ce"></div></li><li class="comment" id="c4479523631867552215"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/08168083235214249063" rel="nofollow">I Koch</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1600661924483#c4479523631867552215">September 21, 2020 at 2:18 PM</a></span></div><p class="comment-content">Thanks for such a great article! I am building the water sensor (https://create.arduino.cc/projecthub/Pedro52/arduino-esp32-diy-water-level-sensor-and-diy-level-indicator-3d513d) and turning it into a remote-controlled sump pump controller. I used your idea to get it working, but I had some trouble. First, I used resistors that I had on hand, and the spreadsheet said the tolerance was ok. But the values didn't land correctly with the sample code. I had to dramatically increase the tolerance. Here is my output (the code would set the switch number on the second-to-last line beginning with Average...):<br><br> LEVELarray: 0 = 0  Analog value: 942  Level: 0<br><br>Average:204.80  val: 185  round((i + 0.92) * avg): 188.00  i: 0  BUTTONS: 5<br> LEVELarray: 1 = 80  Analog value: 185  Level: 1<br><br>Average:204.80  val: 353  round((i + 0.92) * avg): 188.00  i: 0  BUTTONS: 5<br>Average:204.80  val: 353  round((i + 0.92) * avg): 393.00  i: 1  BUTTONS: 5<br> LEVELarray: 2 = 119  Analog value: 353  Level: 2<br><br>Average:204.80  val: 505  round((i + 0.92) * avg): 188.00  i: 0  BUTTONS: 5<br>Average:204.80  val: 505  round((i + 0.92) * avg): 393.00  i: 1  BUTTONS: 5<br>Average:204.80  val: 505  round((i + 0.92) * avg): 598.00  i: 2  BUTTONS: 5<br> LEVELarray: 3 = 1  Analog value: 505  Level: 3<br><br>Average:204.80  val: 655  round((i + 0.92) * avg): 188.00  i: 0  BUTTONS: 5<br>Average:204.80  val: 655  round((i + 0.92) * avg): 393.00  i: 1  BUTTONS: 5<br>Average:204.80  val: 655  round((i + 0.92) * avg): 598.00  i: 2  BUTTONS: 5<br>Average:204.80  val: 655  round((i + 0.92) * avg): 803.00  i: 3  BUTTONS: 5<br> LEVELarray: 4 = 0  Analog value: 655  Level: 4<br><br>Average:204.80  val: 807  round((i + 0.92) * avg): 188.00  i: 0  BUTTONS: 5<br>Average:204.80  val: 807  round((i + 0.92) * avg): 393.00  i: 1  BUTTONS: 5<br>Average:204.80  val: 807  round((i + 0.92) * avg): 598.00  i: 2  BUTTONS: 5<br>Average:204.80  val: 807  round((i + 0.92) * avg): 803.00  i: 3  BUTTONS: 5<br>Average:204.80  val: 807  round((i + 0.92) * avg): 1008.00  i: 4  BUTTONS: 5<br> LEVELarray: 5 = 0  Analog value: 807  Level: 5<br></p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="4479523631867552215" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-492596552"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=4479523631867552215">Delete</a></span></span></div><div class="comment-replies"><div id="c4479523631867552215-rt" class="comment-thread inline-thread"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c4479523631867552215-ra" class="thread-chrome thread-expanded"><div><li class="comment" id="c6970778559921936362"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/08168083235214249063" rel="nofollow">I Koch</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1600673511825#c6970778559921936362">September 21, 2020 at 5:31 PM</a></span></div><p class="comment-content">Correction: the code would set the switch number on the last line...<br><br>I realized that once I extend wires into my sump pit, all the resistances go out the window.</p><span class="comment-actions secondary-text"><span class="item-control blog-admin blog-admin pid-492596552"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=6970778559921936362">Delete</a></span></span></div><div class="comment-replies"><div id="c6970778559921936362-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c6970778559921936362-ra" class="thread-chrome thread-expanded"><div></div><div id="c6970778559921936362-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="6970778559921936362" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c6970778559921936362-ce"></div></li></div><div id="c4479523631867552215-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="4479523631867552215" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c4479523631867552215-ce"></div></li><li class="comment" id="c9026416136741499618"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/07120203120079062767" rel="nofollow">Chris</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1600665002691#c9026416136741499618">September 21, 2020 at 3:10 PM</a></span></div><p class="comment-content">Hi - thanks for your input!<br><br>If you've used resistors that you've got on hand, then I'm afraid the code may not work as expected - however you might get lucky!<br><br>How many resistors are in your ladder (and what values did you have on hand?)  Let's work through it, as I'm always keen to see other implementations!<br><br>- Chris.</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="9026416136741499618" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-1885471367"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=9026416136741499618">Delete</a></span></span></div><div class="comment-replies"><div id="c9026416136741499618-rt" class="comment-thread inline-thread"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c9026416136741499618-ra" class="thread-chrome thread-expanded"><div><li class="comment" id="c4546666902396120229"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/08168083235214249063" rel="nofollow">I Koch</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1600673678553#c4546666902396120229">September 21, 2020 at 5:34 PM</a></span></div><p class="comment-content">https://docs.google.com/spreadsheets/d/1Ye5LhEKRTZ23IbOV4acUScxaAs0CzQEXB9rr6Fg8PCQ/edit?usp=sharing<br><br>See the manually entered actual resistor values. Also see by reply to my comment.<br><br>Thanks for the quick reply.</p><span class="comment-actions secondary-text"><span class="item-control blog-admin blog-admin pid-492596552"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=4546666902396120229">Delete</a></span></span></div><div class="comment-replies"><div id="c4546666902396120229-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c4546666902396120229-ra" class="thread-chrome thread-expanded"><div></div><div id="c4546666902396120229-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="4546666902396120229" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c4546666902396120229-ce"></div></li></div><div id="c9026416136741499618-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="9026416136741499618" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c9026416136741499618-ce"></div></li><li class="comment" id="c6837211513795980021"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/07515139370088678575" rel="nofollow">GaryS</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1600753987290#c6837211513795980021">September 22, 2020 at 3:53 PM</a></span></div><p class="comment-content">I am using resistor ladders on my model railway control panels. I wire the buttons in groups of 8 as 8 bits make a byte which is handy for controlling things over the i2c buss.i carefully select the resistor values to give analogRead values or 50,150,250,350,450,550,650 and 750. Therefor int pinNumber = analogRead pin/100 returns a number between 0 and 7 which can be used in switch/case etc.</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="6837211513795980021" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-169373712"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=6837211513795980021">Delete</a></span></span></div><div class="comment-replies"><div id="c6837211513795980021-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c6837211513795980021-ra" class="thread-chrome thread-expanded"><div></div><div id="c6837211513795980021-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="6837211513795980021" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c6837211513795980021-ce"></div></li><li class="comment" id="c7579805563627958611"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/07433750860424019081" rel="nofollow">Daen</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1602621407551#c7579805563627958611">October 14, 2020 at 7:36 AM</a></span></div><p class="comment-content">This is just what I'm looking for -- thank you!</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="7579805563627958611" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-160296558"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=7579805563627958611">Delete</a></span></span></div><div class="comment-replies"><div id="c7579805563627958611-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c7579805563627958611-ra" class="thread-chrome thread-expanded"><div></div><div id="c7579805563627958611-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="7579805563627958611" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c7579805563627958611-ce"></div></li><li class="comment" id="c6483792361778237033"><div class="avatar-image-container"><img src="./analog-keyboard_files/blogger_logo_round_35.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/12349952466050144505" rel="nofollow">lojzko</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html?showComment=1609524347576#c6483792361778237033">January 2, 2021 at 5:05 AM</a></span></div><p class="comment-content">it helped me solve my problem with 3 wires and 12 button supper</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="6483792361778237033" href="javascript:;">Reply</a><span class="item-control blog-admin blog-admin pid-977935714"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7560067702171491867&amp;postID=6483792361778237033">Delete</a></span></span></div><div class="comment-replies"><div id="c6483792361778237033-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Replies</a></span></span><ol id="c6483792361778237033-ra" class="thread-chrome thread-expanded"><div></div><div id="c6483792361778237033-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="6483792361778237033" href="javascript:;">Reply</a></div></ol></div></div><div class="comment-replybox-single" id="c6483792361778237033-ce"></div></li></ol><div id="top-continue" class="continue hidden"><a class="comment-reply" target="_self" href="javascript:;">Add comment</a></div><div class="comment-replybox-thread" id="top-ce"><iframe allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" frameborder="0" height="194px" id="comment-editor" name="comment-editor" src="./analog-keyboard_files/comment-iframe.html" width="100%" style="display: block;" data-resized="true"></iframe></div><div class="loadmore hidden" data-post-id="3161736881749103976"><a target="_self">Load more...</a></div></div>
+</div>
+</div>
+<p class="comment-footer">
+</p><div class="comment-form">
+<a name="comment-form"></a>
+<p>
+</p>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=7560067702171491867&amp;postID=3161736881749103976&amp;blogspotRpcToken=6750270" id="comment-editor-src"></a>
+
+<script src="./analog-keyboard_files/3858658042-comment_from_post_iframe.js.Без названия" type="text/javascript"></script>
+<script type="text/javascript">
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://www.ignorantofthings.com/2018/11/reverse-engineering-433mhz-remote.html" id="Blog1_blog-pager-newer-link" title="Newer Post">Newer Post</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://www.ignorantofthings.com/2018/05/a-few-years-ago-i-learned-of-slow-scan.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://www.ignorantofthings.com/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://www.ignorantofthings.com/feeds/3161736881749103976/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="column-left-outer">
+<div class="column-left-inner">
+<aside>
+</aside>
+</div>
+</div>
+<div class="column-right-outer">
+<div class="column-right-inner">
+<aside>
+</aside>
+</div>
+</div>
+</div>
+<div style="clear: both"></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class="main-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<footer>
+<div class="footer-outer">
+<div class="footer-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left footer-fauxborder-left">
+<div class="fauxborder-right footer-fauxborder-right"></div>
+<div class="region-inner footer-inner">
+<div class="foot no-items section" id="footer-1"></div>
+<table border="0" cellpadding="0" cellspacing="0" class="section-columns columns-2">
+<tbody>
+<tr>
+<td class="first columns-cell">
+<div class="foot no-items section" id="footer-2-1"></div>
+</td>
+<td class="columns-cell">
+<div class="foot no-items section" id="footer-2-2"></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class="foot section" id="footer-3" name="Footer"><div class="widget Attribution" data-version="1" id="Attribution1">
+<div class="widget-content" style="text-align: center;">
+Powered by <a href="https://www.blogger.com/" target="_blank">Blogger</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Attribution1&quot;));" rel="nofollow" target="configAttribution1" title="Edit">
+<img alt="" height="18" src="./analog-keyboard_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div class="footer-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class="content-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+
+<script type="text/javascript" src="./analog-keyboard_files/2473628150-widgets.js.Без названия"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AOuZoY5ovBA97CkqJP0hzTsMyNbJh89PwA:1613640841775';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d7560067702171491867','//www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html','7560067702171491867');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '7560067702171491867', 'title': 'Ignorant of Things', 'url': 'http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html', 'canonicalUrl': 'http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html', 'homepageUrl': 'http://www.ignorantofthings.com/', 'searchUrl': 'http://www.ignorantofthings.com/search', 'canonicalHomepageUrl': 'http://www.ignorantofthings.com/', 'blogspotFaviconUrl': 'http://www.ignorantofthings.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': false, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Ignorant of Things - Atom\x22 href\x3d\x22http://www.ignorantofthings.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Ignorant of Things - RSS\x22 href\x3d\x22http://www.ignorantofthings.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Ignorant of Things - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/7560067702171491867/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Ignorant of Things - Atom\x22 href\x3d\x22http://www.ignorantofthings.com/feeds/3161736881749103976/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/1277698886-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/13ede63161b54215', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'disableGComments': true, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '3161736881749103976', 'postImageThumbnailUrl': 'https://4.bp.blogspot.com/-lZ3VBBNHpIs/W1CGeZcdxyI/AAAAAAAAl_w/fim1Yyrv7pcv0QYNzUvRvNlzodV4vj7cgCLcBGAs/s72-c/schematic.png', 'postImageUrl': 'https://4.bp.blogspot.com/-lZ3VBBNHpIs/W1CGeZcdxyI/AAAAAAAAl_w/fim1Yyrv7pcv0QYNzUvRvNlzodV4vj7cgCLcBGAs/s400/schematic.png', 'pageName': 'The perfect multi-button input resistor ladder', 'pageTitle': 'Ignorant of Things: The perfect multi-button input resistor ladder'}}, {'name': 'features', 'data': {'sharing_get_link_dialog': 'true', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'The perfect multi-button input resistor ladder', 'description': 'A resistor ladder  is a brilliant but super simple way to attach multiple buttons to a single analog to digital converter  (ADC) pin on an A...', 'featuredImage': 'https://4.bp.blogspot.com/-lZ3VBBNHpIs/W1CGeZcdxyI/AAAAAAAAl_w/fim1Yyrv7pcv0QYNzUvRvNlzodV4vj7cgCLcBGAs/s400/schematic.png', 'url': 'http://www.ignorantofthings.com/2018/07/the-perfect-multi-button-input-resistor.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 3161736881749103976}}]);
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/3696649821-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/1050234869-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+
+<link type="text/css" rel="stylesheet" href="./analog-keyboard_files/1050234869-lightbox_bundle.css"><script type="text/javascript" src="./analog-keyboard_files/3696649821-lbx.js.Без названия"></script></body><app-content ng-version="11.1.0"></app-content></html>
