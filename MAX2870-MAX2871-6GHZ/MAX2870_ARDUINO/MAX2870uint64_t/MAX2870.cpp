@@ -42,20 +42,18 @@ void MAX2870::start() {
   reg0.all = 0x0022B568;
   reg1.all = 0x2000FD01;
   reg2.all = 0x80008042;
-  reg3.all = 0x0000000B;
-  reg4.all = 0x63BE823C;
+  reg3.all = 0x00000FA3;
+  reg4.all = 0x63BE8224;
   reg5.all = 0x00400005;
   reg6.all = 0x00000006;
 
   setConfig();
 
-  delay(100); //see datasheed: init  & powerUp
+  delay(50); //Upon power-up, the registers should be programmed twice with at least a 20ms pause between writes.
 
   setConfig();
 
-  delay(50); //see datasheed: init  & powerUp
-
-  //setActive(true); always active
+  delay(50);
 }
 
 
@@ -63,16 +61,19 @@ void MAX2870::start() {
 //****************************************************************************
 void MAX2870::writeData(uint32_t data) {
   digitalWrite(pin_LE, 0);
-  delayMicroseconds(300);
+  delayMicroseconds(2); //datasheed tLES=20ns=0,02mks. But I set 2mks
 
   SPI.transfer((0xFF000000 & data) >> 24);  //????  в таком порядке или обратном????
   SPI.transfer((0x00FF0000 & data) >> 16);
   SPI.transfer((0x0000FF00 & data) >> 8);
   SPI.transfer( 0x000000FF & data);
 
-  delayMicroseconds(2500);
+  delayMicroseconds(2); //datasheed tLEH=10ns=0,01mks. But I set 2mks
   digitalWrite(pin_LE, 1);
-  delayMicroseconds(2500);
+  delayMicroseconds(10); //datasheed tLEW=20ns=0,02mks. But I set 10mks
+
+  //Serial.println(" ");
+  //Serial.println(data, HEX);
 }
 
 //****************************************************************************
@@ -91,14 +92,13 @@ void MAX2870::setConfig() {
 void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
-  m = 4000;
+  m = 4000; // max 4096. Чем больше, тем точнее считает.
 
-  double freqMHz = freqHz / 1000000.0;
-  while (freqMHz * powf(2, diva) < 3000.0)  {
+  /*double freqMHz = freqHz / 1000000.0;
+    while (freqMHz * powf(2, diva) < 3000.0)  {
     diva = diva + 1;
-  }
-  
-  /* OR u can use if if if from datasheet
+    }*/
+
   if (freqHz >= 3000000000) {
     diva = B000;
   }
@@ -120,17 +120,15 @@ void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   else if (46875000 <= freqHz && freqHz < 93750000) {
     diva = B110;
   }
-  else if (freqHz < 46875000) {
+  else {
     diva = B111;
-  }*/
+  }
 
-  pll_coefficient = (float(freqHz) / float(f_pfd))  * powf(2, diva) ;
+  double freqK = (float) freqHz / f_pfd;
+  pll_coefficient = (float) freqK  * powf(2, diva);
   n = floor(pll_coefficient);
-
   fractional = pll_coefficient - n;
-
   frac = round(m * fractional);
-
 
   reg0.bits.frac = frac;
   reg0.bits.n = n;
@@ -142,21 +140,18 @@ void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
 
   f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
 
-  Serial.print("reg0.bits.frac=");
-  Serial.println(reg0.bits.frac, DEC);
-
-  Serial.print("reg0.bits.n=");
-  Serial.println(reg0.bits.n, DEC);
-
-  Serial.print("reg1.bits.m=");
-  Serial.println(reg1.bits.m, DEC);
-
-  Serial.print("reg4.bits.diva=");
-  Serial.println(reg4.bits.diva, DEC);
-
-  Serial.print("f_out_A=");
-  Serial.println(float(f_out_A / 1000));
-
+  /*
+    Serial.print("reg0.bits.frac=");
+    Serial.println(reg0.bits.frac, DEC);
+    Serial.print("reg0.bits.n=");
+    Serial.println(reg0.bits.n, DEC);
+    Serial.print("reg1.bits.m=");
+    Serial.println(reg1.bits.m, DEC);
+    Serial.print("reg4.bits.diva=");
+    Serial.println(reg4.bits.diva, DEC);
+    Serial.print("f_out_A=");
+    Serial.println(float(f_out_A / 1000));
+  */
 
 }
 
@@ -181,8 +176,7 @@ void MAX2870::setPFD(const uint64_t referenceFreqHz, const uint16_t rdiv) {
   reg2.bits.rdiv2 = 0;
   reg2.bits.r = rdiv;
 
-  uint32_t bs = 20 * (f_pfd / 1000000UL);
-
+  uint32_t bs = (f_pfd / 1000000UL) * 20;
 
   if (bs > 1023) {
     bs = 1023;
@@ -196,35 +190,18 @@ void MAX2870::setPFD(const uint64_t referenceFreqHz, const uint16_t rdiv) {
 
   setConfig();
 
-  Serial.print("reg2.bits.lds=");
-  Serial.println(reg2.bits.lds, BIN);
-
-  Serial.print("reg3.bits.cdiv=");
-  Serial.println(reg3.bits.cdiv, DEC);
-
-  Serial.print("bs=");
-  Serial.println(bs, DEC);
-
-
-
-
+  /*
+    Serial.print("reg2.bits.lds=");
+    Serial.println(reg2.bits.lds, BIN);
+    Serial.print("reg3.bits.cdiv=");
+    Serial.println(reg3.bits.cdiv, DEC);
+    Serial.print("bs=");
+    Serial.println(bs, DEC);
+  */
 
 }
 
-/*
-  void MAX2870::setActive(bool isOn) {
-  reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown
-  reg4.bits.sdldo = (isOn ? B0 : B1);
-  reg4.bits.sddiv = (isOn ? B0 : B1);
-  reg4.bits.sdref = (isOn ? B0 : B1);
-  //reg4.bits.sdvco = !isOn;  2871 only
-  //reg5.bits.sdpll = !isOn;  2871 only
 
-  setConfig();
-
-  //digitalWrite(pin_RF_EN, (isOn ? 1 : 0));
-  }
-*/
 
 uint64_t MAX2870::getPFD() {
   return f_pfd;
@@ -253,7 +230,20 @@ void MAX2870::set_chargePumpCurrent() {
 }
 
 
+/*
+  void MAX2870::setActive(bool isOn) {
+  reg2.bits.shdn =  (isOn ? B0 : B1); //sd = shootDown
+  reg4.bits.sdldo = (isOn ? B0 : B1);
+  reg4.bits.sddiv = (isOn ? B0 : B1);
+  reg4.bits.sdref = (isOn ? B0 : B1);
+  //reg4.bits.sdvco = !isOn;  2871 only
+  //reg5.bits.sdpll = !isOn;  2871 only
 
+  setConfig();
+
+  //digitalWrite(pin_RF_EN, (isOn ? 1 : 0));
+  }
+*/
 
 
 
