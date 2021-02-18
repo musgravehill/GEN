@@ -1,4 +1,13 @@
 
+//=====================================================================================================
+//============================== HOWTO ================================================================
+// SWEEP:  open COM-port at 115200. Send [freqMHz_from;freqMHz_to;]  [400;500;] 
+// SWEEP: GET from COM-port data  [freqMHz;AnalogPort0;AnalogPort1;]  AnalogPort=0...1023
+
+
+
+
+
 /*
   Предположим, вы хотите напечатать "number" в HEX:
   uint64_t number;
@@ -20,7 +29,7 @@ uint32_t MAX2870_step[6] = {
   10000000,
   100000000
 };
-uint8_t MAX2870_step_idx = 5;   
+uint8_t MAX2870_step_idx = 3;   
 String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};
 boolean MAX2870_LD_isOk = false;
 

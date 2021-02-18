@@ -26,14 +26,14 @@ void TIMEMACHINE_311ms() {
 
 void TIMEMACHINE_2000ms() {
   //simulate
-  MAX2870_OUT_A_frequency_real += MAX2870_step[MAX2870_step_idx];
+  /*MAX2870_OUT_A_frequency_real += MAX2870_step[MAX2870_step_idx];
   if (MAX2870_OUT_A_frequency_real > 6500000000) {
     MAX2870_OUT_A_frequency_real = 20000000;
-  }
-  MAX2870_step_idx++;
+  }*/
+  /*MAX2870_step_idx++;
   if (MAX2870_step_idx > 5) {
     MAX2870_step_idx = 0;
-  }  
+  }  */
 
 }
 
