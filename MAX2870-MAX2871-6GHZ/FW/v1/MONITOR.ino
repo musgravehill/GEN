@@ -95,3 +95,9 @@ void MONITOR_render() {
 
 
 }
+
+void MONITOR_onSweep() {
+  lcd.setCursor(0, 0);
+  lcd.print("       SWEEP      ");
+}
+

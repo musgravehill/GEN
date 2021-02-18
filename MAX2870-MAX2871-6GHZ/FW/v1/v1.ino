@@ -20,9 +20,12 @@ uint32_t MAX2870_step[6] = {
   10000000,
   100000000
 };
-uint8_t MAX2870_step_idx = 5;
+uint8_t MAX2870_step_idx = 5;   
 String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};
 boolean MAX2870_LD_isOk = false;
+
+#define MAX2870_freqMHz_min  20
+#define MAX2870_freqMHz_max  6500
 
 
 //========================================== INTERFACE ==========================================================
@@ -37,7 +40,7 @@ volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хран
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
 #define ENCODER_button 4
-#define BTN_ANALOG_IN A2 
+#define BTN_ANALOG_IN A2
 #define PORT_ANALOG_IN_0 A0
 #define PORT_ANALOG_IN_1 A1
 
@@ -57,6 +60,10 @@ uint32_t TIMEMACHINE_next_2000ms = 0L;
 //=======================================SYS=======================================================================
 volatile boolean SYS_isNeedProcessConfig = true;
 
+//SWEEP
+String SERIAL_data = "";
+boolean SERIAL_isDataReady = false;
+
 
 void setup() {
   MONITOR_init();
@@ -70,10 +77,29 @@ void setup() {
   BUTTON_init();
 
   MONITOR_render();
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 
 void loop() {
   TIMEMACHINE_loop();
+}
+
+
+void serialEvent() {
+  while (Serial.available()) {
+    char inChar = (char)Serial.read();
+
+    if (inChar == '[') {
+      SERIAL_data = "";
+      //SERIAL_isDataReady = false;
+    }
+    else if (inChar == ']') {
+      SERIAL_isDataReady = true;
+    }
+    else {
+      SERIAL_data += inChar;
+      //SERIAL_isDataReady = false;
+    }
+  }
 }
