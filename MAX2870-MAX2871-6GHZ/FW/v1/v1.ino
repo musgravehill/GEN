@@ -8,11 +8,10 @@
 */
 
 //===========================================MAX2870=============================================================
-#define MAX2870_pin_LE 9                     //Load Enable Input. When LE goes high the data stored in the shift register is loaded into the appropriate latches.
+#define MAX2870_pin_LE 9                     //Load Enable Input. LE=0 write_one_register LE=1  register set to chip
 #define MAX2870_pin_LD 8                      //input for Lock detect 
 uint64_t MAX2870_OUT_A_frequency_target = 433920000; //Hz   store F for dec\inc dF
 uint64_t MAX2870_OUT_A_frequency_real = 433000000; //Hz  store real F from MAX2870 due to fraction-mode. I wish 433920000, but chip set F = 433920480
-
 uint32_t MAX2870_step[6] = {
   1000,
   10000,
@@ -23,6 +22,7 @@ uint32_t MAX2870_step[6] = {
 };
 uint8_t MAX2870_step_idx = 5;
 String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};
+boolean MAX2870_LD_isOk = false;
 
 
 //========================================== INTERFACE ==========================================================
@@ -61,10 +61,15 @@ volatile boolean SYS_isNeedProcessConfig = true;
 void setup() {
   MONITOR_init();
 
-  //MAX init
+  //MAX2870_my.start();
+  //MAX2870_my.setPFD(MAX2870_reference_frequency_Hz , MAX2870_R_divider);
+  //MAX2870_my.pre_set_frequency_OUT_A(433920000);
+  //MAX2870_my.setConfig();
 
   ENCODER_init();
   BUTTON_init();
+
+  MONITOR_render();
   Serial.begin(9600);
 }
 

@@ -1,16 +1,33 @@
 
 void BUTTON_init() {
-     
+
 }
 
 void BUTTON_check() {
+  boolean button_state;
 
-  if (digitalRead(MAX2870_pin_LD)) {
-     
-  } else {
-     
+  //lock detect
+  button_state = digitalRead(MAX2870_pin_LD);
+  if (button_state != MAX2870_LD_isOk) {
+    MAX2870_LD_isOk = button_state;
+    MONITOR_render();
   }
-  
+  MAX2870_LD_isOk = button_state;
+
+
+  //btns analog keyboard
+
+
+  /*MAX2870_my.outPower_idx = 2; //+2dBm
+    MAX2870_my.pre_set_power_OUT_A();
+
+    MAX2870_my.noiseMode_idx = 1; //los spur #1
+    MAX2870_my.pre_set_noiseMode();
+
+    MAX2870_my.chargePumpCurrent_idx = 7; //B0111=2.56mA
+    MAX2870_my.pre_set_chargePumpCurrent();
+  */
+
 }
 
 
@@ -37,6 +54,25 @@ void ENCODER_interrupt() {
     }
   }
   sei(); // Разрешаем обработку прерываний
+}
+
+void ENCODER_process() {
+  int64_t dF = ENCODER_interrupt_delta * MAX2870_step[MAX2870_step_idx];
+  if (dF < 0 && abs(dF) >= MAX2870_OUT_A_frequency_target) {
+    MAX2870_OUT_A_frequency_target = 20000000;
+  } else {
+    MAX2870_OUT_A_frequency_target += dF;
+  }
+  if (MAX2870_OUT_A_frequency_target > 6500000000) {
+    MAX2870_OUT_A_frequency_target = 6500000000;
+  }
+  else if (MAX2870_OUT_A_frequency_target < 20000000) {
+    MAX2870_OUT_A_frequency_target = 20000000;
+  }
+  ENCODER_interrupt_delta = 0;
+
+  //MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);
+
 }
 
 

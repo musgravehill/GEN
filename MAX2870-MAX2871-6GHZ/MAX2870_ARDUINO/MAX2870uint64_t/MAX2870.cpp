@@ -89,7 +89,7 @@ void MAX2870::setConfig() {
 
 
 //****************************************************************************
-void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
+void MAX2870::pre_set_frequency_OUT_A(uint64_t freqHz) {
   uint32_t n, frac, m, diva = 0;
   double pll_coefficient, fractional = 0;
   m = 4000; // max 4096. Чем больше, тем точнее считает.
@@ -136,7 +136,7 @@ void MAX2870::set_frequency_OUT_A(uint64_t freqHz) {
   reg4.bits.diva = diva;
   //reg3.bits.mutedel = 1;  2871 only
 
-  setConfig();
+  //setConfig(); CALL this after change some registers: freq + power + noisemdode ==> then setConfig()
 
   f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
 
@@ -211,22 +211,19 @@ uint64_t MAX2870::get_frequency_OUT_A() {
   return f_out_A;
 }
 
-void MAX2870::set_noiseMode() {
+void MAX2870::pre_set_noiseMode() {
   noiseMode_idx = constrain(noiseMode_idx, 0, 2);
-  reg2.bits.sdn = noiseMode[noiseMode_idx];
-  setConfig();
+  reg2.bits.sdn = noiseMode[noiseMode_idx];  
 }
 
-void MAX2870::set_power_OUT_A() {
+void MAX2870::pre_set_power_OUT_A() {
   outPower_idx = constrain(outPower_idx, 0, 3);
-  reg4.bits.apwr = outPower[outPower_idx];
-  setConfig();
+  reg4.bits.apwr = outPower[outPower_idx];  
 }
 
-void MAX2870::set_chargePumpCurrent() {
+void MAX2870::pre_set_chargePumpCurrent() {
   chargePumpCurrent_idx = constrain(chargePumpCurrent_idx, 0, 15);
-  reg2.bits.cp = chargePumpCurrent[chargePumpCurrent_idx];
-  setConfig();
+  reg2.bits.cp = chargePumpCurrent[chargePumpCurrent_idx];  
 }
 
 

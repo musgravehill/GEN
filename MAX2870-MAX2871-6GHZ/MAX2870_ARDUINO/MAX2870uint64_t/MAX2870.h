@@ -304,10 +304,10 @@ class MAX2870 {
     void start();
     //void setActive(bool isOn);  always active 
     void setPFD(uint64_t referenceFreqHz, uint16_t rdiv);
-    void set_frequency_OUT_A(uint64_t freqHz);
-    void set_power_OUT_A();
-    void set_noiseMode();
-    void set_chargePumpCurrent();
+    void pre_set_frequency_OUT_A(uint64_t freqHz);
+    void pre_set_power_OUT_A();
+    void pre_set_noiseMode();
+    void pre_set_chargePumpCurrent();
 
     uint64_t getPFD();
     uint64_t get_frequency_OUT_A();

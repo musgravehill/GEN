@@ -42,22 +42,25 @@ void setup() {
 
   MAX2870_my.start();
   MAX2870_my.setPFD(MAX2870_reference_frequency_Hz , MAX2870_R_divider);
-  
-  MAX2870_my.set_frequency_OUT_A(433920000);
+
+  MAX2870_my.pre_set_frequency_OUT_A(433920000);
+  MAX2870_my.setConfig();
   /*
     MAX2870_my.outPower_idx = 2; //+2dBm
-    MAX2870_my.set_power_OUT_A();
+    MAX2870_my.pre_set_power_OUT_A();
 
     MAX2870_my.noiseMode_idx = 1; //los spur #1
-    MAX2870_my.set_noiseMode();
+    MAX2870_my.pre_set_noiseMode();
 
     MAX2870_my.chargePumpCurrent_idx = 7; //B0111=2.56mA
-    MAX2870_my.set_chargePumpCurrent();*/
+    MAX2870_my.pre_set_chargePumpCurrent();
 
+    MAX2870_my.setConfig();
+  */
 
   uint64_t real_freq = MAX2870_my.get_frequency_OUT_A(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
   Serial.print("real_freq=");
-  Serial.println(float(real_freq/1),6);
+  Serial.println(float(real_freq / 10), 1);
 
 }
 void loop() {
@@ -67,25 +70,25 @@ void loop() {
 
 /*  TEST
   Serial.println("\r\n 4000");
-  MAX2870_my.set_frequency_OUT_A(4000000000);
+  MAX2870_my.pre_set_frequency_OUT_A(4000000000);
   Serial.println("\r\n 2000");
-  MAX2870_my.set_frequency_OUT_A(2000000000);
+  MAX2870_my.pre_set_frequency_OUT_A(2000000000);
   Serial.println("\r\n 1000");
-  MAX2870_my.set_frequency_OUT_A(1000000000);
+  MAX2870_my.pre_set_frequency_OUT_A(1000000000);
   Serial.println("\r\n 433");
-  MAX2870_my.set_frequency_OUT_A(433000000);
+  MAX2870_my.pre_set_frequency_OUT_A(433000000);
   Serial.println("\r\n 100");
-  MAX2870_my.set_frequency_OUT_A(100000000);
+  MAX2870_my.pre_set_frequency_OUT_A(100000000);
   Serial.println("\r\n 70");
-  MAX2870_my.set_frequency_OUT_A(70000000);
+  MAX2870_my.pre_set_frequency_OUT_A(70000000);
   Serial.println("\r\n 30");
-  MAX2870_my.set_frequency_OUT_A(30000000);
+  MAX2870_my.pre_set_frequency_OUT_A(30000000);
   Serial.println("\r\n 433.92");
-  MAX2870_my.set_frequency_OUT_A(433920000);
+  MAX2870_my.pre_set_frequency_OUT_A(433920000);
   Serial.println("\r\n 5665");
-  MAX2870_my.set_frequency_OUT_A(5665000000);
+  MAX2870_my.pre_set_frequency_OUT_A(5665000000);
   Serial.println("\r\n 434.600");
-  MAX2870_my.set_frequency_OUT_A(434600000);
+  MAX2870_my.pre_set_frequency_OUT_A(434600000);
 
 */
 

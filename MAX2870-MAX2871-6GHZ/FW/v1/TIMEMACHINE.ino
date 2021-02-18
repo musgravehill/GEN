@@ -19,9 +19,8 @@ void TIMEMACHINE_101ms() {
 }
 
 void TIMEMACHINE_311ms() {
-  BUTTON_check();
-  // Serial.println(ADF4351_frequency);
-  MONITOR_render();
+  BUTTON_check();  
+  //MONITOR_render(); // для теста!!! Правильно MONITOR_render только на событиях после кнопки и т.д. 
 }
 
 void TIMEMACHINE_2000ms() {
@@ -30,7 +29,6 @@ void TIMEMACHINE_2000ms() {
   if (MAX2870_OUT_A_frequency_real > 6500000000) {
     MAX2870_OUT_A_frequency_real = 20000000;
   }
-
   MAX2870_step_idx++;
   if (MAX2870_step_idx > 5) {
     MAX2870_step_idx = 0;

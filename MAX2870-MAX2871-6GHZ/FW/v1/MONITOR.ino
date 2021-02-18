@@ -12,20 +12,20 @@ void MONITOR_init() {
   lcd.print("<    >");
 
   lcd.setCursor(0, 2);
-  lcd.print("Low");  
+  lcd.print("Low");
 
   lcd.setCursor(17, 3);
-  lcd.print("dBm");   
+  lcd.print("dBm");
 
   lcd.setCursor(0, 3);
   lcd.print("CP="); //charge pump current
-  
+
 }
 
 
 
 void MONITOR_render() {
-
+  //MAX2870_OUT_A_frequency_real= MAX2870_my.get_frequency_OUT_A();
   uint16_t frq_GHz = MAX2870_OUT_A_frequency_real / 1000000000;
   uint16_t frq_MHz = (MAX2870_OUT_A_frequency_real % 1000000000) / 1000000;
   uint16_t frq_kHz = (MAX2870_OUT_A_frequency_real % 1000000) / 1000;
@@ -64,10 +64,19 @@ void MONITOR_render() {
   }
   lcd.print(frq_Hz);
 
-  lcd.setCursor(18, 0);
-  lcd.print("LD"); // lock detect or not
-  lcd.setCursor(1, 1);
-  lcd.print("LOCK DETECT ERROR"); //low noise, low spur1, low spur2 
+
+  if (MAX2870_LD_isOk) {
+    lcd.setCursor(18, 0);
+    lcd.print("LD");
+    lcd.setCursor(1, 1);
+    lcd.print("                 ");
+  } else {
+    lcd.setCursor(18, 0);
+    lcd.print("--");
+    lcd.setCursor(1, 1);
+    lcd.print("LOCK DETECT ERROR");
+  }
+
 
   lcd.setCursor(15, 2);
   lcd.print("    ");
@@ -76,7 +85,7 @@ void MONITOR_render() {
 
 
   lcd.setCursor(3, 2);
-  lcd.print("Spur1"); //low noise, low spur1, low spur2  
+  lcd.print("Spur1"); //low noise, low spur1, low spur2
 
   lcd.setCursor(15, 3);
   lcd.print("+5");  //dBm
