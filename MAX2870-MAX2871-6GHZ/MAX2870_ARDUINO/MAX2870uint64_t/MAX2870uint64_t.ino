@@ -36,6 +36,10 @@
 
 MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_LD);
 
+uint8_t MAX2870_noiseMode_idx = 0; // 0 1 2
+uint8_t MAX2870_outPower_idx = 0;  // 0 1 2 3
+uint8_t MAX2870_chargePumpCurrent_idx = 0;// 0-15
+
 void setup() {
   Serial.begin(9600);
   Serial.println("Begin");
@@ -45,18 +49,18 @@ void setup() {
 
   MAX2870_my.pre_set_frequency_OUT_A(433920000);
   MAX2870_my.setConfig();
-  /*
-    MAX2870_my.outPower_idx = 2; //+2dBm
-    MAX2870_my.pre_set_power_OUT_A();
 
-    MAX2870_my.noiseMode_idx = 1; //los spur #1
-    MAX2870_my.pre_set_noiseMode();
+  MAX2870_outPower_idx = 2; //+2dBm
+  MAX2870_my.pre_set_power_OUT_A(MAX2870_outPower_idx);
 
-    MAX2870_my.chargePumpCurrent_idx = 7; //B0111=2.56mA
-    MAX2870_my.pre_set_chargePumpCurrent();
+  MAX2870_noiseMode_idx = 1; //los spur #1
+  MAX2870_my.pre_set_noiseMode(MAX2870_noiseMode_idx);
 
-    MAX2870_my.setConfig();
-  */
+  MAX2870_chargePumpCurrent_idx = 7; //B0111=2.56mA
+  MAX2870_my.pre_set_chargePumpCurrent(MAX2870_chargePumpCurrent_idx);
+
+  MAX2870_my.setConfig();
+
 
   uint64_t real_freq = MAX2870_my.get_frequency_OUT_A(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
   Serial.print("real_freq=");

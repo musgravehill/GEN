@@ -3,23 +3,22 @@ void MONITOR_init() {
   lcd.backlight();
 
   lcd.setCursor(0, 0);
-  lcd.print("START...");
+  lcd.print(F("START..."));
 
   lcd.setCursor(14, 0);
-  lcd.print("Hz");
+  lcd.print(F("Hz"));
 
   lcd.setCursor(14, 2);
-  lcd.print("<    >");
+  lcd.print(F("<    >"));
 
   lcd.setCursor(0, 2);
-  lcd.print("Low");
+  lcd.print(F("Low"));
 
   lcd.setCursor(17, 3);
-  lcd.print("dBm");
+  lcd.print(F("dBm"));
 
   lcd.setCursor(0, 3);
-  lcd.print("CP="); //charge pump current
-
+  lcd.print(F("CP=")); //charge pump current
 }
 
 
@@ -64,40 +63,35 @@ void MONITOR_render() {
   }
   lcd.print(frq_Hz);
 
-
   if (MAX2870_LD_isOk) {
     lcd.setCursor(18, 0);
-    lcd.print("LD");
+    lcd.print(F("LD"));
     lcd.setCursor(1, 1);
-    lcd.print("                 ");
+    lcd.print(F("                 "));
   } else {
     lcd.setCursor(18, 0);
-    lcd.print("--");
+    lcd.print(F("--"));
     lcd.setCursor(1, 1);
-    lcd.print("LOCK DETECT ERROR");
+    lcd.print(F("LOCK DETECT ERROR"));
   }
 
-
   lcd.setCursor(15, 2);
-  lcd.print("    ");
+  lcd.print(F("    "));
   lcd.setCursor(15, 2);
   lcd.print(MAX2870_step_verb[MAX2870_step_idx]);
 
-
   lcd.setCursor(3, 2);
-  lcd.print("Spur1"); //low noise, low spur1, low spur2
+  //lcd.print(MAX2870_noiseMode_verb[MAX2870_my.noiseMode_idx]);
 
   lcd.setCursor(15, 3);
-  lcd.print("+5");  //dBm
+  //lcd.print(MAX2870_outPower_verb[MAX2870_my.outPower_idx]);  //dBm
 
   lcd.setCursor(3, 3);
-  lcd.print(B1111, BIN); //charge pump current
-
-
+  //lcd.print(MAX2870_my.chargePumpCurrent[MAX2870_my.chargePumpCurrent_idx], BIN); //charge pump current
 }
 
 void MONITOR_onSweep() {
   lcd.setCursor(0, 0);
-  lcd.print("       SWEEP      ");
+  lcd.print(F("       SWEEP      "));
 }
 

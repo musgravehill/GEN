@@ -211,19 +211,20 @@ uint64_t MAX2870::get_frequency_OUT_A() {
   return f_out_A;
 }
 
-void MAX2870::pre_set_noiseMode() {
-  noiseMode_idx = constrain(noiseMode_idx, 0, 2);
-  reg2.bits.sdn = noiseMode[noiseMode_idx];  
+ 
+void MAX2870::pre_set_noiseMode(uint8_t MAX2870_noiseMode_idx) {
+  MAX2870_noiseMode_idx = constrain(MAX2870_noiseMode_idx, 0, 2);
+  reg2.bits.sdn = noiseMode[MAX2870_noiseMode_idx];  
 }
 
-void MAX2870::pre_set_power_OUT_A() {
-  outPower_idx = constrain(outPower_idx, 0, 3);
-  reg4.bits.apwr = outPower[outPower_idx];  
+void MAX2870::pre_set_power_OUT_A(uint8_t MAX2870_outPower_idx) {
+  MAX2870_outPower_idx = constrain(MAX2870_outPower_idx, 0, 3);
+  reg4.bits.apwr = outPower[MAX2870_outPower_idx];  
 }
 
-void MAX2870::pre_set_chargePumpCurrent() {
-  chargePumpCurrent_idx = constrain(chargePumpCurrent_idx, 0, 15);
-  reg2.bits.cp = chargePumpCurrent[chargePumpCurrent_idx];  
+void MAX2870::pre_set_chargePumpCurrent(uint8_t MAX2870_chargePumpCurrent_idx) {
+  MAX2870_chargePumpCurrent_idx = constrain(MAX2870_chargePumpCurrent_idx, 0, 15);
+  reg2.bits.cp = chargePumpCurrent[MAX2870_chargePumpCurrent_idx];  
 }
 
 

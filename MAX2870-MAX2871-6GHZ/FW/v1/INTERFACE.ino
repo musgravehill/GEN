@@ -34,9 +34,7 @@ void BUTTON_check() {
 void ENCODER_init() {
   pinMode(ENCODER_pin_A, INPUT);////--------------remove  pullup if user hardware resistors
   pinMode(ENCODER_pin_B, INPUT);////--------------remove  pullup if user hardware resistors
-  attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2
-
-  pinMode(ENCODER_button, INPUT);////--------------remove  pullup if user hardware resistors
+  attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2   
 }
 
 void ENCODER_interrupt() {
@@ -58,17 +56,23 @@ void ENCODER_interrupt() {
 
 void ENCODER_process() {
   int64_t dF = ENCODER_interrupt_delta * MAX2870_step[MAX2870_step_idx];
+
+  //dont overflow, dont goto null
   if (dF < 0 && abs(dF) >= MAX2870_OUT_A_frequency_target) {
-    MAX2870_OUT_A_frequency_target = 20000000;
+    MAX2870_OUT_A_frequency_target = MAX2870_freqHz_min;
   } else {
     MAX2870_OUT_A_frequency_target += dF;
   }
-  if (MAX2870_OUT_A_frequency_target > 6500000000) {
-    MAX2870_OUT_A_frequency_target = 6500000000;
-  }
-  else if (MAX2870_OUT_A_frequency_target < 20000000) {
-    MAX2870_OUT_A_frequency_target = 20000000;
-  }
+
+  MAX2870_OUT_A_frequency_target = constrain(MAX2870_OUT_A_frequency_target, MAX2870_freqHz_min, MAX2870_freqHz_max);
+
+  /*if (MAX2870_OUT_A_frequency_target > MAX2870_freqHz_max) {
+    MAX2870_OUT_A_frequency_target = MAX2870_freqHz_max;
+    }
+    else if (MAX2870_OUT_A_frequency_target < MAX2870_freqHz_min) {
+    MAX2870_OUT_A_frequency_target = MAX2870_freqHz_min;
+    }*/
+
   ENCODER_interrupt_delta = 0;
 
   //MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);

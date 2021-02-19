@@ -305,22 +305,17 @@ class MAX2870 {
     //void setActive(bool isOn);  always active 
     void setPFD(uint64_t referenceFreqHz, uint16_t rdiv);
     void pre_set_frequency_OUT_A(uint64_t freqHz);
-    void pre_set_power_OUT_A();
-    void pre_set_noiseMode();
-    void pre_set_chargePumpCurrent();
+    void pre_set_power_OUT_A(uint8_t MAX2870_outPower_idx);
+    void pre_set_noiseMode(uint8_t MAX2870_noiseMode_idx);
+    void pre_set_chargePumpCurrent(uint8_t MAX2870_chargePumpCurrent_idx);
 
     uint64_t getPFD();
     uint64_t get_frequency_OUT_A();
     
     //config data
-    uint8_t noiseMode[3] = {B0, B10, B11};
-    uint8_t noiseMode_idx = 0; // 0 1 2    
-
-    uint8_t outPower[4] = {B0, B01, B10, B11};
-    uint8_t outPower_idx = 0;  // 0 1 2 3    
-
-    uint8_t chargePumpCurrent[16] = {B0000, B0001, B0010, B0011, B0100, B0101, B0110, B0111, B1000, B1001, B1010, B1011, B1100, B1101, B1110, B1111};
-    uint8_t chargePumpCurrent_idx = 0;// 0-15
+    uint8_t noiseMode[3] = {B0, B10, B11}; 
+    uint8_t outPower[4] = {B0, B01, B10, B11}; 
+    uint8_t chargePumpCurrent[16] = {B0000, B0001, B0010, B0011, B0100, B0101, B0110, B0111, B1000, B1001, B1010, B1011, B1100, B1101, B1110, B1111};    
 
   private:
 
