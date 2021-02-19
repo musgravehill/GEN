@@ -8,8 +8,25 @@
 
 
 //===========================================MAX2870=============================================================
-#define MAX2870_pin_LE 9    //Load Enable Input. LE=0 write_one_register LE=1  register set to chip
-#define MAX2870_pin_LD 8    //input for Lock detect 
+/*
+  MOSI 11  3v3 ----> DATA
+  MISO 12 3v3 ---- null, but d12 is SPI
+  SCK 13  3v3 -----> CLK
+  d10  3v3 no connect, but SPI SS. NOT use it for MAX2870_LE!
+
+  My board doesnt have MAX2870_pin_RF_EN 3v3. And CE pin I hard connected to 3v3. My Arduino doesnt have enought pins to output all datas
+  #define MAX2870_pin_CE   3v3    //init =1 //chip enable
+  #define MAX2870_pin_RF_EN  3v3    //init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
+*/
+#include <SPI.h>
+#include "MAX2870.h"
+#define MAX2870_reference_frequency_Hz 100000000UL  //reference frequency 25-50-100MHz quartz  !!!! NOTE UL= only 4,294,967,295 == 4Ghz 294Mhz 967kHz 295Hz
+#define MAX2870_R_divider 2                   //R divider to set phase/frequency detector comparison frequency. If reference oscill is 100MHZ, R=2 because in Fraction_mode F_PFD 50MHz max!
+#define MAX2870_pin_LE 9    // 3v3 Load Enable Input. LE=0 write_one_register LE=1  register set to chip 3v3
+#define MAX2870_pin_LD 8    //3v3 input for Lock detect 3v3 
+
+MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_LD);
+
 uint64_t MAX2870_OUT_A_frequency_target = 433920000; //Hz   store F for dec\inc dF
 uint64_t MAX2870_OUT_A_frequency_real = 433000000; //Hz store real F from MAX2870 due to fraction-mode. I wish 433920000, but chip set F = 433920480
 uint32_t MAX2870_step[6] = {
@@ -76,10 +93,13 @@ void setup() {
   Serial.begin(115200);
   MONITOR_init();
 
-  //MAX2870_my.start();
-  //MAX2870_my.setPFD(MAX2870_reference_frequency_Hz , MAX2870_R_divider);
-  //MAX2870_my.pre_set_frequency_OUT_A(433920000);
-  //MAX2870_my.setConfig();
+  MAX2870_my.start();
+  MAX2870_my.setPFD(MAX2870_reference_frequency_Hz , MAX2870_R_divider);
+  MAX2870_my.pre_set_frequency_OUT_A(433920000);
+  MAX2870_my.setConfig();
+
+  //uint64_t real_freq = MAX2870_my.get_frequency_OUT_A(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
+   
 
   ENCODER_init();
   BUTTON_init();
