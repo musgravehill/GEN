@@ -21,7 +21,7 @@ void TIMEMACHINE_101ms() {
 void TIMEMACHINE_311ms() {
   BUTTON_check();  
   SERIAL_processData();
-  //MONITOR_render(); // для теста!!! Правильно MONITOR_render только на событиях после кнопки и т.д. 
+  //MONITOR_render(); // для теста!!! Правильно MONITOR_render только на событиях SYS_events_check() 
 }
 
 void TIMEMACHINE_2000ms() {
