@@ -1,11 +1,33 @@
 
 void GEN_noiseMode_next() {
-  //MAX2870_noiseMode_idx = 0; // 0 1 2
-  //MAX2870_outPower_idx = 0;  // 0 1 2 3
-  //MAX2870_chargePumpCurrent_idx= 0;// 0-15
-  ////MAX2870_my.pre_set_noiseMode(MAX2870_noiseMode_idx);
-  ////MAX2870_my.pre_set_power_OUT_A(MAX2870_outPower_idx);
-  ////MAX2870_my.pre_set_chargePumpCurrent(MAX2870_chargePumpCurrent_idx);
+  MAX2870_noiseMode_idx++;
+  if (MAX2870_noiseMode_idx > 2) {
+    MAX2870_noiseMode_idx = 0;
+  }
+  MAX2870_my.pre_set_noiseMode(MAX2870_noiseMode_idx);
+}
+
+void GEN_outPower_next() {
+  MAX2870_outPower_idx++;
+  if (MAX2870_outPower_idx > 3) {
+    MAX2870_outPower_idx = 0;
+  }
+  MAX2870_my.pre_set_power_OUT_A(MAX2870_outPower_idx);
+}
+
+void GEN_chargePumpCurrent_next() {
+  MAX2870_chargePumpCurrent_idx++;
+  if (MAX2870_chargePumpCurrent_idx > 15) {
+    MAX2870_chargePumpCurrent_idx = 0;
+  }
+  MAX2870_my.pre_set_chargePumpCurrent(MAX2870_chargePumpCurrent_idx);
+}
+
+void GEN_step_next() {
+  MAX2870_step_idx++;
+  if (MAX2870_step_idx > 5) {
+    MAX2870_step_idx = 0;
+  }
 }
 
 void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {

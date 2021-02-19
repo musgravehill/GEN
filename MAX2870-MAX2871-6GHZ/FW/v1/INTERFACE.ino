@@ -17,16 +17,10 @@ void BUTTON_check() {
 
   //btns analog keyboard
 
+  //if BTNs====> GEN_****_next() ====> SYS_isNeedProcessConfig=true;
 
-  /*MAX2870_my.outPower_idx = 2; //+2dBm
-    MAX2870_my.pre_set_power_OUT_A();
 
-    MAX2870_my.noiseMode_idx = 1; //los spur #1
-    MAX2870_my.pre_set_noiseMode();
-
-    MAX2870_my.chargePumpCurrent_idx = 7; //B0111=2.56mA
-    MAX2870_my.pre_set_chargePumpCurrent();
-  */
+  
 
 }
 
