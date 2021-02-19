@@ -8,23 +8,19 @@ void GEN_noiseMode_next() {
   ////MAX2870_my.pre_set_chargePumpCurrent(MAX2870_chargePumpCurrent_idx);
 }
 
-void SWEEP(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
-
+void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
   if ( SWEEP_freqMHz_from < (MAX2870_freqHz_min / 1000000) || SWEEP_freqMHz_to > (MAX2870_freqHz_max / 1000000) ) {
     return;
   }
-
   MONITOR_onSweep();
 
   uint16_t ADC_in; //  max65k
   uint16_t freqMHz_print;
   MAX2870_OUT_A_frequency_target = (uint64_t) SWEEP_freqMHz_from * 1000000;
   uint64_t SWEEP_freqHz_to = (uint64_t) SWEEP_freqMHz_to * 1000000;
-
   while (MAX2870_OUT_A_frequency_target <= SWEEP_freqHz_to) {
-
-    //MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);
-    //MAX2870_my.setConfig();
+    MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);
+    MAX2870_my.setConfig();
 
     freqMHz_print = MAX2870_OUT_A_frequency_target / 1000000;
     Serial.print(freqMHz_print); //MHz
@@ -53,7 +49,6 @@ void SWEEP(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
 
     Serial.print(F("\r\n"));
   }
-
   MONITOR_init();
   MONITOR_render();
 }

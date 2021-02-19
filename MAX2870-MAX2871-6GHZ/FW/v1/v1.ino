@@ -94,10 +94,14 @@ void setup() {
   MONITOR_init();
 
   MAX2870_my.start();
-  MAX2870_my.setPFD(MAX2870_reference_frequency_Hz , MAX2870_R_divider);
+  MAX2870_my.setPFD(MAX2870_reference_frequency_Hz, MAX2870_R_divider);
   MAX2870_my.pre_set_frequency_OUT_A(433920000);
+  MAX2870_my.pre_set_noiseMode(MAX2870_noiseMode_idx);
+  MAX2870_my.pre_set_power_OUT_A(MAX2870_outPower_idx);
+  MAX2870_my.pre_set_chargePumpCurrent(MAX2870_chargePumpCurrent_idx);
   MAX2870_my.setConfig();
 
+//Нужно ли? Если не нужно, то можно в MAX2870 убрать расчет частоты - это уменьшит нагрузку. Частоту можно будет ставить более быстро.
   //uint64_t real_freq = MAX2870_my.get_frequency_OUT_A(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
    
 

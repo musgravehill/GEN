@@ -138,7 +138,7 @@ void MAX2870::pre_set_frequency_OUT_A(uint64_t freqHz) {
 
   //setConfig(); CALL this after change some registers: freq + power + noisemdode ==> then setConfig()
 
-  f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva);
+  
 
   /*
     Serial.print("reg0.bits.frac=");
@@ -208,6 +208,7 @@ uint64_t MAX2870::getPFD() {
 }
 
 uint64_t MAX2870::get_frequency_OUT_A() {
+  f_out_A = f_pfd * (reg0.bits.n + 1.0 * reg0.bits.frac / reg1.bits.m) / powf(2, reg4.bits.diva); 
   return f_out_A;
 }
 

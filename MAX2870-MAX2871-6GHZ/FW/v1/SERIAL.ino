@@ -15,6 +15,6 @@ void SERIAL_processData() {
     SERIAL_data = "";
     SERIAL_isDataReady = false;
 
-    SWEEP(SWEEP_freqMHz_from, SWEEP_freqMHz_to);
+    GEN_sweep(SWEEP_freqMHz_from, SWEEP_freqMHz_to);
   }
 }
