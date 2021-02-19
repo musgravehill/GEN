@@ -24,7 +24,7 @@ void MONITOR_init() {
 
 
 void MONITOR_render() {
-  //MAX2870_OUT_A_frequency_real= MAX2870_my.get_frequency_OUT_A();
+  MAX2870_OUT_A_frequency_real = MAX2870_my.get_frequency_OUT_A();
   uint16_t frq_GHz = MAX2870_OUT_A_frequency_real / 1000000000;
   uint16_t frq_MHz = (MAX2870_OUT_A_frequency_real % 1000000000) / 1000000;
   uint16_t frq_kHz = (MAX2870_OUT_A_frequency_real % 1000000) / 1000;
@@ -81,13 +81,13 @@ void MONITOR_render() {
   lcd.print(MAX2870_step_verb[MAX2870_step_idx]);
 
   lcd.setCursor(3, 2);
-  //lcd.print(MAX2870_noiseMode_verb[MAX2870_my.noiseMode_idx]);
+  lcd.print(MAX2870_noiseMode_verb[MAX2870_noiseMode_idx]);
 
   lcd.setCursor(15, 3);
-  //lcd.print(MAX2870_outPower_verb[MAX2870_my.outPower_idx]);  //dBm
+  lcd.print(MAX2870_outPower_verb[MAX2870_outPower_idx]);  //dBm
 
   lcd.setCursor(3, 3);
-  //lcd.print(MAX2870_my.chargePumpCurrent[MAX2870_my.chargePumpCurrent_idx], BIN); //charge pump current
+  lcd.print(MAX2870_my.chargePumpCurrent[MAX2870_chargePumpCurrent_idx], BIN); //charge pump current
 }
 
 void MONITOR_onSweep() {
