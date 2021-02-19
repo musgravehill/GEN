@@ -34,6 +34,9 @@ void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
   if ( SWEEP_freqMHz_from < (MAX2870_freqHz_min / 1000000) || SWEEP_freqMHz_to > (MAX2870_freqHz_max / 1000000) ) {
     return;
   }
+  if ( SWEEP_freqMHz_from >= SWEEP_freqMHz_to ) {
+    return;
+  }
   MONITOR_onSweep();
 
   uint16_t ADC_in; //  max65k
@@ -49,7 +52,21 @@ void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
     Serial.print(';');
     MAX2870_OUT_A_frequency_target += MAX2870_step[MAX2870_step_idx];
 
-    delay(30);
+    //wait until generator lock detect?  Get real time for LD and write simple delay(timeToLD_ms);
+    if (!digitalRead(MAX2870_pin_LD)) {
+      delay(5);
+      if (!digitalRead(MAX2870_pin_LD)) {
+        delay(5);
+        if (!digitalRead(MAX2870_pin_LD)) {
+          delay(5);
+          if (!digitalRead(MAX2870_pin_LD)) {
+            delay(5);
+          }
+        }
+      }
+    }
+    delay(10); //??? for ADC stabilization, capacitor charge-discharge 
+
 
     // The ADC provides us with 10 Bit resolution. So to get 11 Bit resolution we need to oversample by:
     // 4^n,  (n= 11-10=1)    => 4 samples.
