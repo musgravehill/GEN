@@ -64,9 +64,9 @@ volatile int ENCODER_interrupt_state = 0;       // Переменная хран
 volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
-#define BTN_ANALOG_IN A2
-#define PORT_ANALOG_IN_0 A0
-#define PORT_ANALOG_IN_1 A1
+#define BTN_ANALOG_IN A1
+#define PORT_ANALOG_IN_0 A2
+#define PORT_ANALOG_IN_1 A3
 
 
 

@@ -1,5 +1,5 @@
 
-void BUTTON_init() {
+void BUTTON_init() { 
 
 }
 
@@ -20,7 +20,23 @@ void BUTTON_check() {
   //if BTNs====> GEN_****_next() ====> SYS_isNeedProcessConfig=true;
 
 
+
+ /// 1  625 210 826     encbtn= 430 
+ 
+ 
+    uint16_t ADC_in; //  max65k
+  // The ADC provides us with 10 Bit resolution. So to get 11 Bit resolution we need to oversample by:
+  // 4^n,  (n= 11-10=1)    => 4 samples.
+  ADC_in = 0;
+  for (byte i = 0; i < 4; i++) {
+    ADC_in += analogRead(BTN_ANALOG_IN);
+  }
+  ADC_in = (ADC_in  >> 2) + 1;     //+1 for chart, charts draw if data>0
+
+  Serial.print(';');
+  Serial.println(ADC_in, DEC);
   
+
 
 }
 
@@ -28,7 +44,7 @@ void BUTTON_check() {
 void ENCODER_init() {
   pinMode(ENCODER_pin_A, INPUT);////--------------remove  pullup if user hardware resistors
   pinMode(ENCODER_pin_B, INPUT);////--------------remove  pullup if user hardware resistors
-  attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2   
+  attachInterrupt(0, ENCODER_interrupt, CHANGE);  // Настраиваем обработчик прерываний по изменению сигнала d2
 }
 
 void ENCODER_interrupt() {
@@ -49,16 +65,19 @@ void ENCODER_interrupt() {
 }
 
 void ENCODER_process() {
-  int64_t dF = ENCODER_interrupt_delta * MAX2870_step[MAX2870_step_idx];
+  int64_t dF = (int64_t) ENCODER_interrupt_delta *  MAX2870_step[MAX2870_step_idx];
+
+  Serial.print("dF=MHz_"); //Hz
+  Serial.println((float)dF/1000000.0); //Hz
 
   //dont overflow, dont goto null
   if (dF < 0 && abs(dF) >= MAX2870_OUT_A_frequency_target) {
-    MAX2870_OUT_A_frequency_target = MAX2870_freqHz_min;
+    MAX2870_OUT_A_frequency_target = (uint64_t) MAX2870_freqHz_min;
   } else {
-    MAX2870_OUT_A_frequency_target += dF;
+    MAX2870_OUT_A_frequency_target += (uint64_t) dF;
   }
 
-  MAX2870_OUT_A_frequency_target = constrain(MAX2870_OUT_A_frequency_target, MAX2870_freqHz_min, MAX2870_freqHz_max);
+  MAX2870_OUT_A_frequency_target = (uint64_t) constrain(MAX2870_OUT_A_frequency_target, MAX2870_freqHz_min, MAX2870_freqHz_max);
 
   /*if (MAX2870_OUT_A_frequency_target > MAX2870_freqHz_max) {
     MAX2870_OUT_A_frequency_target = MAX2870_freqHz_max;
@@ -69,7 +88,7 @@ void ENCODER_process() {
 
   ENCODER_interrupt_delta = 0;
 
-  //MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);
+  MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);
 
 }
 
