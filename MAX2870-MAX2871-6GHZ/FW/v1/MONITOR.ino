@@ -23,7 +23,15 @@ void MONITOR_screen_next() {
   if (MONITOR_screen_num > 1) {
     MONITOR_screen_num = 0;
   }
-  MONITOR_init();
+
+  switch (MONITOR_screen_num) {
+    case 0:
+      MONITOR_screen_0_init();
+      break;
+    case 1:
+      MONITOR_screen_1_init();
+      break;
+  }
 }
 
 void MONITOR_screen_0_init() {
