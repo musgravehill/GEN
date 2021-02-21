@@ -89,7 +89,7 @@ void ENCODER_interrupt() {
 }
 
 void ENCODER_process() {
-  int64_t dF = (int64_t) ENCODER_interrupt_delta *  MAX2870_step[MAX2870_step_idx];  
+  int64_t dF = (int64_t) ENCODER_interrupt_delta *  MAX2870_step[MAX2870_step_idx];
 
   //dont overflow, dont goto null
   if (dF < 0 && abs(dF) >= MAX2870_OUT_A_frequency_target) {
@@ -111,6 +111,18 @@ void ENCODER_process() {
 
   MAX2870_my.pre_set_frequency_OUT_A(MAX2870_OUT_A_frequency_target);
 
+}
+
+uint16_t PORT_ANALOG_IN_get(uint8_t portNum) {
+  uint16_t ADC_in; //  max65k
+  // The ADC provides us with 10 Bit resolution. So to get 11 Bit resolution we need to oversample by:
+  // 4^n,  (n= 11-10=1)    => 4 samples.
+  ADC_in = 0;
+  for (byte i = 0; i < 4; i++) {
+    ADC_in += analogRead(portNum);
+  }
+  ADC_in = (ADC_in  >> 2) + 1;     //+1 for chart, charts draw if data>0
+  return ADC_in;
 }
 
 

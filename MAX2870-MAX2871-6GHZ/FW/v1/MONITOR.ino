@@ -82,7 +82,7 @@ void MONITOR_screen_0() {
   lcd.setCursor(0, 2);
   lcd.print(F("Low           <    >"));
   lcd.setCursor(0, 3);
-  lcd.print(F("CP=              dBm"));  
+  lcd.print(F("CP=              dBm"));
 
   lcd.setCursor(15, 2);
   lcd.print(F("    "));
@@ -100,11 +100,18 @@ void MONITOR_screen_0() {
   lcd.setCursor(3, 3);
   lcd.print(MAX2870_my.chargePumpCurrent[MAX2870_chargePumpCurrent_idx], BIN); //charge pump current
 }
+
 void MONITOR_screen_1() {
   lcd.setCursor(0, 2);
   lcd.print(F("A1=                 "));
   lcd.setCursor(0, 3);
   lcd.print(F("A2=                 "));
+
+  lcd.setCursor(3, 2);
+  lcd.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_1));
+  lcd.setCursor(3, 3);
+  lcd.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_2));
+
 }
 
 void MONITOR_onSweep() {

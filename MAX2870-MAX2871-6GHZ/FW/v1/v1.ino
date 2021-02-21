@@ -65,14 +65,14 @@ volatile int ENCODER_interrupt_pin_A_val = 0;   // Переменные хран
 volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хранящие состояние пина, для экономии времени
 
 #define BTN_ANALOG_IN A1
-#define PORT_ANALOG_IN_0 A2
 #define PORT_ANALOG_IN_1 A3
+#define PORT_ANALOG_IN_2 A2
 
 #define KEYBOARD_power 1
 #define KEYBOARD_screen_next 2
 #define KEYBOARD_step 3
 #define KEYBOARD_noiseMode 4
-#define KEYBOARD_cpc 5 //charge pump current
+#define KEYBOARD_cpc 5 //charge pump current 
 
 //=====================================1602 LCD i2c==============================================================
 #include <Wire.h>

@@ -66,24 +66,11 @@ void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
       }
     }
     delay(10); //??? for ADC stabilization, capacitor charge-discharge 
-
-
-    // The ADC provides us with 10 Bit resolution. So to get 11 Bit resolution we need to oversample by:
-    // 4^n,  (n= 11-10=1)    => 4 samples.
-    ADC_in = 0;
-    for (byte i = 0; i < 4; i++) {
-      ADC_in += analogRead(PORT_ANALOG_IN_0);
-    }
-    ADC_in = (ADC_in  >> 2) + 1;     //+1 for chart, charts draw if data>0
-    Serial.print(ADC_in, DEC);//0-1023
+     
+    Serial.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_1), DEC);//0-1024
     Serial.print(';');
 
-    ADC_in = 0;
-    for (byte i = 0; i < 4; i++) {
-      ADC_in += analogRead(PORT_ANALOG_IN_1);
-    }
-    ADC_in = (ADC_in  >> 2) + 1;     //+1 for chart, charts draw if data>0
-    Serial.print(ADC_in, DEC);//0-1023
+    Serial.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_2), DEC);//0-1024
     Serial.print(';');
 
     Serial.print(F("\r\n"));
