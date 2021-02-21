@@ -68,7 +68,11 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 #define PORT_ANALOG_IN_0 A2
 #define PORT_ANALOG_IN_1 A3
 
-
+#define KEYBOARD_power 1
+#define KEYBOARD_future 2
+#define KEYBOARD_step 3
+#define KEYBOARD_noiseMode 4
+#define KEYBOARD_cpc 5 //charge pump current
 
 //=====================================1602 LCD i2c==============================================================
 #include <Wire.h>
@@ -88,11 +92,12 @@ volatile boolean SYS_isNeedProcessConfig = true;
 String SERIAL_data = "";
 boolean SERIAL_isDataReady = false;
 
+// #define DBG 1
 
 void setup() {
   Serial.begin(115200);
   MONITOR_init();
-
+  
   MAX2870_my.start();
   MAX2870_my.setPFD(MAX2870_reference_frequency_Hz, MAX2870_R_divider);
   MAX2870_my.pre_set_frequency_OUT_A(433920000);
@@ -101,13 +106,8 @@ void setup() {
   MAX2870_my.pre_set_chargePumpCurrent(MAX2870_chargePumpCurrent_idx);
   MAX2870_my.setConfig();
 
-//Нужно ли? Если не нужно, то можно в MAX2870 убрать расчет частоты - это уменьшит нагрузку. Частоту можно будет ставить более быстро.
-  //uint64_t real_freq = MAX2870_my.get_frequency_OUT_A(); //реальная частота рассчитывается по формулам и может отличатьчя от установленной на килогерцы и т.п.
-   
-
   ENCODER_init();
   BUTTON_init();
-
   MONITOR_render();
 }
 

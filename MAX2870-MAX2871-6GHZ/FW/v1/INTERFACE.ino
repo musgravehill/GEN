@@ -1,30 +1,46 @@
 
-void BUTTON_init() { 
+void BUTTON_init() {
 
 }
 
 void BUTTON_check() {
-  boolean button_state;
 
   //lock detect
-  button_state = digitalRead(MAX2870_pin_LD);
+  boolean button_state = digitalRead(MAX2870_pin_LD);
   if (button_state != MAX2870_LD_isOk) {
     MAX2870_LD_isOk = button_state;
     MONITOR_render();
   }
   MAX2870_LD_isOk = button_state;
 
-
   //btns analog keyboard
-
   //if BTNs====> GEN_****_next() ====> SYS_isNeedProcessConfig=true;
+  uint8_t btn_code = KEYBOARD_get();
+  switch (btn_code) {
+    case KEYBOARD_power:
+      GEN_outPower_next();
+      break;
+    case KEYBOARD_future:
+      
+      break;
+    case KEYBOARD_step:
+      GEN_step_next();
+      break;
+    case KEYBOARD_noiseMode:
+      GEN_noiseMode_next();
+      break;
+    case KEYBOARD_cpc:
+      GEN_chargePumpCurrent_next();
+      break;
+  }
+  if (btn_code > 0) {
+    SYS_isNeedProcessConfig = true;
+  }
 
+}
 
-
- /// 1  625 210 826     encbtn= 430 
- 
- 
-    uint16_t ADC_in; //  max65k
+uint8_t KEYBOARD_get() {
+  uint16_t ADC_in; //  max65k
   // The ADC provides us with 10 Bit resolution. So to get 11 Bit resolution we need to oversample by:
   // 4^n,  (n= 11-10=1)    => 4 samples.
   ADC_in = 0;
@@ -33,11 +49,19 @@ void BUTTON_check() {
   }
   ADC_in = (ADC_in  >> 2) + 1;     //+1 for chart, charts draw if data>0
 
+
+#ifdef DBG  //#endif    
   Serial.print(';');
   Serial.println(ADC_in, DEC);
-  
+#endif
 
-
+  /// 1=power  210=null 430=step 625=noise 826=cp 1024=noBtn
+  if (ADC_in < 70) return KEYBOARD_power;
+  else if (ADC_in < 300) return KEYBOARD_future;
+  else if (ADC_in < 500) return KEYBOARD_step;
+  else if (ADC_in < 700) return KEYBOARD_noiseMode;
+  else if (ADC_in < 900) return KEYBOARD_cpc;
+  else return 0;
 }
 
 
@@ -65,10 +89,7 @@ void ENCODER_interrupt() {
 }
 
 void ENCODER_process() {
-  int64_t dF = (int64_t) ENCODER_interrupt_delta *  MAX2870_step[MAX2870_step_idx];
-
-  Serial.print("dF=MHz_"); //Hz
-  Serial.println((float)dF/1000000.0); //Hz
+  int64_t dF = (int64_t) ENCODER_interrupt_delta *  MAX2870_step[MAX2870_step_idx];  
 
   //dont overflow, dont goto null
   if (dF < 0 && abs(dF) >= MAX2870_OUT_A_frequency_target) {
