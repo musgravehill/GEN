@@ -7,6 +7,15 @@ void MONITOR_init() {
 
   lcd.setCursor(14, 0);
   lcd.print(F("Hz"));
+
+  switch (MONITOR_screen_num) {
+    case 0:
+      MONITOR_screen_0_init();
+      break;
+    case 1:
+      MONITOR_screen_1_init();
+      break;
+  }
 }
 
 void MONITOR_screen_next() {
@@ -14,6 +23,21 @@ void MONITOR_screen_next() {
   if (MONITOR_screen_num > 1) {
     MONITOR_screen_num = 0;
   }
+  MONITOR_init();
+}
+
+void MONITOR_screen_0_init() {
+  lcd.setCursor(0, 2);
+  lcd.print(F("Low           <    >"));
+  lcd.setCursor(0, 3);
+  lcd.print(F("CP=              dBm"));
+}
+
+void MONITOR_screen_1_init() {
+  lcd.setCursor(0, 2);
+  lcd.print(F("A1=                 "));
+  lcd.setCursor(0, 3);
+  lcd.print(F("A2=                 "));
 }
 
 void MONITOR_render() {
@@ -79,11 +103,6 @@ void MONITOR_render() {
 }
 
 void MONITOR_screen_0() {
-  lcd.setCursor(0, 2);
-  lcd.print(F("Low           <    >"));
-  lcd.setCursor(0, 3);
-  lcd.print(F("CP=              dBm"));
-
   lcd.setCursor(15, 2);
   lcd.print(F("    "));
   lcd.setCursor(15, 2);
@@ -102,13 +121,13 @@ void MONITOR_screen_0() {
 }
 
 void MONITOR_screen_1() {
-  lcd.setCursor(0, 2);
-  lcd.print(F("A1=                 "));
-  lcd.setCursor(0, 3);
-  lcd.print(F("A2=                 "));
-
+  lcd.setCursor(3, 2);
+  lcd.print(F("    "));
   lcd.setCursor(3, 2);
   lcd.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_1));
+
+  lcd.setCursor(3, 3);
+  lcd.print(F("    "));
   lcd.setCursor(3, 3);
   lcd.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_2));
 
@@ -117,5 +136,15 @@ void MONITOR_screen_1() {
 void MONITOR_onSweep() {
   lcd.setCursor(0, 0);
   lcd.print(F("       SWEEP      "));
+}
+
+void MONITOR_periodical() {
+  switch (MONITOR_screen_num) {
+    case 0:
+      break;
+    case 1:
+      MONITOR_screen_1();
+      break;
+  }
 }
 

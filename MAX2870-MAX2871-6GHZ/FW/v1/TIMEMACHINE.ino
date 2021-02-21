@@ -8,9 +8,9 @@ void TIMEMACHINE_loop() {
     TIMEMACHINE_311ms();
     TIMEMACHINE_next_311ms = TIMEMACHINE_currMillis + 311L;
   }
-  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_2000ms) {
-    TIMEMACHINE_2000ms();
-    TIMEMACHINE_next_2000ms = TIMEMACHINE_currMillis + 2000L;
+  if (TIMEMACHINE_currMillis > TIMEMACHINE_next_1000ms) {
+    TIMEMACHINE_1000ms();
+    TIMEMACHINE_next_1000ms = TIMEMACHINE_currMillis + 1000L;
   }
 }
 
@@ -20,11 +20,11 @@ void TIMEMACHINE_101ms() {
 
 void TIMEMACHINE_311ms() {
   BUTTON_check();  
-  SERIAL_processData();   
+  SERIAL_processData();     
 }
 
-void TIMEMACHINE_2000ms() {  
-
+void TIMEMACHINE_1000ms() {  
+   MONITOR_periodical();
 }
 
 

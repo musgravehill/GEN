@@ -82,9 +82,9 @@ uint8_t MONITOR_screen_num = 0; //0..1
 
 
 //================================== TIMEMACHINE =================================================================
-uint32_t TIMEMACHINE_next_101ms = 0L;
-uint32_t TIMEMACHINE_next_311ms = 0L;
-uint32_t TIMEMACHINE_next_2000ms = 0L;
+uint32_t TIMEMACHINE_next_101ms = 0UL;
+uint32_t TIMEMACHINE_next_311ms = 0UL;
+uint32_t TIMEMACHINE_next_1000ms = 0UL;
 
 //=======================================SYS=======================================================================
 volatile boolean SYS_isNeedProcessConfig = true;
