@@ -69,7 +69,7 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 #define PORT_ANALOG_IN_1 A3
 
 #define KEYBOARD_power 1
-#define KEYBOARD_future 2
+#define KEYBOARD_screen_next 2
 #define KEYBOARD_step 3
 #define KEYBOARD_noiseMode 4
 #define KEYBOARD_cpc 5 //charge pump current
@@ -78,6 +78,7 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 20, 4);
+uint8_t MONITOR_screen_num = 0; //0..1
 
 
 //================================== TIMEMACHINE =================================================================

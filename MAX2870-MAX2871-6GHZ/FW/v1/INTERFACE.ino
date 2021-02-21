@@ -20,8 +20,8 @@ void BUTTON_check() {
     case KEYBOARD_power:
       GEN_outPower_next();
       break;
-    case KEYBOARD_future:
-      
+    case KEYBOARD_screen_next:
+      MONITOR_screen_next();
       break;
     case KEYBOARD_step:
       GEN_step_next();
@@ -57,7 +57,7 @@ uint8_t KEYBOARD_get() {
 
   /// 1=power  210=null 430=step 625=noise 826=cp 1024=noBtn
   if (ADC_in < 70) return KEYBOARD_power;
-  else if (ADC_in < 300) return KEYBOARD_future;
+  else if (ADC_in < 300) return KEYBOARD_screen_next;
   else if (ADC_in < 500) return KEYBOARD_step;
   else if (ADC_in < 700) return KEYBOARD_noiseMode;
   else if (ADC_in < 900) return KEYBOARD_cpc;

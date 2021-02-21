@@ -50,7 +50,7 @@ void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
     freqMHz_print = MAX2870_OUT_A_frequency_target / 1000000;
     Serial.print(freqMHz_print); //MHz
     Serial.print(';');
-    MAX2870_OUT_A_frequency_target += MAX2870_step[MAX2870_step_idx];
+    MAX2870_OUT_A_frequency_target = (uint64_t) MAX2870_OUT_A_frequency_target + MAX2870_step[MAX2870_step_idx];
 
     //wait until generator lock detect?  Get real time for LD and write simple delay(timeToLD_ms);
     if (!digitalRead(MAX2870_pin_LD)) {

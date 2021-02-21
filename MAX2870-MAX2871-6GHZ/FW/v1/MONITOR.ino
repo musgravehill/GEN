@@ -7,21 +7,14 @@ void MONITOR_init() {
 
   lcd.setCursor(14, 0);
   lcd.print(F("Hz"));
-
-  lcd.setCursor(14, 2);
-  lcd.print(F("<    >"));
-
-  lcd.setCursor(0, 2);
-  lcd.print(F("Low"));
-
-  lcd.setCursor(17, 3);
-  lcd.print(F("dBm"));
-
-  lcd.setCursor(0, 3);
-  lcd.print(F("CP=")); //charge pump current
 }
 
-
+void MONITOR_screen_next() {
+  MONITOR_screen_num++;
+  if (MONITOR_screen_num > 1) {
+    MONITOR_screen_num = 0;
+  }
+}
 
 void MONITOR_render() {
   MAX2870_OUT_A_frequency_real = MAX2870_my.get_frequency_OUT_A();
@@ -75,6 +68,22 @@ void MONITOR_render() {
     lcd.print(F("LOCK DETECT ERROR"));
   }
 
+  switch (MONITOR_screen_num) {
+    case 0:
+      MONITOR_screen_0();
+      break;
+    case 1:
+      MONITOR_screen_1();
+      break;
+  }
+}
+
+void MONITOR_screen_0() {
+  lcd.setCursor(0, 2);
+  lcd.print(F("Low           <    >"));
+  lcd.setCursor(0, 3);
+  lcd.print(F("CP=              dBm"));  
+
   lcd.setCursor(15, 2);
   lcd.print(F("    "));
   lcd.setCursor(15, 2);
@@ -87,7 +96,15 @@ void MONITOR_render() {
   lcd.print(MAX2870_outPower_verb[MAX2870_outPower_idx]);  //dBm
 
   lcd.setCursor(3, 3);
+  lcd.print(F("    "));
+  lcd.setCursor(3, 3);
   lcd.print(MAX2870_my.chargePumpCurrent[MAX2870_chargePumpCurrent_idx], BIN); //charge pump current
+}
+void MONITOR_screen_1() {
+  lcd.setCursor(0, 2);
+  lcd.print(F("A1=                 "));
+  lcd.setCursor(0, 3);
+  lcd.print(F("A2=                 "));
 }
 
 void MONITOR_onSweep() {
