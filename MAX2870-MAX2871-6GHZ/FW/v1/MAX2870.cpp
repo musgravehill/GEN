@@ -6,11 +6,11 @@
 #include <stdio.h>
 
 //****************************************************************************
-//const uint8_t MAX2870_pin_CE, const uint8_t MAX2870_pin_RF_EN,
-MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_LD) {
+//, const uint8_t MAX2870_pin_RF_EN,
+MAX2870::MAX2870(const uint8_t MAX2870_pin_LE, const uint8_t MAX2870_pin_LD, const uint8_t MAX2870_pin_CE) {
   pin_LE = MAX2870_pin_LE;
   pin_LD = MAX2870_pin_LD;
-  //pin_CE = MAX2870_pin_CE;
+  pin_CE = MAX2870_pin_CE;
   //pin_RF_EN = MAX2870_pin_RF_EN;
 }
 
@@ -29,8 +29,8 @@ void MAX2870::start() {
 
   pinMode (pin_LD, INPUT);
 
-  //pinMode (pin_CE, OUTPUT);
-  //digitalWrite(pin_CE, 1);
+  pinMode (pin_CE, OUTPUT);
+  digitalWrite(pin_CE, 1);
 
   //pinMode (pin_RF_EN, OUTPUT);
   //digitalWrite(pin_RF_EN, 0); //disable rf_out until fully start
