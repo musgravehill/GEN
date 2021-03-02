@@ -21,16 +21,17 @@
   SCK 13  3v3 -----> CLK
   d10  3v3 no connect, but SPI SS. NOT use it for MAX2870_LE!
 
-  My board doesnt have MAX2870_pin_RF_EN 3v3. And CE pin I hard connected to 3v3. My Arduino doesnt have enought pins to output all datas
-  #define MAX2870_pin_CE   3v3    //init =1 //chip enable
+  My board doesnt have MAX2870_pin_RF_EN 3v3. And CE pin I hard connected to 3v3. My Arduino doesnt have enought pins to output all datas  
   #define MAX2870_pin_RF_EN  3v3    //init =1 //RF output enable  PDBRF. RF Power-Down. A logic low on this pin mutes the RF outputs
 */
 #include <SPI.h>
 #include "MAX2870.h"
 #define MAX2870_reference_frequency_Hz 100000000UL  //reference frequency 25-50-100MHz quartz  !!!! NOTE UL= only 4,294,967,295 == 4Ghz 294Mhz 967kHz 295Hz
 #define MAX2870_R_divider 2                   //R divider to set phase/frequency detector comparison frequency. If reference oscill is 100MHZ, R=2 because in Fraction_mode F_PFD 50MHz max!
-#define MAX2870_pin_LE 9    // 3v3 Load Enable Input. LE=0 write_one_register LE=1  register set to chip 3v3
+#define MAX2870_pin_LE 6    // 3v3 Load Enable Input. LE=0 write_one_register LE=1  register set to chip 3v3
+#define MAX2870_pin_CE 7       //init =1 //chip enable
 #define MAX2870_pin_LD 8    //3v3 input for Lock detect 3v3 
+
 
 MAX2870 MAX2870_my(MAX2870_pin_LE, MAX2870_pin_LD);
 
