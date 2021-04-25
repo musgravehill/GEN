@@ -46,10 +46,10 @@ void ADF4351_step_next() {
     case 3: //100000, //*10Hz 1 Mhz
       ADF4351_frequency = 100000 * (ADF4351_frequency / 100000); //*10 =  some Hz
       break;
-    case 4: //1000000, //*10Hz 10 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
+    case 4: //1000000, //*10Hz 10 Mhz 
       ADF4351_frequency = 100000 * (ADF4351_frequency / 100000); //*10 =  some Hz
       break;
-    case 5: //10000000 //100MHz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
+    case 5: //10000000 //100MHz 
       ADF4351_frequency = 100000 * (ADF4351_frequency / 100000); //*10 =  some Hz
       break;
 
@@ -63,7 +63,8 @@ void ADF4351_step_next() {
 
 void ADF4351_setConfig() {
   ADF4351_freqStepCurrent = ADF4351_stepsVariants[ADF4351_stepsVariantsNumCurrent]; //it is in ADF4351_prepareConfig()
-  ADF4351_prepareConfig();
+  ADF4351_prepareConfig();  
+  
   ADF4351_writeToRegister(5);
   delayMicroseconds(2500);
   ADF4351_writeToRegister(4);
@@ -75,7 +76,7 @@ void ADF4351_setConfig() {
   ADF4351_writeToRegister(1);
   delayMicroseconds(2500);
   ADF4351_writeToRegister(0);
-  delayMicroseconds(2500);
+  delayMicroseconds(2500);  
 
   /*/////DBG
     Serial.println("\r\n SEND CONFIG \r\n");
@@ -101,7 +102,7 @@ void ADF4351_writeToRegister(int idx) { // make 4 byte from integer for SPI-Tran
   SPI.transfer( 0x000000FF & ADF4351_registers[idx]);
 
   ADF4351_ss_toggle();
-
+  
   /*
     byte buf[4];
     for (uint8_t i = 0; i < 4; i++)
@@ -241,7 +242,8 @@ void ADF4351_prepareConfig() {
   float PFDFreq = ADF4351_referenceFreq * ((1.0 + RD2refdoubl) / (R_Counter * (1.0 + RD1_Rdiv2))); //Referenzfrequenz *10 (РІСЃРµ С‡Р°СЃС‚РѕС‚Сѓ СЃРѕРєСЂР°С‰РµРЅР° РІ 10СЂР°Р· РїРѕС‡РµРјСѓ-С‚Рѕ)
   float N = ((RFout) * outdiv) / PFDFreq;
   uint16_t N_Int = N;
-  uint16_t M_Mod = PFDFreq * (100000 / ADF4351_freqStepCurrent) / 100000;
+  //uint16_t M_Mod = PFDFreq * (100000 / ADF4351_freqStepCurrent) / 100000;
+  uint16_t M_Mod = PFDFreq * (100000 / 625) / 100000;  //use min step 6.25kHz. MOD is big => accuracy increases
   uint16_t F_Frac = round((N - N_Int) * M_Mod);
 
   /*
