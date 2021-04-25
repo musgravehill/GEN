@@ -65,7 +65,7 @@ void GEN_sweep(uint16_t SWEEP_freqMHz_from, uint16_t SWEEP_freqMHz_to) {
         }
       }
     }
-    delay(10); //??? for ADC stabilization, capacitor charge-discharge 
+    delay(50); //??? for ADC stabilization, capacitor charge-discharge 
      
     Serial.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_1), DEC);//0-1024
     Serial.print(';');

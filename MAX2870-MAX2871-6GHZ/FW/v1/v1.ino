@@ -47,7 +47,7 @@ uint32_t MAX2870_step[6] = {
   10000000,
   100000000
 };
-uint8_t MAX2870_step_idx = 3;
+uint8_t MAX2870_step_idx = 4;
 String MAX2870_step_verb[6] = {"1k", "10k", "100k", "1M", "10M", "100M"};
 
 uint8_t MAX2870_noiseMode_idx = 0; // 0 1 2
