@@ -73,7 +73,7 @@ uint32_t ADF4351_stepsVariants[6] = {
   1000000, //*10Hz 10 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
   10000000 //*10Hz 100 Mhz //only for fast inc\dec by encoder. ADF cannot LOCK at this freq-step
 };
-uint8_t ADF4351_stepsVariantsNumCurrent = 3;
+uint8_t ADF4351_stepsVariantsNumCurrent = 4;
 String OLED_stepsVariants_val[6] = {"6.25kHz", "10kHz", "100kHz", "1MHz", "10MHz", "100MHz"};
 
 uint8_t ADF4351_lowNoiseOrSpurVariants[2] = {B0, B11};
@@ -112,6 +112,7 @@ volatile int ENCODER_interrupt_pin_B_val = 0;   // Переменные хран
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+uint8_t MONITOR_screen_num = 0; //0..1
 
 
 //================================== TIMEMACHINE =================================================================

@@ -18,4 +18,5 @@ void TIMEMACHINE_101ms() {
 void TIMEMACHINE_311ms() {
   BUTTON_check();
   SERIAL_processData();   
+  MONITOR_periodical();
 }

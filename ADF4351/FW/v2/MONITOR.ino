@@ -9,6 +9,14 @@ void MONITOR_onSweep() {
   lcd.print("SWEEP");
 }
 
+void MONITOR_screen_next() {
+  MONITOR_screen_num++;
+  if (MONITOR_screen_num > 1) {
+    MONITOR_screen_num = 0;
+  }
+  SYS_isNeedProcessConfig = true;
+}
+
 void MONITOR_render() {
   uint32_t frq_MHz = ADF4351_frequency / 100000;
   uint32_t frq_kHz = (ADF4351_frequency % 100000) / 100;
@@ -49,9 +57,25 @@ void MONITOR_render() {
   lcd.print("  Hz");
 
   lcd.setCursor(0, 1);
-  lcd.print(OLED_stepsVariants_val[ADF4351_stepsVariantsNumCurrent]);
+  if (MONITOR_screen_num == 0) {
+    lcd.print(OLED_stepsVariants_val[ADF4351_stepsVariantsNumCurrent]);
+  }   
+
   lcd.setCursor(8, 1);
   lcd.print(ADF4351_lowNoiseOrSpur_verb[ADF4351_lowNoiseOrSpur_current]);
   lcd.setCursor(11, 1);
   lcd.print(ADF4351_outputPower_verb[ADF4351_outputPower_current]);
+}
+
+void MONITOR_periodical() {
+  switch (MONITOR_screen_num) {
+    case 0:
+      break;
+    case 1:
+      lcd.setCursor(0, 1);
+      lcd.print("A0=    ");
+      lcd.setCursor(3, 1);
+      lcd.print(PORT_ANALOG_IN_get(PORT_ANALOG_IN_0));
+      break;
+  }
 }
